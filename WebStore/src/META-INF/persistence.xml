@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence">
+	<persistence-unit name="webstoreDB">
+		
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<class>br.com.webstore.model.BugTrack</class>
+		<class>br.com.webstore.model.Categoria</class>
+		<class>br.com.webstore.model.Cupom</class>
+		<class>br.com.webstore.model.Endereco</class>
+		<class>br.com.webstore.model.FormaPagamento</class>
+		<class>br.com.webstore.model.Mensagem</class>
+		<class>br.com.webstore.model.Perfil</class>
+		<class>br.com.webstore.model.Produto</class>
+		<class>br.com.webstore.model.SituacaoBug</class>
+		<class>br.com.webstore.model.StatusUsuario</class>
+		<class>br.com.webstore.model.StatusVenda</class>
+		<class>br.com.webstore.model.TipoMensagem</class>
+		<class>br.com.webstore.model.UnidadeMedida</class>
+		<class>br.com.webstore.model.Usuario</class>
+		<class>br.com.webstore.model.UsuarioCupom</class>
+		<class>br.com.webstore.model.Venda</class>
+		<class>br.com.webstore.model.VendaProduto</class>
+		
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/webstoreDB" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="" />
+		</properties>
+		
+	</persistence-unit>
+</persistence>

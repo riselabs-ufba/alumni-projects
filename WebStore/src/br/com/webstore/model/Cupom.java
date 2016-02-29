@@ -5,17 +5,29 @@ package br.com.webstore.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="Cupom")
+@PrimaryKeyJoinColumn(name="idCupom")
 public class Cupom {
 
+	@Id
+	@Column(name="idCupom")
 	private Integer id;
+	
+	@Column(name="dsCupom")
 	private String descricao;
+	
+	@Column(name="dtCupomValidade")
 	private Date dataValidade;
 	
 	/**

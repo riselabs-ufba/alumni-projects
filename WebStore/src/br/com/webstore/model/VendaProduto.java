@@ -5,18 +5,31 @@ package br.com.webstore.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ForeignKey;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="VendaProduto")
+//@PrimaryKeyJoinColumn Dupla
 public class VendaProduto {
-
+	
+	//ForeignKey
 	private Integer idProduto;
+	//ForeignKey
 	private Integer idVenda;
+	
+	@Column(name="nrQuantidadeProduto")
 	private BigDecimal quantidade;
+	
+	@Column(name="vlProdutoUnitario")
 	private BigDecimal valorUnitario;
 	
 	/**

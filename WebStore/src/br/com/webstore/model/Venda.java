@@ -6,21 +6,43 @@ package br.com.webstore.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ForeignKey;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="Venda")
+@PrimaryKeyJoinColumn(name="idVenda")
 public class Venda {
 
+	@Id
+	@Column(name="idVenda")
 	private Integer id;
+
+	//ForeignKey
 	private Integer idStatusVenda;
+	
+	//ForeignKey
 	private Integer idUsuarioVenda;
+	
+	//ForeignKey
 	private Integer idUsuarioCupom;
+	
+	//ForeignKey
 	private Integer idFormaPagamento;
+	
+	@Column(name="dtVenda")
 	private Date dataVenda;
+	
+	@Column(name="vlVendaTotal")
 	private BigDecimal valorTotal;
 	
 	/**

@@ -3,16 +3,26 @@
  */
 package br.com.webstore.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="FormaPagamento")
+@PrimaryKeyJoinColumn(name="idFormaPagamento")
 public class FormaPagamento {
 
+	@Id
+	@Column(name="idFormaPagamento")
 	private Integer id;
+	
+	@Column(name="dsFormaPagamento")
 	private String descricao;
 	
 	/**

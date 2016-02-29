@@ -5,23 +5,48 @@ package br.com.webstore.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="Usuario")
+@PrimaryKeyJoinColumn(name="idUsuario")
 public class Usuario {
 
+	@Id
+	@Column(name="Usuario")
 	private Integer id;
+	
+	//ForeignKey
 	private Integer idStatusUsuario;
+	
+	//ForeignKey
 	private Integer idPerfil;
+	
+	@Column(name="dsNome")
 	private String nome;
+	
+	@Column(name="dsEmail")
 	private String email;
+	
+	@Column(name="dsSenha")
 	private String senha;
+	
+	@Column(name="dtNascimento")
 	private Date dataNascimento;
+	
+	@Column(name="nrUsuarioTelefone")
 	private String telefone;
+	
+	@Column(name="dtUsuarioInclusao")
 	private Date dataInclusao;
 	
 	/**

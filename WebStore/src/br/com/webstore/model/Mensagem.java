@@ -5,22 +5,47 @@ package br.com.webstore.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.PrimaryKeyJoinColumns;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ForeignKey;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="Mensagem")
+@PrimaryKeyJoinColumn(name="idMensagem ")
 public class Mensagem {
 
+	@Id
+	@Column(name="idMensagem")
 	private Integer id;
+	
+	//ForeignKey
 	private Integer idUsuarioResposta;
+	
+	//ForeignKey
 	private Integer idUsuarioRegistro;
+	
+	//ForeignKey
 	private Integer idTipoMensagem;
+	
+	@Column(name="dsMensagem")
 	private String descricao;
+	
+	@Column(name="dtMensagemRegistro")
 	private Date dataRegistro;
+	
+	@Column(name="dsMensagemResposta")
 	private Date dataResposta;
+	
+	@Column(name="dtMensagemResposta")
 	private String descricaoResposta;
 	
 	/**

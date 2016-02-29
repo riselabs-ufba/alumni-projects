@@ -3,16 +3,26 @@
  */
 package br.com.webstore.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="Perfil")
+@PrimaryKeyJoinColumn(name="idPerfil")
 public class Perfil {
 
+	@Id
+	@Column(name="idPerfil")
 	private Integer id;
+	
+	@Column(name="dsPerfil")
 	private String descricao;
 	
 	/**

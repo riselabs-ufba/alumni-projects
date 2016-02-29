@@ -3,16 +3,26 @@
  */
 package br.com.webstore.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="StatusVenda")
+@PrimaryKeyJoinColumn(name="idStatusVenda")
 public class StatusVenda {
 
+	@Id
+	@Column(name="idStatusVenda")
 	private Integer id;
+	
+	@Column(name="dsStatusVenda")
 	private String descricao;
 	
 	/**

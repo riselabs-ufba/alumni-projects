@@ -5,22 +5,46 @@ package br.com.webstore.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ForeignKey;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="BugTrack")
+@PrimaryKeyJoinColumn(name="idBugTrack")
 public class BugTrack {
 
+	@Id
+	@Column(name="idBugTrack")
 	private Integer id;
+	
+	//ForeignKey
 	private Integer idUsuarioResponde;
+	
+	//ForeignKey
 	private Integer idUsuarioRegistro;
+	
+	//ForeignKey
 	private Integer idSituacaoBug;
+	
+	@Column(name="dsBUG")
 	private String descricao;
+	
+	@Column(name="dtMensagemRegistro")
 	private Date dataRegistro;
+	
+	@Column(name="dtResposta")
 	private Date dataResposta;
+	
+	@Column(name="dsResposta")
 	private String descricaoResposta;
 	
 	/**

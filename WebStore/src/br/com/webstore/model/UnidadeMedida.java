@@ -3,16 +3,26 @@
  */
 package br.com.webstore.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="UnidadeMedida")
+@PrimaryKeyJoinColumn(name="idUnidadeMedida")
 public class UnidadeMedida {
 
+	@Id
+	@Column(name="idUnidadeMedida")
 	private Integer id;
+	
+	@Column(name="dsUnidadeMedida")
 	private String descricao;
 	
 	/**

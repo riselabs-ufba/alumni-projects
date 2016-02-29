@@ -3,22 +3,46 @@
  */
 package br.com.webstore.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ForeignKey;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="Endereco")
+@PrimaryKeyJoinColumn(name="idEndereco")
 public class Endereco {
 	
+	@Id
+	@Column(name="idEndereco")
 	private Integer id;
+	
+	//ForeignKey
 	private Integer idUsuario;
+	
+	@Column(name="nmEnderecoLogradouro")
 	private String logradouro;
+	
+	@Column(name="nrEndereco")
 	private String numero;
+	
+	@Column(name="dsEnderecoBairro")
 	private String bairro;
+	
+	@Column(name="dsEnderecoCep")
 	private String cep;
+	
+	@Column(name="dsEnderecoCidade")
 	private String cidade;
+	
+	@Column(name="dsEnderecoUF")
 	private String uf;
 	
 	/**

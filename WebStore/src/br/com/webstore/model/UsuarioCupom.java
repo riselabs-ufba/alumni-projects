@@ -3,18 +3,32 @@
  */
 package br.com.webstore.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ForeignKey;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="UsuarioCupom")
 public class UsuarioCupom {
 
+	@Id
+	@Column(name="idUsuarioCupom")
 	private Integer id;
+	
+	//ForeignKey
 	private Integer idUsuario;
+	
+	//ForeignKey
 	private Integer idCupom;
+	
+	@Column(name="flUsado")
 	private Boolean disponivel;
 	
 	/**

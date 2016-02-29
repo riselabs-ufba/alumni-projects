@@ -3,16 +3,26 @@
  */
 package br.com.webstore.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * @author webstore
  *
  */
 @Entity
+@Table(name="Categoria")
+@PrimaryKeyJoinColumn(name="idCategoria")
 public class Categoria {
-
+	
+	@Id
+	@Column(name = "idCategoria")
 	private Integer id;
+	
+	@Column(name = "dsCategoria" )
 	private String descricao;
 	
 	/**

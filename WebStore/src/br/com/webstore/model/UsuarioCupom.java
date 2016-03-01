@@ -3,9 +3,11 @@
  */
 package br.com.webstore.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ForeignKey;
@@ -22,10 +24,10 @@ public class UsuarioCupom {
 	@Column(name="idUsuarioCupom")
 	private Integer id;
 	
-	//ForeignKey
+	@ManyToMany(targetEntity = Usuario.class, cascade = CascadeType.ALL)
 	private Integer idUsuario;
 	
-	//ForeignKey
+	@ManyToMany(targetEntity = Cupom.class, cascade = CascadeType.ALL)
 	private Integer idCupom;
 	
 	@Column(name="flUsado")

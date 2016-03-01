@@ -5,14 +5,17 @@ package br.com.webstore.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.PrimaryKeyJoinColumns;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author webstore
@@ -20,28 +23,33 @@ import org.hibernate.annotations.ForeignKey;
  */
 @Entity
 @Table(name="Mensagem")
-@PrimaryKeyJoinColumn(name="idMensagem ")
 public class Mensagem {
 
 	@Id
+	@GeneratedValue
 	@Column(name="idMensagem")
 	private Integer id;
 	
-	//ForeignKey
-	private Integer idUsuarioResposta;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idUsuarioResposta", referencedColumnName="idUsuario", nullable=false)
+	private Usuario usuarioResposta;
 	
-	//ForeignKey
-	private Integer idUsuarioRegistro;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idUsuarioRegistro", referencedColumnName="idUsuario", nullable=false)
+	private Usuario usuarioRegistro;
 	
-	//ForeignKey
-	private Integer idTipoMensagem;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idTipoMensagem", referencedColumnName="idTipoMensagem", nullable=false)
+	private TipoMensagem tipoMensagem;
 	
 	@Column(name="dsMensagem")
 	private String descricao;
 	
-	@Column(name="dtMensagemRegistro")
+	@Temporal(TemporalType.DATE)
+	@Column(name="dtMensagemRegistro", nullable=false)
 	private Date dataRegistro;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="dsMensagemResposta")
 	private Date dataResposta;
 	
@@ -63,46 +71,46 @@ public class Mensagem {
 		this.id = codigo;
 	}
 	/**
-	 * Return the idUsuarioResposta 
-	 * @return the idUsuarioResposta
+	 * Return the usuarioResposta 
+	 * @return the usuarioResposta
 	 */
-	public Integer getIdUsuarioResposta() {
-		return idUsuarioResposta;
+	public Usuario getUsuarioResposta() {
+		return usuarioResposta;
 	}
 	/**
-	 * Setter the idUsuarioResposta
-	 * @param idUsuarioResposta the idUsuarioResposta to set
+	 * Setter the usuarioResposta
+	 * @param usuarioResposta the usuarioResposta to set
 	 */
-	public void setIdUsuarioResposta(Integer codigoUsuarioResposta) {
-		this.idUsuarioResposta = codigoUsuarioResposta;
+	public void setUsuarioResposta(Usuario usuarioResposta) {
+		this.usuarioResposta = usuarioResposta;
 	}
 	/**
-	 * Return the idUsuarioRegistro 
-	 * @return the idUsuarioRegistro
+	 * Return the usuarioRegistro 
+	 * @return the usuarioRegistro
 	 */
-	public Integer getIdUsuarioRegistro() {
-		return idUsuarioRegistro;
+	public Usuario getUsuarioRegistro() {
+		return usuarioRegistro;
 	}
 	/**
-	 * Setter the idUsuarioRegistro
-	 * @param idUsuarioRegistro the idUsuarioRegistro to set
+	 * Setter the usuarioRegistro
+	 * @param usuarioRegistro the usuarioRegistro to set
 	 */
-	public void setIdUsuarioRegistro(Integer codigoUsuarioRegistro) {
-		this.idUsuarioRegistro = codigoUsuarioRegistro;
+	public void setUsuarioRegistro(Usuario usuarioRegistro) {
+		this.usuarioRegistro = usuarioRegistro;
 	}
 	/**
-	 * Return the idTipoMensagem 
-	 * @return the idTipoMensagem
+	 * Return the tipoMensagem 
+	 * @return the tipoMensagem
 	 */
-	public Integer getIdTipoMensagem() {
-		return idTipoMensagem;
+	public TipoMensagem getTipoMensagem() {
+		return tipoMensagem;
 	}
 	/**
-	 * Setter the idTipoMensagem
-	 * @param idTipoMensagem the idTipoMensagem to set
+	 * Setter the tipoMensagem
+	 * @param tipoMensagem the tipoMensagem to set
 	 */
-	public void setIdTipoMensagem(Integer codigoTipoMensagem) {
-		this.idTipoMensagem = codigoTipoMensagem;
+	public void setTipoMensagem(TipoMensagem tipoMensagem) {
+		this.tipoMensagem = tipoMensagem;
 	}
 	/**
 	 * Return the descricao 

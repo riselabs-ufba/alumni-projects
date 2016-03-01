@@ -60,32 +60,32 @@ public class Produto {
 		this.id = codigo;
 	}
 	/**
-	 * Return the idCategoria 
-	 * @return the idCategoria
+	 * Return the categoria 
+	 * @return the categoria
 	 */
-	public Integer getIdCategoria() {
-		return idCategoria;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 	/**
-	 * Setter the idCategoria
-	 * @param idCategoria the idCategoria to set
+	 * Setter the categoria
+	 * @param categoria the categoria to set
 	 */
-	public void setIdCategoria(Integer codigoCategoria) {
-		this.idCategoria = codigoCategoria;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	/**
-	 * Return the idUnidadeMedida 
-	 * @return the idUnidadeMedida
+	 * Return the unidadeMedida 
+	 * @return the unidadeMedida
 	 */
-	public Integer getIdUnidadeMedida() {
-		return idUnidadeMedida;
+	public UnidadeMedida getUnidadeMedida() {
+		return unidadeMedida;
 	}
 	/**
-	 * Setter the idUnidadeMedida
-	 * @param idUnidadeMedida the idUnidadeMedida to set
+	 * Setter the unidadeMedida
+	 * @param unidadeMedida the unidadeMedida to set
 	 */
-	public void setIdUnidadeMedida(Integer codigoUnidadeMedida) {
-		this.idUnidadeMedida = codigoUnidadeMedida;
+	public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
+		this.unidadeMedida = unidadeMedida;
 	}
 	/**
 	 * Return the numero 

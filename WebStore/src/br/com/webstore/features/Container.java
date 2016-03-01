@@ -37,7 +37,7 @@ public class Container extends JPanel {
 			}
 		});
 		frame.getContentPane().add(new Container(),BorderLayout.CENTER);
-		frame.setSize(400, 125);
+		frame.setSize(600, 400);
 		frame.setVisible(true);
 	}
 }

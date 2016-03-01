@@ -5,13 +5,16 @@ package br.com.webstore.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author webstore
@@ -19,28 +22,33 @@ import org.hibernate.annotations.ForeignKey;
  */
 @Entity
 @Table(name="BugTrack")
-@PrimaryKeyJoinColumn(name="idBugTrack")
 public class BugTrack {
 
-	@Id
+	@Id 
+	@GeneratedValue
 	@Column(name="idBugTrack")
 	private Integer id;
 	
-	//ForeignKey
-	private Integer idUsuarioResponde;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idUsuarioResponde", referencedColumnName="idUsuario", nullable=false)
+	private Usuario usuarioResponde;
 	
-	//ForeignKey
-	private Integer idUsuarioRegistro;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idUsuarioRegistro", referencedColumnName="idUsuario", nullable=false)
+	private Usuario usuarioRegistro;
 	
-	//ForeignKey
-	private Integer idSituacaoBug;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idSituacaoBug", referencedColumnName="idSituacaoBug", nullable=false)
+	private SituacaoBug situacaoBug;
 	
 	@Column(name="dsBUG")
 	private String descricao;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="dtMensagemRegistro")
 	private Date dataRegistro;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="dtResposta")
 	private Date dataResposta;
 	
@@ -62,46 +70,46 @@ public class BugTrack {
 		this.id = codigo;
 	}
 	/**
-	 * Return the idUsuarioResponde 
-	 * @return the idUsuarioResponde
+	 * Return the usuarioResponde 
+	 * @return the usuarioResponde
 	 */
-	public Integer getIdUsuarioResponde() {
-		return idUsuarioResponde;
+	public Usuario getUsuarioResponde() {
+		return usuarioResponde;
 	}
 	/**
-	 * Setter the idUsuarioResponde
-	 * @param idUsuarioResponde the idUsuarioResponde to set
+	 * Setter the usuarioResponde
+	 * @param usuarioResponde the usuarioResponde to set
 	 */
-	public void setIdUsuarioResponde(Integer codigoUsuarioResponde) {
-		this.idUsuarioResponde = codigoUsuarioResponde;
+	public void setUsuarioResponde(Usuario usuarioResponde) {
+		this.usuarioResponde = usuarioResponde;
 	}
 	/**
-	 * Return the idUsuarioRegistro 
-	 * @return the idUsuarioRegistro
+	 * Return the usuarioRegistro 
+	 * @return the usuarioRegistro
 	 */
-	public Integer getIdUsuarioRegistro() {
-		return idUsuarioRegistro;
+	public Usuario getUsuarioRegistro() {
+		return usuarioRegistro;
 	}
 	/**
-	 * Setter the idUsuarioRegistro
-	 * @param idUsuarioRegistro the idUsuarioRegistro to set
+	 * Setter the usuarioRegistro
+	 * @param usuarioRegistro the usuarioRegistro to set
 	 */
-	public void setIdUsuarioRegistro(Integer codigoUsuarioRegistro) {
-		this.idUsuarioRegistro = codigoUsuarioRegistro;
+	public void setUsuarioRegistro(Usuario usuarioRegistro) {
+		this.usuarioRegistro = usuarioRegistro;
 	}
 	/**
-	 * Return the idSituacaoBug 
-	 * @return the idSituacaoBug
+	 * Return the situacaoBug 
+	 * @return the situacaoBug
 	 */
-	public Integer getIdSituacaoBug() {
-		return idSituacaoBug;
+	public SituacaoBug getSituacaoBug() {
+		return situacaoBug;
 	}
 	/**
-	 * Setter the idSituacaoBug
-	 * @param idSituacaoBug the idSituacaoBug to set
+	 * Setter the situacaoBug
+	 * @param situacaoBug the situacaoBug to set
 	 */
-	public void setIdSituacaoBug(Integer codigoSituacaoBug) {
-		this.idSituacaoBug = codigoSituacaoBug;
+	public void setSituacaoBug(SituacaoBug situacaoBug) {
+		this.situacaoBug = situacaoBug;
 	}
 	/**
 	 * Return the descricao 

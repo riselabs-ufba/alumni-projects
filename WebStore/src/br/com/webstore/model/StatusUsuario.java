@@ -5,6 +5,7 @@ package br.com.webstore.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -15,10 +16,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="StatusUsuario")
-@PrimaryKeyJoinColumn(name="idStatusUsuario")
 public class StatusUsuario {
 
 	@Id
+	@GeneratedValue
 	@Column(name="idStatusUsuario")
 	private Integer id;
 	

@@ -7,7 +7,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -18,17 +20,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Usuario")
-@PrimaryKeyJoinColumn(name="idUsuario")
 public class Usuario {
 
 	@Id
+	@GeneratedValue
 	@Column(name="Usuario")
 	private Integer id;
 	
-	//ForeignKey
+	@ManyToOne(targetEntity = StatusUsuario.class)
 	private Integer idStatusUsuario;
 	
-	//ForeignKey
+	@ManyToOne(targetEntity= Perfil.class)
 	private Integer idPerfil;
 	
 	@Column(name="dsNome")

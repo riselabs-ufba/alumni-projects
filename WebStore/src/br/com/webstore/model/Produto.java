@@ -5,13 +5,15 @@ package br.com.webstore.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
 
 /**
  * @author webstore
@@ -19,18 +21,20 @@ import org.hibernate.annotations.ForeignKey;
  */
 @Entity
 @Table(name="Produto")
-@PrimaryKeyJoinColumn(name="idProduto")
 public class Produto {
 	
 	@Id
+	@GeneratedValue
 	@Column(name="idProduto")
 	private Integer id;
 	
-	//ForeignKey
-	private Integer idCategoria;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idCategoria", referencedColumnName="idCategoria", nullable=false)
+	private Categoria categoria;
 	
-	//ForeignKey
-	private Integer idUnidadeMedida;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idUnidadeMedida", referencedColumnName="idUnidadeMedida", nullable=false)
+	private UnidadeMedida unidadeMedida;
 	
 	@Column(name="nrProdutoCodigo")
 	private Integer numero;
@@ -38,7 +42,7 @@ public class Produto {
 	@Column(name="dsProduto")
 	private String descricao;
 	
-	@Column(name="vlProduto")
+	@Column(name="vlProduto", nullable=false)
 	private BigDecimal valor;
 	
 	/**

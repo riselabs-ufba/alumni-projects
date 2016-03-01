@@ -5,8 +5,8 @@ package br.com.webstore.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -15,10 +15,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="FormaPagamento")
-@PrimaryKeyJoinColumn(name="idFormaPagamento")
 public class FormaPagamento {
 
 	@Id
+	@GeneratedValue
 	@Column(name="idFormaPagamento")
 	private Integer id;
 	

@@ -7,9 +7,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author webstore
@@ -17,16 +19,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Cupom")
-@PrimaryKeyJoinColumn(name="idCupom")
 public class Cupom {
 
 	@Id
+	@GeneratedValue
 	@Column(name="idCupom")
 	private Integer id;
 	
 	@Column(name="dsCupom")
 	private String descricao;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="dtCupomValidade")
 	private Date dataValidade;
 	

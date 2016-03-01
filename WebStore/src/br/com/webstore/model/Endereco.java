@@ -5,11 +5,10 @@ package br.com.webstore.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
 
 /**
  * @author webstore
@@ -17,14 +16,14 @@ import org.hibernate.annotations.ForeignKey;
  */
 @Entity
 @Table(name="Endereco")
-@PrimaryKeyJoinColumn(name="idEndereco")
 public class Endereco {
 	
 	@Id
+	@GeneratedValue
 	@Column(name="idEndereco")
 	private Integer id;
 	
-	//ForeignKey
+	@JoinColumn(name="idUsuario", referencedColumnName="idUsuario", nullable=false)
 	private Integer idUsuario;
 	
 	@Column(name="nmEnderecoLogradouro")

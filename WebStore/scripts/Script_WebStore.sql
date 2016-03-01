@@ -112,7 +112,7 @@ CREATE TABLE Produto (
   idUnidadeMedida INTEGER UNSIGNED NOT NULL,
   nrProdutoCodigo INTEGER UNSIGNED NULL,
   dsProduto VARCHAR(1000) NULL,
-  vlProduto DECIMAL NULL,
+  vlProduto DECIMAL NOT NULL,
   PRIMARY KEY(idProduto),
   FOREIGN KEY(idUnidadeMedida) REFERENCES UnidadeMedida(idUnidadeMedida),
   FOREIGN KEY(idCategoria) REFERENCES Categoria(idCategoria)
@@ -148,7 +148,7 @@ CREATE TABLE Mensagem (
   idUsuarioRegistro INTEGER UNSIGNED NOT NULL,
   idTipoMensagem INTEGER UNSIGNED NOT NULL,
   dsMensagem VARCHAR(1000) NULL,
-  dtMensagemRegistro DATETIME NULL,
+  dtMensagemRegistro DATETIME NOT NULL,
   dsMensagemResposta VARCHAR(1000) NULL,
   dtMensagemResposta DATETIME NULL,
   PRIMARY KEY(idMensagem),

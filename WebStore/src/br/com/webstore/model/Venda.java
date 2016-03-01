@@ -6,9 +6,11 @@ package br.com.webstore.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -36,7 +38,7 @@ public class Venda {
 	//ForeignKey
 	private Integer idUsuarioCupom;
 	
-	//ForeignKey
+	@ManyToMany(targetEntity = FormaPagamento.class, cascade = CascadeType.ALL)
 	private Integer idFormaPagamento;
 	
 	@Column(name="dtVenda")

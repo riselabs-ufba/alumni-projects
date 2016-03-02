@@ -58,11 +58,11 @@ CREATE TABLE Usuario (
   idStatusUsuario INTEGER UNSIGNED NOT NULL,
   idPerfil INTEGER UNSIGNED NOT NULL,
   dsNome VARCHAR(255) NULL,
-  dsEmail VARCHAR(255) NULL,
-  dsSenha VARCHAR(50) NULL,
+  dsEmail VARCHAR(255) NOT NULL,
+  dsSenha VARCHAR(50) NOT NULL,
   dtNascimento DATE NULL,
   nrUsuarioTelefone VARCHAR(50) NULL,
-  dtUsuarioInclusao DATETIME NULL,
+  dtUsuarioInclusao DATETIME NOT NULL,
   PRIMARY KEY(idUsuario),
   FOREIGN KEY(idPerfil) REFERENCES Perfil(idPerfil),
   FOREIGN KEY(idStatusUsuario) REFERENCES StatusUsuario(idStatusUsuario)
@@ -96,9 +96,9 @@ CREATE TABLE Venda (
   idStatusVenda INTEGER UNSIGNED NOT NULL,
   idUsuarioVenda INTEGER UNSIGNED NOT NULL,
   idUsuarioCupom INTEGER UNSIGNED NOT NULL,
-  idFormaPagamento INTEGER UNSIGNED NULL,
-  dtVenda DATETIME NULL,
-  vlVendaTotal DECIMAL NULL,
+  idFormaPagamento INTEGER UNSIGNED NOT NULL,
+  dtVenda DATETIME NOT NULL,
+  vlVendaTotal DECIMAL NOT NULL,
   PRIMARY KEY(idVenda),
   FOREIGN KEY(idFormaPagamento) REFERENCES FormaPagamento(idFormaPagamento),
   FOREIGN KEY(idUsuarioVenda) REFERENCES Usuario(idUsuario),
@@ -121,10 +121,11 @@ CREATE TABLE Produto (
 CREATE TABLE VendaProduto (
   idProduto INTEGER UNSIGNED NOT NULL,
   idVenda INTEGER UNSIGNED NOT NULL,
-  nrQuantidadeProduto DECIMAL NULL,
-  vlProdutoUnitario DECIMAL NULL,
+  nrQuantidadeProduto DECIMAL NOT NULL,
+  vlProdutoUnitario DECIMAL NOT NULL,
   PRIMARY KEY(idProduto, idVenda),
-  FOREIGN KEY(idProduto) REFERENCES Produto(idProduto)
+  FOREIGN KEY(idProduto) REFERENCES Produto(idProduto),
+  FOREIGN KEY(idVenda) REFERENCES Venda(idVenda)
 );
 
 CREATE TABLE BugTrack (
@@ -133,7 +134,7 @@ CREATE TABLE BugTrack (
   idUsuarioRegistro INTEGER UNSIGNED NOT NULL,
   idSituacaoBug INTEGER UNSIGNED NOT NULL,
   dsBUG VARCHAR(1000) NULL,
-  dtRegistro DATETIME NULL,
+  dtRegistro DATETIME NOT NULL,
   dsResposta VARCHAR(1000) NULL,
   dtResposta DATETIME NULL,
   PRIMARY KEY(idBugTrack),

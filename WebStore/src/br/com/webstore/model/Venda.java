@@ -9,12 +9,14 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author webstore
@@ -22,29 +24,34 @@ import org.hibernate.annotations.ForeignKey;
  */
 @Entity
 @Table(name="Venda")
-@PrimaryKeyJoinColumn(name="idVenda")
 public class Venda {
 
 	@Id
+	@GeneratedValue
 	@Column(name="idVenda")
 	private Integer id;
 
-	//ForeignKey
-	private Integer idStatusVenda;
+	@ManyToMany(targetEntity = StatusVenda.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="idStatusVenda", referencedColumnName="idStatusVenda", nullable=false)
+	private StatusVenda statusVenda;
 	
-	//ForeignKey
-	private Integer idUsuarioVenda;
+	@ManyToMany(targetEntity = Usuario.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="idUsuarioVenda", referencedColumnName="idUsuario", nullable=false)
+	private Usuario usuarioVenda;
 	
-	//ForeignKey
-	private Integer idUsuarioCupom;
+	@ManyToMany(targetEntity = UsuarioCupom.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="idUsuarioCupom", referencedColumnName="idUsuarioCupom", nullable=false)
+	private UsuarioCupom usuarioCupom;
 	
-	@ManyToMany(targetEntity = FormaPagamento.class, cascade = CascadeType.ALL)
-	private Integer idFormaPagamento;
+	@ManyToOne(targetEntity = FormaPagamento.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="idFormaPagamento", referencedColumnName="idFormaPagamento", nullable=false)
+	private FormaPagamento formaPagamento;
 	
-	@Column(name="dtVenda")
+	@Temporal(TemporalType.DATE)
+	@Column(name="dtVenda", nullable=false)
 	private Date dataVenda;
 	
-	@Column(name="vlVendaTotal")
+	@Column(name="vlVendaTotal", nullable=false)
 	private BigDecimal valorTotal;
 	
 	/**

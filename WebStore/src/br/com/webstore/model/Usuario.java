@@ -9,9 +9,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -24,31 +26,35 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue
-	@Column(name="Usuario")
+	@Column(name="idUsuario")
 	private Integer id;
 	
 	@ManyToOne(targetEntity = StatusUsuario.class)
-	private Integer idStatusUsuario;
+	@JoinColumn(name="idStatusUsuario", referencedColumnName="idStatusUsuario", nullable=false)
+	private StatusUsuario statusUsuario;
 	
 	@ManyToOne(targetEntity= Perfil.class)
-	private Integer idPerfil;
+	@JoinColumn(name="idPerfil", referencedColumnName="idPerfil", nullable=false)
+	private Perfil perfil;
 	
 	@Column(name="dsNome")
 	private String nome;
 	
-	@Column(name="dsEmail")
+	@Column(name="dsEmail", nullable=false)
 	private String email;
 	
-	@Column(name="dsSenha")
+	@Column(name="dsSenha", nullable=false)
 	private String senha;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="dtNascimento")
 	private Date dataNascimento;
 	
 	@Column(name="nrUsuarioTelefone")
 	private String telefone;
 	
-	@Column(name="dtUsuarioInclusao")
+	@Temporal(TemporalType.DATE)
+	@Column(name="dtUsuarioInclusao", nullable=false)
 	private Date dataInclusao;
 	
 	/**
@@ -112,14 +118,19 @@ public class Usuario {
 	 * @return the dataNascimento
 	 */
 	public Date getDataNascimento() {
-		return dataNascimento;
+		if(dataInclusao != null){
+			return (Date) dataNascimento.clone();
+		}
+		return null;
 	}
 	/**
 	 * Setter the dataNascimento
 	 * @param dataNascimento the dataNascimento to set
 	 */
 	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+		if(dataNascimento != null){
+			this.dataNascimento = (Date) dataNascimento.clone();
+		}
 	}
 	/**
 	 * Return the telefone 
@@ -140,41 +151,46 @@ public class Usuario {
 	 * @return the dataInclusao
 	 */
 	public Date getDataInclusao() {
-		return dataInclusao;
+		if(dataInclusao != null){
+			return (Date) dataInclusao.clone();
+		}
+		return null;
 	}
 	/**
 	 * Setter the dataInclusao
 	 * @param dataInclusao the dataInclusao to set
 	 */
 	public void setDataInclusao(Date dataInclusao) {
-		this.dataInclusao = dataInclusao;
+		if(dataInclusao != null){
+			this.dataInclusao = (Date) dataInclusao.clone();
+		}
 	}
 	/**
-	 * Return the idStatusUsuario 
-	 * @return the idStatusUsuario
+	 * Return the statusUsuario 
+	 * @return the statusUsuario
 	 */
-	public Integer getIdStatusUsuario() {
-		return idStatusUsuario;
+	public StatusUsuario getStatusUsuario() {
+		return statusUsuario;
 	}
 	/**
-	 * Setter the idStatusUsuario
-	 * @param idStatusUsuario the idStatusUsuario to set
+	 * Setter the statusUsuario
+	 * @param statusUsuario the statusUsuario to set
 	 */
-	public void setIdStatusUsuario(Integer codigoStatusUsuario) {
-		this.idStatusUsuario = codigoStatusUsuario;
+	public void setStatusUsuario(StatusUsuario statusUsuario) {
+		this.statusUsuario = statusUsuario;
 	}
 	/**
-	 * Return the idPerfil 
-	 * @return the idPerfil
+	 * Return the perfil 
+	 * @return the perfil
 	 */
-	public Integer getIdPerfil() {
-		return idPerfil;
+	public Perfil getPerfil() {
+		return perfil;
 	}
 	/**
-	 * Setter the idPerfil
-	 * @param idPerfil the idPerfil to set
+	 * Setter the perfil
+	 * @param perfil the perfil to set
 	 */
-	public void setIdPerfil(Integer codigoPerfil) {
-		this.idPerfil = codigoPerfil;
-	}
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}	
 }

@@ -45,7 +45,7 @@ public class BugTrack {
 	private String descricao;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="dtMensagemRegistro")
+	@Column(name="dtMensagemRegistro", nullable=false)
 	private Date dataRegistro;
 	
 	@Temporal(TemporalType.DATE)

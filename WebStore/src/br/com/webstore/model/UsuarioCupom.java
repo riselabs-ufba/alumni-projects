@@ -6,11 +6,11 @@ package br.com.webstore.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
 
 /**
  * @author webstore
@@ -21,14 +21,17 @@ import org.hibernate.annotations.ForeignKey;
 public class UsuarioCupom {
 
 	@Id
+	@GeneratedValue
 	@Column(name="idUsuarioCupom")
 	private Integer id;
 	
 	@ManyToMany(targetEntity = Usuario.class, cascade = CascadeType.ALL)
-	private Integer idUsuario;
+	@JoinColumn(name="idUsuario", referencedColumnName="idUsuario", nullable=false)
+	private Usuario usuario;
 	
 	@ManyToMany(targetEntity = Cupom.class, cascade = CascadeType.ALL)
-	private Integer idCupom;
+	@JoinColumn(name="idCupom", referencedColumnName="idCupom", nullable=false)
+	private Cupom cupom;
 	
 	@Column(name="flUsado")
 	private Boolean disponivel;

@@ -6,11 +6,9 @@ package br.com.webstore.model;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
 
 /**
  * @author webstore
@@ -18,47 +16,30 @@ import org.hibernate.annotations.ForeignKey;
  */
 @Entity
 @Table(name="VendaProduto")
-//@PrimaryKeyJoinColumn Dupla
 public class VendaProduto {
 	
-	//ForeignKey
-	private Integer idProduto;
-	//ForeignKey
-	private Integer idVenda;
+	@EmbeddedId
+	private VendaProdutoEmbbed vendaProdutoEmbbed;
 	
-	@Column(name="nrQuantidadeProduto")
+	@Column(name="nrQuantidadeProduto", nullable=false)
 	private BigDecimal quantidade;
 	
-	@Column(name="vlProdutoUnitario")
+	@Column(name="vlProdutoUnitario", nullable=false)
 	private BigDecimal valorUnitario;
 	
 	/**
-	 * Return the idProduto 
-	 * @return the idProduto
+	 * Return the vendaProdutoEmbbed 
+	 * @return the vendaProdutoEmbbed
 	 */
-	public Integer getIdProduto() {
-		return idProduto;
+	public VendaProdutoEmbbed getVendaProdutoEmbbed() {
+		return vendaProdutoEmbbed;
 	}
 	/**
-	 * Setter the idProduto
-	 * @param idProduto the idProduto to set
+	 * Setter the vendaProdutoEmbbed
+	 * @param vendaProdutoEmbbed the vendaProdutoEmbbed to set
 	 */
-	public void setIdProduto(Integer codigoProduto) {
-		this.idProduto = codigoProduto;
-	}
-	/**
-	 * Return the idVenda 
-	 * @return the idVenda
-	 */
-	public Integer getIdVenda() {
-		return idVenda;
-	}
-	/**
-	 * Setter the idVenda
-	 * @param idVenda the idVenda to set
-	 */
-	public void setIdVenda(Integer codigoVenda) {
-		this.idVenda = codigoVenda;
+	public void setVendaProdutoEmbbed(VendaProdutoEmbbed vendaProdutoEmbbed) {
+		this.vendaProdutoEmbbed = vendaProdutoEmbbed;
 	}
 	/**
 	 * Return the quantidade 

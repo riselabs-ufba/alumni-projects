@@ -3,6 +3,8 @@
  */
 package br.com.webstore.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -11,7 +13,12 @@ import javax.persistence.Embeddable;
  *
  */
 @Embeddable
-public class VendaProdutoEmbbed {
+public class VendaProdutoEmbbed implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Column(name="idProduto", nullable=false)
 	private Integer idProduto;

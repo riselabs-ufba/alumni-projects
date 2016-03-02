@@ -12,8 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,15 +31,15 @@ public class Venda {
 	@Column(name="idVenda")
 	private Integer id;
 
-	@ManyToMany(targetEntity = StatusVenda.class, cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = StatusVenda.class, cascade = CascadeType.ALL)
 	@JoinColumn(name="idStatusVenda", referencedColumnName="idStatusVenda", nullable=false)
 	private StatusVenda statusVenda;
 	
-	@ManyToMany(targetEntity = Usuario.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Usuario.class, cascade = CascadeType.ALL)
 	@JoinColumn(name="idUsuarioVenda", referencedColumnName="idUsuario", nullable=false)
 	private Usuario usuarioVenda;
 	
-	@ManyToMany(targetEntity = UsuarioCupom.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = UsuarioCupom.class, cascade = CascadeType.ALL)
 	@JoinColumn(name="idUsuarioCupom", referencedColumnName="idUsuarioCupom", nullable=false)
 	private UsuarioCupom usuarioCupom;
 	
@@ -69,18 +69,60 @@ public class Venda {
 		this.id = codigo;
 	}
 	/**
-	 * Return the idStatusVenda 
-	 * @return the idStatusVenda
+	 * Return the statusVenda 
+	 * @return the statusVenda
 	 */
-	public StatusVenda getIdStatusVenda() {
+	public StatusVenda getStatusVenda() {
 		return statusVenda;
 	}
 	/**
-	 * Setter the idStatusVenda
-	 * @param idStatusVenda the idStatusVenda to set
+	 * Setter the statusVenda
+	 * @param statusVenda the statusVenda to set
 	 */
-	public void setIdStatusVenda(StatusVenda codigoStatusVenda) {
-		this.statusVenda = codigoStatusVenda;
+	public void setStatusVenda(StatusVenda statusVenda) {
+		this.statusVenda = statusVenda;
+	}
+	/**
+	 * Return the usuarioVenda 
+	 * @return the usuarioVenda
+	 */
+	public Usuario getUsuarioVenda() {
+		return usuarioVenda;
+	}
+	/**
+	 * Setter the usuarioVenda
+	 * @param usuarioVenda the usuarioVenda to set
+	 */
+	public void setUsuarioVenda(Usuario usuarioVenda) {
+		this.usuarioVenda = usuarioVenda;
+	}
+	/**
+	 * Return the usuarioCupom 
+	 * @return the usuarioCupom
+	 */
+	public UsuarioCupom getUsuarioCupom() {
+		return usuarioCupom;
+	}
+	/**
+	 * Setter the usuarioCupom
+	 * @param usuarioCupom the usuarioCupom to set
+	 */
+	public void setUsuarioCupom(UsuarioCupom usuarioCupom) {
+		this.usuarioCupom = usuarioCupom;
+	}
+	/**
+	 * Return the formaPagamento 
+	 * @return the formaPagamento
+	 */
+	public FormaPagamento getFormaPagamento() {
+		return formaPagamento;
+	}
+	/**
+	 * Setter the formaPagamento
+	 * @param formaPagamento the formaPagamento to set
+	 */
+	public void setFormaPagamento(FormaPagamento formaPagamento) {
+		this.formaPagamento = formaPagamento;
 	}
 	/**
 	 * Return the idUsuarioVenda 

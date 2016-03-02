@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,11 +25,11 @@ public class UsuarioCupom {
 	@Column(name="idUsuarioCupom")
 	private Integer id;
 	
-	@ManyToMany(targetEntity = Usuario.class, cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = Usuario.class, cascade = CascadeType.ALL)
 	@JoinColumn(name="idUsuario", referencedColumnName="idUsuario", nullable=false)
 	private Usuario usuario;
 	
-	@ManyToMany(targetEntity = Cupom.class, cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = Cupom.class, cascade = CascadeType.ALL)
 	@JoinColumn(name="idCupom", referencedColumnName="idCupom", nullable=false)
 	private Cupom cupom;
 	

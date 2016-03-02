@@ -72,57 +72,57 @@ public class Venda {
 	 * Return the idStatusVenda 
 	 * @return the idStatusVenda
 	 */
-	public Integer getIdStatusVenda() {
-		return idStatusVenda;
+	public StatusVenda getIdStatusVenda() {
+		return statusVenda;
 	}
 	/**
 	 * Setter the idStatusVenda
 	 * @param idStatusVenda the idStatusVenda to set
 	 */
-	public void setIdStatusVenda(Integer codigoStatusVenda) {
-		this.idStatusVenda = codigoStatusVenda;
+	public void setIdStatusVenda(StatusVenda codigoStatusVenda) {
+		this.statusVenda = codigoStatusVenda;
 	}
 	/**
 	 * Return the idUsuarioVenda 
 	 * @return the idUsuarioVenda
 	 */
-	public Integer getIdUsuarioVenda() {
-		return idUsuarioVenda;
+	public Usuario getIdUsuarioVenda() {
+		return usuarioVenda;
 	}
 	/**
 	 * Setter the idUsuarioVenda
 	 * @param idUsuarioVenda the idUsuarioVenda to set
 	 */
-	public void setIdUsuarioVenda(Integer codigoUsuarioVenda) {
-		this.idUsuarioVenda = codigoUsuarioVenda;
+	public void setIdUsuarioVenda(Usuario codigoUsuarioVenda) {
+		this.usuarioVenda = codigoUsuarioVenda;
 	}
 	/**
 	 * Return the idUsuarioCupom 
 	 * @return the idUsuarioCupom
 	 */
-	public Integer getIdUsuarioCupom() {
-		return idUsuarioCupom;
+	public UsuarioCupom getIdUsuarioCupom() {
+		return usuarioCupom;
 	}
 	/**
 	 * Setter the idUsuarioCupom
 	 * @param idUsuarioCupom the idUsuarioCupom to set
 	 */
-	public void setIdUsuarioCupom(Integer codigoUsuarioCupom) {
-		this.idUsuarioCupom = codigoUsuarioCupom;
+	public void setIdUsuarioCupom(UsuarioCupom codigoUsuarioCupom) {
+		this.usuarioCupom = codigoUsuarioCupom;
 	}
 	/**
 	 * Return the idFormaPagamento 
 	 * @return the idFormaPagamento
 	 */
-	public Integer getIdFormaPagamento() {
-		return idFormaPagamento;
+	public FormaPagamento getIdFormaPagamento() {
+		return formaPagamento;
 	}
 	/**
 	 * Setter the idFormaPagamento
 	 * @param idFormaPagamento the idFormaPagamento to set
 	 */
-	public void setIdFormaPagamento(Integer codigoFormaPagamento) {
-		this.idFormaPagamento = codigoFormaPagamento;
+	public void setIdFormaPagamento(FormaPagamento codigoFormaPagamento) {
+		this.formaPagamento = codigoFormaPagamento;
 	}
 	/**
 	 * Return the dataVenda 

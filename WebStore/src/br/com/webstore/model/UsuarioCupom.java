@@ -54,29 +54,29 @@ public class UsuarioCupom {
 	 * Return the idUsuario 
 	 * @return the idUsuario
 	 */
-	public Integer getIdUsuario() {
-		return idUsuario;
+	public Usuario getIdUsuario() {
+		return usuario;
 	}
 	/**
 	 * Setter the idUsuario
 	 * @param idUsuario the idUsuario to set
 	 */
-	public void setIdUsuario(Integer codigoUsuario) {
-		this.idUsuario = codigoUsuario;
+	public void setIdUsuario(Usuario codigoUsuario) {
+		this.usuario = codigoUsuario;
 	}
 	/**
 	 * Return the idCupom 
 	 * @return the idCupom
 	 */
-	public Integer getIdCupom() {
-		return idCupom;
+	public Cupom getIdCupom() {
+		return cupom;
 	}
 	/**
 	 * Setter the idCupom
 	 * @param idCupom the idCupom to set
 	 */
-	public void setIdCupom(Integer codigoCupom) {
-		this.idCupom = codigoCupom;
+	public void setIdCupom(Cupom codigoCupom) {
+		this.cupom = codigoCupom;
 	}
 	/**
 	 * Return the disponivel 

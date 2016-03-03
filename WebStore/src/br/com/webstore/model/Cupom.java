@@ -1,3 +1,4 @@
+//#if ${Event} == "F"
 /**
  * 
  */
@@ -81,3 +82,4 @@ public class Cupom {
 		}
 	}
 }
+//#endif

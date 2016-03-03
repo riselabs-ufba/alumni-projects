@@ -1,3 +1,4 @@
+//#if ${Event} == "F"
 package br.com.webstore.features;
 
 import java.awt.GridLayout;
@@ -33,3 +34,4 @@ public class Pesquisa extends JPanel{
 	    add(submit);
 	}
 }
+//#endif

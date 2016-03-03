@@ -1,3 +1,4 @@
+//#if ${Event} == "T"
 /**
  * 
  */
@@ -157,3 +158,4 @@ public class Endereco {
 		this.uf = uf;
 	}
 }
+//#endif

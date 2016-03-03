@@ -1,3 +1,4 @@
+//#if ${Event} == "F"
 /**
  * 
  */
@@ -195,3 +196,4 @@ public class Venda {
 		this.valorTotal = valorTotal;
 	}
 }
+//#endif

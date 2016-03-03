@@ -1,3 +1,4 @@
+//#if ${Event} == "T"
 /**
  * 
  */
@@ -54,3 +55,4 @@ public class StatusUsuario {
 		this.descricao = descricao;
 	}
 }
+//#endif

@@ -1,3 +1,4 @@
+//#if ${Event} == "T"
 /**
  * 
  */
@@ -130,3 +131,4 @@ public class Produto {
 		this.valor = valor;
 	}
 }
+//#endif

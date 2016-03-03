@@ -1,3 +1,4 @@
+//#if ${Event} == "F"
 /**
  * 
  */
@@ -54,3 +55,4 @@ public class SituacaoBug {
 		this.descricao = descricao;
 	}
 }
+//#endif

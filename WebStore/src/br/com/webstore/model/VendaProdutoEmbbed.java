@@ -1,3 +1,4 @@
+//#if ${Event} == "F"
 /**
  * 
  */
@@ -58,3 +59,4 @@ public class VendaProdutoEmbbed implements Serializable {
 		this.idVenda = idVenda;
 	}
 }
+//#endif

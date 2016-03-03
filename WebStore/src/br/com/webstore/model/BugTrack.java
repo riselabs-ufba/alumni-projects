@@ -1,3 +1,4 @@
+//#if ${Event} == "F"
 /**
  * 
  */
@@ -168,3 +169,4 @@ public class BugTrack {
 		this.descricaoResposta = descricaoResposta;
 	}
 }
+//#endif

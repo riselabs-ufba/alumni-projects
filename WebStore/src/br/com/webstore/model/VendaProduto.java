@@ -1,3 +1,4 @@
+//#if ${Event} == "F"
 /**
  * 
  */
@@ -70,3 +71,4 @@ public class VendaProduto {
 		this.valorUnitario = valorUnitario;
 	}
 }
+//#endif

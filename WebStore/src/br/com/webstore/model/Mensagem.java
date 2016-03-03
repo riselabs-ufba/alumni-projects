@@ -1,3 +1,4 @@
+//#if ${Event} == "F"
 /**
  * 
  */
@@ -169,3 +170,4 @@ public class Mensagem {
 		this.descricaoResposta = descricaoResposta;
 	}
 }
+//#endif

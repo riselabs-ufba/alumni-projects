@@ -31,7 +31,7 @@ public class BugTrack {
 	private Integer id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idUsuarioResponde", referencedColumnName="idUsuario", nullable=false)
+	@JoinColumn(name="idUsuarioResponde", referencedColumnName="idUsuario", nullable=true)
 	private Usuario usuarioResponde;
 	
 	@OneToOne(cascade = CascadeType.ALL)

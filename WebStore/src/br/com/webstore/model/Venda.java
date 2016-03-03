@@ -41,7 +41,7 @@ public class Venda {
 	private Usuario usuarioVenda;
 	
 	@ManyToOne(targetEntity = UsuarioCupom.class, cascade = CascadeType.ALL)
-	@JoinColumn(name="idUsuarioCupom", referencedColumnName="idUsuarioCupom", nullable=false)
+	@JoinColumn(name="idUsuarioCupom", referencedColumnName="idUsuarioCupom", nullable=true)
 	private UsuarioCupom usuarioCupom;
 	
 	@ManyToOne(targetEntity = FormaPagamento.class, cascade = CascadeType.ALL)

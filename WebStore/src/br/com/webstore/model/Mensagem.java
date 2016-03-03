@@ -32,7 +32,7 @@ public class Mensagem {
 	private Integer id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idUsuarioResposta", referencedColumnName="idUsuario", nullable=false)
+	@JoinColumn(name="idUsuarioResposta", referencedColumnName="idUsuario", nullable=true)
 	private Usuario usuarioResposta;
 	
 	@OneToOne(cascade = CascadeType.ALL)

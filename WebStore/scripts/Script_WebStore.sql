@@ -133,8 +133,8 @@ CREATE TABLE webstoreDB.VendaProduto (
 
 CREATE TABLE webstoreDB.BugTrack (
   idBugTrack INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  idUsuarioResponde INTEGER UNSIGNED NOT NULL,
-  idUsuarioRegistro INTEGER UNSIGNED NULL, -- modificado para null
+  idUsuarioResponde INTEGER UNSIGNED NULL, -- modificado para null
+  idUsuarioRegistro INTEGER UNSIGNED NOT NULL,
   idSituacaoBug INTEGER UNSIGNED NOT NULL,
   dsBUG VARCHAR(1000) NULL,
   dtRegistro DATETIME NOT NULL,
@@ -148,8 +148,8 @@ CREATE TABLE webstoreDB.BugTrack (
 
 CREATE TABLE webstoreDB.Mensagem (
   idMensagem INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  idUsuarioResposta INTEGER UNSIGNED NOT NULL,
-  idUsuarioRegistro INTEGER UNSIGNED NULL, -- modificado para null
+  idUsuarioResposta INTEGER UNSIGNED NULL, -- modificado para null
+  idUsuarioRegistro INTEGER UNSIGNED NOT NULL,
   idTipoMensagem INTEGER UNSIGNED NOT NULL,
   dsMensagem VARCHAR(1000) NULL,
   dtMensagemRegistro DATETIME NOT NULL,

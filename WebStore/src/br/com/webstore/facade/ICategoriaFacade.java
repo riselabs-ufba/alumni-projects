@@ -9,7 +9,7 @@ public interface ICategoriaFacade {
 	
 	public Categoria insertCategoria(Categoria categoria);
 
-	public void saveCategoria(Categoria categoria);
+	public void updateCategoria(Categoria categoria);
 	
 	public List<Categoria> findCategoria(Categoria query);
 

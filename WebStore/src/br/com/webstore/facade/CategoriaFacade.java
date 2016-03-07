@@ -17,8 +17,8 @@ public class CategoriaFacade implements ICategoriaFacade{
 	}
 
 	@Override
-	public void saveCategoria(Categoria categoria) {
-		categoriaDataProvider.insert(categoria);		
+	public void updateCategoria(Categoria categoria) {
+		categoriaDataProvider.update(categoria);		
 	}
 
 	@Override

@@ -8,7 +8,7 @@ public interface IStatusUsuarioFacade {
 
 	public StatusUsuario insertStatusUsuario(StatusUsuario statusUsuario);
 
-	public void saveStatusUsuario(StatusUsuario statusUsuario);
+	public void updateStatusUsuario(StatusUsuario statusUsuario);
 	
 	public List<StatusUsuario> findStatusUsuario(StatusUsuario query);	
 	

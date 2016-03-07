@@ -8,7 +8,7 @@ public interface ISituacaoBugFacade {
 
 	public SituacaoBug insertSituacaoBug(SituacaoBug situacaoBug);
 
-	public void saveSituacaoBug(SituacaoBug situacaoBug);
+	public void updateSituacaoBug(SituacaoBug situacaoBug);
 	
 	public List<SituacaoBug> findSituacaoBug(SituacaoBug query);	
 	

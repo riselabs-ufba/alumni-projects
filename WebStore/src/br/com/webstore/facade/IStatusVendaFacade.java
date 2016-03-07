@@ -8,7 +8,7 @@ public interface IStatusVendaFacade {
 
 	public StatusVenda insertStatusVenda(StatusVenda statusVenda);
 
-	public void saveStatusVenda(StatusVenda statusVenda);
+	public void updateStatusVenda(StatusVenda statusVenda);
 	
 	public List<StatusVenda> findStatusVenda(StatusVenda query);		
 	

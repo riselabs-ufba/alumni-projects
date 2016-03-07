@@ -2,26 +2,27 @@ package br.com.webstore.facade;
 
 import java.util.List;
 
+import br.com.webstore.dao.SituacaoBugDao;
 import br.com.webstore.model.SituacaoBug;
 
 public class SituacaoBugFacade implements ISituacaoBugFacade {
 
+	// @Inject
+	private SituacaoBugDao situacaoBugDataProvider;
+	
 	@Override
 	public SituacaoBug insertSituacaoBug(SituacaoBug situacaoBug) {
-		// TODO Auto-generated method stub
-		return null;
+		return situacaoBugDataProvider.insert(situacaoBug);
 	}
 
 	@Override
-	public void saveSituacaoBug(SituacaoBug situacaoBug) {
-		// TODO Auto-generated method stub
-		
+	public void updateSituacaoBug(SituacaoBug situacaoBug) {
+		situacaoBugDataProvider.update(situacaoBug);		
 	}
 
 	@Override
 	public List<SituacaoBug> findSituacaoBug(SituacaoBug query) {
-		// TODO Auto-generated method stub
-		return null;
+		return situacaoBugDataProvider.getList();
 	}
 
 }

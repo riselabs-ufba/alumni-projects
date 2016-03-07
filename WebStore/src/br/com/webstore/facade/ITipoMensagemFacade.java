@@ -8,7 +8,7 @@ public interface ITipoMensagemFacade {
 
 	public TipoMensagem insertTipoMensagem(TipoMensagem tipoMensagem);
 
-	public void saveTipoMensagem(TipoMensagem tipoMensagem);
+	public void updateTipoMensagem(TipoMensagem tipoMensagem);
 	
 	public List<TipoMensagem> findTipoMensagem(TipoMensagem query);	
 	

@@ -8,7 +8,7 @@ public interface IProdutoFacade {
 
 	public Produto insertProduto(Produto produto);
 
-	public void saveProduto(Produto produto);
+	public void updateProduto(Produto produto);
 	
 	public List<Produto> findProduto(Produto query);	
 	

@@ -2,26 +2,28 @@ package br.com.webstore.facade;
 
 import java.util.List;
 
+import br.com.webstore.dao.ProdutoDao;
 import br.com.webstore.model.Produto;
 
 public class ProdutoFacade implements IProdutoFacade {
 
+	// @Inject
+    private ProdutoDao produtoDataProvider;
+	
 	@Override
 	public Produto insertProduto(Produto produto) {
-		// TODO Auto-generated method stub
-		return null;
+		return produtoDataProvider.insert(produto);
 	}
 
 	@Override
-	public void saveProduto(Produto produto) {
-		// TODO Auto-generated method stub
+	public void updateProduto(Produto produto) {
+		produtoDataProvider.update(produto);
 		
 	}
 
 	@Override
 	public List<Produto> findProduto(Produto query) {
-		// TODO Auto-generated method stub
-		return null;
+		return produtoDataProvider.getList();
 	}
 
 }

@@ -1,4 +1,4 @@
-package facade;
+package br.com.webstore.facade;
 
 
 import java.util.List;

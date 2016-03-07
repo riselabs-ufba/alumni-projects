@@ -1,13 +1,15 @@
-package facade;
+package br.com.webstore.facade;
 
 import java.util.List;
 
-import br.com.webstore.dao.IGenericDao;
+
+import br.com.webstore.dao.CategoriaDao;
 import br.com.webstore.model.Categoria;
 
 public class CategoriaFacade implements ICategoriaFacade{
 	
-	private IGenericDao<Categoria, Categoria> categoriaDataProvider;
+	// @Inject
+	private CategoriaDao categoriaDataProvider;
 	
 	@Override
 	public Categoria insertCategoria(Categoria categoria) {

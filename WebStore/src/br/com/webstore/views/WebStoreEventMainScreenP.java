@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import br.com.webstore.features.CarrinhoCheckout;
 import br.com.webstore.features.Categoria;
 import br.com.webstore.features.FAQ;
 import br.com.webstore.features.Pesquisa;
@@ -48,6 +49,13 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#if ${Event} == "F"
 		panelTab.addTab(FAQ.NAME, new FAQ());
 		//#endif
+		
+		//#if ${Event} == "F"
+		panelTab.addTab(CarrinhoCheckout.NAME, new CarrinhoCheckout());
+		//#endif
+		
+		//Init the selected tab
+		panelTab.setSelectedIndex(0);
 		
 		//Create a grid layout with 1 column and 1 row
 		setLayout(new GridLayout(1, 1));

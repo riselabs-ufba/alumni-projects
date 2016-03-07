@@ -18,8 +18,10 @@ public class Container extends JPanel {
 		jtbExample.addTab("Pesquisa", null, new Pesquisa(), "Tab 1");
 		
 		//Tab management of category
-		jtbExample.addTab("Categoria", null, new Categoria(), "Tab 2");
+		jtbExample.addTab("Categoria", null, new Categoria(), "Tab 4");
 		
+		jtbExample.addTab("CarrinhoCheckout", null, new Pesquisa(), "Tab 2");
+		jtbExample.addTab("FAQ", null, new Pesquisa(), "Tab 3");
 		jtbExample.setSelectedIndex(0);
 		// Add the tabbed pane to this panel.
 		setLayout(new GridLayout(1, 1));

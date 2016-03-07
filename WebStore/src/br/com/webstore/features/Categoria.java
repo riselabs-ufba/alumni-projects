@@ -1,40 +1,30 @@
+//#if ${Event} == "F"
 package br.com.webstore.features;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.DriverManager;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
 
 public class Categoria extends JPanel {
 	
+	/**
+	 * Serial version
+	 */
+	private static final long serialVersionUID = -5464321145565350625L;
+
 	public static final String NAME = "Categoria";
 	
 	private JTextField textField;
 	private JScrollPane scrollPane;
-	private static JTable tableList;
+	//private static JTable tableList;
 
 	private JTable table;
 
@@ -96,4 +86,4 @@ public class Categoria extends JPanel {
 		
 	}
 }
-
+//#endif

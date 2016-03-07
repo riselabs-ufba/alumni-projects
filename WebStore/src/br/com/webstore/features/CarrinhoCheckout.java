@@ -1,20 +1,26 @@
+//#if ${Event} == "F"
 package br.com.webstore.features;
 
-import javax.swing.JPanel;
-import javax.swing.JList;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.AbstractListModel;
-import javax.swing.border.BevelBorder;
 import java.awt.Color;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.border.LineBorder;
-import javax.swing.JSeparator;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 
 public class CarrinhoCheckout extends JPanel {
+
+	/**
+	 * Serial version
+	 */
+	private static final long serialVersionUID = 8737213081913021625L;
+	
+	public static final String NAME = "Carrinho";
 
 	/**
 	 * Create the panel.
@@ -54,3 +60,4 @@ public class CarrinhoCheckout extends JPanel {
 
 	}
 }
+//#endif

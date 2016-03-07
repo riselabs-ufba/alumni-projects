@@ -8,13 +8,18 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 public class Pesquisa extends JPanel{
 
+	/**
+	 * Serial version
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	public static final String NAME = "Pesquisa";
+	
 	public Pesquisa() {
 		
 	    String[] items = {"Todas"};

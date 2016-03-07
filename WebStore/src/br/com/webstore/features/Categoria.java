@@ -30,6 +30,8 @@ import javax.swing.JScrollPane;
 
 public class Categoria extends JPanel {
 	
+	public static final String NAME = "Categoria";
+	
 	private JTextField textField;
 	private JScrollPane scrollPane;
 	private static JTable tableList;

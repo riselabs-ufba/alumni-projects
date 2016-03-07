@@ -1,3 +1,4 @@
+//#if ${Event} == "F"
 package br.com.webstore.features;
 
 import java.awt.Color;
@@ -51,3 +52,4 @@ public class FAQ extends JPanel {
 
 	}
 }
+//#endif

@@ -16,6 +16,10 @@ public class Container extends JPanel {
 		JTabbedPane jtbExample = new JTabbedPane();
 		//JPanel jplInnerPanel1 = createInnerPanel("Tab 1 Contains Tooltip and Icon");
 		jtbExample.addTab("Pesquisa", null, new Pesquisa(), "Tab 1");
+		
+		//Tab management of category
+		jtbExample.addTab("Categoria", null, new Categoria(), "Tab 2");
+		
 		jtbExample.setSelectedIndex(0);
 		// Add the tabbed pane to this panel.
 		setLayout(new GridLayout(1, 1));

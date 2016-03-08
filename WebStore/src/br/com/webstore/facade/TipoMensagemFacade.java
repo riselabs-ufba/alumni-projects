@@ -6,24 +6,16 @@ import br.com.webstore.dao.TipoMensagemDao;
 import br.com.webstore.model.TipoMensagem;
 
 public class TipoMensagemFacade implements ITipoMensagemFacade {
-
-	// @Inject
-	private TipoMensagemDao tipoMensagemDataProvider;
+	
+	private TipoMensagemDao tipoMensagemDataProvider = new TipoMensagemDao();
 	
 	@Override
-	public TipoMensagem insertTipoMensagem(TipoMensagem tipoMensagem) {
-		return tipoMensagemDataProvider.insert(tipoMensagem);
+	public TipoMensagem find(Integer id) {
+		return tipoMensagemDataProvider.find(id);		
 	}
-
+	
 	@Override
-	public void updateTipoMensagem(TipoMensagem tipoMensagem) {
-		tipoMensagemDataProvider.update(tipoMensagem);		
-	}
-
-	@Override
-	public List<TipoMensagem> findTipoMensagem(TipoMensagem tipoMensagem) {
+	public List<TipoMensagem> list() {
 		return tipoMensagemDataProvider.getList();
 	}
-		
-	
 }

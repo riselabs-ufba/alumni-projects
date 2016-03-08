@@ -1,30 +1,40 @@
+
+/**
+ * 
+ */
 package br.com.webstore.facade;
 
 import java.util.List;
 
-import br.com.webstore.dao.MensagemFacadeDao;
+import br.com.webstore.dao.MensagemDao;
 import br.com.webstore.model.Mensagem;
 
-public class MensagemFacade implements IMensagemFacade{
-	// @Inject
-	private MensagemFacadeDao mensagemDataProvider;
+/**
+ * @author webstore
+ *
+ */
+public class MensagemFacade implements IMensagemFacade {
+
+	private MensagemDao mensagemDao = new MensagemDao();
 	
 	@Override
-	public Mensagem insertMensagem(Mensagem mensagem) {
-		
-		return mensagemDataProvider.insert(mensagem);
+	public void insert(Mensagem mensagem) {
+		this.mensagemDao.insert(mensagem);
 	}
 
 	@Override
-	public void updateMensagem(Mensagem mensagem) {
-		mensagemDataProvider.update(mensagem);
-		
+	public void update(Mensagem mensagem) {
+		this.mensagemDao.update(mensagem);
 	}
 
 	@Override
-	public List<Mensagem> findMensagem(Mensagem query) {
-		
-		return mensagemDataProvider.getList();
+	public Mensagem find(Integer id) {
+		return this.mensagemDao.find(id);
 	}
 
+	@Override
+	public List<Mensagem> list(Mensagem query) {
+		return this.mensagemDao.getList();
+	}
 }
+

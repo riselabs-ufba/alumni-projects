@@ -6,10 +6,17 @@ import br.com.webstore.model.TipoMensagem;
 
 public interface ITipoMensagemFacade {
 
-	public TipoMensagem insertTipoMensagem(TipoMensagem tipoMensagem);
-
-	public void updateTipoMensagem(TipoMensagem tipoMensagem);
+	/**
+	 * Find TipoMensagem by id
+	 * @param id
+	 * @return TipoMensagem
+	 */
+	public TipoMensagem find(Integer id);
 	
-	public List<TipoMensagem> findTipoMensagem(TipoMensagem query);	
+	/**
+	 * List all TipoMensagem
+	 * @return List<TipoMensagem>
+	 */
+	public List<TipoMensagem> list();	
 	
 }

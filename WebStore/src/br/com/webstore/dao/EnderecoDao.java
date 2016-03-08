@@ -2,8 +2,8 @@ package br.com.webstore.dao;
 
 import br.com.webstore.model.Endereco;
 
-public class EnderecoFacadeDao extends GenericDao<Endereco, Integer>{
-	public EnderecoFacadeDao() {
+public class EnderecoDao extends GenericDao<Endereco, Integer>{
+	public EnderecoDao() {
 		super(Endereco.class);
 	}
 }

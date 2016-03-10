@@ -9,7 +9,7 @@ import br.com.webstore.model.Categoria;
 public class CategoriaFacade implements ICategoriaFacade{
 	
 	// @Inject
-	private CategoriaDao categoriaDataProvider;
+	private CategoriaDao categoriaDataProvider = new CategoriaDao();
 	
 	@Override
 	public Categoria insertCategoria(Categoria categoria) {
@@ -22,7 +22,7 @@ public class CategoriaFacade implements ICategoriaFacade{
 	}
 
 	@Override
-	public List<Categoria> findCategoria(Categoria categoria) {
+	public List<Categoria> findCategoria() {
 		return categoriaDataProvider.getList();
 	}
 	

@@ -11,6 +11,6 @@ public interface ICategoriaFacade {
 
 	public void updateCategoria(Categoria categoria);
 	
-	public List<Categoria> findCategoria(Categoria query);
+	public List<Categoria> findCategoria();
 
 }

@@ -1,3 +1,4 @@
+//#if ${Event} == "T"
 /**
  * 
  */
@@ -73,3 +74,4 @@ public abstract class GenericDao<T, I> {
 		return entityManager.find(persistedClass, id);
 	}
 }
+//#endif

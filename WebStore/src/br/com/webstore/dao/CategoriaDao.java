@@ -1,3 +1,4 @@
+//#if ${Event} == "T"
 package br.com.webstore.dao;
 
 import br.com.webstore.model.Categoria;
@@ -9,3 +10,4 @@ public class CategoriaDao extends GenericDao<Categoria, Integer>{
 	}
 
 }
+//#endif

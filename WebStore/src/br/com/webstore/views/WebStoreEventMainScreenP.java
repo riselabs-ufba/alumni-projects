@@ -38,15 +38,15 @@ public class WebStoreEventMainScreenP extends JPanel {
 	public WebStoreEventMainScreenP() {
 		JTabbedPane panelTab = new JTabbedPane();
 		
-		//#if ${Event} == "F"
+		//#if ${Event} == "T"
 		panelTab.addTab(Pesquisa.NAME, new Pesquisa());
 		//#endif
 		
-		//#if ${Event} == "F"
+		//#if ${Event} == "T"
 		panelTab.addTab(Categoria.NAME, new Categoria());
 		//#endif
 		
-		//#if ${Event} == "F"
+		//#if ${Event} == "T"
 		panelTab.addTab(FAQ.NAME, new FAQ());
 		//#endif
 		

@@ -1,3 +1,4 @@
+//#if ${Event} == "T"
 /**
  *
  */
@@ -28,3 +29,4 @@ public class ProdutoDao extends GenericDao<Produto, Integer> {
 		return query.getResultList();
 	}
 }
+//#endif

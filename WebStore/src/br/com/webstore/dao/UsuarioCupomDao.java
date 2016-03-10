@@ -1,3 +1,4 @@
+//#if ${Event} == "T"
 package br.com.webstore.dao;
 
 
@@ -9,3 +10,4 @@ public class UsuarioCupomDao extends GenericDao<UsuarioCupom, Integer>{
 		super(UsuarioCupom.class);
 	}
 }
+//#endif

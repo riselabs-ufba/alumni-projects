@@ -1,3 +1,4 @@
+//#if ${Event} == "T"
 /**
  * 
  */
@@ -18,3 +19,4 @@ public class UsuarioDao extends GenericDao<Usuario, Integer>{
 		super(Usuario.class);
 	}
 }
+//#endif

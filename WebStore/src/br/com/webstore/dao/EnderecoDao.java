@@ -1,3 +1,4 @@
+//#if ${Event} == "T"
 package br.com.webstore.dao;
 
 import br.com.webstore.model.Endereco;
@@ -7,3 +8,4 @@ public class EnderecoDao extends GenericDao<Endereco, Integer>{
 		super(Endereco.class);
 	}
 }
+//#endif

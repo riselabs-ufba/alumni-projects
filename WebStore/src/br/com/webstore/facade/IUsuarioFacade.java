@@ -5,7 +5,6 @@ package br.com.webstore.facade;
 
 import java.util.List;
 
-import br.com.webstore.model.Categoria;
 import br.com.webstore.model.Usuario;
 
 /**
@@ -20,6 +19,7 @@ public interface IUsuarioFacade {
 
 	public List<Usuario> findUsuario(Usuario usuario);
 	
-
-
+	public void removeUsuario(Integer id);
+	
+	public Usuario getUsuarioById(Integer id);	
 }

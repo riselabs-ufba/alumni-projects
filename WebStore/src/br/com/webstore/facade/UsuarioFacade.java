@@ -33,5 +33,16 @@ public class UsuarioFacade implements IUsuarioFacade{
 	public List<Usuario> findUsuario(Usuario usuario) {
 		return usuarioDao.getList();
 	}
-
+	
+	@Override
+	public void removeUsuario(Integer id)
+	{
+		usuarioDao.remove(id);
+	}
+	
+	@Override
+	public Usuario getUsuarioById(Integer id)
+	{
+		return usuarioDao.find(id);
+	}
 }

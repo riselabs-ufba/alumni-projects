@@ -25,5 +25,10 @@ public class UnidadeMedidaFacade implements IUnidadeMedidaFacade{
 	public List<UnidadeMedida> findUnidadeMedida(UnidadeMedida unidadeMedida) {
 		return unidadeMedidaDao.getList();
 	}
+	
+	@Override
+	public List<UnidadeMedida> getList() {
+		return unidadeMedidaDao.getList();
+	}
 
 }

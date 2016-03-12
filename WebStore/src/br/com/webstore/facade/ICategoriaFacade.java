@@ -13,4 +13,6 @@ public interface ICategoriaFacade {
 	
 	public List<Categoria> findCategoria();
 
+	public List<Categoria> getList();
+
 }

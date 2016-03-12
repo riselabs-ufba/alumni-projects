@@ -13,4 +13,6 @@ public interface IUnidadeMedidaFacade {
 	
 	public List<UnidadeMedida> findUnidadeMedida(UnidadeMedida unidadeMedida);
 
+	public List<UnidadeMedida> getList();
+
 }

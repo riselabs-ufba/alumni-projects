@@ -26,5 +26,10 @@ public class CategoriaFacade implements ICategoriaFacade{
 		return categoriaDataProvider.getList();
 	}
 	
+	@Override
+	public List<Categoria> getList() {
+		return categoriaDataProvider.getList();
+	}
+	
 
 }

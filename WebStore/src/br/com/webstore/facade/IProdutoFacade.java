@@ -10,24 +10,13 @@ public interface IProdutoFacade {
 
 	public void updateProduto(Produto produto);
 	
-	public List<Produto> findProduto(Produto query);
+//	public List<Produto> findProduto(Produto query);
 
-	/**
-	 * @param nome
-	 * @return
-	 */
-	List<Produto> findProduto(String nome);
+	public List<Produto> findProduto(String nome);
 
-	/**
-	 * @param id
-	 * @return
-	 */
-	Produto getById(int id);
+	public Produto getById(int id);
 
-	/**
-	 * @param id
-	 */
-	void removerProduto(int id);	
+	public void removerProduto(int id);	
 	
 	
 }

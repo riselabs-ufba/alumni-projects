@@ -3,28 +3,69 @@
 		<struct>
 			<and abstract="true" mandatory="true" name="WebStore">
 				<and mandatory="true" name="Usuario">
-					<feature name="cadastroUsuario"/>
-					<feature name="removerUsuario"/>
-					<feature name="editarUsuario"/>
-					<feature name="perfilUsuario"/>
+					<feature mandatory="true" name="cadastrarusuario"/>
+					<feature mandatory="true" name="AlterarUsuario"/>
+					<alt mandatory="true" name="EditarUsuario">
+						<feature mandatory="true" name="ExcluirUsuario"/>
+						<feature mandatory="true" name="MudarTipoConta"/>
+					</alt>
+					<feature mandatory="true" name="VisualizarPerfil"/>
+					<feature name="StatusUsuario"/>
+					<feature name="NotificarUsuario"/>
 				</and>
 				<and mandatory="true" name="Produto">
-					<feature name="inserirProduto"/>
-					<feature name="removerProduto"/>
-					<feature name="atualizarProduto"/>
-					<feature name="pesquisarProduto"/>
+					<feature mandatory="true" name="ExcluirProduto"/>
+					<feature mandatory="true" name="AlterarProduto"/>
+					<and mandatory="true" name="CadastrarProduto">
+						<feature mandatory="true" name="VenderProduto"/>
+					</and>
+					<and mandatory="true" name="ConsultarProduto">
+						<feature mandatory="true" name="VisualizarDetalhes"/>
+					</and>
+					<feature mandatory="true" name="Comprar"/>
+					<feature mandatory="true" name="AcompanharCompras"/>
 				</and>
-				<and mandatory="true" name="CategoriaProduto">
-					<feature name="InserirCategoria"/>
-					<feature name="removerCategoria"/>
-					<feature name="atualizarCategoria"/>
-					<feature name="buscarCategoria"/>
+				<and name="CategoriaProduto">
+					<feature mandatory="true" name="CadastrarCategoria"/>
+					<feature mandatory="true" name="ExcluirCategoria"/>
+					<feature mandatory="true" name="AlterarCategoria"/>
+					<feature mandatory="true" name="ConsultarCategoria"/>
 				</and>
-				<feature name="BuscarProdutoLoja"/>
-				<feature name="VisualizarProdutoLoja"/>
-				<feature name="ComprarProdutoLoja"/>
-				<feature name="VenderProduto"/>
-				<feature name="BugTrack"/>
+				<and name="Comunicação">
+					<and name="BugTrack">
+						<feature mandatory="true" name="CadastrarBugTrack"/>
+						<feature mandatory="true" name="ExcluirBugTrack"/>
+						<feature mandatory="true" name="AlterarBugTrack"/>
+						<feature mandatory="true" name="ConsultarBugTrack"/>
+						<feature name="NotificarBugTrack"/>
+					</and>
+					<and name="FAQ">
+						<feature mandatory="true" name="CadastrarFAQ"/>
+						<feature mandatory="true" name="ExcluirFAQ"/>
+						<feature mandatory="true" name="AlterarFAQ"/>
+						<feature mandatory="true" name="ConsultarFAQ"/>
+					</and>
+					<and name="FaleConosco">
+						<feature mandatory="true" name="Registrar"/>
+						<and mandatory="true" name="Visualizar">
+							<feature mandatory="true" name="Responder"/>
+							<feature name="Excluir"/>
+						</and>
+						<feature name="Notificar"/>
+					</and>
+				</and>
+				<and mandatory="true" name="CarrinhoCompras">
+					<feature mandatory="true" name="VisualizarProdutos"/>
+					<feature mandatory="true" name="RemoverProdutos"/>
+					<alt mandatory="true" name="FinalizarCompras">
+						<and mandatory="true" name="EmbrulharPresente">
+							<feature name="EscreverCartao"/>
+						</and>
+						<feature mandatory="true" name="CupomDesconto"/>
+						<feature mandatory="true" name="BoletoBancario"/>
+						<feature mandatory="true" name="CartaoCredito"/>
+					</alt>
+				</and>
 			</and>
 		</struct>
 		<constraints/>

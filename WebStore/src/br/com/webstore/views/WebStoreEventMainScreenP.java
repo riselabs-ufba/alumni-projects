@@ -15,7 +15,7 @@ import javax.swing.JTabbedPane;
 import br.com.webstore.features.CarrinhoCheckout;
 import br.com.webstore.features.Categoria;
 import br.com.webstore.features.FAQ;
-import br.com.webstore.features.Pesquisa;
+import br.com.webstore.features.BugTrackView;
 
 /**
  * @author webstore
@@ -38,9 +38,6 @@ public class WebStoreEventMainScreenP extends JPanel {
 	public WebStoreEventMainScreenP() {
 		JTabbedPane panelTab = new JTabbedPane();
 		
-		//#if ${Event} == "T"
-		panelTab.addTab(Pesquisa.NAME, new Pesquisa());
-		//#endif
 		
 		//#if ${Event} == "T"
 		panelTab.addTab(Categoria.NAME, new Categoria());
@@ -54,6 +51,10 @@ public class WebStoreEventMainScreenP extends JPanel {
 		panelTab.addTab(CarrinhoCheckout.NAME, new CarrinhoCheckout());
 		//#endif
 		
+		//#if ${Event} == "T"
+		panelTab.addTab(BugTrackView.NAME, new BugTrackView());
+		//#endif
+				
 		//Init the selected tab
 		panelTab.setSelectedIndex(0);
 		

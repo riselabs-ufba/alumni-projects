@@ -1,5 +1,5 @@
-/*drop schema webstoreDB;
-  create schema webstoreDB;*/
+drop schema webstoreDB;
+create schema webstoreDB;
 
 CREATE TABLE webstoreDB.Categoria (
   idCategoria INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -58,7 +58,7 @@ CREATE TABLE webstoreDB.UnidadeMedida (
 
 CREATE TABLE webstoreDB.Usuario (
   idUsuario INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  idStatusUsuario INTEGER UNSIGNED NOT NULL,
+  idStatusUsuario INTEGER UNSIGNED NULL,
   idPerfil INTEGER UNSIGNED NOT NULL,
   dsNome VARCHAR(255) NULL,
   dsEmail VARCHAR(255) NOT NULL,
@@ -136,7 +136,8 @@ CREATE TABLE webstoreDB.BugTrack (
   idUsuarioResponde INTEGER UNSIGNED NULL, -- modificado para null
   idUsuarioRegistro INTEGER UNSIGNED NOT NULL,
   idSituacaoBug INTEGER UNSIGNED NOT NULL,
-  dsBUG VARCHAR(1000) NULL,
+  titulo VARCHAR(100) NOT NULL,
+  dsBUG VARCHAR(1000) NOT NULL,
   dtRegistro DATETIME NOT NULL,
   dsResposta VARCHAR(1000) NULL,
   dtResposta DATETIME NULL,
@@ -160,3 +161,15 @@ CREATE TABLE webstoreDB.Mensagem (
   FOREIGN KEY(idUsuarioRegistro) REFERENCES webstoreDB.Usuario(idUsuario),
   FOREIGN KEY(idUsuarioResposta) REFERENCES webstoreDB.Usuario(idUsuario)
 );
+
+INSERT INTO webstoreDB.Perfil (`idPerfil`, `dsPerfil`) VALUES
+(1, 'Admin'),
+(2, 'Cliente');
+
+INSERT INTO webstoreDB.Usuario (idUsuario, idStatusUsuario, idPerfil, dsNome, dsEmail, dsSenha, dtNascimento, nrUsuarioTelefone, dtUsuarioInclusao) VALUES
+(1, null, 1, 'Admin', 'admin@gmail.com','123456', '1970-01-01', '71999999999', NOW());
+  
+INSERT INTO webstoreDB.SituacaoBug (`idSituacaoBug`, `dsSituacaoBug`) VALUES
+(1, 'Aberto'),
+(2, 'Em andamento'),
+(3, 'Fechado');

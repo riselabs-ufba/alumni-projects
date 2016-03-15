@@ -24,5 +24,13 @@ public class SituacaoBugFacade implements ISituacaoBugFacade {
 	public List<SituacaoBug> findSituacaoBug(SituacaoBug query) {
 		return situacaoBugDataProvider.getList();
 	}
+	
+	public List<SituacaoBug> getList() {
+		return situacaoBugDataProvider.getList();
+	}
+	
+	public SituacaoBug find(int id){
+		return situacaoBugDataProvider.find(id);
+	}
 
 }

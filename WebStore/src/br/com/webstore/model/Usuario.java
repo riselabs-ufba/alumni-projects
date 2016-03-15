@@ -32,7 +32,7 @@ public class Usuario {
 	private Integer id;
 	
 	@ManyToOne(targetEntity = StatusUsuario.class)
-	@JoinColumn(name="idStatusUsuario", referencedColumnName="idStatusUsuario", nullable=false)
+	@JoinColumn(name="idStatusUsuario", referencedColumnName="idStatusUsuario", nullable=true)
 	private StatusUsuario statusUsuario;
 	
 	@ManyToOne(targetEntity= Perfil.class)

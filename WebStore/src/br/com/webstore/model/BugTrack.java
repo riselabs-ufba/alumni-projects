@@ -55,6 +55,17 @@ public class BugTrack {
 	
 	@Column(name="dsResposta")
 	private String descricaoResposta;
+
+	private String titulo;
+	
+	public BugTrack(String titulo, String descricao, Usuario usuario, SituacaoBug situacaoBug){
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.dataRegistro = new Date();
+		this.usuarioRegistro = usuario;
+		this.situacaoBug = situacaoBug;
+		
+	}
 	
 	/**
 	 * Return the id 
@@ -167,6 +178,15 @@ public class BugTrack {
 	 */
 	public void setDescricaoResposta(String descricaoResposta) {
 		this.descricaoResposta = descricaoResposta;
+	}
+	/**
+	 * @param text
+	 */
+	public void setTitulo(String text) {
+		this.titulo = text;	
+	}
+	public String getTitulo() {
+		return titulo;
 	}
 }
 //#endif

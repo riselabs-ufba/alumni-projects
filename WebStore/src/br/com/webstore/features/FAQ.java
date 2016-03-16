@@ -35,7 +35,7 @@ public class FAQ extends JPanel {
 		add(txtrLorenIpsum);
 		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(373, 64, 17, 187);
+		scrollBar.setBounds(362, 64, 17, 187);
 		add(scrollBar);
 		
 		JButton btnOk = new JButton("Ok");

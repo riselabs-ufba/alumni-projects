@@ -15,6 +15,7 @@ import javax.swing.JTabbedPane;
 import br.com.webstore.features.CarrinhoCheckout;
 import br.com.webstore.features.Categoria;
 import br.com.webstore.features.FAQ;
+import br.com.webstore.features.ProdutoView;
 import br.com.webstore.features.BugTrackView;
 
 /**
@@ -45,6 +46,10 @@ public class WebStoreEventMainScreenP extends JPanel {
 		
 		//#if ${Event} == "T"
 		panelTab.addTab(FAQ.NAME, new FAQ());
+		//#endif
+		
+		//#if ${Event} == "F"
+		panelTab.addTab(ProdutoView.NAME, new ProdutoView());
 		//#endif
 		
 		//#if ${Event} == "F"

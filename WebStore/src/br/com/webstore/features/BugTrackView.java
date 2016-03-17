@@ -10,10 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import br.com.webstore.dao.SituacaoBugDao;
 import br.com.webstore.facade.BugTrackFacade;
 import br.com.webstore.facade.CategoriaFacade;
 import br.com.webstore.facade.ProdutoFacade;
@@ -37,13 +39,13 @@ public class BugTrackView extends JPanel{
 	public String[] items;
 	
 	public BugTrackView() {
-		SituacaoBugFacade situacaoBugFacade = new SituacaoBugFacade();
-		//situacoes = situacaoBugFacade.getList();
+		final SituacaoBugFacade situacaoBugFacade = new SituacaoBugFacade();
+		situacoes = situacaoBugFacade.getList();
 		
 		JComboBox combo = new JComboBox();
-		/*for(int i=0;i<situacoes.size();i++)
+		for(int i=0;i<situacoes.size();i++)
 			combo.addItem(situacoes.get(i).getDescricao());
-		*/
+		
 
 		JTextField query = new JTextField(15);
 	    add(new JLabel("Palavra-chave:"));
@@ -85,16 +87,20 @@ public class BugTrackView extends JPanel{
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						/*BugTrackFacade bugFacade = new BugTrackFacade();
-						UsuarioFacade usuarioFacade = new UsuarioFacade();
-						Usuario usuario = usuarioFacade.getUsuarioById(1);
-						
-						SituacaoBug situacaoBug = situacaoBugFacade.find(1);
-						
-						BugTrack bug = new BugTrack(bugTitle.getText(),bugDescricao.getText(),usuario,situacaoBug);
-						BugTrack result = bugFacade.insertBugTrack(bug);
-						System.out.println(result.getTitulo());
-						*/
+						if(bugTitle.getText().length()==0 || bugDescricao.getText().length()==0){
+							JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
+						}
+						else{
+							BugTrackFacade bugFacade = new BugTrackFacade();
+							UsuarioFacade usuarioFacade = new UsuarioFacade();
+							Usuario usuario = usuarioFacade.getUsuarioById(1);
+							System.out.println(usuario.getNome());
+							SituacaoBug situacaoBug = situacaoBugFacade.find(1);
+							System.out.println(situacaoBug.getDescricao());
+							BugTrack bug = new BugTrack(bugTitle.getText(),bugDescricao.getText(),usuario,situacaoBug);
+							BugTrack result = bugFacade.insertBugTrack(bug);
+							System.out.println(result.getTitulo());								
+						}
 					}
 				});
 				
@@ -106,6 +112,8 @@ public class BugTrackView extends JPanel{
 		});
 
 		add(btnNewBug);
+		
+		
 
 	}
 }

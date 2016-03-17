@@ -9,13 +9,14 @@ package br.com.webstore.facade;
  */
 import java.util.List;
 
-
-
 import br.com.webstore.dao.UsuarioDao;
 import br.com.webstore.model.Usuario;
 
 public class UsuarioFacade implements IUsuarioFacade{
 	
+	public UsuarioFacade(){
+		this.usuarioDao = new UsuarioDao();
+	}
 	// @Inject
 	private UsuarioDao usuarioDao;
 	

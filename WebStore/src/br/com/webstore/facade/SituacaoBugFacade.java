@@ -9,6 +9,10 @@ public class SituacaoBugFacade implements ISituacaoBugFacade {
 
 	// @Inject
 	private SituacaoBugDao situacaoBugDataProvider;
+
+	public SituacaoBugFacade(){
+		this.situacaoBugDataProvider = new SituacaoBugDao();
+	}
 	
 	@Override
 	public SituacaoBug insertSituacaoBug(SituacaoBug situacaoBug) {
@@ -33,4 +37,7 @@ public class SituacaoBugFacade implements ISituacaoBugFacade {
 		return situacaoBugDataProvider.find(id);
 	}
 
+	public SituacaoBugDao getDao(){
+		return situacaoBugDataProvider;
+	}
 }

@@ -30,19 +30,19 @@ public class BugTrack {
 	@Column(name="idBugTrack")
 	private Integer id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="idUsuarioResponde", referencedColumnName="idUsuario", nullable=true)
 	private Usuario usuarioResponde;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="idUsuarioRegistro", referencedColumnName="idUsuario", nullable=false)
 	private Usuario usuarioRegistro;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="idSituacaoBug", referencedColumnName="idSituacaoBug", nullable=false)
 	private SituacaoBug situacaoBug;
 	
-	@Column(name="dsBUG")
+	@Column(name="dsBUG", nullable=false)
 	private String descricao;
 	
 	@Temporal(TemporalType.DATE)
@@ -56,6 +56,7 @@ public class BugTrack {
 	@Column(name="dsResposta")
 	private String descricaoResposta;
 
+	@Column(name="titulo", nullable=false)
 	private String titulo;
 	
 	public BugTrack(String titulo, String descricao, Usuario usuario, SituacaoBug situacaoBug){

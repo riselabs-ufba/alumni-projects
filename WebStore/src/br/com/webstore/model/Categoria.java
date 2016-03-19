@@ -7,6 +7,7 @@ package br.com.webstore.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,7 +20,8 @@ import javax.persistence.Table;
 public class Categoria {
 	
 	@Id
-	@GeneratedValue
+	//replace @GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	@Column(name = "idCategoria")
 	private Integer id;
 	
@@ -31,7 +33,7 @@ public class Categoria {
 	 * @return the id
 	 */
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 	/**
 	 * Setter the id
@@ -45,7 +47,7 @@ public class Categoria {
 	 * @return the descricao
 	 */
 	public String getDescricao() {
-		return descricao;
+		return this.descricao;
 	}
 	/**
 	 * Setter the descricao
@@ -53,6 +55,25 @@ public class Categoria {
 	 */
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	/*
+	@Override
+	public String toString() {
+		return this.descricao;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		if (obj instanceof Categoria) {
+			Categoria other = (Categoria) obj;
+			return other.id == this.id;
+		}
+		return super.equals(obj);
 	}	
+	*/
 }
 //#endif

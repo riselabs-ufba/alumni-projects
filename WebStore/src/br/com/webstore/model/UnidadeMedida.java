@@ -54,5 +54,24 @@ public class UnidadeMedida {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	@Override
+	public String toString() {
+		return this.descricao;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		if (obj instanceof UnidadeMedida) {
+			UnidadeMedida other = (UnidadeMedida) obj;
+			return other.id == this.id;
+		}
+		return super.equals(obj);
+	}
+	
 }
 //#endif

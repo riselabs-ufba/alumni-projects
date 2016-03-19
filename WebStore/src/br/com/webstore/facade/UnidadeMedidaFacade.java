@@ -10,7 +10,11 @@ public class UnidadeMedidaFacade implements IUnidadeMedidaFacade{
 	
 	// @Inject
 	private UnidadeMedidaDao unidadeMedidaDao;
-	
+
+	public UnidadeMedidaFacade() {
+		unidadeMedidaDao = new UnidadeMedidaDao();
+	}
+
 	@Override
 	public UnidadeMedida insertUnidadeMedida(UnidadeMedida unidadeMedida) {
 		return unidadeMedidaDao.insert(unidadeMedida);

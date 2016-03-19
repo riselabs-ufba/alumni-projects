@@ -108,27 +108,27 @@ public class ProdutoEdit extends JPanel {
 		this.setLayout(null);
 
 		// Descriï¿½ï¿½o
-		JLabel descricaoLbl = new JLabel("Descriï¿½ï¿½o");
+		JLabel descricaoLbl = new JLabel("Descrição");
 		descricaoLbl.setBounds(7, 16, 100, 15);
 		descricaoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(descricaoLbl);
 		
 		this.descricaoFld = new JTextField();
 		this.descricaoFld.setBounds(7, 29, 438, 25);
-		this.descricaoFld.setToolTipText("Informe a descriï¿½ï¿½o.");
+		this.descricaoFld.setToolTipText("Informe a descricao.");
 		this.descricaoFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.descricaoFld.setColumns(10);
 		this.add(this.descricaoFld);
 
 		// Cï¿½digo
-		JLabel codigoLbl = new JLabel("Cï¿½digo");
+		JLabel codigoLbl = new JLabel("Codigo");
 		codigoLbl.setBounds(7, 61, 100, 15);
 		codigoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(codigoLbl);
 		
 		this.numeroFld = new JFormattedTextField(this.numeroForamat);
 		this.numeroFld.setBounds(7, 74, 438, 25);
-		this.numeroFld.setToolTipText("Informe o cï¿½digo.");
+		this.numeroFld.setToolTipText("Informe o codigo.");
 		this.numeroFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.numeroFld.setColumns(10);
 		this.add(this.numeroFld);

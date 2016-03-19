@@ -12,11 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import br.com.webstore.features.CarrinhoCheckout;
-import br.com.webstore.features.Categoria;
-import br.com.webstore.features.FAQ;
-import br.com.webstore.features.ProdutoView;
+//import br.com.webstore.dao.Categoria;
 import br.com.webstore.features.BugTrackView;
+import br.com.webstore.features.CarrinhoCheckout;
+import br.com.webstore.features.CategoriaP;
+import br.com.webstore.features.FAQ;
+import br.com.webstore.features.ProdutoPesquisa;
+import br.com.webstore.features.ProdutoView;
 
 /**
  * @author webstore
@@ -41,7 +43,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		
 		
 		//#if ${Event} == "T"
-		panelTab.addTab(Categoria.NAME, new Categoria());
+		panelTab.addTab(CategoriaP.NAME, new CategoriaP());
 		//#endif
 		
 		//#if ${Event} == "T"
@@ -55,6 +57,8 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#if ${Event} == "F"
 		panelTab.addTab(CarrinhoCheckout.NAME, new CarrinhoCheckout());
 		//#endif
+		
+		panelTab.addTab(ProdutoPesquisa.NAME, new ProdutoPesquisa());
 		
 		//#if ${Event} == "T"
 		panelTab.addTab(BugTrackView.NAME, new BugTrackView());

@@ -10,15 +10,9 @@ import javax.persistence.TypedQuery;
 
 import br.com.webstore.model.Produto;
 
-/**
- * @author webstore
- *
- */
+
 public class ProdutoDao extends GenericDao<Produto, Integer> {
 	
-	/**
-	 * Construtor
-	 */
 	public ProdutoDao() {
 		super(Produto.class);
 	}

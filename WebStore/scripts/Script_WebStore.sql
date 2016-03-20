@@ -1,5 +1,6 @@
-drop schema webstoreDB;
+drop schema if exists webstoreDB ;
 create schema webstoreDB;
+use webstoreDB;
 
 CREATE TABLE webstoreDB.Categoria (
   idCategoria INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -174,6 +175,9 @@ INSERT INTO webstoreDB.SituacaoBug (`idSituacaoBug`, `dsSituacaoBug`) VALUES
 (2, 'Em andamento'),
 (3, 'Fechado');
 
-INSERT INTO unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (1,'KG');
-INSERT INTO unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (2,'UN');
-INSERT INTO unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (3,'CX');
+INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (1,'KG');
+INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (2,'UN');
+INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (3,'CX');
+
+ALTER table webstoreDB.Usuario add column (dsLogin varchar(50));
+update webstoreDB.Usuario set dsLogin="Admin", dsNome="Administrador" where idUsuario = 1;

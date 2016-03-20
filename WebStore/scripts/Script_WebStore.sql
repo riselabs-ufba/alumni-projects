@@ -173,3 +173,7 @@ INSERT INTO webstoreDB.SituacaoBug (`idSituacaoBug`, `dsSituacaoBug`) VALUES
 (1, 'Aberto'),
 (2, 'Em andamento'),
 (3, 'Fechado');
+
+INSERT INTO unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (1,'KG');
+INSERT INTO unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (2,'UN');
+INSERT INTO unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (3,'CX');

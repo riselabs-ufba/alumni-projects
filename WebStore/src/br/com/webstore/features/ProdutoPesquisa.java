@@ -1,4 +1,4 @@
-//#if ${Event} == "F"
+//#if ${ProdutoPesquisa} == "F"
 package br.com.webstore.features;
 
 import java.awt.Color;
@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.webstore.facade.ProdutoFacade;
+import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Produto;
 
 public class ProdutoPesquisa extends JPanel {
@@ -92,7 +92,7 @@ public class ProdutoPesquisa extends JPanel {
 		btnCadastrp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				List<Produto> lista = new ProdutoFacade().findProduto(ProdutoPesquisa.this.textField.getText());
+				List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
 				
 				DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 				ProdutoPesquisa.this.table.setModel(model);
@@ -186,7 +186,7 @@ public class ProdutoPesquisa extends JPanel {
 					
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
 						Integer id = (Integer) ProdutoPesquisa.this.table.getValueAt(index, 0);
-						new ProdutoFacade().removerProduto(id);
+						new GenericFacade().removerProduto(id);
 					}
 
 				}

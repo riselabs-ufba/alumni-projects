@@ -1,11 +1,10 @@
-//#if ${Event} == "F"
+//#if ${CategoriaP} == "F"
 package br.com.webstore.features;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
 import java.util.List;
 import java.util.Vector;
 
@@ -20,10 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.webstore.facade.CategoriaFacade;
-import br.com.webstore.facade.ProdutoFacade;
+import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Categoria;
-import br.com.webstore.model.Produto;
 
 public class CategoriaP extends JPanel {
 	
@@ -95,7 +92,7 @@ public class CategoriaP extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				List<Categoria> lista = new CategoriaFacade().findCategoria(CategoriaP.this.textField.getText());				
+				List<Categoria> lista = new GenericFacade().findCategoria(CategoriaP.this.textField.getText());				
 				DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 				CategoriaP.this.table.setModel(model);
 				
@@ -161,7 +158,7 @@ public class CategoriaP extends JPanel {
 					
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
 						Integer id = (Integer) CategoriaP.this.table.getValueAt(index, 0);
-						new CategoriaFacade().removerCategoria(id);
+						new GenericFacade().removerCategoria(id);
 					}
 
 				}

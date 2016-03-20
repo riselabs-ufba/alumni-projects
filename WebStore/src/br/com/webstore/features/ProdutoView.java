@@ -1,6 +1,5 @@
-/**
- * 
- */
+//#if ${ProdutoView} == "T"
+
 package br.com.webstore.features;
 
 import javax.swing.JPanel;
@@ -36,7 +35,7 @@ public class ProdutoView extends JPanel {
 		
 		JLabel lblProduto = new JLabel("Produto 1");
 		lblProduto.setBounds(130, 11, 196, 55);
-		lblProduto.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		//lblProduto.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		add(lblProduto);
 		
 		JLabel lblasdf = new JLabel("Imagem");
@@ -81,7 +80,7 @@ public class ProdutoView extends JPanel {
 		Label label_1 = new Label("Categoria 1");
 		scrollPane.setViewportView(label_1);
 		label_1.setForeground(UIManager.getColor("textHighlight"));
-		label_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
+	//	label_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
 		
 		JLabel lblMaisProdutosDesta = new JLabel("Mais produtos desta categoria:");
 		lblMaisProdutosDesta.setBounds(275, 234, 165, 14);
@@ -107,3 +106,4 @@ public class ProdutoView extends JPanel {
 
 	}
 }
+//#endif

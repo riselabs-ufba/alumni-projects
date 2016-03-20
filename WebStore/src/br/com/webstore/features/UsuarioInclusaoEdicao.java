@@ -1,6 +1,4 @@
-/**
- * 
- */
+//#if ${UsuarioInclusaoEdicao} == "T"
 package br.com.webstore.features;
 
 import java.awt.Font;
@@ -20,12 +18,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import br.com.webstore.facade.PerfilFacade;
-import br.com.webstore.facade.StatusUsuarioFacade;
-import br.com.webstore.facade.UsuarioFacade;
-import br.com.webstore.model.Usuario;
+import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Perfil;
 import br.com.webstore.model.StatusUsuario;
+import br.com.webstore.model.Usuario;
 
 /**
  * @author webstore
@@ -98,7 +94,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this();
 		this.editMode = true;
 		this.Id = id;
-		Usuario usuario = new UsuarioFacade().getUsuarioById(this.Id);
+		Usuario usuario = new GenericFacade().getUsuarioById(this.Id);
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
 		this.nomeFld.setText(usuario.getNome());
@@ -166,7 +162,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.add(this.statusFld);
 		
 		DefaultComboBoxModel<StatusUsuario> nidadeMedidaModel = new DefaultComboBoxModel<StatusUsuario>();
-		List<StatusUsuario> statusList = new StatusUsuarioFacade().findStatusUsuario(new StatusUsuario());
+		List<StatusUsuario> statusList = new GenericFacade().findStatusUsuario(new StatusUsuario());
 		for (StatusUsuario status : statusList) {
 			nidadeMedidaModel.addElement(status);
 		}
@@ -184,7 +180,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.perfilFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(this.perfilFld);
 
-		List<br.com.webstore.model.Perfil> perfilList = new PerfilFacade().findPerfil(new Perfil());
+		List<br.com.webstore.model.Perfil> perfilList = new GenericFacade().findPerfil(new Perfil());
 		DefaultComboBoxModel<br.com.webstore.model.Perfil> perfilModel = new DefaultComboBoxModel<br.com.webstore.model.Perfil>();
 		for (br.com.webstore.model.Perfil perfil : perfilList) {
 			perfilModel.addElement(perfil);
@@ -202,10 +198,10 @@ public class UsuarioInclusaoEdicao extends JPanel
 				if (UsuarioInclusaoEdicao.this.validateFields()) {
 					Usuario usuario = UsuarioInclusaoEdicao.this.toModel();
 					if (UsuarioInclusaoEdicao.this.editMode) {
-						new UsuarioFacade().updateUsuario(usuario);
+						new GenericFacade().updateUsuario(usuario);
 					} else {
 						usuario.setDataInclusao(Calendar.getInstance().getTime());
-						new UsuarioFacade().insertUsuario(usuario);
+						new GenericFacade().insertUsuario(usuario);
 					}
 
 					if (UsuarioInclusaoEdicao.this.doneEvent != null) {
@@ -218,3 +214,4 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.add(this.salvarBtn);
 }
 }
+//#endif

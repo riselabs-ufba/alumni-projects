@@ -1,4 +1,4 @@
-//#if ${Event} == "F"
+//#if ${CarrinhoCheckout} == "T"
 package br.com.webstore.features;
 
 import java.awt.Color;

@@ -1,33 +1,21 @@
-/**
- * 
- */
+//#if ${CategoriaEdit} == "T"
 package br.com.webstore.features;
 
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.text.NumberFormat;
 
-
-
 import javax.swing.JButton;
-
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import br.com.webstore.facade.CategoriaFacade;
+import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Categoria;
-
-
-
-
-
-
 
 public class CategoriaEdit extends JPanel {
 
@@ -82,7 +70,7 @@ public class CategoriaEdit extends JPanel {
 		this();//falta criar o construtor
 		this.editMode = true;
 		this.Id = id;
-		Categoria categoria = new CategoriaFacade().getById(this.Id);		
+		Categoria categoria = new GenericFacade().getById(this.Id);		
 		this.descricaoFld.setText(categoria.getDescricao());
 	}
 
@@ -95,7 +83,7 @@ public class CategoriaEdit extends JPanel {
 		this.setLayout(null);
 
 
-		JLabel descricaoLbl = new JLabel("Descrição");
+		JLabel descricaoLbl = new JLabel("Descriï¿½ï¿½o");
 		descricaoLbl.setBounds(7, 16, 100, 15);
 		descricaoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(descricaoLbl);
@@ -135,9 +123,9 @@ public class CategoriaEdit extends JPanel {
 				if (CategoriaEdit.this.validateFields()) {
 					Categoria categoria = CategoriaEdit.this.toModel();
 					if (CategoriaEdit.this.editMode) {
-						new CategoriaFacade().updateCategoria(categoria);
+						new GenericFacade().updateCategoria(categoria);
 					} else {
-						new CategoriaFacade().insertCategoria(categoria);
+						new GenericFacade().insertCategoria(categoria);
 					}
 
 					if (CategoriaEdit.this.doneEvent != null) {
@@ -155,3 +143,4 @@ public class CategoriaEdit extends JPanel {
 
 
 }
+//#endif

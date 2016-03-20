@@ -1,4 +1,4 @@
-//#if ${Event} == "F"
+//#if ${ProdutoEdit} == "F"
 package br.com.webstore.features;
 
 import java.awt.Font;
@@ -17,9 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import br.com.webstore.facade.CategoriaFacade;
-import br.com.webstore.facade.ProdutoFacade;
-import br.com.webstore.facade.UnidadeMedidaFacade;
+import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Produto;
 import br.com.webstore.model.UnidadeMedida;
 
@@ -92,7 +90,7 @@ public class ProdutoEdit extends JPanel {
 		this();
 		this.editMode = true;
 		this.Id = id;
-		Produto produto = new ProdutoFacade().getById(this.Id);
+		Produto produto = new GenericFacade().getProdutoById(this.Id);
 		
 		this.descricaoFld.setText(produto.getDescricao());
 		this.valorFld.setValue(produto.getValor());
@@ -108,7 +106,7 @@ public class ProdutoEdit extends JPanel {
 		this.setLayout(null);
 
 		// Descriï¿½ï¿½o
-		JLabel descricaoLbl = new JLabel("Descrição");
+		JLabel descricaoLbl = new JLabel("Descriï¿½ï¿½o");
 		descricaoLbl.setBounds(7, 16, 100, 15);
 		descricaoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(descricaoLbl);
@@ -167,7 +165,7 @@ public class ProdutoEdit extends JPanel {
 		this.add(this.unidadeMedidaFld);
 		
 		DefaultComboBoxModel<UnidadeMedida> nidadeMedidaModel = new DefaultComboBoxModel<UnidadeMedida>();
-		List<UnidadeMedida> unidadeMedidaList = new UnidadeMedidaFacade().getList();
+		List<UnidadeMedida> unidadeMedidaList = new GenericFacade().getListUnidadeMedida();
 		for (UnidadeMedida unidadeMedida : unidadeMedidaList) {
 			nidadeMedidaModel.addElement(unidadeMedida);
 		}
@@ -185,7 +183,7 @@ public class ProdutoEdit extends JPanel {
 		this.categoriaFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(this.categoriaFld);
 
-		List<br.com.webstore.model.Categoria> categoriaList = new CategoriaFacade().getList();
+		List<br.com.webstore.model.Categoria> categoriaList = new GenericFacade().getListCategoria();
 		DefaultComboBoxModel<br.com.webstore.model.Categoria> categoriaModel = new DefaultComboBoxModel<br.com.webstore.model.Categoria>();
 		for (br.com.webstore.model.Categoria categoria : categoriaList) {
 			categoriaModel.addElement(categoria);
@@ -203,9 +201,9 @@ public class ProdutoEdit extends JPanel {
 				if (ProdutoEdit.this.validateFields()) {
 					Produto produto = ProdutoEdit.this.toModel();
 					if (ProdutoEdit.this.editMode) {
-						new ProdutoFacade().updateProduto(produto);
+						new GenericFacade().updateProduto(produto);
 					} else {
-						new ProdutoFacade().insertProduto(produto);
+						new GenericFacade().insertProduto(produto);
 					}
 
 					if (ProdutoEdit.this.doneEvent != null) {

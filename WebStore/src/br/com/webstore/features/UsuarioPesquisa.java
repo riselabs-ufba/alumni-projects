@@ -1,7 +1,5 @@
-/**
- * 
- */
-//#if ${Event} == "F"
+
+//#if ${UsuarioPesquisa} == "F"
 package br.com.webstore.features;
 
 import java.awt.Color;
@@ -24,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.webstore.facade.UsuarioFacade;
+import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Usuario;
 
 
@@ -90,7 +88,7 @@ public class UsuarioPesquisa extends JPanel
 				Usuario user = new Usuario();
 				user.setEmail(UsuarioPesquisa.this.textField.getText());
 				
-				List<Usuario> lista = new UsuarioFacade().findUsuario(user);
+				List<Usuario> lista = new GenericFacade().findUsuario(user);
 				
 				DefaultTableModel model = new DefaultTableModel(headers, lista.size());
 				UsuarioPesquisa.this.table.setModel(model);
@@ -214,7 +212,7 @@ public class UsuarioPesquisa extends JPanel
 						Integer id = (Integer) UsuarioPesquisa.this.table.getValueAt(index, 0);
 						Usuario exclusao = new Usuario();
 						exclusao.setId(id);
-						new UsuarioFacade();
+						new GenericFacade();
 					}
 
 				}
@@ -224,3 +222,4 @@ public class UsuarioPesquisa extends JPanel
 		this.add(btnExcluir);
 	}
 }
+//#endif

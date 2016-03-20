@@ -1,4 +1,4 @@
-//#if ${Event} == "F"
+//#if ${Categoria} == "T"
 package br.com.webstore.features;
 
 import java.awt.Color;
@@ -15,7 +15,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
-import br.com.webstore.facade.CategoriaFacade;
+import br.com.webstore.facade.GenericFacade;
 
 public class Categoria extends JPanel {
 	
@@ -102,7 +102,7 @@ public class Categoria extends JPanel {
 					
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
 						Integer id = (Integer) Categoria.this.table.getValueAt(index, 0);
-						new CategoriaFacade().removerCategoria(id);
+						new GenericFacade().removerCategoria(id);
 					}
 
 				}

@@ -1,7 +1,5 @@
-//#if ${Event} == "T"
-/**
- *
- */
+//#if ${Produto} == "T"
+
 package br.com.webstore.dao;
 
 import java.util.List;

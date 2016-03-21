@@ -1,4 +1,4 @@
-//#if ${Event} == "T"
+//#if ${Endereco} == "T"
 package br.com.webstore.dao;
 
 import br.com.webstore.model.Endereco;

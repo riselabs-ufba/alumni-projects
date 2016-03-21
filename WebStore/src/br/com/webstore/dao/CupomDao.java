@@ -1,4 +1,4 @@
-//#if ${Event} == "T"
+//#if ${Cupom} == "T"
 package br.com.webstore.dao;
 
 import br.com.webstore.model.Cupom;

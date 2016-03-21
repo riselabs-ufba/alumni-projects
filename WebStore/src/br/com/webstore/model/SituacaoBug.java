@@ -1,4 +1,4 @@
-//#if ${Event} == "F"
+//#if ${SituacaoBug} == "T"
 /**
  * 
  */

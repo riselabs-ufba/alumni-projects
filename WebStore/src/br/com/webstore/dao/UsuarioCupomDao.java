@@ -1,4 +1,4 @@
-//#if ${Event} == "T"
+//#if ${UsuarioCupom} == "T"
 package br.com.webstore.dao;
 
 

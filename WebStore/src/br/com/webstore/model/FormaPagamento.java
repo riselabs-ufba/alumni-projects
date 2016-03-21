@@ -1,4 +1,4 @@
-//#if ${Event} == "T"
+//#if ${FormaPagamento} == "T"
 /**
  * 
  */

@@ -1,4 +1,4 @@
-//#if ${Event} == "T"
+//#if ${Categoria} == "T"
 package br.com.webstore.dao;
 
 import java.util.List;

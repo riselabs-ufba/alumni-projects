@@ -1,4 +1,4 @@
-//#if ${Event} == "T"
+//#if ${TipoMensagem} == "T"
 package br.com.webstore.dao;
 
 import br.com.webstore.model.TipoMensagem;

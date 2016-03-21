@@ -1,23 +1,21 @@
-//#if ${ProdutoView} == "T"
+//#if ${Produto} == "T"
 
 package br.com.webstore.features;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.EventQueue;
-import java.awt.Image;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Image;
+import java.awt.Label;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.JTextArea;
-import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
-import java.awt.Label;
 
 /**
  * @author webstore

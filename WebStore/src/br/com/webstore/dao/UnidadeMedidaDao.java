@@ -1,4 +1,4 @@
-//#if ${Event} == "T"
+//#if ${UnidadeMedida} == "T"
 package br.com.webstore.dao;
 
 import br.com.webstore.model.UnidadeMedida;

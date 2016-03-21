@@ -1,4 +1,4 @@
-//#if ${Event} == "T"
+//#if ${Produto} == "T"
 /**
  *
  */

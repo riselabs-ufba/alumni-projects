@@ -1,4 +1,4 @@
-//#if ${Event} == "T"
+//#if ${Venda} == "T"
 package br.com.webstore.dao;
 
 import br.com.webstore.model.Venda;

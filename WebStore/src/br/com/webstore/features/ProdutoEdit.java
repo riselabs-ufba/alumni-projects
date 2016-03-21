@@ -1,4 +1,4 @@
-//#if ${ProdutoEdit} == "F"
+//#if ${Produto} == "T"
 package br.com.webstore.features;
 
 import java.awt.Font;
@@ -105,7 +105,7 @@ public class ProdutoEdit extends JPanel {
 	public ProdutoEdit() {
 		this.setLayout(null);
 
-		// Descri��o
+		// Descrição
 		JLabel descricaoLbl = new JLabel("Descri��o");
 		descricaoLbl.setBounds(7, 16, 100, 15);
 		descricaoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -118,7 +118,7 @@ public class ProdutoEdit extends JPanel {
 		this.descricaoFld.setColumns(10);
 		this.add(this.descricaoFld);
 
-		// C�digo
+		// codigo
 		JLabel codigoLbl = new JLabel("Codigo");
 		codigoLbl.setBounds(7, 61, 100, 15);
 		codigoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));

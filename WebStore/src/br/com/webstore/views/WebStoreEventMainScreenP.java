@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.com.webstore.views;
 
 import java.awt.BorderLayout;
@@ -12,13 +9,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-//import br.com.webstore.dao.Categoria;
+//#if ${BugTrackView} == "T"
 import br.com.webstore.features.BugTrackView;
+//#endif
+//#if ${CarrinhoCheckout} == "T"
 import br.com.webstore.features.CarrinhoCheckout;
+//#endif
+//#if ${CategoriaP} == "T"
 import br.com.webstore.features.CategoriaP;
+//#endif
+//#if ${FAQ} == "T"
 import br.com.webstore.features.FAQ;
+//#endif
+
+//#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
 import br.com.webstore.features.ProdutoView;
+//#endif
 
 /**
  * @author webstore
@@ -42,25 +49,27 @@ public class WebStoreEventMainScreenP extends JPanel {
 		JTabbedPane panelTab = new JTabbedPane();
 		
 		
-		//#if ${Event} == "T"
+		//#if ${Categoria} == "T"
 		panelTab.addTab(CategoriaP.NAME, new CategoriaP());
 		//#endif
 		
-		//#if ${Event} == "T"
+		//#if ${FAQ} == "T"
 		panelTab.addTab(FAQ.NAME, new FAQ());
 		//#endif
 		
-		//#if ${Event} == "F"
+		//#if ${Produto} == "T"
 		panelTab.addTab(ProdutoView.NAME, new ProdutoView());
 		//#endif
 		
-		//#if ${Event} == "F"
+		//#if ${CarrinhoCheckout} == "T"
 		panelTab.addTab(CarrinhoCheckout.NAME, new CarrinhoCheckout());
 		//#endif
 		
+		//#if ${Produto} == "T"
 		panelTab.addTab(ProdutoPesquisa.NAME, new ProdutoPesquisa());
+		//#endif
 		
-		//#if ${Event} == "T"
+		//#if ${BugTrackView} == "T"
 		panelTab.addTab(BugTrackView.NAME, new BugTrackView());
 		//#endif
 				
@@ -104,3 +113,4 @@ public class WebStoreEventMainScreenP extends JPanel {
 		mainScreen.getMainFrame().setVisible(true);
 	}
 }
+

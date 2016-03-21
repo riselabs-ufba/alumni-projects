@@ -1,4 +1,4 @@
-//#if ${Event} == "F"
+//#if ${UsuarioCupom} == "T"
 /**
  * 
  */
@@ -94,3 +94,4 @@ public class UsuarioCupom {
 		this.disponivel = disponivel;
 	}
 }
+//#endif

@@ -1,4 +1,4 @@
-//#if ${Event} == "T"
+//#if ${Usuario} == "T" 
 
 /**
  * 
@@ -181,7 +181,7 @@ public class Usuario {
 	public void setStatusUsuario(StatusUsuario statusUsuario) {
 		this.statusUsuario = statusUsuario;
 	}
-	//#if ${Event} == "F"
+	//#if ${Perfil} == "T"
 	
 	/**
 	 * Return the perfil 

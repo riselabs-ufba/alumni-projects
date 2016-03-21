@@ -1,5 +1,5 @@
 
-//#if ${UsuarioPesquisa} == "F"
+//#if ${UsuarioPesquisa} == "T"
 package br.com.webstore.features;
 
 import java.awt.Color;

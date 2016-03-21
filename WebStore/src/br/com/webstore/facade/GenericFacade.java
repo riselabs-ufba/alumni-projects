@@ -1,46 +1,147 @@
-/**
- * 
- */
+//#if ${BugTrack} == "T" or ${Categoria} == "T" or ${Cupom} == "T" or ${Endereco} == "T" or ${FormaPagament} == "T" or ${Mensagem} == "T" or ${Perfil} == "T" or ${Produto} == "T" or ${SituacaoBug} == "T" or ${StatusUsuario} == "T" or ${StatusVenda} == "T" or ${TipoMensagem} == "T" or ${UnidadeMedida} == "T" or ${UsuarioCupom} == "T" or ${UsuarioCupom} == "T" or ${Usuario} == "T" or ${Venda} == "T" or ${VendaProduto} == "T" or ${VendaProdutoEmbbed} == "T" 
 package br.com.webstore.facade;
 
 import java.util.List;
-
+//#if ${BugTrack} == "T"
 import br.com.webstore.dao.BugTrackDao;
+//#endif
+
+//#if ${Categoria} == "T"
 import br.com.webstore.dao.CategoriaDao;
+//#endif
+
+//#if ${Cupom} == "T"
 import br.com.webstore.dao.CupomDao;
+//#endif
+
+//#if ${Endereco} == "T"
 import br.com.webstore.dao.EnderecoDao;
+//#endif
+
+//#if ${FormaPagamento} == "T"
 import br.com.webstore.dao.FormaPagamentDao;
+//#endif
+
+//#if ${Mensagem} == "T"
 import br.com.webstore.dao.MensagemDao;
+//#endif
+
+//#if ${Perfil} == "T"
 import br.com.webstore.dao.PerfilDao;
+//#endif
+
+//#if ${Produto} == "T"
 import br.com.webstore.dao.ProdutoDao;
+//#endif
+
+//#if ${SituacaoBug} == "T"
 import br.com.webstore.dao.SituacaoBugDao;
+//#endif
+
+//#if ${StatusUsuario} == "T"
 import br.com.webstore.dao.StatusUsuarioDao;
+//#endif
+
+//#if ${StatusVenda} == "T"
 import br.com.webstore.dao.StatusVendaDao;
+//#endif
+//#if ${TipoMensagem} == "T"
 import br.com.webstore.dao.TipoMensagemDao;
+//#endif
+//#if ${UnidadeMedida} == "T"
 import br.com.webstore.dao.UnidadeMedidaDao;
+//#endif
+//#if ${UsuarioCupom} == "T"
 import br.com.webstore.dao.UsuarioCupomDao;
+//#endif
+
+//#if ${Usuario} == "T"
 import br.com.webstore.dao.UsuarioDao;
+//#endif
+
+//#if ${Venda} == "T"
 import br.com.webstore.dao.VendaDao;
+//#endif
+
+//#if ${VendaProduto} == "T"
 import br.com.webstore.dao.VendaProdutoDao;
+//#endif
+
+//#if ${VendaProdutoEmbbed} == "T"
 import br.com.webstore.dao.VendaProdutoEmbbedDao;
+//#endif
+
+//#if ${BugTrack} == "T"
 import br.com.webstore.model.BugTrack;
+//#endif
+
+//#if ${Categoria} == "T"
 import br.com.webstore.model.Categoria;
+//#endif
+
+//#if ${Cupom} == "T"
 import br.com.webstore.model.Cupom;
+//#endif
+
+//#if ${Endereco} == "T"
 import br.com.webstore.model.Endereco;
+//#endif
+
+//#if ${FormaPagamento} == "T"
 import br.com.webstore.model.FormaPagamento;
+//#endif
+
+//#if ${Mensagem} == "T"
 import br.com.webstore.model.Mensagem;
+//#endif
+
+//#if ${Perfil} == "T"
 import br.com.webstore.model.Perfil;
+//#endif
+
+//#if ${Produto} == "T"
 import br.com.webstore.model.Produto;
+//#endif
+
+//#if ${SituacaoBug} == "T"
 import br.com.webstore.model.SituacaoBug;
+//#endif
+
+//#if ${StatusUsuario} == "T"
 import br.com.webstore.model.StatusUsuario;
+//#endif
+
+//#if ${StatusVenda} == "T"
 import br.com.webstore.model.StatusVenda;
+//#endif
+
+//#if ${TipoMensagem} == "T"
 import br.com.webstore.model.TipoMensagem;
+//#endif
+
+//#if ${UnidadeMedida} == "T"
 import br.com.webstore.model.UnidadeMedida;
+//#endif
+
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
+//#endif
+
+//#if ${UsuarioCupom} == "T"
 import br.com.webstore.model.UsuarioCupom;
+//#endif
+
+//#if ${Venda} == "T"
 import br.com.webstore.model.Venda;
+//#endif
+
+//#if ${VendaProduto} == "T"
 import br.com.webstore.model.VendaProduto;
+//#endif
+
+//#if ${VendaProdutoEmbbed} == "T"
 import br.com.webstore.model.VendaProdutoEmbbed;
+//#endif
 
 /**
  * @author webstore
@@ -116,7 +217,7 @@ public class GenericFacade {
 		}
 		//#endif
 	
-		//Endereço
+		//Endereco
 		//#if ${Endereco} == "T"
 		
 		private EnderecoDao enderecoDataProvider = new EnderecoDao();
@@ -414,3 +515,4 @@ public class GenericFacade {
 		}
 		//#endif
 }
+//#endif

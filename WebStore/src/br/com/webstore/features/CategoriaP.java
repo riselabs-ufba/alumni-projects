@@ -1,4 +1,4 @@
-//#if ${CategoriaP} == "F"
+//#if ${CategoriaP} == "T"
 package br.com.webstore.features;
 
 import java.awt.Color;

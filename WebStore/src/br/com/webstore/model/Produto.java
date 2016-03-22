@@ -1,8 +1,7 @@
 //#if ${Produto} == "T"
-/**
- *
- */
+
 package br.com.webstore.model;
+
 
 import java.math.BigDecimal;
 
@@ -161,4 +160,4 @@ public class Produto {
 	}
 	
 }
-// #endif
+//#endif

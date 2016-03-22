@@ -1,137 +1,117 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="run">
-	<taskdef classpath="libs/javapp.jar" resource="javapp-defs.xml"/>
+
+	<property name="appName" value="webstore_p" />
+	<property name="src" location="${appName}/src" />
+	<property name="libs" location="${appName}/libs" />
+	<property name="resources" location="${appName}/img" />
+	<property name="build" location="${appName}/build" />
+	<property name="classes" location="${build}/br/com/webstore" />
+	<property name="jar.file" location="${appName}/${appName}.jar" />
+	<property name="externalResources" value="img" />
+	<property name="libsExternal" location="libs" />
+	<property name="srcProject" location="src" />
+	<property name="meta.inf" location="${build}/META-INF" />
+	
+
+
+
+	<path id="classpath">
+		<fileset dir="${libs}">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="${build}" />
+	</path>
+
+	<taskdef classpath="${libsExternal}/javapp.jar" resource="javapp-defs.xml" />
 
 	<target name="clean">
-		<echo/>
-		<echo message="Step 1 - folder 'WebStore_Product' is being cleaned!"/>
-		<delete dir="_e-Event_Advanced"/>
+		<echo />
+		<echo message="Step 1 - folder 'WebStore_Product' is being cleaned!" />
+		<delete dir="${appName}" />
 	</target>
 
-	<target depends="clean" name="preprocess">
-		<echo/>
-		<echo message="Step 2 - Source code is being created in the '_e-Event_Advanced' folder!"/>
-		<javapp destdir="_e-Event_Advanced/src/br" prefix="//#">
-			<fileset dir="src/br" includes="**/*.java"/>
+	<target name="init">
+		<echo />
+		<echo message="Create project structer" />
+		<mkdir dir="${appName}" />
+		<mkdir dir="${resources}" />
+		<mkdir dir="${libs}" />
+		<mkdir dir="${build}" />
+		<mkdir dir="${meta.inf}" />
+		<copy todir="${resources}">
+			<fileset dir="${externalResources}" includes="**/*.png, **/*.gif, **/*.jpg" />
+		</copy>
+		<copy todir="${libs}">
+			<fileset dir="${libsExternal}" includes="**/*.jar" />
+		</copy>
+		<copy todir="${meta.inf}">
+			<fileset dir="${srcProject}/META-INF" includes="**/*.xml" />
+		</copy>
 
-			<!-- ADVANCED E-EVENT PRODUCT LINE  -->
+		<jar jarfile="${libs}/dependencies-all.jar">
+			<zipgroupfileset dir="${libs}">
+				<include name="**/*.jar" />
+			</zipgroupfileset>
+		</jar>
+	</target>
 
-			<property name="BugTrack" value="T"/>
-			<property name="Cupom" value="T"/>
-			<property name="Categoria" value="T"/>
-			<property name="Endereco" value="T"/>
-			<property name="FormaPagamento" value="T"/>
-			<property name="Mensagem" value="T"/>
-			<property name="Perfil" value="T"/>
-			<property name="Produto" value="F"/>
-			<property name="SituacaoBug" value="T"/>
-			<property name="StatusUsuario" value="T"/>
-			<property name="StatusVenda" value="T"/>
-			<property name="TipoMensagem" value="T"/>
-			<property name="UnidadeMedida" value="T"/>
-			<property name="UsuarioCupom" value="T"/>
-			<property name="Usuario" value="T"/>
-			<property name="Venda" value="T"/>
-			<property name="VendaProduto" value="T"/>
-			<property name="VendaProdutoEmbbed" value="T"/>
-			<property name="CarrinhoCheckout" value="T"/>
-			<property name="CategoriaEdit" value="T"/>
-			<property name="CategoriaP" value="T"/>
-			<property name="FAQ" value="T"/>
-			<property name="UsuarioInclusaoEdicao" value="T"/>
-			<property name="UsuarioPesquisa" value="T"/>
-			<property name="Usuario" value="T"/>
-			<property name="BugTrackView" value="T"/>
-			
-			
-			
-			
-			
-			
-			
+	<target depends="init" name="preprocess">
+		<echo />
+		<echo message="Step 2 - Source code is being created in the ${appName}" />
+		<javapp destdir="${src}" prefix="//#">
+			<fileset dir="${srcProject}" includes="**/*.java" />
+			<property name="BugTrack" value="T" />
+			<property name="Cupom" value="T" />
+			<property name="Categoria" value="T" />
+			<property name="Endereco" value="T" />
+			<property name="FormaPagamento" value="T" />
+			<property name="Mensagem" value="T" />
+			<property name="Perfil" value="T" />
+			<property name="Produto" value="T" />
+			<property name="SituacaoBug" value="T" />
+			<property name="StatusUsuario" value="T" />
+			<property name="StatusVenda" value="T" />
+			<property name="TipoMensagem" value="T" />
+			<property name="UnidadeMedida" value="T" />
+			<property name="UsuarioCupom" value="T" />
+			<property name="Usuario" value="T" />
+			<property name="Venda" value="T" />
+			<property name="VendaProduto" value="T" />
+			<property name="VendaProdutoEmbbed" value="T" />
+			<property name="CarrinhoCheckout" value="T" />
+			<property name="CategoriaEdit" value="T" />
+			<property name="CategoriaP" value="T" />
+			<property name="FAQ" value="T" />
+			<property name="UsuarioInclusaoEdicao" value="T" />
+			<property name="UsuarioPesquisa" value="T" />
+			<property name="Usuario" value="T" />
 		</javapp>
 
-		<!-- É obrigatório para executar -->
-		<copy todir="_e-Event_Advanced/src/images">
-			<fileset dir="img" includes="**/*.png, **/*.gif, **/*.jpg"/>
-		</copy>
-
-		<!-- É obrigatório para executar PAULO-->
-		<copy todir="_e-Event_Advanced">
-			<fileset dir="" includes="**/*.xml"/>
-		</copy>
-
-		<!-- É obrigatório para executar -->
-		<mkdir dir="_e-Event_Advanced/build/jar/src/images"/>
-		<copy todir="_e-Event_Advanced/build/jar/src/images">
-			<fileset dir="img" includes="**/*.png, **/*.gif, **/*.jpg"/>
-		</copy>
-
-		<!-- É obrigatório para executar -->
-		<mkdir dir="_e-Event_Advanced/build/jar/lib"/>
-		<copy todir="_e-Event_Advanced/build/jar/lib">
-			<fileset dir="libs" includes="**/*.jar"/>
-		</copy>
-
-		<!-- É obrigatório para executar PAULO -->
-		<mkdir dir="_e-Event_Advanced/build/jar/src/META-INF"/>
-		<copy todir="_e-Event_Advanced/build/jar/src/META-INF">
-			<fileset dir="src/META-INF" includes="**/*.xml"/>
-		</copy>
-
 	</target>
 
-	<!-- , **/*.properties PAULO-->
-	<target depends="preprocess" name="compile">
-		<echo/>
-		<echo message="Step 3 - Product is being compiled!"/>
-		<mkdir dir="_e-Event_Advanced/build/classes"/>
-		<javac destdir="_e-Event_Advanced/build/classes" encoding="UTF-8" fork="yes" includeantruntime="true" srcdir="_e-Event_Advanced/src">
-			<!-- ATENÇÃO: compila arquivos da pasta _e-Event_Advanced. Para não ter problema com acento, definir UTF-8 aqui -->
-			<classpath>
-				<fileset dir="libs" includes="**/*.jar"/>
-				<fileset dir="src/META-INF" includes="**/*.xml"/>
-			</classpath>
+	<target depends="preprocess" name="build">
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath refid="classpath" />
 		</javac>
 	</target>
 
-	<!-- , **/*.properties PAULO-->
-	<target depends="compile" name="jar">
-		<echo/>
-		<echo message="Step 4 - Jar is being created!"/>
-		<jar basedir="_e-Event_Advanced/build/classes" destfile="_e-Event_Advanced/build/jar/e-Event_Advanced.jar">
-			<fileset dir="_e-Event_Advanced/src" includes="**/*.class, **/*.png, **/*.gif, **/*.jpg, **/*.xml"/>
+	<target depends="build" name="jar">
+		<echo />
+		<echo message="Step 4 - Jar is being created!" />
+		<jar basedir="${build}" jarfile="${jar.file}">
 			<manifest>
-				<attribute name="Main-Class" value="br.com.webstore.views.WebStoreEventMainScreenP"/>
-				<attribute name="Class-Path" 
-					value="libs/antlr-2.7.7.jar
-					libs/classmate-1.3.0.jar
-					libs/dom4j-1.6.1.jar
-					libs/geronimo-jta_1.1_spec-1.1.1.jar
-					libs/hibernate-commons-annotations-5.0.1.Final.jar
-					libs/hibernate-core-5.1.0.Final.jar
-					libs/hibernate-entitymanager-5.1.0.Final.jar
-					libs/hibernate-jpa-2.1-api-1.0.0.Final.jar
-					libs/jandex-2.0.0.Final.jar
-					libs/javassist-3.20.0-GA.jar
-					libs/jboss-logging-3.3.0.Final.jar
-					libs/junit-4.10.jar
-					libs/mysql-connector-java-5.1.38-bin.jar
-					libs/slf4j-log4j12-1.6.1.jar
-					libs/slf4j.api-1.6.1.jar
-					libs/javapp.jar
-					libs/javax.inject-1.jar
-					libs/swingx-all-1.6.4.jar
-					libs/javax.persistence-2.0.0.jar
-					libs/javaee.jar"/>
+				<attribute name="Main-Class" value="br.com.webstore.views.WebStoreEventMainScreenP" />
 			</manifest>
+			<zipfileset src="${libs}/dependencies-all.jar" excludes="META-INF/*.SF" />
 		</jar>
 	</target>
 
 	<target depends="jar" name="run">
-		<echo/>
-		<echo message="Step 5 - Advanced Product Line is running!"/>
-		<java fork="true" jar="_e-Event_Advanced/build/jar/e-Event_Advanced.jar"/>
+		<echo message="Executando o Jar" />
+		<java fork="true" jar="${jar.file}" />
 	</target>
+
+
 
 </project>

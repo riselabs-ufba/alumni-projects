@@ -37,8 +37,8 @@ public class ProdutoView extends JPanel {
 		add(lblProduto);
 		
 		JLabel lblasdf = new JLabel("Imagem");
-		Image img = new ImageIcon(this.getClass().getResource("/image.png")).getImage();
-		lblasdf.setIcon(new ImageIcon(img));
+		/*Image img = new ImageIcon(this.getClass().getResource("/image.png")).getImage();
+		lblasdf.setIcon(new ImageIcon(img));*/
 		lblasdf.setBorder(UIManager.getBorder("FormattedTextField.border"));
 		lblasdf.setBounds(275, 63, 138, 21);
 		add(lblasdf);

@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-//#if ${BugTrackView} == "T"
+//#if ${BugTrack} == "T"
 import br.com.webstore.features.BugTrackView;
 //#endif
 //#if ${CarrinhoCheckout} == "T"
@@ -69,7 +69,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		panelTab.addTab(ProdutoPesquisa.NAME, new ProdutoPesquisa());
 		//#endif
 		
-		//#if ${BugTrackView} == "T"
+		//#if ${BugTrack} == "T"
 		panelTab.addTab(BugTrackView.NAME, new BugTrackView());
 		//#endif
 				

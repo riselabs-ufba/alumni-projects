@@ -59,14 +59,14 @@ public class BugTrack {
 	@Column(name="titulo", nullable=false)
 	private String titulo;
 	
-	public BugTrack(String titulo, String descricao, Usuario usuario, SituacaoBug situacaoBug){
+	/*public BugTrack(String titulo, String descricao, Usuario usuario, SituacaoBug situacaoBug){
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.dataRegistro = new Date();
 		this.usuarioRegistro = usuario;
 		this.situacaoBug = situacaoBug;
 		
-	}
+	}*/
 	
 	/**
 	 * Return the id 

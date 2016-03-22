@@ -156,13 +156,35 @@ public class GenericFacade {
 		return bugTrackDao.insert(bugTrack);
 	}
 
-	public void updateBugTrack(BugTrack bugTrack) {
+	public Boolean updateBugTrack(BugTrack bugTrack) {//TODO: remove retornar boolean
 		bugTrackDao.update(bugTrack);
+		return true;
 	}
 
 	public List<BugTrack> findBugTrack(BugTrack query) {
 		return bugTrackDao.getList();
 	}
+	
+	public List<BugTrack> findBugTrack(String titulo, SituacaoBug situacao) {	
+		return this.bugTrackDao.findByTitulo(titulo, situacao);
+	}
+	public List<BugTrack> findBugTrack(String titulo) {	
+		return this.bugTrackDao.findByTitulo(titulo);
+	}
+	
+	public List<BugTrack> findBugTrack() {
+		return bugTrackDao.getList();
+	}
+	
+	public Boolean removeBugTrack(int id){ //TODO: remove retornar boolean
+		bugTrackDao.remove(id);
+		return true;	
+	}
+	
+	public BugTrack getBugTrack(int id) {
+		return bugTrackDao.find(id);
+	}
+	
 	//#endif
 	
 	//Categoria 

@@ -45,7 +45,8 @@ public class BugTrackView extends JPanel{
 		facade = new GenericFacade();
 		situacoes = facade.getListSituacaoBug();
 		
-		JComboBox<String> combo = new JComboBox<String>();
+		final JComboBox<String> combo = new JComboBox<String>();
+		combo.addItem("Todas");
 		for(int i=0;i<situacoes.size();i++)
 			combo.addItem(situacoes.get(i).getDescricao());
 		
@@ -58,11 +59,11 @@ public class BugTrackView extends JPanel{
 		columnNames.add("Usuário resposta");
 		columnNames.add("Título");
 		columnNames.add("Situação");
-		columnNames.add("Ações");
+		columnNames.add("Data registro");
 		//myTableModel = new MyTableModel(data,columnNames);
 	    table = new JTable(data, columnNames);
 
-		JTextField query = new JTextField(15);
+		final JTextField query = new JTextField(15);
 	    add(new JLabel("Palavra-chave:"));
 	    add(query);
 	    add(new JLabel("Status:"));
@@ -70,12 +71,24 @@ public class BugTrackView extends JPanel{
 	    JButton submit = new JButton("Pesquisar");
 	    submit.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	          //System.out.println(this..getText()) + " " + form.getText(1));
+	          int index = combo.getSelectedIndex();
+	          System.out.println(index+" "+query.getText());
+	          List<BugTrack> results;
+	          if(index!=0){
+	        	  results = facade.findBugTrack(query.getText(),situacoes.get(index-1));
+	          }
+	          else{
+	        	  results = facade.findBugTrack(query.getText());
+	          }
+        	  data = resultsToData(results);
+        	  DefaultTableModel model = (DefaultTableModel) table.getModel();
+        	  model.setDataVector(data, columnNames);
+        	  table.repaint();
 	        }
 	    });
 	    add(submit);
 	    
-	    JButton btnNewBug = new JButton("Reportar bug");
+	    JButton btnNewBug = new JButton("Reportar");
 		btnNewBug.setBounds(6, 85, 89, 23);
 		btnNewBug.addActionListener(new ActionListener() {
 			
@@ -146,7 +159,7 @@ public class BugTrackView extends JPanel{
 		add(btnNewBug);
 		
 		
-		JButton btnDeleteBug = new JButton("Deletar bug");
+		JButton btnDeleteBug = new JButton("Deletar");
 		btnDeleteBug.setBounds(6, 85, 89, 23);
 		btnDeleteBug.addActionListener(new ActionListener() {
 			
@@ -177,14 +190,14 @@ public class BugTrackView extends JPanel{
 
 		add(btnDeleteBug);
 
-		JButton btnFixingBug = new JButton("Consertando bug");
+		JButton btnFixingBug = new JButton("Consertando");
 		btnFixingBug.setBounds(6, 85, 89, 23);
 		btnFixingBug.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow = table.getSelectedRow();
-				System.out.println("deletar bug "+selectedRow);
+				System.out.println("consertar bug "+selectedRow);
 				
 				if(selectedRow==-1){
 					JOptionPane.showMessageDialog(null, "Selecione algum registro.");
@@ -215,14 +228,14 @@ public class BugTrackView extends JPanel{
 
 		add(btnFixingBug);
 		
-		JButton btnCloseBug = new JButton("Fechar bug");
+		JButton btnCloseBug = new JButton("Fechar");
 		btnCloseBug.setBounds(6, 85, 89, 23);
 		btnCloseBug.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow = table.getSelectedRow();
-				System.out.println("deletar bug "+selectedRow);
+				System.out.println("fechar bug "+selectedRow);
 				
 				if(selectedRow==-1){
 					JOptionPane.showMessageDialog(null, "Selecione algum registro.");
@@ -253,7 +266,129 @@ public class BugTrackView extends JPanel{
 
 		add(btnCloseBug);
 
+		JButton btnAnswer = new JButton("Responder");
+		btnAnswer.setBounds(6, 85, 89, 23);
+		btnAnswer.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = table.getSelectedRow();
+				System.out.println("responder bug "+selectedRow);
+				
+				if(selectedRow==-1){
+					JOptionPane.showMessageDialog(null, "Selecione algum registro.");
+				}
+				else{
+					int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
+					final BugTrack bug = facade.getBugTrack(id);
+					if(bug!=null){
+						final JDialog bugDialog = new JDialog();
+						
+						bugDialog.setModal(true);
+						bugDialog.setTitle("Responder bug");
+						bugDialog.setResizable(false);
+						bugDialog.setBounds(0, 0, 460, 320);
+						JPanel panel = new JPanel();
+						final JTextArea bugResposta = new JTextArea(10,40);
+						bugResposta.setText(bug.getDescricaoResposta());
+						panel.add(new JLabel("Resposta:"));
+					    panel.add(bugResposta);
+						
+						JButton btnSendBug = new JButton("Enviar");
+						
+						btnSendBug.setBounds(6, 85, 89, 23);
+						btnSendBug.addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								if(bugResposta.getText().length()==0){
+									JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
+								}
+								else{								
+									//TODO: PEGAR USUARIO LOGADO
+									Usuario usuario = facade.getUsuarioById(1);									
+									bug.setDescricaoResposta(bugResposta.getText());
+									bug.setUsuarioResponde(usuario);
+									bug.setDataResposta(new Date());
+									
+									Boolean result = facade.updateBugTrack(bug);
+									if(result){								
+										List<BugTrack> results = facade.findBugTrack();
+										data = resultsToData(results);
+										DefaultTableModel model = (DefaultTableModel) table.getModel();
+										model.setDataVector(data, columnNames);
+										table.repaint();
+										bugDialog.dispose();
+									}
+									else{
+										JOptionPane.showMessageDialog(null, "Não foi possível salvar o bug.");
+									}
+														
+								}
+							}
+						});
+						
+						panel.add(btnSendBug);
+						bugDialog.add(panel);
+						bugDialog.setVisible(true);
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Não foi possível atualizar o registro.");
+					}
+				}
+			}
 
+		});
+
+		add(btnAnswer);
+		
+		
+		JButton btnView = new JButton("Detalhes");
+		btnView.setBounds(6, 85, 89, 23);
+		btnView.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = table.getSelectedRow();
+				System.out.println("ver bug "+selectedRow);
+				
+				if(selectedRow==-1){
+					JOptionPane.showMessageDialog(null, "Selecione algum registro.");
+				}
+				else{
+					int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
+					final BugTrack bug = facade.getBugTrack(id);
+					if(bug!=null){
+						final JDialog bugDialog = new JDialog();
+						
+						bugDialog.setModal(true);
+						bugDialog.setTitle("Detalhes do bug");
+						bugDialog.setResizable(false);
+						bugDialog.setBounds(0, 0, 460, 320);
+						JPanel panel = new JPanel();
+					
+						String s = "<html>Titulo: "+bug.getTitulo()+"<br>";
+						s+="Situação: "+bug.getSituacaoBug().getDescricao()+"<br>";
+						s+="Data registro: "+bug.getDataRegistro().toString()+"<br>";
+						s+="Usuario cadastro: "+bug.getUsuarioRegistro().getNome()+"<br>";
+						s+="Descrição: "+bug.getDescricao()+"<br>";
+						s+="Data resposta: "+bug.getDataResposta().toString()+"<br>";
+						s+="Usuario resposta: "+bug.getUsuarioResponde().getNome()+"<br>";
+						s+="Descrição resposta: "+bug.getDescricaoResposta()+"<br>";
+						s+= "</html>";
+						panel.add(new JLabel(s));
+						bugDialog.add(panel);
+						bugDialog.setVisible(true);
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Não foi possível ver o registro.");
+					}
+				}
+			}
+
+		});
+
+		add(btnView);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		table.setFillsViewportHeight(true);
@@ -281,8 +416,8 @@ public class BugTrackView extends JPanel{
 			vec.add(results.get(i).getTitulo());
 			System.out.println(results.get(i).getSituacaoBug().getDescricao());
 			vec.add(results.get(i).getSituacaoBug().getDescricao());
-			System.out.println("btn");
-			vec.add("btns");
+			System.out.println(results.get(i).getDataRegistro().toString());
+			vec.add(results.get(i).getDataRegistro().toString());
 			data.add(vec);
 		}
 		return data;

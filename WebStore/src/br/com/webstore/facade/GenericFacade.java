@@ -165,6 +165,13 @@ public class GenericFacade {
 		return bugTrackDao.getList();
 	}
 	
+	public List<BugTrack> findBugTrack(String titulo, SituacaoBug situacao) {	
+		return this.bugTrackDao.findByTitulo(titulo, situacao);
+	}
+	public List<BugTrack> findBugTrack(String titulo) {	
+		return this.bugTrackDao.findByTitulo(titulo);
+	}
+	
 	public List<BugTrack> findBugTrack() {
 		return bugTrackDao.getList();
 	}

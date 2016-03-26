@@ -3,6 +3,7 @@
 
 
 <!--  ant-contrib plugin is REQUIRED -->
+<!--  
 <if>
 
     <equals arg1="Usuario" arg2="F" />
@@ -20,9 +21,9 @@
         <fail />
       </then>
 
-
 </if>
 
+ -->
 
 
 	

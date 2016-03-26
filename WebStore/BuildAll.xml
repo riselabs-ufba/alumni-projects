@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project  name = "subant"  default = "subant1" > 
-    <property  name = "build.dir"  value = "subant.build" /> 
+<property  name = "build.dir"  value = "subant.build" /> 
     <target  name = "subant1" > 
         <subant  target = "" > 
             <property  name = "build.dir"  value = "subant1.build" /> 
             <property  name = "not.overloaded"  value = "not.overloaded" /> 
-            <fileset  dir = "products"  includes = "*.xml" /> 
+            <fileset  dir = "products"  includes = "*.xml">
+                 <exclude name="${ant.file}"/>
+            </fileset>	
         </subant> 
     </target> 
 </project>

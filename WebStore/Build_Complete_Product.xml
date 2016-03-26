@@ -27,13 +27,17 @@
 
 	<target name="clean">
 		<echo />
-		<echo message="Step 1 - folder 'WebStore_Product' is being cleaned!" />
-		<delete dir="${appName}" />
+		<echo message="Step 1 - Cleaning remnants of the previous build - folder '${appName}'..." />
+		<!-- delete dir="${appName}" / -->
+        <delete includeEmptyDirs="true" quiet="true">
+	      <fileset dir="${appName}"/>
+		</delete>	
 	</target>
 
-	<target name="init">
+	
+	<target depends="clean" name="init">
 		<echo />
-		<echo message="Create project structer" />
+		<echo message="Step 2 - Creating the project structure..." />
 		<mkdir dir="${appName}" />
 		<mkdir dir="${resources}" />
 		<mkdir dir="${libs}" />
@@ -58,7 +62,7 @@
 
 	<target depends="init" name="preprocess">
 		<echo />
-		<echo message="Step 2 - Source code is being created in the ${appName}" />
+		<echo message="Step 3 - Copying code useful source for '${appName}'..." />
 		<javapp destdir="${src}" prefix="//#">
 			<fileset dir="${srcProject}" includes="**/*.java" />
 			<property name="BugTrack" value="T" />
@@ -91,14 +95,15 @@
 	</target>
 
 	<target depends="preprocess" name="build">
-		<javac srcdir="${src}" destdir="${build}">
+		<echo message="Step 4 - Building..." />
+		<javac srcdir="${src}" destdir="${build}" includeantruntime = "false">
 			<classpath refid="classpath" />
 		</javac>
 	</target>
 
 	<target depends="build" name="jar">
 		<echo />
-		<echo message="Step 4 - Jar is being created!" />
+		<echo message="Step 5 - Creating jar..." />
 		<jar basedir="${build}" jarfile="${jar.file}">
 			<manifest>
 				<attribute name="Main-Class" value="br.com.webstore.views.WebStoreEventMainScreenP" />
@@ -108,10 +113,8 @@
 	</target>
 
 	<target depends="jar" name="run">
-		<echo message="Executando o Jar" />
+		<echo message="Step 6 - Running the derived product..." />
 		<java fork="true" jar="${jar.file}" />
 	</target>
-
-
 
 </project>

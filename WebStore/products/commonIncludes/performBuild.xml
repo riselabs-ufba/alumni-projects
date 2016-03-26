@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="WebStore" default="run">
-	
-	<property name="appName" value="webstore_p" />
-	<property name="src" location="${appName}/src" />
-	<property name="libs" location="${appName}/libs" />
-	<property name="resources" location="${appName}/img" />
-	<property name="build" location="${appName}/build" />
-	<property name="classes" location="${build}/br/com/webstore" />
-	<property name="jar.file" location="${appName}/${appName}.jar" />
-	<property name="externalResources" value="img" />
-	<property name="libsExternal" location="libs" />
-	<property name="srcProject" location="src" />
-	<property name="meta.inf" location="${build}/META-INF" />
+<project>
 
 	<path id="classpath">
 		<fileset dir="${libs}">
@@ -24,9 +12,12 @@
 
 	<target name="clean">
 		<echo />
-		<echo message="Step 1 - Cleaning remnants of the previous build - folder '${appName}'..." />
+		<echo message="Step 1 - Clearing the previous build..." />
         <delete includeEmptyDirs="true" quiet="true">
-	      <fileset dir="${appName}"/>
+	      <fileset dir="${outputAppDir}"/>
+		</delete>	
+        <delete includeEmptyDirs="true" quiet="true">
+	      <fileset dir="${deployAppDir}"/>
 		</delete>	
 	</target>
 
@@ -34,7 +25,8 @@
 	<target depends="clean" name="init">
 		<echo />
 		<echo message="Step 2 - Creating the project structure..." />
-		<mkdir dir="${appName}" />
+		<mkdir dir="${outputAppDir}" />
+		<mkdir dir="${deployAppDir}" />
 		<mkdir dir="${resources}" />
 		<mkdir dir="${libs}" />
 		<mkdir dir="${build}" />
@@ -61,34 +53,11 @@
 		<echo message="Step 3 - Copying code useful source for '${appName}'..." />
 		<javapp destdir="${src}" prefix="//#">
 			<fileset dir="${srcProject}" includes="**/*.java" />
-			<property name="BugTrack" value="T" />
-			<property name="Cupom" value="T" />
-			<property name="Categoria" value="T" />
-			<property name="Endereco" value="T" />
-			<property name="FormaPagamento" value="T" />
-			<property name="Mensagem" value="T" />
-			<property name="Perfil" value="T" />
-			<property name="Produto" value="T" />
-			<property name="SituacaoBug" value="T" />
-			<property name="StatusUsuario" value="T" />
-			<property name="StatusVenda" value="T" />
-			<property name="TipoMensagem" value="T" />
-			<property name="UnidadeMedida" value="T" />
-			<property name="UsuarioCupom" value="T" />
-			<property name="Usuario" value="T" />
-			<property name="Venda" value="T" />
-			<property name="VendaProduto" value="T" />
-			<property name="VendaProdutoEmbbed" value="T" />
-			<property name="CarrinhoCheckout" value="T" />
-			<property name="CategoriaEdit" value="T" />
-			<property name="CategoriaP" value="T" />
-			<property name="FAQ" value="T" />
-			<property name="UsuarioInclusaoEdicao" value="T" />
-			<property name="UsuarioPesquisa" value="T" />
-			<property name="Usuario" value="T" />
+            <!-- features selection moved to the xml of each derivative product. -->
 		</javapp>
-
 	</target>
+
+
 
 	<target depends="preprocess" name="build">
 		<echo message="Step 4 - Building..." />
@@ -112,5 +81,5 @@
 		<echo message="Step 6 - Running the derived product..." />
 		<java fork="true" jar="${jar.file}" />
 	</target>
-
+	
 </project>

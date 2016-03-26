@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+
+
+<!--  ant-contrib plugin is REQUIRED -->
+<if>
+
+    <equals arg1="Usuario" arg2="F" />
+      <then>
+        <fail />
+      </then>
+
+    <equals arg1="${UsuarioInclusaoEdicao}" arg2="F" />
+      <then>
+        <fail />
+      </then>
+
+    <equals arg1="${UsuarioPesquisa}" arg2="F" />
+      <then>
+        <fail />
+      </then>
+
+
+</if>
+
+
+
+	
+</project>

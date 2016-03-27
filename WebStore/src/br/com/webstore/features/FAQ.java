@@ -26,17 +26,16 @@ public class FAQ extends JPanel {
 	 */
 	public FAQ() {
 		setLayout(null);
-	
-		JTextArea txtrLorenIpsum = new JTextArea();
 		JScrollPane sp = new JScrollPane();
-		txtrLorenIpsum.setBackground(Color.WHITE);
-		txtrLorenIpsum.setBounds(88, 64, 278, 187);
-		txtrLorenIpsum.setText("Lorem ipsum dolor sit amet, \r\npro ea affert bonorum, \r\nvis deleniti similique \r\nconceptam ea. \r\nAeque constituto sed ut, animal \r\naliquip maiorum in usu. Mea ex error \r\nancillae adversarium, mel facer qualisque democritum ea. \r\nMei ex essent feugiat, facilisis concludaturque vis ei. \r\nNominavi patrioque ne has. \r\nNam ea atqui adversarium, \r\nadmodum fuisset in mel.");
-		add(txtrLorenIpsum);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(362, 64, 17, 187);
-		add(scrollBar);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(88, 64, 278, 187);
+		add(scrollPane);
+		
+			JTextArea txtrLorenIpsum = new JTextArea();
+			scrollPane.setViewportView(txtrLorenIpsum);
+		txtrLorenIpsum.setBackground(Color.WHITE);
+		txtrLorenIpsum.setText("Lorem ipsum dolor sit amet, \r\npro ea affert bonorum, \r\nvis deleniti similique \r\nconceptam ea. \r\nAeque constituto sed ut, animal \r\naliquip maiorum in usu. Mea ex error \r\nancillae adversarium, mel facer qualisque democritum ea. \r\nMei ex essent feugiat, facilisis concludaturque vis ei. \r\nNominavi patrioque ne has. \r\nNam ea atqui adversarium, \r\nadmodum fuisset in mel.");
 		
 		JButton btnOk = new JButton("Ok");
 		btnOk.setBounds(178, 266, 89, 23);

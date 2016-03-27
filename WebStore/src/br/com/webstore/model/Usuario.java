@@ -59,6 +59,10 @@ public class Usuario {
 	@Column(name="dtUsuarioInclusao", nullable=false)
 	private Date dataInclusao;
 	
+	@Column (name="dsLogin", nullable=false)
+	private String login;
+	
+
 	/**
 	 * Return the id 
 	 * @return the id
@@ -197,6 +201,21 @@ public class Usuario {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}	
+	
+	/**
+	 * Return the login 
+	 * @return the login
+	 */
+	public String getLogin() {
+		return login;
+	}
+	/**
+	 * Setter the login
+	 * @param login the login to set
+	 */
+	public void setLogin(String login) {
+		this.login = login;
+	}
 	//#endif
 }
 //#endif

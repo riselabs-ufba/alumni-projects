@@ -12,6 +12,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
+import java.sql.*;
+import javax.swing.JTable;
 
 public class CarrinhoCheckout extends JPanel {
 
@@ -25,7 +27,9 @@ public class CarrinhoCheckout extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	Connection connection = null;
 	public CarrinhoCheckout() {
+		connection=sqliteConnection.dbconnector();
 		setLayout(null);
 		
 		JButton btnConfirmar = new JButton("Confirmar");
@@ -42,18 +46,36 @@ public class CarrinhoCheckout extends JPanel {
 		separator.setBounds(25, 232, 403, 23);
 		add(separator);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setToolTipText("1\r\n2 3 4 5 6");
-		scrollPane.setViewportBorder(new BevelBorder(BevelBorder.LOWERED, Color.GRAY, Color.WHITE, Color.DARK_GRAY, Color.LIGHT_GRAY));
-		scrollPane.setBounds(49, 74, 337, 116);
-		add(scrollPane);
-		
 		JLabel lblSaldo = new JLabel("Saldo:");
 		lblSaldo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblSaldo.setBounds(126, 207, 46, 14);
 		add(lblSaldo);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(54, 58, 323, 146);
+		add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		
+		try {
+			String query ="select  dsProduto,vlProduto from produto";
+			PreparedStatement pst=connection.prepareStatement(query);
+			ResultSet rs=pst.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			
+		}
+			
+			
+			
+		}
+		
 		JTextArea textArea = new JTextArea();
+		private JTable table;
 		textArea.setText("_____");
 		textArea.setBounds(185, 199, 73, 22);
 		add(textArea);

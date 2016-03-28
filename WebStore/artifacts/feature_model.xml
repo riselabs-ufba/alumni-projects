@@ -7,9 +7,7 @@
 					<feature mandatory="true" name="AlterarUsuario"/>
 					<alt mandatory="true" name="EditarUsuario">
 						<feature mandatory="true" name="ExcluirUsuario"/>
-						<and mandatory="true" name="MudarTipoContaUsuario">
-							<feature name="NewFeature1"/>
-						</and>
+						<feature mandatory="true" name="MudarTipoContaUsuario"/>
 					</alt>
 					<feature mandatory="true" name="VisualizarPerfilUsuario"/>
 					<feature name="StatusUsuario"/>

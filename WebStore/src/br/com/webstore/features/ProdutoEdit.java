@@ -106,7 +106,7 @@ public class ProdutoEdit extends JPanel {
 		this.setLayout(null);
 
 		// DescriÃ§Ã£o
-		JLabel descricaoLbl = new JLabel("Descriï¿½ï¿½o");
+		JLabel descricaoLbl = new JLabel("Descrição");
 		descricaoLbl.setBounds(7, 16, 100, 15);
 		descricaoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(descricaoLbl);
@@ -218,4 +218,4 @@ public class ProdutoEdit extends JPanel {
 	}
 
 }
-//#endif
+// #endif

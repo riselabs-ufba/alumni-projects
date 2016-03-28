@@ -67,6 +67,7 @@ public class ProdutoPesquisa extends JPanel {
 
 		final Vector<String> headers = new Vector<String>(3);
 		headers.addElement(new String("Id"));
+		headers.addElement(new String("Codigo"));
 		headers.addElement(new String("Nome"));
 		headers.addElement(new String("Valor"));
 		
@@ -101,9 +102,10 @@ public class ProdutoPesquisa extends JPanel {
 				int row = 0;
 				for (Produto produto : lista) {
 					ProdutoPesquisa.this.table.getModel().setValueAt(produto.getId(), row, 0);
-					ProdutoPesquisa.this.table.getModel().setValueAt(produto.getDescricao(), row, 1);
+					ProdutoPesquisa.this.table.getModel().setValueAt(produto.getNumero(), row, 1);
+					ProdutoPesquisa.this.table.getModel().setValueAt(produto.getDescricao(), row, 2);
 					String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
-					ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 2);
+					ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
 					row++;
 				}				
 			}
@@ -124,6 +126,21 @@ public class ProdutoPesquisa extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						frame.dispose();
+						List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
+						
+						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
+						ProdutoPesquisa.this.table.setModel(model);
+						
+
+						int row = 0;
+						for (Produto produto : lista) {
+							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getId(), row, 0);
+							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getNumero(), row, 1);
+							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getDescricao(), row, 2);
+							String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
+							ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
+							row++;
+						}	
 					}
 				});				
 				frame.setModal(true);
@@ -157,6 +174,23 @@ public class ProdutoPesquisa extends JPanel {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							frame.dispose();
+							List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
+							
+							DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
+							ProdutoPesquisa.this.table.setModel(model);
+							
+
+							int row = 0;
+							for (Produto produto : lista) {
+								ProdutoPesquisa.this.table.getModel().setValueAt(produto.getId(), row, 0);
+								ProdutoPesquisa.this.table.getModel().setValueAt(produto.getNumero(), row, 1);
+								ProdutoPesquisa.this.table.getModel().setValueAt(produto.getDescricao(), row, 2);
+								String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
+								ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
+								row++;
+							}					
+							
+							
 						}
 					});
 					
@@ -187,6 +221,21 @@ public class ProdutoPesquisa extends JPanel {
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
 						Integer id = (Integer) ProdutoPesquisa.this.table.getValueAt(index, 0);
 						new GenericFacade().removerProduto(id);
+						List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
+						
+						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
+						ProdutoPesquisa.this.table.setModel(model);
+						
+
+						int row = 0;
+						for (Produto produto : lista) {
+							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getId(), row, 0);
+							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getNumero(), row, 1);
+							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getDescricao(), row, 2);
+							String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
+							ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
+							row++;
+						}	
 					}
 
 				}
@@ -197,4 +246,4 @@ public class ProdutoPesquisa extends JPanel {
 
 	}
 }
-//#endif
+// #endif

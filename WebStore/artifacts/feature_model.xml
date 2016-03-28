@@ -3,13 +3,15 @@
 		<struct>
 			<and abstract="true" mandatory="true" name="WebStore">
 				<and mandatory="true" name="Usuario">
-					<feature mandatory="true" name="cadastrarusuario"/>
+					<feature mandatory="true" name="CadastrarUsuario"/>
 					<feature mandatory="true" name="AlterarUsuario"/>
 					<alt mandatory="true" name="EditarUsuario">
 						<feature mandatory="true" name="ExcluirUsuario"/>
-						<feature mandatory="true" name="MudarTipoConta"/>
+						<and mandatory="true" name="MudarTipoContaUsuario">
+							<feature name="NewFeature1"/>
+						</and>
 					</alt>
-					<feature mandatory="true" name="VisualizarPerfil"/>
+					<feature mandatory="true" name="VisualizarPerfilUsuario"/>
 					<feature name="StatusUsuario"/>
 					<feature name="NotificarUsuario"/>
 				</and>
@@ -20,10 +22,10 @@
 						<feature mandatory="true" name="VenderProduto"/>
 					</and>
 					<and mandatory="true" name="ConsultarProduto">
-						<feature mandatory="true" name="VisualizarDetalhes"/>
+						<feature mandatory="true" name="VisualizarDetalhesProduto"/>
 					</and>
-					<feature mandatory="true" name="Comprar"/>
-					<feature mandatory="true" name="AcompanharCompras"/>
+					<feature mandatory="true" name="ComprarProduto"/>
+					<feature mandatory="true" name="AcompanharComprasProduto"/>
 				</and>
 				<and name="CategoriaProduto">
 					<feature mandatory="true" name="CadastrarCategoria"/>
@@ -35,9 +37,8 @@
 					<and name="BugTrack">
 						<feature mandatory="true" name="CadastrarBugTrack"/>
 						<feature mandatory="true" name="ExcluirBugTrack"/>
-						<feature mandatory="true" name="AlterarBugTrack"/>
+						<feature name="AlterarBugTrack"/>
 						<feature mandatory="true" name="ConsultarBugTrack"/>
-						<feature name="NotificarBugTrack"/>
 					</and>
 					<and name="FAQ">
 						<feature mandatory="true" name="CadastrarFAQ"/>
@@ -46,18 +47,13 @@
 						<feature mandatory="true" name="ConsultarFAQ"/>
 					</and>
 					<and name="FaleConosco">
-						<feature mandatory="true" name="Registrar"/>
-						<and mandatory="true" name="Visualizar">
-							<feature mandatory="true" name="Responder"/>
-							<feature name="Excluir"/>
-						</and>
-						<feature name="Notificar"/>
+						<feature mandatory="true" name="EnviarMensagem"/>
 					</and>
 				</and>
 				<and mandatory="true" name="CarrinhoCompras">
-					<feature mandatory="true" name="VisualizarProdutos"/>
-					<feature mandatory="true" name="RemoverProdutos"/>
-					<alt mandatory="true" name="FinalizarCompras">
+					<feature mandatory="true" name="VisualizarProdutosCarrinho"/>
+					<feature mandatory="true" name="RemoverProdutosCarrinho"/>
+					<alt mandatory="true" name="FinalizarComprasCarrinho">
 						<and mandatory="true" name="EmbrulharPresente">
 							<feature name="EscreverCartao"/>
 						</and>

@@ -65,6 +65,7 @@
 			<property name="Cupom" value="T" />
 			<property name="Categoria" value="T" />
 			<property name="Endereco" value="T" />
+			<property name="FaleConosco" value="T" />
 			<property name="FormaPagamento" value="T" />
 			<property name="Mensagem" value="T" />
 			<property name="Perfil" value="T" />

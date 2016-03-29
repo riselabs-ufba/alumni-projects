@@ -21,7 +21,7 @@ import br.com.webstore.features.CategoriaP;
 //#if ${FAQ} == "T"
 import br.com.webstore.features.FAQ;
 //#endif
-
+import br.com.webstore.features.FaleConoscoView;
 //#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
 import br.com.webstore.features.ProdutoView;
@@ -71,6 +71,10 @@ public class WebStoreEventMainScreenP extends JPanel {
 		
 		//#if ${BugTrack} == "T"
 		panelTab.addTab(BugTrackView.NAME, new BugTrackView());
+		//#endif
+		
+		//#if ${FaleConosco} == "T"
+		panelTab.addTab(FaleConoscoView.NAME, new FaleConoscoView());
 		//#endif
 				
 		//Init the selected tab

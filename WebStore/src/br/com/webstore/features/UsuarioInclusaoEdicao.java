@@ -161,12 +161,13 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.statusFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(this.statusFld);
 		
-		DefaultComboBoxModel<StatusUsuario> nidadeMedidaModel = new DefaultComboBoxModel<StatusUsuario>();
+		DefaultComboBoxModel<StatusUsuario> statusUsuarioModel = new DefaultComboBoxModel<StatusUsuario>();
 		List<StatusUsuario> statusList = new GenericFacade().findStatusUsuario(new StatusUsuario());
-		for (StatusUsuario status : statusList) {
-			nidadeMedidaModel.addElement(status);
+		for (StatusUsuario status : statusList) 
+		{
+			statusUsuarioModel.addElement(status);
 		}
-		this.statusFld.setModel(nidadeMedidaModel);
+		this.statusFld.setModel(statusUsuarioModel);
 
 		// Perfil
 		JLabel pefilLbl = new JLabel("Perfil");
@@ -182,7 +183,8 @@ public class UsuarioInclusaoEdicao extends JPanel
 
 		List<br.com.webstore.model.Perfil> perfilList = new GenericFacade().findPerfil(new Perfil());
 		DefaultComboBoxModel<br.com.webstore.model.Perfil> perfilModel = new DefaultComboBoxModel<br.com.webstore.model.Perfil>();
-		for (br.com.webstore.model.Perfil perfil : perfilList) {
+		for (br.com.webstore.model.Perfil perfil : perfilList) 
+		{
 			perfilModel.addElement(perfil);
 		}
 		this.perfilFld.setModel(perfilModel);
@@ -191,20 +193,27 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.salvarBtn = new JButton("Salvar");
 		this.salvarBtn.setBounds(7, 241, 100, 32);
 		this.salvarBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		this.salvarBtn.addActionListener(new ActionListener() {
+		this.salvarBtn.addActionListener(new ActionListener() 
+		{
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (UsuarioInclusaoEdicao.this.validateFields()) {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (UsuarioInclusaoEdicao.this.validateFields()) 
+				{
 					Usuario usuario = UsuarioInclusaoEdicao.this.toModel();
-					if (UsuarioInclusaoEdicao.this.editMode) {
+					if (UsuarioInclusaoEdicao.this.editMode) 
+					{
 						new GenericFacade().updateUsuario(usuario);
-					} else {
+					} 
+					else 
+					{
 						usuario.setDataInclusao(Calendar.getInstance().getTime());
 						new GenericFacade().insertUsuario(usuario);
 					}
 
-					if (UsuarioInclusaoEdicao.this.doneEvent != null) {
+					if (UsuarioInclusaoEdicao.this.doneEvent != null) 
+					{
 						UsuarioInclusaoEdicao.this.doneEvent.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, e.getActionCommand()));
 					}
 					

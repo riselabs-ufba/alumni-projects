@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
@@ -23,6 +24,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.webstore.facade.GenericFacade;
+import br.com.webstore.model.Produto;
 import br.com.webstore.model.Usuario;
 
 
@@ -51,20 +53,26 @@ public class UsuarioPesquisa extends JPanel
 	
 	public UsuarioPesquisa()
 	{
+		this.setLayout(null);
+		
 		JLabel lblNomeDoCliente = new JLabel("Email do cliente: ");
 		lblNomeDoCliente.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNomeDoCliente.setBounds(10, 10, 200, 20);
+		lblNomeDoCliente.setBounds(6, 24, 96, 14);
 		this.add(lblNomeDoCliente);
 		
 		this.textField = new JTextField();
 		this.textField.setToolTipText("Informe o email do cliente.");
 		this.textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		this.textField.setBounds(220, 10, 250, 20);
+		this.textField.setBounds(6, 53, 480, 20);
 		this.add(this.textField);
 		this.textField.setColumns(10);
 		
+		JLabel lblRelaoDoCliente = new JLabel("Clientes");
+		lblRelaoDoCliente.setBounds(6, 140, 175, 14);
+		this.add(lblRelaoDoCliente);
+		
 		this.scrollPane = new JScrollPane();
-		this.scrollPane.setBounds(50, 30, 480, 50);
+		this.scrollPane.setBounds(6, 165, 480, 99);
 
 		final Vector<String> headers = new Vector<String>(3);
 		headers.addElement(new String("Id"));
@@ -109,19 +117,15 @@ public class UsuarioPesquisa extends JPanel
 				}
 			}
 		});
-		btnPesquisa.setBounds(10, 700, 150, 20);
+		btnPesquisa.setBounds(176, 85, 96, 23);
 		this.add(btnPesquisa);
-		
-		JLabel lblRelaoDoCliente = new JLabel("Clientes");
-		lblRelaoDoCliente.setBounds(30, 30, 150, 20);
-		this.add(lblRelaoDoCliente);
 		
 		this.scrollPane.setViewportView(this.table);
 		this.add(this.scrollPane);
 
 		JLabel lblPreenchimentoObrigatrio = new JLabel("Campos obrigat\u00F3rio.");
 		lblPreenchimentoObrigatrio.setForeground(Color.RED);
-		lblPreenchimentoObrigatrio.setBounds(350, 276, 200, 20);
+		lblPreenchimentoObrigatrio.setBounds(350, 276, 136, 14);
 		this.add(lblPreenchimentoObrigatrio);
 
 		JLabel labelAterisk = new JLabel("*");
@@ -130,19 +134,44 @@ public class UsuarioPesquisa extends JPanel
 		this.add(labelAterisk);
 		
 		JButton btnCadastrar = new JButton("Cadastro");
-		btnCadastrar.setBounds(160, 700, 150, 20);
-		btnCadastrar.addActionListener(new ActionListener() {
-			
+		btnCadastrar.setBounds(6, 85, 89, 23);
+		btnCadastrar.addActionListener(new ActionListener() 
+		{			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				UsuarioInclusaoEdicao uie = new UsuarioInclusaoEdicao();
 				
 				final JDialog frame = new JDialog();
 				
-				uie.setDoneEvent(new ActionListener() {
+				uie.setDoneEvent(new ActionListener() 
+				{
 					@Override
-					public void actionPerformed(ActionEvent e) {
+					public void actionPerformed(ActionEvent e) 
+					{
 						frame.dispose();
+						Usuario usuario = new Usuario();
+						usuario.setEmail(UsuarioPesquisa.this.textField.getText());
+						List<Usuario> lista = new GenericFacade().findUsuario(usuario);
+						
+						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
+						UsuarioPesquisa.this.table.setModel(model);
+						
+						DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+						int row = 0;
+						for (Usuario usr : lista) 
+						{
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getId(), row, 0);
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getNome(), row, 1);
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getEmail(), row, 2);
+							UsuarioPesquisa.this.table.getModel().setValueAt(df.format(usr.getDataNascimento()), row, 3);
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getTelefone(), row, 4);
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getStatusUsuario().getDescricao(), row, 5);
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getPerfil().getDescricao(), row, 6);
+							UsuarioPesquisa.this.table.getModel().setValueAt(df.format(usr.getDataInclusao()), row, 7);
+							row++;
+						}
 					}
 				});
 				frame.setModal(true);
@@ -157,25 +186,53 @@ public class UsuarioPesquisa extends JPanel
 		this.add(btnCadastrar);
 
 		JButton btnEditar = new JButton("Editar");
-		btnEditar.addActionListener(new ActionListener() {
+		btnEditar.addActionListener(new ActionListener()
+		{
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) 
+			{
 				ListSelectionModel lsm = UsuarioPesquisa.this.table.getSelectionModel();
 				int index = lsm.getLeadSelectionIndex();
 				
-				if (index == -1) {
-					JOptionPane.showMessageDialog(null, "Selecione um item antes de editar.");
-				} else {
+				if (index == -1) 
+				{
+					JOptionPane.showMessageDialog(null, "Selecione um cliente antes de editar.");
+				} 
+				else 
+				{
 					Integer id = (Integer) UsuarioPesquisa.this.table.getValueAt(index, 0);
 					
 					UsuarioInclusaoEdicao uie = new UsuarioInclusaoEdicao(id);
 					
 					final JDialog frame = new JDialog();
 					
-					uie.setDoneEvent(new ActionListener() {
+					uie.setDoneEvent(new ActionListener() 
+					{
 						@Override
-						public void actionPerformed(ActionEvent e) {
+						public void actionPerformed(ActionEvent e) 
+						{
 							frame.dispose();
+							Usuario usr = new Usuario();
+							usr.setEmail(UsuarioPesquisa.this.textField.getText());
+							List<Usuario> lista = new GenericFacade().findUsuario(usr);
+							
+							DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
+							UsuarioPesquisa.this.table.setModel(model);
+							
+							DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+							int row = 0;
+							for (Usuario usuario : lista) {
+								UsuarioPesquisa.this.table.getModel().setValueAt(usuario.getId(), row, 0);
+								UsuarioPesquisa.this.table.getModel().setValueAt(usr.getNome(), row, 1);
+								UsuarioPesquisa.this.table.getModel().setValueAt(usr.getEmail(), row, 2);
+								UsuarioPesquisa.this.table.getModel().setValueAt(df.format(usr.getDataNascimento()), row, 3);
+								UsuarioPesquisa.this.table.getModel().setValueAt(usr.getTelefone(), row, 4);
+								UsuarioPesquisa.this.table.getModel().setValueAt(usr.getStatusUsuario().getDescricao(), row, 5);
+								UsuarioPesquisa.this.table.getModel().setValueAt(usr.getPerfil().getDescricao(), row, 6);
+								UsuarioPesquisa.this.table.getModel().setValueAt(df.format(usr.getDataInclusao()), row, 7);
+								row++;
+							}
 						}
 					});
 					
@@ -203,16 +260,36 @@ public class UsuarioPesquisa extends JPanel
 				
 				if (index == -1) 
 				{
-					JOptionPane.showMessageDialog(null, "Selecione um item antes de excluir.");
+					JOptionPane.showMessageDialog(null, "Selecione um cliente antes de excluir.");
 				} 
 				else 
 				{	
-					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) 
+					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir cliente selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) 
 					{
 						Integer id = (Integer) UsuarioPesquisa.this.table.getValueAt(index, 0);
-						Usuario exclusao = new Usuario();
-						exclusao.setId(id);
-						new GenericFacade();
+						new GenericFacade().removeUsuario(id);
+						Usuario usuario = new Usuario();
+						usuario.setEmail(UsuarioPesquisa.this.textField.getText());
+						List<Usuario> lista = new GenericFacade().findUsuario(usuario);
+						
+						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
+						UsuarioPesquisa.this.table.setModel(model);
+						
+						DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+						int row = 0;
+						for (Usuario usr : lista) 
+						{
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getId(), row, 0);
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getNome(), row, 1);
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getEmail(), row, 2);
+							UsuarioPesquisa.this.table.getModel().setValueAt(df.format(usr.getDataNascimento()), row, 3);
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getTelefone(), row, 4);
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getStatusUsuario().getDescricao(), row, 5);
+							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getPerfil().getDescricao(), row, 6);
+							UsuarioPesquisa.this.table.getModel().setValueAt(df.format(usr.getDataInclusao()), row, 7);
+							row++;
+						}
 					}
 
 				}

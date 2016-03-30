@@ -9,6 +9,7 @@
 		<class>br.com.webstore.model.Categoria</class>
 		<class>br.com.webstore.model.Cupom</class>
 		<class>br.com.webstore.model.Endereco</class>
+		<class>br.com.webstore.model.Faq</class>
 		<class>br.com.webstore.model.FormaPagamento</class>
 		<class>br.com.webstore.model.Mensagem</class>
 		<class>br.com.webstore.model.Perfil</class>

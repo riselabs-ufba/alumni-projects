@@ -20,6 +20,12 @@ import br.com.webstore.features.CategoriaP;
 //#endif
 //#if ${FAQ} == "T"
 import br.com.webstore.features.FAQ;
+import br.com.webstore.features.FaqListar;
+import br.com.webstore.features.FaqPesquisa;
+//#endif
+//#if ${Faq} == "T"
+
+
 //#endif
 <<<<<<< 045456b365e7197cebeb34b5b80ae9c5ae5f16e9
 import br.com.webstore.features.FaleConoscoView;
@@ -66,7 +72,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${FAQ} == "T"
-		panelTab.addTab(FAQ.NAME, new FAQ());
+		panelTab.addTab(FaqListar.NAME, new FaqListar());
 		//#endif
 		
 		//#if ${Produto} == "T"
@@ -85,9 +91,12 @@ public class WebStoreEventMainScreenP extends JPanel {
 		panelTab.addTab(BugTrackView.NAME, new BugTrackView());
 		//#endif
 		
-		//#if ${FaleConosco} == "T"
-		panelTab.addTab(FaleConoscoView.NAME, new FaleConoscoView());
+		
+		#if ${FaleConosco} == "T"
+		panelTab.addTab(FaqPesquisa.NAME, new FaqPesquisa());
 		//#endif
+		
+		
 				
 		//Init the selected tab
 		panelTab.setSelectedIndex(0);

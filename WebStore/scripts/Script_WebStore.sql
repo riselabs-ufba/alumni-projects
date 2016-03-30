@@ -163,6 +163,16 @@ CREATE TABLE webstoreDB.Mensagem (
   FOREIGN KEY(idUsuarioResposta) REFERENCES webstoreDB.Usuario(idUsuario)
 );
 
+
+CREATE TABLE webstoreDB.FAQ (
+	idFaq INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	dsFaq VARCHAR(1000) NULL,
+	dsFaqResposta VARCHAR(1000) NULL,
+  PRIMARY KEY(idFaq)
+  
+);
+
+
 INSERT INTO webstoreDB.Perfil (`idPerfil`, `dsPerfil`) VALUES
 (1, 'Admin'),
 (2, 'Cliente');

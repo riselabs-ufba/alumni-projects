@@ -43,7 +43,7 @@ public class FaqPesquisa extends JPanel {
 
 		
 
-		JLabel lblRelaoDeFaq = new JLabel("Perguntas Frequentes");
+		JLabel lblRelaoDeFaq = new JLabel("Frequent Asked Questions");
 		lblRelaoDeFaq.setBounds(6, 100, 175, 14);
 		this.add(lblRelaoDeFaq);
 

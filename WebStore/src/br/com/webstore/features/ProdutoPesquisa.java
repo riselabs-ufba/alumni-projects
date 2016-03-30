@@ -30,7 +30,7 @@ public class ProdutoPesquisa extends JPanel {
 	 */
 	private static final long serialVersionUID = -5464321145565350625L;
 
-	public static final String NAME = "Produto";
+	public static final String NAME = "Cadastro de Produtos";
 
 	private JTextField textField;
 	private JScrollPane scrollPane;
@@ -79,7 +79,7 @@ public class ProdutoPesquisa extends JPanel {
 		// this.table.setBounds(57, 165, 353, 99);
 		this.add(this.scrollPane);
 
-		JLabel lblPreenchimentoObrigatrio = new JLabel("Campos obrigat\u00F3rio.");
+		JLabel lblPreenchimentoObrigatrio = new JLabel("Campos obrigatorios.");
 		lblPreenchimentoObrigatrio.setForeground(Color.RED);
 		lblPreenchimentoObrigatrio.setBounds(350, 276, 136, 14);
 		this.add(lblPreenchimentoObrigatrio);
@@ -110,11 +110,11 @@ public class ProdutoPesquisa extends JPanel {
 				}				
 			}
 		});
-		btnCadastrp.setBounds(176, 85, 96, 23);		
+		btnCadastrp.setBounds(312, 84, 79, 23);		
 		this.add(btnCadastrp);
 		
 		JButton btnNewButton = new JButton("Cadastro");
-		btnNewButton.setBounds(6, 85, 89, 23);
+		btnNewButton.setBounds(80, 84, 89, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -203,7 +203,7 @@ public class ProdutoPesquisa extends JPanel {
 				
 			}
 		});
-		btnEditar.setBounds(268, 85, 79, 23);
+		btnEditar.setBounds(430, 85, 79, 23);
 		this.add(btnEditar);
 
 		JButton btnExcluir = new JButton("Excluir");
@@ -241,7 +241,7 @@ public class ProdutoPesquisa extends JPanel {
 				}
 			}
 		});
-		btnExcluir.setBounds(92, 85, 89, 23);
+		btnExcluir.setBounds(195, 84, 89, 23);
 		this.add(btnExcluir);
 
 	}

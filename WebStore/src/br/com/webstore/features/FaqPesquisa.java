@@ -43,7 +43,7 @@ public class FaqPesquisa extends JPanel {
 
 		
 
-		JLabel lblRelaoDeFaq = new JLabel("Frequent Asked Questions");
+		JLabel lblRelaoDeFaq = new JLabel("Perguntas Frequentes");
 		lblRelaoDeFaq.setBounds(6, 100, 175, 14);
 		this.add(lblRelaoDeFaq);
 
@@ -52,8 +52,8 @@ public class FaqPesquisa extends JPanel {
 		this.scrollPane.setBounds(6, 125, 480, 99);
 
 		final Vector<String> headers = new Vector<String>(3);
-		headers.addElement(new String("Nº"));
-		headers.addElement(new String("Questão"));
+		headers.addElement(new String("NÂº"));
+		headers.addElement(new String("QuestÃ£o"));
 		
 		
 		this.table = new JTable();

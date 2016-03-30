@@ -27,16 +27,16 @@ import br.com.webstore.features.FaqPesquisa;
 
 
 //#endif
-//<<<<<<< 045456b365e7197cebeb34b5b80ae9c5ae5f16e9
+
 import br.com.webstore.features.FaleConoscoView;
-//=======
+
 
 //#if ${Usuario} == "T"
 import br.com.webstore.features.UsuarioInclusaoEdicao;
 import br.com.webstore.features.UsuarioPesquisa;
 //#endif
 
->>>>>>> Parte de Manter Usuario
+
 //#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
 import br.com.webstore.features.ProdutoView;

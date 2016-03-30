@@ -92,7 +92,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		
-		#if ${FaleConosco} == "T"
+		//#if ${FaleConosco} == "T"
 		panelTab.addTab(FaqPesquisa.NAME, new FaqPesquisa());
 		//#endif
 		

@@ -62,6 +62,7 @@
 		<javapp destdir="${src}" prefix="//#">
 			<fileset dir="${srcProject}" includes="**/*.java" />
 			<property name="BugTrack" value="T" />
+			<property name="BugTrackAlterar" value="T" />
 			<property name="Cupom" value="T" />
 			<property name="Categoria" value="T" />
 			<property name="Endereco" value="T" />

@@ -3,29 +3,24 @@
  */
 package br.com.webstore.features;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
-import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-
-import br.com.webstore.model.BugTrack;
-import br.com.webstore.model.SituacaoBug;
-import br.com.webstore.model.Usuario;
 
 /**
  * @author webstore
  *
  */
 public class FaleConoscoView extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final String NAME = "Fale conosco";
 	
 	public FaleConoscoView(){

@@ -190,6 +190,7 @@ public class BugTrackView extends JPanel{
 
 		add(btnDeleteBug);
 
+		//#if ${BugTrackAlterar} == "T"
 		JButton btnFixingBug = new JButton("Consertando");
 		btnFixingBug.setBounds(6, 85, 89, 23);
 		btnFixingBug.addActionListener(new ActionListener() {
@@ -341,7 +342,7 @@ public class BugTrackView extends JPanel{
 		});
 
 		add(btnAnswer);
-		
+		//#endif
 		
 		JButton btnView = new JButton("Detalhes");
 		btnView.setBounds(6, 85, 89, 23);

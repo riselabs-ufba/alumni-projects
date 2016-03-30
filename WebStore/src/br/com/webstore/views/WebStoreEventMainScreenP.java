@@ -25,17 +25,15 @@ import br.com.webstore.features.FaqPesquisa;
 //#endif
 //#if ${Faq} == "T"
 
-
 //#endif
-
+//#if ${FaleConosco} == "T"
 import br.com.webstore.features.FaleConoscoView;
-
+//#endif
 
 //#if ${Usuario} == "T"
 import br.com.webstore.features.UsuarioInclusaoEdicao;
 import br.com.webstore.features.UsuarioPesquisa;
 //#endif
-
 
 //#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
@@ -92,10 +90,13 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		
-		//#if ${FaleConosco} == "T"
-		panelTab.addTab(FaqPesquisa.NAME, new FaqPesquisa());
+		//#if ${FAQ} == "T"
+		//panelTab.addTab(FaqPesquisa.NAME, new FaqPesquisa());
 		//#endif
 		
+		//#if ${FaleConosco} == "T"
+		panelTab.addTab(FaleConoscoView.NAME, new FaleConoscoView());
+		//#endif
 		
 				
 		//Init the selected tab

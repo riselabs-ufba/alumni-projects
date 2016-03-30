@@ -27,9 +27,9 @@ import br.com.webstore.features.FaqPesquisa;
 
 
 //#endif
-<<<<<<< 045456b365e7197cebeb34b5b80ae9c5ae5f16e9
+//<<<<<<< 045456b365e7197cebeb34b5b80ae9c5ae5f16e9
 import br.com.webstore.features.FaleConoscoView;
-=======
+//=======
 
 //#if ${Usuario} == "T"
 import br.com.webstore.features.UsuarioInclusaoEdicao;

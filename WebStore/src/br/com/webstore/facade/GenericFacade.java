@@ -18,6 +18,11 @@ import br.com.webstore.dao.CupomDao;
 import br.com.webstore.dao.EnderecoDao;
 //#endif
 
+//#if ${Faq} == "T"
+import br.com.webstore.dao.FaqDao;
+//#endif
+
+
 //#if ${FormaPagamento} == "T"
 import br.com.webstore.dao.FormaPagamentDao;
 //#endif
@@ -86,6 +91,11 @@ import br.com.webstore.model.Cupom;
 //#if ${Endereco} == "T"
 import br.com.webstore.model.Endereco;
 //#endif
+
+//#if ${Faq} == "T"
+import br.com.webstore.model.Faq;
+//#endif
+
 
 //#if ${FormaPagamento} == "T"
 import br.com.webstore.model.FormaPagamento;
@@ -186,6 +196,37 @@ public class GenericFacade {
 	}
 	
 	//#endif
+	
+	
+	
+		//#if ${FAQ} == "T"
+			private FaqDao faqDataProvider = new FaqDao();
+
+			public Faq insertFaq(Faq faq) {
+				return this.faqDataProvider.insert(faq);
+			}
+
+			public void updateFaq(Faq faq) {
+				this.faqDataProvider.update(faq);
+
+			}
+
+			public List<Faq> findFaq(String descricao) {
+				return this.faqDataProvider.findByNome(descricao);
+			}
+
+			public Faq getFaqById(int id) {
+				return this.faqDataProvider.find(id);
+			}
+
+			public void removerFaq(int id) {
+				this.faqDataProvider.remove(id);
+			}
+	//#endif
+
+	
+	
+	
 	
 	//Categoria 
 	//#if ${Categoria} == "T"

@@ -373,9 +373,12 @@ public class BugTrackView extends JPanel{
 						s+="Data registro: "+bug.getDataRegistro().toString()+"<br>";
 						s+="Usuario cadastro: "+bug.getUsuarioRegistro().getNome()+"<br>";
 						s+="Descrição: "+bug.getDescricao()+"<br>";
-						s+="Data resposta: "+bug.getDataResposta().toString()+"<br>";
-						s+="Usuario resposta: "+bug.getUsuarioResponde().getNome()+"<br>";
-						s+="Descrição resposta: "+bug.getDescricaoResposta()+"<br>";
+						if(bug.getDataResposta()!=null)
+							s+="Data resposta: "+bug.getDataResposta().toString()+"<br>";
+						if(bug.getUsuarioResponde()!=null)
+							s+="Usuario resposta: "+bug.getUsuarioResponde().getNome()+"<br>";
+						if(bug.getDescricaoResposta()!=null && bug.getDescricaoResposta().length()>0)
+							s+="Descrição resposta: "+bug.getDescricaoResposta()+"<br>";
 						s+= "</html>";
 						panel.add(new JLabel(s));
 						bugDialog.add(panel);

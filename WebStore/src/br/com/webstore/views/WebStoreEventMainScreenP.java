@@ -2,13 +2,20 @@ package br.com.webstore.views;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
-
+import javax.swing.JTextField;
+import br.com.webstore.facade.GenericFacade;
 //#if ${BugTrack} == "T"
 import br.com.webstore.features.BugTrackView;
 //#endif
@@ -17,9 +24,6 @@ import br.com.webstore.features.CarrinhoCheckout;
 //#endif
 //#if ${CategoriaP} == "T"
 import br.com.webstore.features.CategoriaP;
-//#endif
-//#if ${FAQ} == "T"
-import br.com.webstore.features.FAQ;
 import br.com.webstore.features.FaqListar;
 import br.com.webstore.features.FaqPesquisa;
 //#endif
@@ -28,15 +32,8 @@ import br.com.webstore.features.FaqPesquisa;
 
 //#endif
 
-import br.com.webstore.features.FaleConoscoView;
-
-
-//#if ${Usuario} == "T"
-import br.com.webstore.features.UsuarioInclusaoEdicao;
 import br.com.webstore.features.UsuarioPesquisa;
-//#endif
-
-
+import br.com.webstore.model.Usuario;
 //#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
 import br.com.webstore.features.ProdutoView;
@@ -60,6 +57,8 @@ public class WebStoreEventMainScreenP extends JPanel {
 	
 	JFrame mainFrame = new JFrame(APPLICATION_NAME);
 	
+	private static Usuario user = null;
+	
 	public WebStoreEventMainScreenP() {
 		JTabbedPane panelTab = new JTabbedPane();
 		
@@ -76,7 +75,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${Produto} == "T"
-		panelTab.addTab(ProdutoView.NAME, new ProdutoView());
+		panelTab.addTab("Produto", new ProdutoView());
 		//#endif
 		
 		//#if ${CarrinhoCheckout} == "T"
@@ -125,17 +124,68 @@ public class WebStoreEventMainScreenP extends JPanel {
 	}
 	
 	public static void main(String[] args) {
-		WebStoreEventMainScreenP mainScreen = new WebStoreEventMainScreenP();
+		webStoreEventLogar();
+	}
+	
+	public static void webStoreEventLogar(){
+		final JDialog dlgLogin = new JDialog();
 		
-		mainScreen.getMainFrame().addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
+		dlgLogin.setModal(true);
+		dlgLogin.setTitle("Logar no sistema WebStore");
+		dlgLogin.setResizable(false);
+		dlgLogin.setBounds(0, 0, 460, 320);
+		final JTextField login = new JTextField(10);
+		JPanel panel = new JPanel();
+		panel.add(new JLabel("*Login: "));
+	    panel.add(login);
+	    panel.add(new JLabel("*Senha:"));
+
+	    final JPasswordField senha = new JPasswordField(10);
+	    panel.add(senha);	
+		
+		JButton btnLogar = new JButton("Logar");
+		
+		btnLogar.setBounds(6, 85, 89, 23);
+		btnLogar.addActionListener(new ActionListener() {
+			
+			@SuppressWarnings({ "null", "deprecation" })
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(login.getText().length()==0 || senha.getPassword().toString().length()==0){
+					JOptionPane.showMessageDialog(null, "Campos com * são obrigatórios.");
+				}
+				else{
+					GenericFacade gfacade = new GenericFacade();
+					
+					user = gfacade.getUsuarioByLoginSenha(login.getText(), senha.getText());
+					
+					if (!user.equals(null)){
+						dlgLogin.setVisible(false);
+						
+						WebStoreEventMainScreenP mainScreen = new WebStoreEventMainScreenP();
+						
+						mainScreen.getMainFrame().addWindowListener(new WindowAdapter() {
+							public void windowClosing(WindowEvent e) {
+								System.exit(0);
+							}
+						});
+						
+						mainScreen.getMainFrame().getContentPane().add(mainScreen,BorderLayout.CENTER);
+						mainScreen.getMainFrame().setSize(WIDTH_SCREEN, HEIGHT_SCREEN);
+						mainScreen.getMainFrame().setVisible(true);
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Usuário " + login.getText() + " não encontrado ou usuário e senha incorretos!");
+					}
+				}
 			}
 		});
 		
-		mainScreen.getMainFrame().getContentPane().add(mainScreen,BorderLayout.CENTER);
-		mainScreen.getMainFrame().setSize(WIDTH_SCREEN, HEIGHT_SCREEN);
-		mainScreen.getMainFrame().setVisible(true);
+		panel.add(btnLogar);
+		dlgLogin.add(panel);
+		dlgLogin.setVisible(true);
+		
 	}
+	
 }
 

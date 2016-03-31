@@ -525,6 +525,12 @@ public class GenericFacade {
 		{
 			return usuarioDao.find(id);
 		}
+		
+		public Usuario getUsuarioByLoginSenha(String Login, String Senha)
+		{
+			return usuarioDao.getUsuarioByLoginSenha(Login, Senha).get(0);
+		}
+		
 		//#endif
 		
 		//Venda

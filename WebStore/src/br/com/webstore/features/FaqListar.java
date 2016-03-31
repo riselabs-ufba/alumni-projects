@@ -39,7 +39,7 @@ public class FaqListar extends JPanel {
 	private JTable table;
 
 
-	public FaqListar() {
+	public FaqListar(final GenericFacade gfacade) {
 		this.setLayout(null);
 
 		
@@ -66,7 +66,7 @@ public class FaqListar extends JPanel {
 		
 		this.add(this.scrollPane);
 
-				List<Faq> lista = new GenericFacade().findFaq("");
+				List<Faq> lista = gfacade.findFaq("");
 				
 				DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 				FaqListar.this.table.setModel(model);

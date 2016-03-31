@@ -40,7 +40,7 @@ public class CategoriaP extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CategoriaP() {
+	public CategoriaP(final GenericFacade gfacade) {
 //add this		
 		this.setLayout(null);
 		
@@ -92,7 +92,7 @@ public class CategoriaP extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				List<Categoria> lista = new GenericFacade().findCategoria(CategoriaP.this.textField.getText());				
+				List<Categoria> lista = gfacade.findCategoria(CategoriaP.this.textField.getText());				
 				DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 				CategoriaP.this.table.setModel(model);
 				
@@ -158,7 +158,7 @@ public class CategoriaP extends JPanel {
 					
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
 						Integer id = (Integer) CategoriaP.this.table.getValueAt(index, 0);
-						new GenericFacade().removerCategoria(id);
+						gfacade.removerCategoria(id);
 					}
 
 				}

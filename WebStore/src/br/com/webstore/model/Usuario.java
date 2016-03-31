@@ -60,7 +60,7 @@ public class Usuario {
 	private Date dataInclusao;
 	
 	@Column (name="dsLogin", nullable=false)
-	private String login;
+	private String dsLogin;
 	
 
 	/**
@@ -203,18 +203,18 @@ public class Usuario {
 	}	
 	
 	/**
-	 * Return the login 
-	 * @return the login
+	 * Return the dsLogin 
+	 * @return the dsLogin
 	 */
-	public String getLogin() {
-		return login;
+	public String getDsLogin() {
+		return dsLogin;
 	}
 	/**
-	 * Setter the login
-	 * @param login the login to set
+	 * Setter the dsLogin
+	 * @param dsLogin the dsLogin to set
 	 */
-	public void setLogin(String login) {
-		this.login = login;
+	public void setDsLogin(String dsLogin) {
+		this.dsLogin = dsLogin;
 	}
 	//#endif
 }

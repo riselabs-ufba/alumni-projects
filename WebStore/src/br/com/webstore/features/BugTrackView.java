@@ -41,8 +41,8 @@ public class BugTrackView extends JPanel{
 	TableModel myTableModel;
 	GenericFacade facade;
 	
-	public BugTrackView() {
-		facade = new GenericFacade();
+	public BugTrackView(final GenericFacade facade) {
+		//facade = new GenericFacade();
 		situacoes = facade.getListSituacaoBug();
 		
 		final JComboBox<String> combo = new JComboBox<String>();

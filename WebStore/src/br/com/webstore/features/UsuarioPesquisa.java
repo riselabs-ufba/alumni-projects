@@ -51,7 +51,7 @@ public class UsuarioPesquisa extends JPanel
 	 * Create the panel.
 	 */
 	
-	public UsuarioPesquisa()
+	public UsuarioPesquisa(final GenericFacade gfacade)
 	{
 		this.setLayout(null);
 		
@@ -96,7 +96,7 @@ public class UsuarioPesquisa extends JPanel
 				Usuario user = new Usuario();
 				user.setEmail(UsuarioPesquisa.this.textField.getText());
 				
-				List<Usuario> lista = new GenericFacade().findUsuario(user);
+				List<Usuario> lista = gfacade.findUsuario(user);
 				
 				DefaultTableModel model = new DefaultTableModel(headers, lista.size());
 				UsuarioPesquisa.this.table.setModel(model);
@@ -152,7 +152,7 @@ public class UsuarioPesquisa extends JPanel
 						frame.dispose();
 						Usuario usuario = new Usuario();
 						usuario.setEmail(UsuarioPesquisa.this.textField.getText());
-						List<Usuario> lista = new GenericFacade().findUsuario(usuario);
+						List<Usuario> lista = gfacade.findUsuario(usuario);
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						UsuarioPesquisa.this.table.setModel(model);
@@ -214,7 +214,7 @@ public class UsuarioPesquisa extends JPanel
 							frame.dispose();
 							Usuario usr = new Usuario();
 							usr.setEmail(UsuarioPesquisa.this.textField.getText());
-							List<Usuario> lista = new GenericFacade().findUsuario(usr);
+							List<Usuario> lista = gfacade.findUsuario(usr);
 							
 							DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 							UsuarioPesquisa.this.table.setModel(model);
@@ -267,10 +267,10 @@ public class UsuarioPesquisa extends JPanel
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir cliente selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) 
 					{
 						Integer id = (Integer) UsuarioPesquisa.this.table.getValueAt(index, 0);
-						new GenericFacade().removeUsuario(id);
+						gfacade.removeUsuario(id);
 						Usuario usuario = new Usuario();
 						usuario.setEmail(UsuarioPesquisa.this.textField.getText());
-						List<Usuario> lista = new GenericFacade().findUsuario(usuario);
+						List<Usuario> lista = gfacade.findUsuario(usuario);
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						UsuarioPesquisa.this.table.setModel(model);

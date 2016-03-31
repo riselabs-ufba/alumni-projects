@@ -42,7 +42,7 @@ public class ProdutoPesquisa extends JPanel {
 	 * Create the panel.
 	 */
 	
-	public ProdutoPesquisa() {
+	public ProdutoPesquisa(final GenericFacade gfacade) {
 		this.setLayout(null);
 
 		this.textField = new JTextField();
@@ -93,7 +93,7 @@ public class ProdutoPesquisa extends JPanel {
 		btnCadastrp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
+				List<Produto> lista = gfacade.findProduto(ProdutoPesquisa.this.textField.getText());
 				
 				DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 				ProdutoPesquisa.this.table.setModel(model);
@@ -126,7 +126,7 @@ public class ProdutoPesquisa extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						frame.dispose();
-						List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
+						List<Produto> lista = gfacade.findProduto(ProdutoPesquisa.this.textField.getText());
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						ProdutoPesquisa.this.table.setModel(model);
@@ -174,7 +174,7 @@ public class ProdutoPesquisa extends JPanel {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							frame.dispose();
-							List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
+							List<Produto> lista = gfacade.findProduto(ProdutoPesquisa.this.textField.getText());
 							
 							DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 							ProdutoPesquisa.this.table.setModel(model);
@@ -220,8 +220,8 @@ public class ProdutoPesquisa extends JPanel {
 					
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
 						Integer id = (Integer) ProdutoPesquisa.this.table.getValueAt(index, 0);
-						new GenericFacade().removerProduto(id);
-						List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
+						gfacade.removerProduto(id);
+						List<Produto> lista = gfacade.findProduto(ProdutoPesquisa.this.textField.getText());
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						ProdutoPesquisa.this.table.setModel(model);

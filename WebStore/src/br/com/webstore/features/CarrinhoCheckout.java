@@ -12,6 +12,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
+
+import br.com.webstore.facade.GenericFacade;
+
 import java.sql.*;
 import javax.swing.JTable;
 
@@ -28,7 +31,7 @@ public class CarrinhoCheckout extends JPanel {
 	 * Create the panel.
 	 */
 	Connection connection = null;
-	public CarrinhoCheckout() {
+	public CarrinhoCheckout(final GenericFacade gfacade) {/*
 		connection=sqliteConnection.dbconnector();
 		setLayout(null);
 		
@@ -79,7 +82,7 @@ public class CarrinhoCheckout extends JPanel {
 		textArea.setText("_____");
 		textArea.setBounds(185, 199, 73, 22);
 		add(textArea);
-
+*/
 	}
 }
 //#endif

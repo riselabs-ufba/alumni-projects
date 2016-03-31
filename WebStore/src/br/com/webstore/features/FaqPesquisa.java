@@ -38,7 +38,7 @@ public class FaqPesquisa extends JPanel {
 
 	
 	
-	public FaqPesquisa() {
+	public FaqPesquisa(final GenericFacade gfacade) {
 		this.setLayout(null);
 
 		
@@ -68,22 +68,22 @@ public class FaqPesquisa extends JPanel {
 
 			
 	
-				List<Faq> lista = new GenericFacade().findFaq("");
-				
-				DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
-				FaqPesquisa.this.table.setModel(model);
-				
+		List<Faq> lista = gfacade.findFaq("");
+		
+		DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
+		FaqPesquisa.this.table.setModel(model);
+		
 
-				int row = 0;
-				for (Faq faq : lista) {
-					FaqPesquisa.this.table.getModel().setValueAt(faq.getId(), row, 0);
-					
-					FaqPesquisa.this.table.getModel().setValueAt(faq.getDescricao(), row, 1);
-					
-					row++;
-				}				
-				FaqPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
-				FaqPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(435);
+		int row = 0;
+		for (Faq faq : lista) {
+			FaqPesquisa.this.table.getModel().setValueAt(faq.getId(), row, 0);
+			
+			FaqPesquisa.this.table.getModel().setValueAt(faq.getDescricao(), row, 1);
+			
+			row++;
+		}				
+		FaqPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
+		FaqPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(435);
 	
 		JButton btnNewButton = new JButton("Cadastro");
 		btnNewButton.setBounds(80, 44, 89, 23);
@@ -98,7 +98,7 @@ public class FaqPesquisa extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						frame.dispose();
-						List<Faq> lista = new GenericFacade().findFaq("");
+						List<Faq> lista = gfacade.findFaq("");
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						FaqPesquisa.this.table.setModel(model);
@@ -144,7 +144,7 @@ public class FaqPesquisa extends JPanel {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							frame.dispose();
-							List<Faq> lista = new GenericFacade().findFaq("");
+							List<Faq> lista = gfacade.findFaq("");
 							
 							DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 							FaqPesquisa.this.table.setModel(model);
@@ -188,8 +188,8 @@ public class FaqPesquisa extends JPanel {
 					
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
 						Integer id = (Integer) FaqPesquisa.this.table.getValueAt(index, 0);
-						new GenericFacade().removerFaq(id);
-						List<Faq> lista = new GenericFacade().findFaq("");
+						gfacade.removerFaq(id);
+						List<Faq> lista = gfacade.findFaq("");
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						FaqPesquisa.this.table.setModel(model);

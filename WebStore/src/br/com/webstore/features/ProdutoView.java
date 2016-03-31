@@ -17,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 
+import br.com.webstore.facade.GenericFacade;
+
 /**
  * @author webstore
  *
@@ -28,7 +30,7 @@ public class ProdutoView extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ProdutoView() {
+	public ProdutoView(final GenericFacade gfacade) {
 		setLayout(null);
 		
 		JLabel lblProduto = new JLabel("Produto 1");

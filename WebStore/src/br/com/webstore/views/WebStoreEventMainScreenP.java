@@ -3,9 +3,11 @@ package br.com.webstore.views;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
+
+//import javax.faces.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -15,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+
 import br.com.webstore.facade.GenericFacade;
 //#if ${BugTrack} == "T"
 import br.com.webstore.features.BugTrackView;
@@ -24,15 +27,23 @@ import br.com.webstore.features.CarrinhoCheckout;
 //#endif
 //#if ${CategoriaP} == "T"
 import br.com.webstore.features.CategoriaP;
+//#endif
+//#if ${FAQ} == "T"
+import br.com.webstore.features.FAQ;
 import br.com.webstore.features.FaqListar;
 import br.com.webstore.features.FaqPesquisa;
 //#endif
 //#if ${Faq} == "T"
 
-
+//#endif
+//#if ${FaleConosco} == "T"
+import br.com.webstore.features.FaleConoscoView;
 //#endif
 
+//#if ${Usuario} == "T"
+import br.com.webstore.features.UsuarioInclusaoEdicao;
 import br.com.webstore.features.UsuarioPesquisa;
+//#endif
 import br.com.webstore.model.Usuario;
 //#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
@@ -55,9 +66,9 @@ public class WebStoreEventMainScreenP extends JPanel {
 	private static final int WIDTH_SCREEN = 600;
 	private static final int HEIGHT_SCREEN = 400;
 	
-	JFrame mainFrame = new JFrame(APPLICATION_NAME);
+	static List<Usuario> user = null;
 	
-	private static Usuario user = null;
+	JFrame mainFrame = new JFrame(APPLICATION_NAME);
 	
 	public WebStoreEventMainScreenP() {
 		JTabbedPane panelTab = new JTabbedPane();
@@ -67,7 +78,8 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${Categoria} == "T"
-		panelTab.addTab(CategoriaP.NAME, new CategoriaP());
+		if (!user.isEmpty() && user.get(0).getPerfil().equals("Administrador"))
+			panelTab.addTab(CategoriaP.NAME, new CategoriaP());
 		//#endif
 		
 		//#if ${FAQ} == "T"
@@ -91,10 +103,13 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		
-		//#if ${FaleConosco} == "T"
-		panelTab.addTab(FaqPesquisa.NAME, new FaqPesquisa());
+		//#if ${FAQ} == "T"
+		//panelTab.addTab(FaqPesquisa.NAME, new FaqPesquisa());
 		//#endif
 		
+		//#if ${FaleConosco} == "T"
+		panelTab.addTab(FaleConoscoView.NAME, new FaleConoscoView());
+		//#endif
 		
 				
 		//Init the selected tab
@@ -146,8 +161,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		JButton btnLogar = new JButton("Logar");
 		
 		btnLogar.setBounds(6, 85, 89, 23);
-		btnLogar.addActionListener(new ActionListener() {
-			
+		btnLogar.addActionListener(new java.awt.event.ActionListener() {
 			@SuppressWarnings({ "null", "deprecation" })
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -159,7 +173,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 					
 					user = gfacade.getUsuarioByLoginSenha(login.getText(), senha.getText());
 					
-					if (!user.equals(null)){
+					if (!user.isEmpty()){
 						dlgLogin.setVisible(false);
 						
 						WebStoreEventMainScreenP mainScreen = new WebStoreEventMainScreenP();
@@ -182,10 +196,8 @@ public class WebStoreEventMainScreenP extends JPanel {
 		});
 		
 		panel.add(btnLogar);
-		dlgLogin.add(panel);
+		dlgLogin.getContentPane().add(panel);
 		dlgLogin.setVisible(true);
-		
 	}
 	
 }
-

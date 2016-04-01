@@ -2,7 +2,7 @@
 <project>
 
 
-  <!-- ABAIXO, DESATIVADAS: TAGS OPCIONAIS/ALTERNATIVAS OU MANDATORIAS DEPENDENTES DE OPCIONAIS/ALTERNATIVAS> ->
+  <!-- ABAIXO, DESATIVADAS: TAGS OPCIONAIS/ALTERNATIVAS OU MANDATORIAS DEPENDENTES DE OPCIONAIS/ALTERNATIVAS -->
 	<!-- <property name="" value="F" /> -->
 
 	<property name="ExcluirUsuario"                 value="F" />
@@ -14,7 +14,7 @@
 	<property name="ExcluirCategoria"               value="F" />
 	<property name="AlterarCategoria"               value="F" />
 	<property name="ConsultarCategoria"             value="F" />
-	<property name="Comunicação"                    value="F" />
+	<property name="Comunicaï¿½ï¿½o"                    value="F" />
 	<property name="BugTrack"                       value="F" />
 	<property name="CadastrarBugTrack"              value="F" />
 	<property name="ExcluirBugTrack"                value="F" />
@@ -31,7 +31,7 @@
 
 
 
-  <!-- ABAIXO, ATIVADAS: TAGS MANDATORIAS DE PRIMEIRO NIVEL OU MANDATORIAS DE ASCENDENTES MANDATORIOS> ->
+  <!-- ABAIXO, ATIVADAS: TAGS MANDATORIAS DE PRIMEIRO NIVEL OU MANDATORIAS DE ASCENDENTES MANDATORIOS -->
 	<!-- <property name="" value="T" /> -->
 
 	<property name="Usuario"                        value="T" />

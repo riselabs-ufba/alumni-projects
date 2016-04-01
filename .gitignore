@@ -1,3 +1,4 @@
 /WebStore/webstore_p
-deploy
-output
+buildsXml/deploy
+buildsXml/output
+/WebStore/products/.tmpBin

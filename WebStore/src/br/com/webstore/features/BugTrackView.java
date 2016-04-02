@@ -41,7 +41,7 @@ public class BugTrackView extends JPanel{
 	TableModel myTableModel;
 	GenericFacade facade;
 	
-	public BugTrackView(final GenericFacade facade) {
+	public BugTrackView(final GenericFacade facade, final Usuario usuarioLogado) {
 		//facade = new GenericFacade();
 		situacoes = facade.getListSituacaoBug();
 		
@@ -121,14 +121,13 @@ public class BugTrackView extends JPanel{
 						else{
 							
 							
-							Usuario usuario = facade.getUsuarioById(1);
-							System.out.println(usuario.getNome());
+							System.out.println(usuarioLogado.getNome());
 							SituacaoBug situacaoBug = facade.findSituacaoBug(1);
 							System.out.println(situacaoBug.getDescricao());
 							BugTrack bug = new BugTrack();
 							bug.setTitulo(bugTitle.getText());
 							bug.setDescricao(bugDescricao.getText());
-							bug.setUsuarioRegistro(usuario);
+							bug.setUsuarioRegistro(usuarioLogado);
 							bug.setSituacaoBug(situacaoBug);
 							bug.setDataRegistro(new Date());
 							BugTrack result = facade.insertBugTrack(bug);
@@ -158,190 +157,190 @@ public class BugTrackView extends JPanel{
 
 		add(btnNewBug);
 		
-		
-		JButton btnDeleteBug = new JButton("Deletar");
-		btnDeleteBug.setBounds(6, 85, 89, 23);
-		btnDeleteBug.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int selectedRow = table.getSelectedRow();
-				System.out.println("deletar bug "+selectedRow);
+		if(usuarioLogado.getPerfil().getDescricao().equals("Admin")){
+			JButton btnDeleteBug = new JButton("Deletar");
+			btnDeleteBug.setBounds(6, 85, 89, 23);
+			btnDeleteBug.addActionListener(new ActionListener() {
 				
-				if(selectedRow==-1){
-					JOptionPane.showMessageDialog(null, "Selecione algum registro.");
-				}
-				else{
-					int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
-					if(facade.removeBugTrack(id)){
-						List<BugTrack> results = facade.findBugTrack();
-						data = resultsToData(results);
-						DefaultTableModel model = (DefaultTableModel) table.getModel();
-						model.setDataVector(data, columnNames);
-						table.repaint();
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int selectedRow = table.getSelectedRow();
+					System.out.println("deletar bug "+selectedRow);
+					
+					if(selectedRow==-1){
+						JOptionPane.showMessageDialog(null, "Selecione algum registro.");
 					}
 					else{
-						JOptionPane.showMessageDialog(null, "Nao foi possivel remover o registro.");
+						int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
+						if(facade.removeBugTrack(id)){
+							List<BugTrack> results = facade.findBugTrack();
+							data = resultsToData(results);
+							DefaultTableModel model = (DefaultTableModel) table.getModel();
+							model.setDataVector(data, columnNames);
+							table.repaint();
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "Nao foi possivel remover o registro.");
+						}
 					}
 				}
-			}
-
-		});
-
-		add(btnDeleteBug);
-
+	
+			});
+	
+			add(btnDeleteBug);
+		}
 		//#if ${BugTrackAlterar} == "T"
-		JButton btnFixingBug = new JButton("Consertando");
-		btnFixingBug.setBounds(6, 85, 89, 23);
-		btnFixingBug.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int selectedRow = table.getSelectedRow();
-				System.out.println("consertar bug "+selectedRow);
+		if(usuarioLogado.getPerfil().getDescricao().equals("Admin")){
+			JButton btnFixingBug = new JButton("Consertando");
+			btnFixingBug.setBounds(6, 85, 89, 23);
+			btnFixingBug.addActionListener(new ActionListener() {
 				
-				if(selectedRow==-1){
-					JOptionPane.showMessageDialog(null, "Selecione algum registro.");
-				}
-				else{
-					int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
-					BugTrack bug = facade.getBugTrack(id);
-					if(bug!=null){
-						bug.setSituacaoBug(facade.findSituacaoBug(2));
-						if(facade.updateBugTrack(bug)){
-							List<BugTrack> results = facade.findBugTrack();
-							data = resultsToData(results);
-							DefaultTableModel model = (DefaultTableModel) table.getModel();
-							model.setDataVector(data, columnNames);
-							table.repaint();
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
-						}
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int selectedRow = table.getSelectedRow();
+					System.out.println("consertar bug "+selectedRow);
+					
+					if(selectedRow==-1){
+						JOptionPane.showMessageDialog(null, "Selecione algum registro.");
 					}
 					else{
-						JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
-					}
-				}
-			}
-
-		});
-
-		add(btnFixingBug);
-		
-		JButton btnCloseBug = new JButton("Fechar");
-		btnCloseBug.setBounds(6, 85, 89, 23);
-		btnCloseBug.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int selectedRow = table.getSelectedRow();
-				System.out.println("fechar bug "+selectedRow);
-				
-				if(selectedRow==-1){
-					JOptionPane.showMessageDialog(null, "Selecione algum registro.");
-				}
-				else{
-					int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
-					BugTrack bug = facade.getBugTrack(id);
-					if(bug!=null){
-						bug.setSituacaoBug(facade.findSituacaoBug(3));
-						if(facade.updateBugTrack(bug)){
-							List<BugTrack> results = facade.findBugTrack();
-							data = resultsToData(results);
-							DefaultTableModel model = (DefaultTableModel) table.getModel();
-							model.setDataVector(data, columnNames);
-							table.repaint();
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
-						}
-					}
-					else{
-						JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
-					}
-				}
-			}
-
-		});
-
-		add(btnCloseBug);
-
-		JButton btnAnswer = new JButton("Responder");
-		btnAnswer.setBounds(6, 85, 89, 23);
-		btnAnswer.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int selectedRow = table.getSelectedRow();
-				System.out.println("responder bug "+selectedRow);
-				
-				if(selectedRow==-1){
-					JOptionPane.showMessageDialog(null, "Selecione algum registro.");
-				}
-				else{
-					int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
-					final BugTrack bug = facade.getBugTrack(id);
-					if(bug!=null){
-						final JDialog bugDialog = new JDialog();
-						
-						bugDialog.setModal(true);
-						bugDialog.setTitle("Responder bug");
-						bugDialog.setResizable(false);
-						bugDialog.setBounds(0, 0, 460, 320);
-						JPanel panel = new JPanel();
-						final JTextArea bugResposta = new JTextArea(10,40);
-						bugResposta.setText(bug.getDescricaoResposta());
-						panel.add(new JLabel("Resposta:"));
-					    panel.add(bugResposta);
-						
-						JButton btnSendBug = new JButton("Enviar");
-						
-						btnSendBug.setBounds(6, 85, 89, 23);
-						btnSendBug.addActionListener(new ActionListener() {
-							
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								if(bugResposta.getText().length()==0){
-									JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
-								}
-								else{								
-									//TODO: PEGAR USUARIO LOGADO
-									Usuario usuario = facade.getUsuarioById(1);									
-									bug.setDescricaoResposta(bugResposta.getText());
-									bug.setUsuarioResponde(usuario);
-									bug.setDataResposta(new Date());
-									
-									Boolean result = facade.updateBugTrack(bug);
-									if(result){								
-										List<BugTrack> results = facade.findBugTrack();
-										data = resultsToData(results);
-										DefaultTableModel model = (DefaultTableModel) table.getModel();
-										model.setDataVector(data, columnNames);
-										table.repaint();
-										bugDialog.dispose();
-									}
-									else{
-										JOptionPane.showMessageDialog(null, "Nao foi possivel salvar o bug.");
-									}
-														
-								}
+						int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
+						BugTrack bug = facade.getBugTrack(id);
+						if(bug!=null){
+							bug.setSituacaoBug(facade.findSituacaoBug(2));
+							if(facade.updateBugTrack(bug)){
+								List<BugTrack> results = facade.findBugTrack();
+								data = resultsToData(results);
+								DefaultTableModel model = (DefaultTableModel) table.getModel();
+								model.setDataVector(data, columnNames);
+								table.repaint();
 							}
-						});
-						
-						panel.add(btnSendBug);
-						bugDialog.add(panel);
-						bugDialog.setVisible(true);
-					}
-					else{
-						JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
+							else{
+								JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
+							}
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
+						}
 					}
 				}
-			}
-
-		});
-
-		add(btnAnswer);
+	
+			});
+	
+			add(btnFixingBug);
+			
+			JButton btnCloseBug = new JButton("Fechar");
+			btnCloseBug.setBounds(6, 85, 89, 23);
+			btnCloseBug.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int selectedRow = table.getSelectedRow();
+					System.out.println("fechar bug "+selectedRow);
+					
+					if(selectedRow==-1){
+						JOptionPane.showMessageDialog(null, "Selecione algum registro.");
+					}
+					else{
+						int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
+						BugTrack bug = facade.getBugTrack(id);
+						if(bug!=null){
+							bug.setSituacaoBug(facade.findSituacaoBug(3));
+							if(facade.updateBugTrack(bug)){
+								List<BugTrack> results = facade.findBugTrack();
+								data = resultsToData(results);
+								DefaultTableModel model = (DefaultTableModel) table.getModel();
+								model.setDataVector(data, columnNames);
+								table.repaint();
+							}
+							else{
+								JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
+							}
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
+						}
+					}
+				}
+	
+			});
+	
+			add(btnCloseBug);
+		
+			JButton btnAnswer = new JButton("Responder");
+			btnAnswer.setBounds(6, 85, 89, 23);
+			btnAnswer.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int selectedRow = table.getSelectedRow();
+					System.out.println("responder bug "+selectedRow);
+					
+					if(selectedRow==-1){
+						JOptionPane.showMessageDialog(null, "Selecione algum registro.");
+					}
+					else{
+						int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
+						final BugTrack bug = facade.getBugTrack(id);
+						if(bug!=null){
+							final JDialog bugDialog = new JDialog();
+							
+							bugDialog.setModal(true);
+							bugDialog.setTitle("Responder bug");
+							bugDialog.setResizable(false);
+							bugDialog.setBounds(0, 0, 460, 320);
+							JPanel panel = new JPanel();
+							final JTextArea bugResposta = new JTextArea(10,40);
+							bugResposta.setText(bug.getDescricaoResposta());
+							panel.add(new JLabel("Resposta:"));
+						    panel.add(bugResposta);
+							
+							JButton btnSendBug = new JButton("Enviar");
+							
+							btnSendBug.setBounds(6, 85, 89, 23);
+							btnSendBug.addActionListener(new ActionListener() {
+								
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									if(bugResposta.getText().length()==0){
+										JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
+									}
+									else{																
+										bug.setDescricaoResposta(bugResposta.getText());
+										bug.setUsuarioResponde(usuarioLogado);
+										bug.setDataResposta(new Date());
+										
+										Boolean result = facade.updateBugTrack(bug);
+										if(result){								
+											List<BugTrack> results = facade.findBugTrack();
+											data = resultsToData(results);
+											DefaultTableModel model = (DefaultTableModel) table.getModel();
+											model.setDataVector(data, columnNames);
+											table.repaint();
+											bugDialog.dispose();
+										}
+										else{
+											JOptionPane.showMessageDialog(null, "Nao foi possivel salvar o bug.");
+										}
+															
+									}
+								}
+							});
+							
+							panel.add(btnSendBug);
+							bugDialog.add(panel);
+							bugDialog.setVisible(true);
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
+						}
+					}
+				}
+	
+			});
+	
+			add(btnAnswer);
+		}
 		//#endif
 		
 		JButton btnView = new JButton("Detalhes");

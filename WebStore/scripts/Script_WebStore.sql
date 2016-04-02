@@ -63,6 +63,7 @@ CREATE TABLE webstoreDB.Usuario (
   idPerfil INTEGER UNSIGNED NOT NULL,
   dsNome VARCHAR(255) NULL,
   dsEmail VARCHAR(255) NOT NULL,
+  dsLogin varchar(50) UNIQUE NOT NULL,
   dsSenha VARCHAR(50) NOT NULL,
   dtNascimento DATE NULL,
   nrUsuarioTelefone VARCHAR(50) NULL,
@@ -172,13 +173,13 @@ CREATE TABLE webstoreDB.FAQ (
   
 );
 
-
 INSERT INTO webstoreDB.Perfil (`idPerfil`, `dsPerfil`) VALUES
 (1, 'Admin'),
 (2, 'Cliente');
 
-INSERT INTO webstoreDB.Usuario (idUsuario, idStatusUsuario, idPerfil, dsNome, dsEmail, dsSenha, dtNascimento, nrUsuarioTelefone, dtUsuarioInclusao) VALUES
-(1, null, 1, 'Admin', 'admin@gmail.com','123456', '1970-01-01', '71999999999', NOW());
+INSERT INTO webstoreDB.Usuario (idUsuario, idStatusUsuario, idPerfil, dsNome, dsLogin, dsEmail, dsSenha, dtNascimento, nrUsuarioTelefone, dtUsuarioInclusao) VALUES
+(1, null, 1, 'Admin', 'Admin','admin@gmail.com','123456', '1970-01-01', '71999999999', NOW()),
+(2, null, 2, 'Cliente', 'Cliente','cliente@gmail.com','123456', '1970-01-01', '71999999999', NOW());
   
 INSERT INTO webstoreDB.SituacaoBug (`idSituacaoBug`, `dsSituacaoBug`) VALUES
 (1, 'Aberto'),
@@ -188,6 +189,3 @@ INSERT INTO webstoreDB.SituacaoBug (`idSituacaoBug`, `dsSituacaoBug`) VALUES
 INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (1,'KG');
 INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (2,'UN');
 INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (3,'CX');
-
-ALTER table webstoreDB.Usuario add column (dsLogin varchar(50));
-update webstoreDB.Usuario set dsLogin="Admin", dsNome="Administrador" where idUsuario = 1;

@@ -5,6 +5,17 @@ package br.com.webstore.features;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import java.util.Properties;
+
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -50,9 +61,34 @@ public class FaleConoscoView extends JPanel {
 					JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
 				}
 				else{
-					JOptionPane.showMessageDialog(null, "Mensagem enviada com sucesso.");
-					email.setText("");
-					message.setText("");
+					Properties props = new Properties();
+					props.put("mail.smtp.auth", "true");
+					props.put("mail.smtp.starttls.enable", "true");
+					props.put("mail.smtp.host", "smtp.gmail.com");
+					props.put("mail.smtp.port", "587");
+					final String userName = "dccreuso@gmail.com";
+					final String password = "dccufba123";
+					Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+					    protected PasswordAuthentication getPasswordAuthentication() {
+					        return new PasswordAuthentication(userName, password);
+					    }
+					});
+				    try {
+				        MimeMessage msg = new MimeMessage(session);
+				        msg.setFrom(new InternetAddress("dccreuso@gmail.com"));
+				        msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse("dccreuso@gmail.com"));
+				        msg.setSubject("Contato");
+				        msg.setSentDate(new Date());
+				        msg.setText("De: "+email.getText()+"\n"+message.getText());
+				        Transport.send(msg);
+				        JOptionPane.showMessageDialog(null, "Mensagem enviada com sucesso.");
+						email.setText("");
+						message.setText("");
+				    } catch (MessagingException mex) {
+				        System.out.println("send failed, exception: " + mex);
+				        JOptionPane.showMessageDialog(null, "Nao foi possivel enviar a mensagem.");
+				    }
+					
 				}
 			}
 		});

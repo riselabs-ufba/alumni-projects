@@ -71,7 +71,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 	
 	JFrame mainFrame = new JFrame(APPLICATION_NAME);
 	
-	public WebStoreEventMainScreenP(GenericFacade gfacade) {
+	public WebStoreEventMainScreenP(GenericFacade gfacade, Usuario usuarioLogado) {
 		JTabbedPane panelTab = new JTabbedPane();
 		
 		//#if ${Usuario} == "T"
@@ -79,7 +79,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${Categoria} == "T"
-		//if (!user.isEmpty() && user.get(0).getPerfil().equals("Administrador"))
+		if (usuarioLogado!=null && usuarioLogado.getPerfil().getDescricao().equals("Admin"))
 		panelTab.addTab(CategoriaP.NAME, new CategoriaP(gfacade));
 		//#endif
 		
@@ -100,7 +100,8 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${BugTrack} == "T"
-		panelTab.addTab(BugTrackView.NAME, new BugTrackView(gfacade));
+		if (usuarioLogado!=null)
+		panelTab.addTab(BugTrackView.NAME, new BugTrackView(gfacade,usuarioLogado));
 		//#endif
 		
 		
@@ -178,7 +179,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 					if (!user.isEmpty()){
 						dlgLogin.setVisible(false);
 						
-						WebStoreEventMainScreenP mainScreen = new WebStoreEventMainScreenP(gfacade);
+						WebStoreEventMainScreenP mainScreen = new WebStoreEventMainScreenP(gfacade,user.get(0));
 						
 						mainScreen.getMainFrame().addWindowListener(new WindowAdapter() {
 							public void windowClosing(WindowEvent e) {

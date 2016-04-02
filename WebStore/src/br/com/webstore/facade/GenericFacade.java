@@ -18,7 +18,7 @@ import br.com.webstore.dao.CupomDao;
 import br.com.webstore.dao.EnderecoDao;
 //#endif
 
-//#if ${Faq} == "T"
+//#if ${FAQ} == "T"
 import br.com.webstore.dao.FaqDao;
 //#endif
 
@@ -92,7 +92,7 @@ import br.com.webstore.model.Cupom;
 import br.com.webstore.model.Endereco;
 //#endif
 
-//#if ${Faq} == "T"
+//#if ${FAQ} == "T"
 import br.com.webstore.model.Faq;
 //#endif
 

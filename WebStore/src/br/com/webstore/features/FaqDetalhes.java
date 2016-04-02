@@ -1,4 +1,4 @@
-//#if ${Faq} == "T"
+//#if ${FAQ} == "T"
 package br.com.webstore.features;
 
 import java.awt.Font;

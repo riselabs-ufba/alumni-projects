@@ -87,15 +87,15 @@ public class FaqEdit extends JPanel {
 	public FaqEdit() {
 		this.setLayout(null);
 
-		// Questão
-		JLabel descricaoLbl = new JLabel("Questão");
+		// Questao
+		JLabel descricaoLbl = new JLabel("Questao");
 		descricaoLbl.setBounds(7, 16, 100, 15);
 		descricaoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(descricaoLbl);
 		
 		this.descricaoFld = new JTextField();
 		this.descricaoFld.setBounds(7, 29, 438, 25);
-		this.descricaoFld.setToolTipText("Informe a questão");
+		this.descricaoFld.setToolTipText("Informe a questao");
 		this.descricaoFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.descricaoFld.setColumns(10);
 		this.add(this.descricaoFld);
@@ -108,7 +108,7 @@ public class FaqEdit extends JPanel {
 		
 		this.respostaFld = new JTextField();
 		this.respostaFld.setBounds(7, 74, 438, 25);
-		this.respostaFld.setToolTipText("Informe a resposta para questão.");
+		this.respostaFld.setToolTipText("Informe a resposta para questao.");
 		this.respostaFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.respostaFld.setColumns(10);
 		this.add(this.respostaFld);

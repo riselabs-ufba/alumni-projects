@@ -84,7 +84,8 @@
 			<property name="CarrinhoCheckout" value="T" />
 			<property name="CategoriaEdit" value="T" />
 			<property name="CategoriaP" value="T" />
-			<property name="FAQ" value="T" />
+			<property name="Faq" value="F" /> <!-- acrescentada para permitir a compilacao, pois parte do código referencia #Faq e parte #FAQ -->
+			<property name="FAQ" value="F" />
 			<property name="UsuarioInclusaoEdicao" value="T" />
 			<property name="UsuarioPesquisa" value="T" />
 			<property name="Usuario" value="T" />

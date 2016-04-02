@@ -55,10 +55,10 @@ public class BugTrackView extends JPanel{
 		data = resultsToData(results);
 		final Vector<String> columnNames = new Vector<String>();
 		columnNames.add("ID");
-		columnNames.add("Usuário registro");
-		columnNames.add("Usuário resposta");
-		columnNames.add("Título");
-		columnNames.add("Situação");
+		columnNames.add("Usuario registro");
+		columnNames.add("Usuario resposta");
+		columnNames.add("Titulo");
+		columnNames.add("Situacao");
 		columnNames.add("Data registro");
 		//myTableModel = new MyTableModel(data,columnNames);
 	    table = new JTable(data, columnNames);
@@ -105,7 +105,7 @@ public class BugTrackView extends JPanel{
 				panel.add(new JLabel("Titulo:"));
 			    panel.add(bugTitle);
 			    final JTextArea bugDescricao = new JTextArea(10,40);
-				panel.add(new JLabel("Descrição:"));
+				panel.add(new JLabel("Descricao:"));
 			    panel.add(bugDescricao);
 				
 				JButton btnSendBug = new JButton("Enviar");
@@ -142,7 +142,7 @@ public class BugTrackView extends JPanel{
 								bugDialog.dispose();
 							}
 							else{
-								JOptionPane.showMessageDialog(null, "Não foi possível salvar o bug.");
+								JOptionPane.showMessageDialog(null, "Nao foi possivel salvar o bug.");
 							}
 															
 						}
@@ -181,7 +181,7 @@ public class BugTrackView extends JPanel{
 						table.repaint();
 					}
 					else{
-						JOptionPane.showMessageDialog(null, "Não foi possível remover o registro.");
+						JOptionPane.showMessageDialog(null, "Nao foi possivel remover o registro.");
 					}
 				}
 			}
@@ -216,11 +216,11 @@ public class BugTrackView extends JPanel{
 							table.repaint();
 						}
 						else{
-							JOptionPane.showMessageDialog(null, "Não foi possível atualizar o registro.");
+							JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
 						}
 					}
 					else{
-						JOptionPane.showMessageDialog(null, "Não foi possível atualizar o registro.");
+						JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
 					}
 				}
 			}
@@ -254,11 +254,11 @@ public class BugTrackView extends JPanel{
 							table.repaint();
 						}
 						else{
-							JOptionPane.showMessageDialog(null, "Não foi possível atualizar o registro.");
+							JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
 						}
 					}
 					else{
-						JOptionPane.showMessageDialog(null, "Não foi possível atualizar o registro.");
+						JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
 					}
 				}
 			}
@@ -322,7 +322,7 @@ public class BugTrackView extends JPanel{
 										bugDialog.dispose();
 									}
 									else{
-										JOptionPane.showMessageDialog(null, "Não foi possível salvar o bug.");
+										JOptionPane.showMessageDialog(null, "Nao foi possivel salvar o bug.");
 									}
 														
 								}
@@ -334,7 +334,7 @@ public class BugTrackView extends JPanel{
 						bugDialog.setVisible(true);
 					}
 					else{
-						JOptionPane.showMessageDialog(null, "Não foi possível atualizar o registro.");
+						JOptionPane.showMessageDialog(null, "Nao foi possivel atualizar o registro.");
 					}
 				}
 			}
@@ -369,23 +369,23 @@ public class BugTrackView extends JPanel{
 						JPanel panel = new JPanel();
 					
 						String s = "<html>Titulo: "+bug.getTitulo()+"<br>";
-						s+="Situação: "+bug.getSituacaoBug().getDescricao()+"<br>";
+						s+="Situacao: "+bug.getSituacaoBug().getDescricao()+"<br>";
 						s+="Data registro: "+bug.getDataRegistro().toString()+"<br>";
 						s+="Usuario cadastro: "+bug.getUsuarioRegistro().getNome()+"<br>";
-						s+="Descrição: "+bug.getDescricao()+"<br>";
+						s+="Descricao: "+bug.getDescricao()+"<br>";
 						if(bug.getDataResposta()!=null)
 							s+="Data resposta: "+bug.getDataResposta().toString()+"<br>";
 						if(bug.getUsuarioResponde()!=null)
 							s+="Usuario resposta: "+bug.getUsuarioResponde().getNome()+"<br>";
 						if(bug.getDescricaoResposta()!=null && bug.getDescricaoResposta().length()>0)
-							s+="Descrição resposta: "+bug.getDescricaoResposta()+"<br>";
+							s+="Descricao resposta: "+bug.getDescricaoResposta()+"<br>";
 						s+= "</html>";
 						panel.add(new JLabel(s));
 						bugDialog.add(panel);
 						bugDialog.setVisible(true);
 					}
 					else{
-						JOptionPane.showMessageDialog(null, "Não foi possível ver o registro.");
+						JOptionPane.showMessageDialog(null, "Nao foi possivel ver o registro.");
 					}
 				}
 			}

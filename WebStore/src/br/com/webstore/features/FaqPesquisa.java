@@ -52,8 +52,8 @@ public class FaqPesquisa extends JPanel {
 		this.scrollPane.setBounds(6, 125, 480, 99);
 
 		final Vector<String> headers = new Vector<String>(3);
-		headers.addElement(new String("Nº"));
-		headers.addElement(new String("Questão"));
+		headers.addElement(new String("No"));
+		headers.addElement(new String("Questao"));
 		
 		
 		this.table = new JTable();

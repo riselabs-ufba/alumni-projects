@@ -54,7 +54,7 @@ public class FaqListar extends JPanel {
 
 		final Vector<String> headers = new Vector<String>(3);
 		headers.addElement(new String("Nº"));
-		headers.addElement(new String("Questão"));
+		headers.addElement(new String("Questao"));
 		
 		
 		this.table = new JTable();

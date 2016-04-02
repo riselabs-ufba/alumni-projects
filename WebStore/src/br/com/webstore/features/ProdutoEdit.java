@@ -105,8 +105,8 @@ public class ProdutoEdit extends JPanel {
 	public ProdutoEdit() {
 		this.setLayout(null);
 
-		// DescriÃ§Ã£o
-		JLabel descricaoLbl = new JLabel("Descrição");
+		// Descricao
+		JLabel descricaoLbl = new JLabel("Descricao");
 		descricaoLbl.setBounds(7, 16, 100, 15);
 		descricaoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(descricaoLbl);

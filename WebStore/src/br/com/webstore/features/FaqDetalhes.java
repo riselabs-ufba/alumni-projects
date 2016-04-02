@@ -78,15 +78,15 @@ public class FaqDetalhes extends JPanel {
 	public FaqDetalhes() {
 		this.setLayout(null);
 
-		// Descri√ß√£o
-		JLabel descricaoLbl = new JLabel("Quest„o");
+		// Descricao
+		JLabel descricaoLbl = new JLabel("Questao");
 		descricaoLbl.setBounds(7, 16, 100, 15);
 		descricaoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(descricaoLbl);
 		
 		this.descricaoFld = new JTextField();
 		this.descricaoFld.setBounds(7, 29, 438, 25);
-		//this.descricaoFld.setToolTipText("Informe a quest„o");
+		//this.descricaoFld.setToolTipText("Informe a questao");
 		this.descricaoFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.descricaoFld.setColumns(10);
 		this.add(this.descricaoFld);
@@ -100,7 +100,7 @@ public class FaqDetalhes extends JPanel {
 		
 		this.respostaFld = new JTextField();
 		this.respostaFld.setBounds(7, 74, 438, 25);
-		//this.respostaFld.setToolTipText("Informe a resposta para quest„o.");
+		//this.respostaFld.setToolTipText("Informe a resposta para questao.");
 		this.respostaFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.respostaFld.setColumns(10);
 		this.add(this.respostaFld);

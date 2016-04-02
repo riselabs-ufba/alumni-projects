@@ -168,7 +168,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(login.getText().length()==0 || senha.getPassword().toString().length()==0){
-					JOptionPane.showMessageDialog(null, "Campos com * são obrigatórios.");
+					JOptionPane.showMessageDialog(null, "Campos com * sao obrigatorios.");
 				}
 				else{
 					
@@ -191,7 +191,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 						mainScreen.getMainFrame().setVisible(true);
 					}
 					else{
-						JOptionPane.showMessageDialog(null, "Usuário " + login.getText() + " não encontrado ou usuário e senha incorretos!");
+						JOptionPane.showMessageDialog(null, "Usuario " + login.getText() + " nao encontrado ou usuario e senha incorretos!");
 					}
 				}
 			}

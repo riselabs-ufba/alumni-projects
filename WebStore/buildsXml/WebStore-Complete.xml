@@ -15,7 +15,7 @@
 	<property name="ExcluirCategoria"               value="T" />
 	<property name="AlterarCategoria"               value="T" />
 	<property name="ConsultarCategoria"             value="T" />
-	<property name="Comunicação"                    value="T" />
+	<property name="Comunicacao"                    value="T" />
 	<property name="BugTrack"                       value="T" />
 	<property name="CadastrarBugTrack"              value="T" />
 	<property name="ExcluirBugTrack"                value="T" />

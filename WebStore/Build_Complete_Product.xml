@@ -4,11 +4,11 @@
 	<property name="appName" value="webstore_p" />
 	<property name="src" location="${appName}/src" />
 	<property name="libs" location="${appName}/libs" />
-	<property name="resources" location="${appName}/img" />
+	<property name="img" location="${appName}/img" />
 	<property name="build" location="${appName}/build" />
 	<property name="classes" location="${build}/br/com/webstore" />
 	<property name="jar.file" location="${appName}/${appName}.jar" />
-	<property name="externalResources" value="img" />
+	<property name="imgProject" value="img" />
 	<property name="libsExternal" location="libs" />
 	<property name="srcProject" location="src" />
 	<property name="meta.inf" location="${build}/META-INF" />
@@ -35,12 +35,12 @@
 		<echo />
 		<echo message="Step 2 - Creating the project structure..." />
 		<mkdir dir="${appName}" />
-		<mkdir dir="${resources}" />
+		<mkdir dir="${img}" />
 		<mkdir dir="${libs}" />
 		<mkdir dir="${build}" />
 		<mkdir dir="${meta.inf}" />
-		<copy todir="${resources}">
-			<fileset dir="${externalResources}" includes="**/*.png, **/*.gif, **/*.jpg" />
+		<copy todir="${img}">
+			<fileset dir="${imgProject}" includes="**/*.png, **/*.gif, **/*.jpg" />
 		</copy>
 		<copy todir="${libs}">
 			<fileset dir="${libsExternal}" includes="**/*.jar" />
@@ -107,6 +107,7 @@
 			<manifest>
 				<attribute name="Main-Class" value="br.com.webstore.views.WebStoreEventMainScreenP" />
 			</manifest>
+			<fileset dir="." includes="img/**/*.png, img/**/*.gif, img/**/*.jpg"/>
 			<zipfileset src="${libs}/dependencies-all.jar" excludes="META-INF/*.SF" />
 		</jar>
 	</target>

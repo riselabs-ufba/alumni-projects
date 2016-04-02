@@ -27,12 +27,12 @@
 		<echo message="Step 2 - Creating the project structure..." />
 		<mkdir dir="${outputAppDir}" />
 		<mkdir dir="${deployAppDir}" />
-		<mkdir dir="${resources}" />
+		<mkdir dir="${img}" />
 		<mkdir dir="${libs}" />
 		<mkdir dir="${build}" />
 		<mkdir dir="${meta.inf}" />
-		<copy todir="${resources}">
-			<fileset dir="${externalResources}" includes="**/*.png, **/*.gif, **/*.jpg" />
+		<copy todir="${img}">
+			<fileset dir="${imgProject}" includes="**/*.png, **/*.gif, **/*.jpg" />
 		</copy>
 		<copy todir="${libs}">
 			<fileset dir="${libsExternal}" includes="**/*.jar" />
@@ -73,6 +73,7 @@
 			<manifest>
 				<attribute name="Main-Class" value="br.com.webstore.views.WebStoreEventMainScreenP" />
 			</manifest>
+			<fileset dir="." includes="img/**/*.png, img/**/*.gif, img/**/*.jpg"/>
 			<zipfileset src="${libs}/dependencies-all.jar" excludes="META-INF/*.SF" />
 		</jar>
 	</target>

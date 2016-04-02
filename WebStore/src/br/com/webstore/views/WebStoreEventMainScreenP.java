@@ -101,7 +101,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		
 		//#if ${BugTrack} == "T"
 		if (usuarioLogado!=null)
-		panelTab.addTab(BugTrackView.NAME, new BugTrackView(gfacade,usuarioLogado));
+			panelTab.addTab(BugTrackView.NAME, new BugTrackView(gfacade,usuarioLogado));
 		//#endif
 		
 		
@@ -110,7 +110,8 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${FaleConosco} == "T"
-		panelTab.addTab(FaleConoscoView.NAME, new FaleConoscoView());
+		if (usuarioLogado!=null)
+			panelTab.addTab(FaleConoscoView.NAME, new FaleConoscoView(usuarioLogado));
 		//#endif
 		
 				

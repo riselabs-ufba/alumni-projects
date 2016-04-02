@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import br.com.webstore.model.Usuario;
+
 /**
  * @author webstore
  *
@@ -34,16 +36,14 @@ public class FaleConoscoView extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "Fale conosco";
 	
-	public FaleConoscoView(){
+	public FaleConoscoView(final Usuario usuarioLogado){
 		this.setLayout(null);
-		
-		final JTextField email = new JTextField(40);
+		/*final JTextField email = new JTextField(40);
 		email.setBounds(57, 53, 353, 20);
-		email.setColumns(10);
-		JLabel emailL = new JLabel("Email:");
-		emailL.setBounds(57, 24, 124, 14);
+		email.setColumns(10);*/
+		JLabel emailL = new JLabel("Email: "+usuarioLogado.getEmail());
+		emailL.setBounds(57, 24, 200, 14);
 		add(emailL);
-	    add(email);
 	    final JTextArea message = new JTextArea(10,40);
 		JLabel msgL = new JLabel("Mensagem:");
 		msgL.setBounds(57, 74, 124, 14);
@@ -57,7 +57,7 @@ public class FaleConoscoView extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(email.getText().length()==0 || message.getText().length()==0){
+				if(message.getText().length()==0){
 					JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
 				}
 				else{
@@ -79,10 +79,9 @@ public class FaleConoscoView extends JPanel {
 				        msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse("dccreuso@gmail.com"));
 				        msg.setSubject("Contato");
 				        msg.setSentDate(new Date());
-				        msg.setText("De: "+email.getText()+"\n"+message.getText());
+				        msg.setText("De: "+usuarioLogado.getEmail()+"\n"+message.getText());
 				        Transport.send(msg);
 				        JOptionPane.showMessageDialog(null, "Mensagem enviada com sucesso.");
-						email.setText("");
 						message.setText("");
 				    } catch (MessagingException mex) {
 				        System.out.println("send failed, exception: " + mex);

@@ -36,7 +36,6 @@ public class CategoriaP extends JPanel {
 	private JScrollPane scrollPane;
 	//private static JTable tableList;
 
-	
 
 	/**
 	 * Create the panel.
@@ -69,7 +68,7 @@ public class CategoriaP extends JPanel {
 		final Vector<String> headers = new Vector<String>(3);
 		headers.addElement(new String("Id"));
 		headers.addElement(new String("Nome"));
-		headers.addElement(new String("Valor"));
+		//headers.addElement(new String("Valor"));
 
 		
 		table = new JTable();
@@ -124,6 +123,7 @@ public class CategoriaP extends JPanel {
 				DxCad.setTitle("Nova Categoria");
 				DxCad.setResizable(false);
 				DxCad.setBounds(0, 0, 460, 320);
+				DxCad.setLocationRelativeTo(null);
 				final JTextField cDescricao = new JTextField(40);
 				JPanel panel = new JPanel();
 				panel.add(new JLabel("Descricao: "));
@@ -140,7 +140,8 @@ public class CategoriaP extends JPanel {
 									Categoria cate = new Categoria();									
 									cate.setDescricao(cDescricao.getText());									
 									gfacade.insertCategoria(cate);									
-									DxCad.dispose();																										
+									DxCad.dispose();
+
 						};
 						
 						
@@ -208,10 +209,11 @@ public class CategoriaP extends JPanel {
 						cxDialog.setTitle("Editar Categoria");
 						cxDialog.setResizable(false);
 						cxDialog.setBounds(0, 0, 460, 320);
+						cxDialog.setLocationRelativeTo(null);
 						JPanel panel = new JPanel();
 						final JTextArea NovaCat = new JTextArea(10,40);
 						NovaCat.setText(cat.getDescricao());
-						panel.add(new JLabel("Descrição"));
+						panel.add(new JLabel("Descricao"));
 					    	panel.add(NovaCat);
 						JButton btnSalvar = new JButton("Salvar");
 						btnSalvar.setBounds(6, 85, 89, 23);
@@ -225,6 +227,7 @@ public class CategoriaP extends JPanel {
 									cat.setDescricao(NovaCat.getText());									
 									gfacade.updateCategoria(cat);
 									JOptionPane.showMessageDialog(null, "Alteracao Salva com Sucesso");
+									cxDialog.dispose();
 								}
 							}
 						});
@@ -232,6 +235,7 @@ public class CategoriaP extends JPanel {
 						panel.add(btnSalvar);
 						cxDialog.add(panel);
 						cxDialog.setVisible(true);
+					
 					}
 					
 				}
@@ -240,7 +244,6 @@ public class CategoriaP extends JPanel {
 		});
 		btnEditar.setBounds(430, 85, 79, 23);
 		this.add(btnEditar);
-		
 		
 
 		

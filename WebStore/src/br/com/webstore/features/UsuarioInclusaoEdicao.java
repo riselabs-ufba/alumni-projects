@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
@@ -16,7 +16,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Perfil;
@@ -40,10 +42,11 @@ public class UsuarioInclusaoEdicao extends JPanel
 	private Integer Id;
 	
 	private JTextField nomeFld;
-	private JTextField senhaFld;
+	private JPasswordField senhaFld;
 	private JFormattedTextField emailFld;
 	private JFormattedTextField dtNascimentoFld;
 	private JFormattedTextField telefoneFld;
+	private JFormattedTextField loginFld;
 	private JComboBox<br.com.webstore.model.StatusUsuario> statusFld;
 	private JComboBox<br.com.webstore.model.Perfil> perfilFld;
 
@@ -62,9 +65,23 @@ public class UsuarioInclusaoEdicao extends JPanel
 		
 		usuario.setNome(this.nomeFld.getText());
 		usuario.setEmail(this.emailFld.getText());
-		usuario.setSenha(this.senhaFld.getText());		
+		usuario.setSenha(this.senhaFld.getPassword().toString());		
 		usuario.setStatusUsuario(this.statusFld.getItemAt(this.statusFld.getSelectedIndex()));
 		usuario.setPerfil(this.perfilFld.getItemAt(this.perfilFld.getSelectedIndex()));
+		usuario.setDsLogin(this.loginFld.getText());
+		usuario.setDataInclusao(new Date());
+		usuario.setTelefone(this.telefoneFld.getText());
+		
+        String pattern = "dd/MM/yyyy";
+        DateFormat df = new SimpleDateFormat(pattern);
+        
+        try{
+        Date date = df.parse(this.dtNascimentoFld.getText());
+        usuario.setDataNascimento(date);
+        }catch(Exception e){}
+		
+        
+		
 		return usuario;
 	}
 	
@@ -77,9 +94,11 @@ public class UsuarioInclusaoEdicao extends JPanel
 		}
 		
 		if ("".equals(this.emailFld.getText())) {
-			JOptionPane.showMessageDialog(null, "Descricao deve ser preenchido");
+			JOptionPane.showMessageDialog(null, "E-mail deve ser preenchido");
 			return false;
 		}
+		
+		
 		
 		return true;
 	}
@@ -95,15 +114,33 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.editMode = true;
 		this.Id = id;
 		Usuario usuario = new GenericFacade().getUsuarioById(this.Id);
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		
 		
 		this.nomeFld.setText(usuario.getNome());
 		this.emailFld.setText(usuario.getEmail());
 		this.senhaFld.setText(usuario.getSenha());
-		this.dtNascimentoFld.setText(df.format(usuario.getDataNascimento()));
-		this.telefoneFld.setText(usuario.getTelefone());
+		this.loginFld.setText(usuario.getDsLogin());
+		
+		
+	        
+	        
+	    
+	        if (usuario.getDataNascimento() != null)
+		        try{
+			        
+			        this.dtNascimentoFld.setText(usuario.getDataNascimento().toString());
+		        }catch(Exception e){}
+			
+	        
+			
+		
+		if  (usuario.getTelefone()!=null) 		
+		     this.telefoneFld.setText(usuario.getTelefone());
+		
 		this.perfilFld.setSelectedItem(usuario.getPerfil());
 		this.statusFld.setSelectedItem(usuario.getStatusUsuario());
+		
+		
 	}
 	
 	/**
@@ -112,26 +149,42 @@ public class UsuarioInclusaoEdicao extends JPanel
 	public UsuarioInclusaoEdicao() {
 		this.setLayout(null);
 
-		// Nome
+		JLabel loginLbl = new JLabel("Login");
+		loginLbl.setBounds(7, 16, 100, 15);
+		loginLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		this.add(loginLbl);
+		
+		this.loginFld = new JFormattedTextField();
+		this.loginFld.setBounds(7, 29, 219, 25);
+		this.loginFld.setToolTipText("Informe o Login.");
+		this.loginFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		this.loginFld.setColumns(10);
+		this.add(this.loginFld);
+		
+				// Nome
 		JLabel nomeLbl = new JLabel("Nome");
-		nomeLbl.setBounds(7, 16, 100, 15);
+		nomeLbl.setBounds(7, 61, 100, 15);
 		nomeLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(nomeLbl);
 		
 		this.nomeFld = new JTextField();
-		this.nomeFld.setBounds(7, 29, 438, 25);
+		this.nomeFld.setBounds(7, 74, 438, 25);
 		this.nomeFld.setToolTipText("Informe o nome.");
 		this.nomeFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.nomeFld.setColumns(10);
 		this.add(this.nomeFld);
+		
+		
+		
 
 		// Email
 		JLabel emailLbl = new JLabel("E-mail");
-		emailLbl.setBounds(7, 61, 100, 15);
+		emailLbl.setBounds(7, 106, 100, 15);
 		emailLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(emailLbl);
-		
-		this.emailFld.setBounds(7, 74, 438, 25);
+				
+		this.emailFld = new JFormattedTextField();
+		this.emailFld.setBounds(7, 119, 438, 25);
 		this.emailFld.setToolTipText("Informe o E-mail.");
 		this.emailFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.emailFld.setColumns(10);
@@ -139,24 +192,26 @@ public class UsuarioInclusaoEdicao extends JPanel
 		
 		// Senha
 		JLabel SenhaLbl = new JLabel("Senha");
-		SenhaLbl.setBounds(7, 106, 100, 15);
+		SenhaLbl.setBounds(7, 151, 100, 15);
 		SenhaLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(SenhaLbl);
 		
-		this.senhaFld.setBounds(7, 119, 438, 25);
+		this.senhaFld = new JPasswordField();
+		this.senhaFld.setBounds(7, 164, 219, 25);
 		this.senhaFld.setToolTipText("Informe o Senha.");
 		this.senhaFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.senhaFld.setColumns(10);
 		this.add(this.senhaFld);
 
 		// Status de Usuario
-		JLabel statusLbl = new JLabel("");
-		statusLbl.setBounds(7, 151, 100, 15);
+		JLabel statusLbl = new JLabel("Status");
+		statusLbl.setBounds(7, 196, 100, 15);
 		statusLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(statusLbl);
 		
+		
 		this.statusFld = new JComboBox<StatusUsuario>();
-		this.statusFld.setBounds(7, 164, 438, 25);
+		this.statusFld.setBounds(7, 209, 438, 25);
 		this.statusFld.setToolTipText("Selecione o Status do usuario");
 		this.statusFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(this.statusFld);
@@ -171,16 +226,50 @@ public class UsuarioInclusaoEdicao extends JPanel
 
 		// Perfil
 		JLabel pefilLbl = new JLabel("Perfil");
-		pefilLbl.setBounds(7, 196, 100, 15);
+		pefilLbl.setBounds(7, 241, 100, 15);
 		pefilLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(pefilLbl);
 		
 		this.perfilFld = new JComboBox<br.com.webstore.model.Perfil>();
-		this.perfilFld.setBounds(7, 209, 438, 25);
+		this.perfilFld.setBounds(7, 258, 438, 25);
 		this.perfilFld.setToolTipText("Selecione o perfil do Usuario.");
 		this.perfilFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(this.perfilFld);
 
+		// Data de Nascimento
+		
+		
+		JLabel DtNascimentoLbl = new JLabel("Data de Nascimento");
+		DtNascimentoLbl.setBounds(7, 286, 150, 15);
+		DtNascimentoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		this.add(DtNascimentoLbl);
+				
+		this.dtNascimentoFld = new JFormattedTextField();
+		this.dtNascimentoFld.setBounds(7, 299, 100, 25);
+		this.dtNascimentoFld.setToolTipText("Informe a data de nascimento.");
+		this.dtNascimentoFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		this.dtNascimentoFld.setColumns(10);
+		this.add(this.dtNascimentoFld);
+		
+		JLabel TelefoneLbl = new JLabel("Telefone");
+		TelefoneLbl.setBounds(7, 331, 150, 15);
+		TelefoneLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		this.add(TelefoneLbl);
+				
+		try{
+		    javax.swing.text.MaskFormatter telefone = new MaskFormatter("(##) ####-####");
+		    this.telefoneFld = new JFormattedTextField(telefone);
+		}catch(Exception e){};    
+		
+		
+		this.telefoneFld.setBounds(7, 344, 100, 25);
+		this.telefoneFld.setToolTipText("Informe o telefone.");
+		this.telefoneFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		this.telefoneFld.setColumns(10);
+		this.add(this.telefoneFld);
+		
+				
+		
 		List<br.com.webstore.model.Perfil> perfilList = new GenericFacade().findPerfil(new Perfil());
 		DefaultComboBoxModel<br.com.webstore.model.Perfil> perfilModel = new DefaultComboBoxModel<br.com.webstore.model.Perfil>();
 		for (br.com.webstore.model.Perfil perfil : perfilList) 
@@ -191,7 +280,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 		
 		// Botao Salvar
 		this.salvarBtn = new JButton("Salvar");
-		this.salvarBtn.setBounds(7, 241, 100, 32);
+		this.salvarBtn.setBounds(190, 400, 100, 32);
 		this.salvarBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.salvarBtn.addActionListener(new ActionListener() 
 		{
@@ -203,14 +292,12 @@ public class UsuarioInclusaoEdicao extends JPanel
 				{
 					Usuario usuario = UsuarioInclusaoEdicao.this.toModel();
 					if (UsuarioInclusaoEdicao.this.editMode) 
-					{
+					
 						new GenericFacade().updateUsuario(usuario);
-					} 
+					 
 					else 
-					{
-						usuario.setDataInclusao(Calendar.getInstance().getTime());
 						new GenericFacade().insertUsuario(usuario);
-					}
+					
 
 					if (UsuarioInclusaoEdicao.this.doneEvent != null) 
 					{

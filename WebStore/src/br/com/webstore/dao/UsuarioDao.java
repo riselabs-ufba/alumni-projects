@@ -6,7 +6,9 @@ package br.com.webstore.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+
 
 import br.com.webstore.model.Usuario;
 
@@ -19,8 +21,8 @@ public class UsuarioDao extends GenericDao<Usuario, Integer>{
 	/**
 	 * Construtor
 	 */
-	public UsuarioDao() {
-		super(Usuario.class);
+	public UsuarioDao(EntityManager entityManager) {
+		super(entityManager, Usuario.class);
 	}
 	
 	public List<Usuario> getUsuarioByLoginSenha(String Login, String Senha){
@@ -29,5 +31,19 @@ public class UsuarioDao extends GenericDao<Usuario, Integer>{
 		query.setParameter("senha", Senha);
 		return query.getResultList();
 	}
+	
+	public List<Usuario> findByEmail(String email) {
+		TypedQuery<Usuario> query = this.entityManager.createQuery("from Usuario u where u.email like :email", Usuario.class);
+		query.setParameter("email", email + "%");
+		return query.getResultList();
+	}
+	
+	public Usuario findByLogin(String login){
+		
+		TypedQuery<Usuario> query = this.entityManager.createQuery("from Usuario u where u.dsLogin =:login", Usuario.class);
+		query.setParameter("login", login);
+		return query.getSingleResult();
+	}
+	
 }
 //#endif

@@ -33,9 +33,7 @@ import br.com.webstore.features.FAQ;
 import br.com.webstore.features.FaqListar;
 import br.com.webstore.features.FaqPesquisa;
 //#endif
-//#if ${FAQ} == "T"
 
-//#endif
 //#if ${FaleConosco} == "T"
 import br.com.webstore.features.FaleConoscoView;
 //#endif

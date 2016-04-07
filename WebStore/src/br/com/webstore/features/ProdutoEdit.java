@@ -154,7 +154,7 @@ public class ProdutoEdit extends JPanel {
 
 		// Unidade de medida
 		JLabel unidadeMedidaLbl = new JLabel("Unidade de medida");
-		unidadeMedidaLbl.setBounds(7, 151, 100, 15);
+		unidadeMedidaLbl.setBounds(7, 151, 140, 15);
 		unidadeMedidaLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(unidadeMedidaLbl);
 		
@@ -192,7 +192,7 @@ public class ProdutoEdit extends JPanel {
 		
 		// Botao Salvar
 		this.salvarBtn = new JButton("Salvar");
-		this.salvarBtn.setBounds(7, 241, 100, 32);
+		this.salvarBtn.setBounds(190, 241, 100, 32);
 		this.salvarBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.salvarBtn.addActionListener(new ActionListener() {
 			

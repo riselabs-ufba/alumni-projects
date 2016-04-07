@@ -4,6 +4,8 @@
  */
 package br.com.webstore.dao;
 
+import javax.persistence.EntityManager;
+
 import br.com.webstore.model.Mensagem;
 
 /**
@@ -12,8 +14,8 @@ import br.com.webstore.model.Mensagem;
  */
 public class MensagemDao extends GenericDao<Mensagem, Integer>{
 
-	public MensagemDao() {
-		super(Mensagem.class);
+	public MensagemDao(EntityManager entityManager) {
+		super(entityManager, Mensagem.class);
 	}
 }
 //#endif

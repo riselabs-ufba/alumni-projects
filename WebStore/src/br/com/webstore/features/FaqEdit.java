@@ -116,7 +116,7 @@ public class FaqEdit extends JPanel {
 				
 		// Botao Salvar
 		this.salvarBtn = new JButton("Salvar");
-		this.salvarBtn.setBounds(7, 241, 100, 32);
+		this.salvarBtn.setBounds(190, 241, 100, 32);
 		this.salvarBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.salvarBtn.addActionListener(new ActionListener() {
 			
@@ -142,4 +142,4 @@ public class FaqEdit extends JPanel {
 	}
 
 }
-// #endif
+//#endif

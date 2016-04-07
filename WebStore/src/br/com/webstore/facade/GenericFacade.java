@@ -1,7 +1,11 @@
-//#if ${BugTrack} == "T" or ${Categoria} == "T" or ${Cupom} == "T" or ${Endereco} == "T" or ${FormaPagament} == "T" or ${Mensagem} == "T" or ${Perfil} == "T" or ${Produto} == "T" or ${SituacaoBug} == "T" or ${StatusUsuario} == "T" or ${StatusVenda} == "T" or ${TipoMensagem} == "T" or ${UnidadeMedida} == "T" or ${UsuarioCupom} == "T" or ${UsuarioCupom} == "T" or ${Usuario} == "T" or ${Venda} == "T" or ${VendaProduto} == "T" or ${VendaProdutoEmbbed} == "T" 
 package br.com.webstore.facade;
 
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 //#if ${BugTrack} == "T"
 import br.com.webstore.dao.BugTrackDao;
 //#endif
@@ -50,12 +54,15 @@ import br.com.webstore.dao.StatusUsuarioDao;
 //#if ${StatusVenda} == "T"
 import br.com.webstore.dao.StatusVendaDao;
 //#endif
+
 //#if ${TipoMensagem} == "T"
 import br.com.webstore.dao.TipoMensagemDao;
 //#endif
+
 //#if ${UnidadeMedida} == "T"
 import br.com.webstore.dao.UnidadeMedidaDao;
 //#endif
+
 //#if ${UsuarioCupom} == "T"
 import br.com.webstore.dao.UsuarioCupomDao;
 //#endif
@@ -159,8 +166,84 @@ import br.com.webstore.model.VendaProdutoEmbbed;
  */
 public class GenericFacade {
 	
+	
+	public GenericFacade() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("webstoreDB");
+		EntityManager entityManager = factory.createEntityManager();
+		
+		//#if ${BugTrack} == "T"
+		bugTrackDao = new BugTrackDao(entityManager);
+		//#endif
+		
+		//#if ${Produto} == "T"
+		produtoDataProvider = new ProdutoDao(entityManager);
+		//#endif
+		
+		//#if ${FAQ} == "T"
+		faqDataProvider=new FaqDao(entityManager);
+		//#endif		
+		
+		//#if ${Categoria} == "T"
+		categoriaDataProvider=new CategoriaDao(entityManager);
+		//#endif
+		
+		//#if ${Cupom} == "T"
+		cupomDataProvider = new CupomDao(entityManager);
+		//#endif
+		
+		//#if ${Endereco} == "T"
+		enderecoDataProvider=new  EnderecoDao(entityManager);
+		//#endif
+		
+		//#if ${FormaPagamento} == "T"
+		formaPagamentDataProvider=new FormaPagamentDao(entityManager);
+		//#endif
+		
+		//#if ${Mensagem} == "T"
+		mensagemDao=new MensagemDao(entityManager);
+		//#endif
+		
+		//#if ${Perfil} == "T"
+		perfilDataProvider=new PerfilDao(entityManager);
+		//#endif
+		
+		//#if ${SituacaoBug} == "T"
+		situacaoBugDataProvider= new SituacaoBugDao(entityManager);
+		//#endif
+		
+		//#if ${StatusUsuario} == "T"
+		statusUsuarioDataProvider = new StatusUsuarioDao(entityManager);
+		//#endif
+		
+		//#if ${StatusVenda} == "T"
+		statusVendaDataProvider=new StatusVendaDao(entityManager);
+		//#endif
+		
+		//#if ${TipoMensagem} == "T"
+		tipoMensagemDataProvider = new TipoMensagemDao(entityManager);
+		//#endif
+		
+		//#if ${Usuario} == "T"
+		usuarioDataProvider = new UsuarioDao(entityManager);
+		//#endif
+		
+		//#if ${VendaProdutoEmbbed} == "T"
+	    vendaProdutoEmbbedDao = new VendaProdutoEmbbedDao(entityManager);
+	   //#endif
+
+	    //#if ${VendaProduto} == "T"
+	  	vendaProdutoDao = new VendaProdutoDao(entityManager);
+	  	//#endif
+	  	
+	  	//#if ${UnidadeMedida} == "T"
+	  	unidadeMedidaDao=new  UnidadeMedidaDao(entityManager);
+	  	//#endif		
+
+	    
+	}
+	
 	//#if ${BugTrack} == "T"
-	private BugTrackDao bugTrackDao = new BugTrackDao();
+	private BugTrackDao bugTrackDao;
 	
 	public BugTrack insertBugTrack(BugTrack bugTrack) {
 		return bugTrackDao.insert(bugTrack);
@@ -200,7 +283,7 @@ public class GenericFacade {
 	
 	
 		//#if ${FAQ} == "T"
-			private FaqDao faqDataProvider = new FaqDao();
+			private FaqDao faqDataProvider;
 
 			public Faq insertFaq(Faq faq) {
 				return this.faqDataProvider.insert(faq);
@@ -228,9 +311,9 @@ public class GenericFacade {
 	
 	
 	
-	//Categoria 
+	 
 	//#if ${Categoria} == "T"
-		private CategoriaDao categoriaDataProvider = new CategoriaDao();
+		private CategoriaDao categoriaDataProvider;
 		
 		public Categoria insertCategoria(Categoria categoria) {
 			return this.categoriaDataProvider.insert(categoria);
@@ -263,7 +346,7 @@ public class GenericFacade {
 		//Cupom
 		//#if ${Cupom} == "T"
 
-		private CupomDao cupomDataProvider = new CupomDao();
+		private CupomDao cupomDataProvider;
 	
 		public Cupom insertCupom(Cupom cupom) {
 			
@@ -283,7 +366,7 @@ public class GenericFacade {
 		//Endereco
 		//#if ${Endereco} == "T"
 		
-		private EnderecoDao enderecoDataProvider = new EnderecoDao();
+		private EnderecoDao enderecoDataProvider;
 	
 		public Endereco insertEndereco(Endereco endereco) {	
 			return enderecoDataProvider.insert(endereco);
@@ -300,9 +383,8 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//FormaPagamento
 		//#if ${FormaPagamento} == "T"
-		private FormaPagamentDao formaPagamentDataProvider = new FormaPagamentDao();
+		private FormaPagamentDao formaPagamentDataProvider;
 	
 		public FormaPagamento insertFormaPagamento(FormaPagamento formaPagamento) {
 
@@ -320,9 +402,9 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//Mensagem
+	
 		//#if ${Mensagem} == "T"
-		private MensagemDao mensagemDao = new MensagemDao();
+		private MensagemDao mensagemDao;
 		
 		public void insert(Mensagem mensagem) {
 			this.mensagemDao.insert(mensagem);
@@ -341,9 +423,9 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//Perfil
+	
 		//#if ${Perfil} == "T"
-		private PerfilDao perfilDataProvider = new PerfilDao();
+		private PerfilDao perfilDataProvider;
 		
 		public Perfil insertPerfil(Perfil perfil) {
 			return perfilDataProvider.insert(perfil);
@@ -359,9 +441,9 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//Produto
+	
 		//#if ${Produto} == "T"
-		private ProdutoDao produtoDataProvider = new ProdutoDao();
+		private ProdutoDao produtoDataProvider;
 
 		public Produto insertProduto(Produto produto) {
 			return this.produtoDataProvider.insert(produto);
@@ -375,6 +457,8 @@ public class GenericFacade {
 		public List<Produto> findProduto(String nome) {
 			return this.produtoDataProvider.findByNome(nome);
 		}
+		
+		
 
 		public Produto getProdutoById(int id) {
 			return this.produtoDataProvider.find(id);
@@ -385,9 +469,9 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//SituacaoBug
+	
 		//#if ${SituacaoBug} == "T"
-		private SituacaoBugDao situacaoBugDataProvider= new SituacaoBugDao();
+		private SituacaoBugDao situacaoBugDataProvider;
 
 		public SituacaoBug insertSituacaoBug(SituacaoBug situacaoBug) {
 			return situacaoBugDataProvider.insert(situacaoBug);
@@ -414,9 +498,9 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//StatusUsuario
+	
 		//#if ${StatusUsuario} == "T"
-		private StatusUsuarioDao statusUsuarioDataProvider = new StatusUsuarioDao();
+		private StatusUsuarioDao statusUsuarioDataProvider;
 
 		public StatusUsuario insertStatusUsuario(StatusUsuario statusUsuario) {
 			return statusUsuarioDataProvider.insert(statusUsuario);
@@ -431,9 +515,9 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//StatusVenda
+	
 		//#if ${StatusVenda} == "T"
-		private StatusVendaDao statusVendaDataProvider = new StatusVendaDao();
+		private StatusVendaDao statusVendaDataProvider;
 
 		public StatusVenda insertStatusVenda(StatusVenda statusVenda) {
 			return statusVendaDataProvider.insert(statusVenda);
@@ -448,9 +532,8 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//TipoMensagem
 		//#if ${TipoMensagem} == "T"
-		private TipoMensagemDao tipoMensagemDataProvider = new TipoMensagemDao();
+		private TipoMensagemDao tipoMensagemDataProvider;
 
 		public TipoMensagem findTipoMensagem(Integer id) {
 			return tipoMensagemDataProvider.find(id);		
@@ -461,9 +544,9 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//UnidadeMedida
+	
 		//#if ${UnidadeMedida} == "T"
-		private UnidadeMedidaDao unidadeMedidaDao = new UnidadeMedidaDao();
+		private UnidadeMedidaDao unidadeMedidaDao;
 
 		public UnidadeMedida insertUnidadeMedida(UnidadeMedida unidadeMedida) {
 			return unidadeMedidaDao.insert(unidadeMedida);
@@ -482,7 +565,7 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//UsuarioCupom
+	
 		//#if ${UsuarioCupom} == "T"
 		private UsuarioCupomDao usuarioCupomDao;
 
@@ -500,35 +583,40 @@ public class GenericFacade {
 		//#endif
 		
 		
-		//Usuario
+	
 		//#if ${Usuario} == "T"
-		private UsuarioDao usuarioDao = new UsuarioDao();
-
+		
+		private UsuarioDao usuarioDataProvider;
+		
 		public Usuario insertUsuario(Usuario usuario) {
-			return usuarioDao.insert(usuario);
+			return usuarioDataProvider.insert(usuario);
 		}
 
 		public void updateUsuario(Usuario usuario) {
-			usuarioDao.update(usuario);		
+			usuarioDataProvider.update(usuario);		
 		}
 
-		public List<Usuario> findUsuario(Usuario usuario) {
-			return usuarioDao.getList();
+		public List<Usuario> findUsuario(String email) {
+			return usuarioDataProvider.findByEmail(email);
 		}
 
 		public void removeUsuario(Integer id)
 		{
-			usuarioDao.remove(id);
+			usuarioDataProvider.remove(id);
 		}
 
 		public Usuario getUsuarioById(Integer id)
 		{
-			return usuarioDao.find(id);
+			return usuarioDataProvider.find(id);
 		}
 		
 		public List<Usuario> getUsuarioByLoginSenha(String Login, String Senha)
 		{
-			return usuarioDao.getUsuarioByLoginSenha(Login, Senha);
+			return usuarioDataProvider.getUsuarioByLoginSenha(Login, Senha);
+		}
+		
+		public Usuario getUsuarioByLogin(String login){
+			return usuarioDataProvider.findByLogin(login);
 		}
 		
 		//#endif
@@ -552,7 +640,7 @@ public class GenericFacade {
 		
 		//VendaProdutoEmbbed
 		//#if ${VendaProdutoEmbbed} == "T"
-		private VendaProdutoEmbbedDao vendaProdutoEmbbedDao = new VendaProdutoEmbbedDao();
+		private VendaProdutoEmbbedDao vendaProdutoEmbbedDao;
 
 		public VendaProdutoEmbbed insertVendaProdutoEmbbed(VendaProdutoEmbbed vendaProdutoEmbbed) {
 			return vendaProdutoEmbbedDao.insert(vendaProdutoEmbbed);
@@ -569,7 +657,7 @@ public class GenericFacade {
 		
 		//VendaProduto
 		//#if ${VendaProduto} == "T"
-		private VendaProdutoDao vendaProdutoDao = new VendaProdutoDao();
+		private VendaProdutoDao vendaProdutoDao;
 		
 		public VendaProduto insertVendaProduto(VendaProduto vendaProduto) {
 			return vendaProdutoDao.insert(vendaProduto);
@@ -584,4 +672,3 @@ public class GenericFacade {
 		}
 		//#endif
 }
-//#endif

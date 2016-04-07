@@ -54,5 +54,22 @@ public class Perfil {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public String toString() {
+		return this.descricao;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+
+		if (obj instanceof Perfil) {
+			Perfil other = (Perfil) obj;
+			return other.id == this.id;
+		}
+		return super.equals(obj);
+	}	
 }
 //#endif

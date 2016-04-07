@@ -124,7 +124,7 @@ public class Usuario {
 	 * @return the dataNascimento
 	 */
 	public Date getDataNascimento() {
-		if(dataInclusao != null){
+		if(dataNascimento != null){
 			return (Date) dataNascimento.clone();
 		}
 		return null;

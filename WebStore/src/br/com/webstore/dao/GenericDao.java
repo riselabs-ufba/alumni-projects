@@ -7,9 +7,9 @@ package br.com.webstore.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+//import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+//import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
@@ -19,19 +19,18 @@ import javax.persistence.criteria.CriteriaQuery;
  */
 public abstract class GenericDao<T, I> {
 
-	private static final String NAME_DB = "webstoreDB";
+	//private static final String NAME_DB = "webstoreDB";
 	
 	protected EntityManager entityManager;
 
 	private Class<T> persistedClass;
 
-	protected GenericDao() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory(NAME_DB);
-		this.entityManager = factory.createEntityManager();
+	protected GenericDao(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
-	protected GenericDao(Class<T> persistedClass) {
-		this();
+	protected GenericDao(EntityManager entityManager, Class<T> persistedClass) {
+		this(entityManager);
 		this.persistedClass = persistedClass;
 	}
 

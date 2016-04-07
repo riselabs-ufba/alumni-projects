@@ -189,3 +189,6 @@ INSERT INTO webstoreDB.SituacaoBug (`idSituacaoBug`, `dsSituacaoBug`) VALUES
 INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (1,'KG');
 INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (2,'UN');
 INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (3,'CX');
+
+insert into statususuario(idStatusUsuario, dsStatusUsuario) value(1,'Ativo')	
+insert into statususuario(idStatusUsuario, dsStatusUsuario) value(2,'Inativo')

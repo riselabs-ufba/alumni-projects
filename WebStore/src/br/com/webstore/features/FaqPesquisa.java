@@ -98,7 +98,7 @@ public class FaqPesquisa extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						frame.dispose();
-						List<Faq> lista = gfacade.findFaq("");
+						List<Faq> lista = new GenericFacade().findFaq("");
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						FaqPesquisa.this.table.setModel(model);
@@ -115,7 +115,7 @@ public class FaqPesquisa extends JPanel {
 				});				
 				frame.setModal(true);
 				frame.setResizable(false);
-				frame.setBounds(0, 0, 460, 320);
+				frame.setBounds(400, 200, 460, 320);
 				frame.getContentPane().add(fe);
 				frame.setVisible(true);
 			}
@@ -144,7 +144,7 @@ public class FaqPesquisa extends JPanel {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							frame.dispose();
-							List<Faq> lista = gfacade.findFaq("");
+							List<Faq> lista = new GenericFacade().findFaq("");
 							
 							DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 							FaqPesquisa.this.table.setModel(model);
@@ -164,7 +164,7 @@ public class FaqPesquisa extends JPanel {
 					
 					frame.setModal(true);
 					frame.setResizable(false);
-					frame.setBounds(0, 0, 460, 320);
+					frame.setBounds(400, 200, 460, 320);
 					frame.getContentPane().add(fe);
 					frame.setVisible(true);
 				}
@@ -189,7 +189,7 @@ public class FaqPesquisa extends JPanel {
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
 						Integer id = (Integer) FaqPesquisa.this.table.getValueAt(index, 0);
 						gfacade.removerFaq(id);
-						List<Faq> lista = gfacade.findFaq("");
+						List<Faq> lista = new GenericFacade().findFaq("");
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						FaqPesquisa.this.table.setModel(model);
@@ -212,4 +212,4 @@ public class FaqPesquisa extends JPanel {
 
 	}
 }
-// #endif
+//#endif

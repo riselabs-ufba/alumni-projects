@@ -1,7 +1,7 @@
 //#if ${Produto} == "T"
 package br.com.webstore.features;
 
-import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,7 +54,7 @@ public class ProdutoPesquisa extends JPanel {
 
 		JLabel lblNomeDaCategoria = new JLabel("Nome do Produto");
 		lblNomeDaCategoria.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNomeDaCategoria.setBounds(6, 24, 96, 14);
+		lblNomeDaCategoria.setBounds(6, 24,106, 14);
 		this.add(lblNomeDaCategoria);
 
 		JLabel lblRelaoDeCategorias = new JLabel("Produtos");
@@ -67,7 +67,7 @@ public class ProdutoPesquisa extends JPanel {
 
 		final Vector<String> headers = new Vector<String>(3);
 		headers.addElement(new String("Id"));
-		headers.addElement(new String("Codigo"));
+		headers.addElement(new String("Cod."));
 		headers.addElement(new String("Nome"));
 		headers.addElement(new String("Valor"));
 		
@@ -79,21 +79,13 @@ public class ProdutoPesquisa extends JPanel {
 		// this.table.setBounds(57, 165, 353, 99);
 		this.add(this.scrollPane);
 
-		JLabel lblPreenchimentoObrigatrio = new JLabel("Campos obrigatorios.");
-		lblPreenchimentoObrigatrio.setForeground(Color.RED);
-		lblPreenchimentoObrigatrio.setBounds(350, 276, 136, 14);
-		this.add(lblPreenchimentoObrigatrio);
-
-		JLabel labelAterisk = new JLabel("*");
-		labelAterisk.setForeground(new Color(255, 0, 0));
-		labelAterisk.setBounds(102, 25, 109, 14);
-		this.add(labelAterisk);
+	
 
 		JButton btnCadastrp = new JButton("Pesquisar");
 		btnCadastrp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				List<Produto> lista = gfacade.findProduto(ProdutoPesquisa.this.textField.getText());
+				List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
 				
 				DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 				ProdutoPesquisa.this.table.setModel(model);
@@ -107,10 +99,15 @@ public class ProdutoPesquisa extends JPanel {
 					String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
 					ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
 					row++;
-				}				
+				}
+				ProdutoPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
+				ProdutoPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(60);
+				ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
+				ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
+			
 			}
 		});
-		btnCadastrp.setBounds(312, 84, 79, 23);		
+		btnCadastrp.setBounds(312, 84, 96, 23);		
 		this.add(btnCadastrp);
 		
 		JButton btnNewButton = new JButton("Cadastro");
@@ -126,7 +123,7 @@ public class ProdutoPesquisa extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						frame.dispose();
-						List<Produto> lista = gfacade.findProduto(ProdutoPesquisa.this.textField.getText());
+						List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						ProdutoPesquisa.this.table.setModel(model);
@@ -141,11 +138,15 @@ public class ProdutoPesquisa extends JPanel {
 							ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
 							row++;
 						}	
+						ProdutoPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
+						ProdutoPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(60);
+						ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
+						ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
 					}
 				});				
 				frame.setModal(true);
 				frame.setResizable(false);
-				frame.setBounds(0, 0, 460, 320);
+				frame.setBounds(400, 200, 460, 320);
 				frame.getContentPane().add(pe);
 				frame.setVisible(true);
 			}
@@ -174,7 +175,7 @@ public class ProdutoPesquisa extends JPanel {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							frame.dispose();
-							List<Produto> lista = gfacade.findProduto(ProdutoPesquisa.this.textField.getText());
+							List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
 							
 							DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 							ProdutoPesquisa.this.table.setModel(model);
@@ -189,14 +190,17 @@ public class ProdutoPesquisa extends JPanel {
 								ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
 								row++;
 							}					
-							
+							ProdutoPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
+							ProdutoPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(60);
+							ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
+							ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
 							
 						}
 					});
 					
 					frame.setModal(true);
 					frame.setResizable(false);
-					frame.setBounds(0, 0, 460, 320);
+					frame.setBounds(400, 200, 460, 320);
 					frame.getContentPane().add(pe);
 					frame.setVisible(true);
 				}
@@ -221,7 +225,7 @@ public class ProdutoPesquisa extends JPanel {
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
 						Integer id = (Integer) ProdutoPesquisa.this.table.getValueAt(index, 0);
 						gfacade.removerProduto(id);
-						List<Produto> lista = gfacade.findProduto(ProdutoPesquisa.this.textField.getText());
+						List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						ProdutoPesquisa.this.table.setModel(model);
@@ -235,7 +239,11 @@ public class ProdutoPesquisa extends JPanel {
 							String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
 							ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
 							row++;
-						}	
+						}
+						ProdutoPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
+						ProdutoPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(60);
+						ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
+						ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
 					}
 
 				}

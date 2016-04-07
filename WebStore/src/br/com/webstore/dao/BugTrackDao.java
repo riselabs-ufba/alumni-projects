@@ -3,14 +3,15 @@ package br.com.webstore.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import br.com.webstore.model.BugTrack;
 import br.com.webstore.model.SituacaoBug;
 
 public class BugTrackDao extends GenericDao<BugTrack, Integer>{
-	public BugTrackDao() {
-		super(BugTrack.class);
+	public BugTrackDao(EntityManager entityManager) {
+		super(entityManager, BugTrack.class);
 	}
 	
 	public List<BugTrack> findByTitulo(String word) {

@@ -84,10 +84,12 @@
 			<property name="CarrinhoCheckout" value="T" />
 			<property name="CategoriaEdit" value="T" />
 			<property name="CategoriaP" value="T" />
-			<property name="FAQ" value="F" />
+			<property name="FAQ" value="T" />
 			<property name="UsuarioInclusaoEdicao" value="T" />
 			<property name="UsuarioPesquisa" value="T" />
 			<property name="Usuario" value="T" />
+			<property name="BugTrackAlterar" value="T" />
+			
 		</javapp>
 
 	</target>

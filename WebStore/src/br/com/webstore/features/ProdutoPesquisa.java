@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Produto;
+import br.com.webstore.model.Usuario;
 
 public class ProdutoPesquisa extends JPanel {
 	
@@ -30,7 +31,7 @@ public class ProdutoPesquisa extends JPanel {
 	 */
 	private static final long serialVersionUID = -5464321145565350625L;
 
-	public static final String NAME = "Cadastro de Produtos";
+	public static final String NAME = "Produtos";
 
 	private JTextField textField;
 	private JScrollPane scrollPane;
@@ -42,7 +43,7 @@ public class ProdutoPesquisa extends JPanel {
 	 * Create the panel.
 	 */
 	
-	public ProdutoPesquisa(final GenericFacade gfacade) {
+	public ProdutoPesquisa(final GenericFacade gfacade, final Usuario usuarioLogado) {
 		this.setLayout(null);
 
 		this.textField = new JTextField();
@@ -110,67 +111,17 @@ public class ProdutoPesquisa extends JPanel {
 		btnCadastrp.setBounds(312, 84, 96, 23);		
 		this.add(btnCadastrp);
 		
-		JButton btnNewButton = new JButton("Cadastro");
-		btnNewButton.setBounds(80, 84, 89, 23);
-		btnNewButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		if(usuarioLogado.getPerfil().getDescricao().equals("Admin")){
+		
+			JButton btnNewButton = new JButton("Cadastro");
+			btnNewButton.setBounds(80, 84, 89, 23);
+			btnNewButton.addActionListener(new ActionListener() {
 				
-				ProdutoEdit pe = new ProdutoEdit();				
-				final JDialog frame = new JDialog();				
-				pe.setDoneEvent(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						frame.dispose();
-						List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
-						
-						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
-						ProdutoPesquisa.this.table.setModel(model);
-						
-
-						int row = 0;
-						for (Produto produto : lista) {
-							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getId(), row, 0);
-							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getNumero(), row, 1);
-							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getDescricao(), row, 2);
-							String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
-							ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
-							row++;
-						}	
-						ProdutoPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
-						ProdutoPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(60);
-						ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
-						ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
-					}
-				});				
-				frame.setModal(true);
-				frame.setResizable(false);
-				frame.setBounds(400, 200, 460, 320);
-				frame.getContentPane().add(pe);
-				frame.setVisible(true);
-			}
-
-		});
-
-		this.add(btnNewButton);
-
-		JButton btnEditar = new JButton("Editar");
-		btnEditar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				ListSelectionModel lsm = ProdutoPesquisa.this.table.getSelectionModel();
-				int index = lsm.getLeadSelectionIndex();
-				
-				if (index == -1) {
-					JOptionPane.showMessageDialog(null, "Selecione um item antes de editar.");
-				} else {
-					Integer id = (Integer) ProdutoPesquisa.this.table.getValueAt(index, 0);
+				@Override
+				public void actionPerformed(ActionEvent e) {
 					
-					ProdutoEdit pe = new ProdutoEdit(id);
-					
-					final JDialog frame = new JDialog();
-					
+					ProdutoEdit pe = new ProdutoEdit();				
+					final JDialog frame = new JDialog();				
 					pe.setDoneEvent(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
@@ -180,7 +131,7 @@ public class ProdutoPesquisa extends JPanel {
 							DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 							ProdutoPesquisa.this.table.setModel(model);
 							
-
+	
 							int row = 0;
 							for (Produto produto : lista) {
 								ProdutoPesquisa.this.table.getModel().setValueAt(produto.getId(), row, 0);
@@ -189,69 +140,122 @@ public class ProdutoPesquisa extends JPanel {
 								String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
 								ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
 								row++;
-							}					
+							}	
 							ProdutoPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
 							ProdutoPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(60);
 							ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
 							ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
-							
 						}
-					});
-					
+					});				
 					frame.setModal(true);
 					frame.setResizable(false);
 					frame.setBounds(400, 200, 460, 320);
 					frame.getContentPane().add(pe);
 					frame.setVisible(true);
 				}
-				
-			}
-		});
-		btnEditar.setBounds(430, 85, 79, 23);
-		this.add(btnEditar);
-
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ListSelectionModel lsm = ProdutoPesquisa.this.table.getSelectionModel();
-				int index = lsm.getLeadSelectionIndex();
-				
-				if (index == -1) {
-					JOptionPane.showMessageDialog(null, "Selecione um item antes de excluir.");
-				} else {
+	
+			});
+	
+			this.add(btnNewButton);
+	
+			JButton btnEditar = new JButton("Editar");
+			btnEditar.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					ListSelectionModel lsm = ProdutoPesquisa.this.table.getSelectionModel();
+					int index = lsm.getLeadSelectionIndex();
 					
-					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
+					if (index == -1) {
+						JOptionPane.showMessageDialog(null, "Selecione um item antes de editar.");
+					} else {
 						Integer id = (Integer) ProdutoPesquisa.this.table.getValueAt(index, 0);
-						gfacade.removerProduto(id);
-						List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
 						
-						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
-						ProdutoPesquisa.this.table.setModel(model);
+						ProdutoEdit pe = new ProdutoEdit(id);
 						
-
-						int row = 0;
-						for (Produto produto : lista) {
-							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getId(), row, 0);
-							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getNumero(), row, 1);
-							ProdutoPesquisa.this.table.getModel().setValueAt(produto.getDescricao(), row, 2);
-							String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
-							ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
-							row++;
-						}
-						ProdutoPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
-						ProdutoPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(60);
-						ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
-						ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
+						final JDialog frame = new JDialog();
+						
+						pe.setDoneEvent(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								frame.dispose();
+								List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
+								
+								DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
+								ProdutoPesquisa.this.table.setModel(model);
+								
+	
+								int row = 0;
+								for (Produto produto : lista) {
+									ProdutoPesquisa.this.table.getModel().setValueAt(produto.getId(), row, 0);
+									ProdutoPesquisa.this.table.getModel().setValueAt(produto.getNumero(), row, 1);
+									ProdutoPesquisa.this.table.getModel().setValueAt(produto.getDescricao(), row, 2);
+									String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
+									ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
+									row++;
+								}					
+								ProdutoPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
+								ProdutoPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(60);
+								ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
+								ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
+								
+							}
+						});
+						
+						frame.setModal(true);
+						frame.setResizable(false);
+						frame.setBounds(400, 200, 460, 320);
+						frame.getContentPane().add(pe);
+						frame.setVisible(true);
 					}
-
+					
 				}
-			}
-		});
-		btnExcluir.setBounds(195, 84, 89, 23);
-		this.add(btnExcluir);
-
+			});
+			btnEditar.setBounds(430, 85, 79, 23);
+			this.add(btnEditar);
+	
+			JButton btnExcluir = new JButton("Excluir");
+			btnExcluir.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					ListSelectionModel lsm = ProdutoPesquisa.this.table.getSelectionModel();
+					int index = lsm.getLeadSelectionIndex();
+					
+					if (index == -1) {
+						JOptionPane.showMessageDialog(null, "Selecione um item antes de excluir.");
+					} else {
+						
+						if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
+							Integer id = (Integer) ProdutoPesquisa.this.table.getValueAt(index, 0);
+							gfacade.removerProduto(id);
+							List<Produto> lista = new GenericFacade().findProduto(ProdutoPesquisa.this.textField.getText());
+							
+							DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
+							ProdutoPesquisa.this.table.setModel(model);
+							
+	
+							int row = 0;
+							for (Produto produto : lista) {
+								ProdutoPesquisa.this.table.getModel().setValueAt(produto.getId(), row, 0);
+								ProdutoPesquisa.this.table.getModel().setValueAt(produto.getNumero(), row, 1);
+								ProdutoPesquisa.this.table.getModel().setValueAt(produto.getDescricao(), row, 2);
+								String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
+								ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
+								row++;
+							}
+							ProdutoPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
+							ProdutoPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(60);
+							ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
+							ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
+						}
+	
+					}
+				}
+			});
+			btnExcluir.setBounds(195, 84, 89, 23);
+			this.add(btnExcluir);
+		
+		}
 	}
 }
 //#endif

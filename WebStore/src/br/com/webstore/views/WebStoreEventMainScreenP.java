@@ -74,12 +74,13 @@ public class WebStoreEventMainScreenP extends JPanel {
 		JTabbedPane panelTab = new JTabbedPane();
 		
 		//#if ${Usuario} == "T"
-		panelTab.addTab(UsuarioPesquisa.NAME, new UsuarioPesquisa(gfacade));
+		if (usuarioLogado!=null && usuarioLogado.getPerfil().getDescricao().equals("Admin"))
+			panelTab.addTab(UsuarioPesquisa.NAME, new UsuarioPesquisa(gfacade));
 		//#endif
 		
 		//#if ${Categoria} == "T"
 		if (usuarioLogado!=null && usuarioLogado.getPerfil().getDescricao().equals("Admin"))
-		panelTab.addTab(CategoriaP.NAME, new CategoriaP(gfacade));
+			panelTab.addTab(CategoriaP.NAME, new CategoriaP(gfacade));
 		//#endif
 		
 		//#if ${FAQ} == "T"
@@ -87,7 +88,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${Produto} == "T"
-		panelTab.addTab("Produto", new ProdutoView(gfacade));
+		panelTab.addTab("Ver Produto", new ProdutoView(gfacade));
 		//#endif
 		
 		//#if ${CarrinhoCheckout} == "T"
@@ -95,7 +96,8 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${Produto} == "T"
-		panelTab.addTab(ProdutoPesquisa.NAME, new ProdutoPesquisa(gfacade));
+		if (usuarioLogado!=null)
+			panelTab.addTab(ProdutoPesquisa.NAME, new ProdutoPesquisa(gfacade,usuarioLogado));
 		//#endif
 		
 		//#if ${BugTrack} == "T"
@@ -105,7 +107,8 @@ public class WebStoreEventMainScreenP extends JPanel {
 		
 		
 		//#if ${FAQ} == "T"
-		panelTab.addTab(FaqPesquisa.NAME, new FaqPesquisa(gfacade));
+		if (usuarioLogado!=null && usuarioLogado.getPerfil().getDescricao().equals("Admin"))
+			panelTab.addTab(FaqPesquisa.NAME, new FaqPesquisa(gfacade));
 		//#endif
 		
 		//#if ${FaleConosco} == "T"

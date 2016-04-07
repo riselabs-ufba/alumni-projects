@@ -68,6 +68,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 	static List<Usuario> user = null;
 	
 	JFrame mainFrame = new JFrame(APPLICATION_NAME);
+
 	
 	public WebStoreEventMainScreenP(GenericFacade gfacade, Usuario usuarioLogado) {
 		JTabbedPane panelTab = new JTabbedPane();
@@ -151,6 +152,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		dlgLogin.setTitle("Logar no sistema WebStore");
 		dlgLogin.setResizable(false);
 		dlgLogin.setBounds(0, 0, 460, 320);
+		dlgLogin.setLocationRelativeTo(null);
 		final JTextField login = new JTextField(10);
 		JPanel panel = new JPanel();
 		panel.add(new JLabel("*Login: "));
@@ -189,6 +191,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 						mainScreen.getMainFrame().getContentPane().add(mainScreen,BorderLayout.CENTER);
 						mainScreen.getMainFrame().setSize(WIDTH_SCREEN, HEIGHT_SCREEN);
 						mainScreen.getMainFrame().setVisible(true);
+						mainScreen.getMainFrame().setLocationRelativeTo(null);
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "Usuario " + login.getText() + " nao encontrado ou usuario e senha incorretos!");

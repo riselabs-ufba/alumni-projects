@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -30,12 +31,11 @@ public class CategoriaP extends JPanel {
 	private static final long serialVersionUID = -5464321145565350625L;
 
 	public static final String NAME = "Categoria";
-	
+	public JTable table;
 	private JTextField textField;
 	private JScrollPane scrollPane;
 	//private static JTable tableList;
 
-	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -68,13 +68,13 @@ public class CategoriaP extends JPanel {
 		final Vector<String> headers = new Vector<String>(3);
 		headers.addElement(new String("Id"));
 		headers.addElement(new String("Nome"));
-		headers.addElement(new String("Valor"));
+		//headers.addElement(new String("Valor"));
 
 		
 		table = new JTable();
 		scrollPane.setColumnHeaderView(table);
 		
-		JLabel lblPreenchimentoObrigatrio = new JLabel("Campos obrigat\u00F3rio.");
+		JLabel lblPreenchimentoObrigatrio = new JLabel("Campo obrigatorio.");
 		lblPreenchimentoObrigatrio.setForeground(Color.RED);
 		lblPreenchimentoObrigatrio.setBounds(274, 275, 136, 14);
 		add(lblPreenchimentoObrigatrio);
@@ -118,20 +118,41 @@ public class CategoriaP extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				CategoriaEdit pe = new CategoriaEdit();				
-				final JDialog frame = new JDialog();				
-				pe.setDoneEvent(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						frame.dispose();
-					}
-				});				
-				frame.setModal(true);
-				frame.setResizable(false);
-				frame.setBounds(0, 0, 460, 320);
-				frame.getContentPane().add(pe);
-				frame.setVisible(true);
+				final JDialog DxCad = new JDialog();
+				DxCad.setModal(true);
+				DxCad.setTitle("Nova Categoria");
+				DxCad.setResizable(false);
+				DxCad.setBounds(0, 0, 460, 320);
+				DxCad.setLocationRelativeTo(null);
+				final JTextField cDescricao = new JTextField(40);
+				JPanel panel = new JPanel();
+				panel.add(new JLabel("Descricao: "));
+				panel.add(cDescricao);					
+				JButton btnSend = new JButton("Salvar");
+				btnSend.setBounds(20, 85, 89, 23);
+				btnSend.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if(cDescricao.getText().length()==0){
+									JOptionPane.showMessageDialog(null, "O Campo descricao deve ser preenchido");
+								}
+							else{						
+									Categoria cate = new Categoria();									
+									cate.setDescricao(cDescricao.getText());									
+									gfacade.insertCategoria(cate);									
+									DxCad.dispose();
+
+						};
+						
+						
+					};
+
+				});
+				panel.add(btnSend);
+				DxCad.add(panel);
+				DxCad.setVisible(true);
+
+		
 			}
 
 		});
@@ -175,38 +196,54 @@ public class CategoriaP extends JPanel {
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				ListSelectionModel lsm = CategoriaP.this.table.getSelectionModel();
-				int index = lsm.getLeadSelectionIndex();
-				
-				if (index == -1) {
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = table.getSelectedRow();
+				if (selectedRow == -1) {
 					JOptionPane.showMessageDialog(null, "Selecione um item antes de editar.");
-				} else {
-					Integer id = (Integer) CategoriaP.this.table.getValueAt(index, 0);
+				} else 			{
+					int id = Integer.parseInt(table.getModel().getValueAt(selectedRow, 0).toString());
+					final Categoria cat = gfacade.getById(id);					
+					if(cat!=null){
+						final JDialog cxDialog = new JDialog();						
+						cxDialog.setModal(true);
+						cxDialog.setTitle("Editar Categoria");
+						cxDialog.setResizable(false);
+						cxDialog.setBounds(0, 0, 460, 320);
+						cxDialog.setLocationRelativeTo(null);
+						JPanel panel = new JPanel();
+						final JTextArea NovaCat = new JTextArea(10,40);
+						NovaCat.setText(cat.getDescricao());
+						panel.add(new JLabel("Descricao"));
+					    	panel.add(NovaCat);
+						JButton btnSalvar = new JButton("Salvar");
+						btnSalvar.setBounds(6, 85, 89, 23);
+						btnSalvar.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								if(NovaCat.getText().length()==0){
+									JOptionPane.showMessageDialog(null, "O nome da Nova Categoria deve ser preenchido");
+								}
+								else{									
+									cat.setDescricao(NovaCat.getText());									
+									gfacade.updateCategoria(cat);
+									JOptionPane.showMessageDialog(null, "Alteracao Salva com Sucesso");
+									cxDialog.dispose();
+								}
+							}
+						});
+						
+						panel.add(btnSalvar);
+						cxDialog.add(panel);
+						cxDialog.setVisible(true);
 					
-					CategoriaEdit pe = new CategoriaEdit(id);
+					}
 					
-					final JDialog frame = new JDialog();
-					
-					pe.setDoneEvent(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							frame.dispose();
-						}
-					});
-					
-					frame.setModal(true);
-					frame.setResizable(false);
-					frame.setBounds(0, 0, 460, 320);
-					frame.getContentPane().add(pe);
-					frame.setVisible(true);
 				}
-				
 			}
+
 		});
 		btnEditar.setBounds(430, 85, 79, 23);
 		this.add(btnEditar);
-		
 		
 
 		

@@ -88,7 +88,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${Produto} == "T"
-		//panelTab.addTab("Ver Produto", new ProdutoView(gfacade));
+		panelTab.addTab("Ver Produto", new ProdutoView(gfacade,usuarioLogado));
 		//#endif
 		
 		//#if ${CarrinhoCheckout} == "T"

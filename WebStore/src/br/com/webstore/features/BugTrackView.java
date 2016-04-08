@@ -100,6 +100,7 @@ public class BugTrackView extends JPanel{
 				bugDialog.setTitle("Reportar bug");
 				bugDialog.setResizable(false);
 				bugDialog.setBounds(0, 0, 460, 320);
+				bugDialog.setLocationRelativeTo(null);
 				final JTextField bugTitle = new JTextField(40);
 				JPanel panel = new JPanel();
 				panel.add(new JLabel("Titulo:"));
@@ -289,6 +290,7 @@ public class BugTrackView extends JPanel{
 							bugDialog.setTitle("Responder bug");
 							bugDialog.setResizable(false);
 							bugDialog.setBounds(0, 0, 460, 320);
+							bugDialog.setLocationRelativeTo(null);
 							JPanel panel = new JPanel();
 							final JTextArea bugResposta = new JTextArea(10,40);
 							bugResposta.setText(bug.getDescricaoResposta());
@@ -365,6 +367,7 @@ public class BugTrackView extends JPanel{
 						bugDialog.setTitle("Detalhes do bug");
 						bugDialog.setResizable(false);
 						bugDialog.setBounds(0, 0, 460, 320);
+						bugDialog.setLocationRelativeTo(null);
 						JPanel panel = new JPanel();
 					
 						String s = "<html>Titulo: "+bug.getTitulo()+"<br>";

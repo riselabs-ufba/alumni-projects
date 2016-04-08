@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -53,7 +54,8 @@ public class UsuarioInclusaoEdicao extends JPanel
 	private JButton salvarBtn;
 	
 	private ActionListener doneEvent;
-
+	private String tmpLogin;
+	
 	public Usuario toModel() 
 	{
 		Usuario usuario = new Usuario();
@@ -65,7 +67,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 		
 		usuario.setNome(this.nomeFld.getText());
 		usuario.setEmail(this.emailFld.getText());
-		usuario.setSenha(this.senhaFld.getPassword().toString());		
+		usuario.setSenha(new String(this.senhaFld.getPassword()));		
 		usuario.setStatusUsuario(this.statusFld.getItemAt(this.statusFld.getSelectedIndex()));
 		usuario.setPerfil(this.perfilFld.getItemAt(this.perfilFld.getSelectedIndex()));
 		usuario.setDsLogin(this.loginFld.getText());
@@ -100,6 +102,16 @@ public class UsuarioInclusaoEdicao extends JPanel
 		
 		
 		
+		Usuario usr = new GenericFacade().getUsuarioByLogin(this.loginFld.getText());
+		
+		
+		if (usr!=null && !tmpLogin.equals(usr.getDsLogin())){
+			JOptionPane.showMessageDialog(null, "Login já cadastrado.");
+			return false;
+		}
+		
+		
+		
 		return true;
 	}
 	
@@ -120,6 +132,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.emailFld.setText(usuario.getEmail());
 		this.senhaFld.setText(usuario.getSenha());
 		this.loginFld.setText(usuario.getDsLogin());
+		tmpLogin=this.loginFld.getText();
 		
 		
 	        
@@ -127,8 +140,9 @@ public class UsuarioInclusaoEdicao extends JPanel
 	    
 	        if (usuario.getDataNascimento() != null)
 		        try{
-			        
-			        this.dtNascimentoFld.setText(usuario.getDataNascimento().toString());
+		        	 String pattern = "dd/MM/yyyy";
+		             DateFormat df = new SimpleDateFormat(pattern);
+			        this.dtNascimentoFld.setText(df.format(usuario.getDataNascimento()));
 		        }catch(Exception e){}
 			
 	        

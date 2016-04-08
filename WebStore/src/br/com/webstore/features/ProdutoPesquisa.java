@@ -21,6 +21,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.webstore.facade.GenericFacade;
+import br.com.webstore.model.Faq;
 import br.com.webstore.model.Produto;
 import br.com.webstore.model.Usuario;
 
@@ -79,8 +80,25 @@ public class ProdutoPesquisa extends JPanel {
 		
 		// this.table.setBounds(57, 165, 353, 99);
 		this.add(this.scrollPane);
-
-	
+		//listar inicialmente o produto 
+		List<Produto> lista = new GenericFacade().findProduto("");
+		DefaultTableModel modelListProduto = new DefaultTableModel(headers, lista.size());				
+		ProdutoPesquisa.this.table.setModel(modelListProduto);
+		int row = 0;
+		for (Produto produto : lista) {
+			ProdutoPesquisa.this.table.getModel().setValueAt(produto.getId(), row, 0);
+			ProdutoPesquisa.this.table.getModel().setValueAt(produto.getNumero(), row, 1);
+			ProdutoPesquisa.this.table.getModel().setValueAt(produto.getDescricao(), row, 2);
+			String valor = NumberFormat.getCurrencyInstance().format(produto.getValor());
+			ProdutoPesquisa.this.table.getModel().setValueAt(valor, row, 3);
+			row++;
+		}
+		ProdutoPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
+		ProdutoPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(60);
+		ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
+		ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
+		
+	// fim do listar inicial 
 
 		JButton btnCadastrp = new JButton("Pesquisar");
 		btnCadastrp.addActionListener(new ActionListener() {

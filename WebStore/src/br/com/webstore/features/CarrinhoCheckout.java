@@ -13,10 +13,18 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
+import br.com.webstore.dao.CarrinhoDao;
+import br.com.webstore.dao.ProdutoDao;
 import br.com.webstore.facade.GenericFacade;
+import br.com.webstore.model.StatusVenda;
+import br.com.webstore.model.Usuario;
+import br.com.webstore.model.Venda;
 
 import java.sql.*;
+import java.util.List;
+
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 public class CarrinhoCheckout extends JPanel {
 
@@ -31,58 +39,16 @@ public class CarrinhoCheckout extends JPanel {
 	 * Create the panel.
 	 */
 	Connection connection = null;
-	public CarrinhoCheckout(final GenericFacade gfacade) {/*
-		connection=sqliteConnection.dbconnector();
+	private JTable table;
+	public CarrinhoCheckout(final GenericFacade gfacade, final Usuario usuario) {
 		setLayout(null);
-		
-		JButton btnConfirmar = new JButton("Confirmar");
-		btnConfirmar.setBounds(185, 266, 79, 23);
-		btnConfirmar.setVerticalAlignment(SwingConstants.BOTTOM);
-		add(btnConfirmar);
-		
-		JLabel lblCarrinho = new JLabel("Carrinho");
-		lblCarrinho.setFont(new Font("Tahoma", Font.PLAIN, 45));
-		lblCarrinho.setBounds(134, -19, 175, 95);
-		add(lblCarrinho);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(25, 232, 403, 23);
-		add(separator);
-		
-		JLabel lblSaldo = new JLabel("Saldo:");
-		lblSaldo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblSaldo.setBounds(126, 207, 46, 14);
-		add(lblSaldo);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(54, 58, 323, 146);
-		add(scrollPane);
+		//List<Venda> venda = gfacade.findVendaByUser(usuario,  gfacade.findStatusVendabyName("Carrinho"));
 		
 		table = new JTable();
-		scrollPane.setViewportView(table);
-		
-		
-		try {
-			String query ="select  dsProduto,vlProduto from produto";
-			PreparedStatement pst=connection.prepareStatement(query);
-			ResultSet rs=pst.executeQuery();
-			table.setModel(DbUtils.resultSetToTableModel(rs));
-		}
-		catch (Exception e){
-			e.printStackTrace();
-			
-		}
-			
-			
-			
-		}
-		
-		JTextArea textArea = new JTextArea();
-		private JTable table;
-		textArea.setText("_____");
-		textArea.setBounds(185, 199, 73, 22);
-		add(textArea);
-*/
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//table.setModel(new CarrinhoDao(null).getCarrinho(venda.get(0)));
+		table.setBounds(22, 24, 361, 76);
+		add(table);
 	}
 }
 //#endif

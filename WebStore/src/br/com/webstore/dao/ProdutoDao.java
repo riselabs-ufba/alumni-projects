@@ -18,32 +18,34 @@ public class ProdutoDao extends GenericDao<Produto, Integer> {
 	}
 
 	public List<Produto> findByNome(String nome) {
-	entityManager.clear();
+		entityManager.clear();
 		TypedQuery<Produto> query = this.entityManager.createQuery("from Produto p where p.descricao like :descricao", Produto.class);
 		query.setParameter("descricao", nome + "%");
 		return query.getResultList();
 	}
 	
 	public DefaultTableModel getProdutos(){
-		
-		TypedQuery<Produto> query = this.entityManager.createQuery("from Produto p", Produto.class);
-		List<Produto> prod = query.getResultList();
-				
+		//TypedQuery<Produto> query = this.entityManager.createQuery("from Produto", Produto.class);
+		//List<Produto> prod = query.getResultList();
+			
 		DefaultTableModel tableM = new DefaultTableModel();
 		
 		tableM.addColumn("Produto");
 		tableM.addColumn("Categoria");
 		tableM.addColumn("Valor R$");
 		
-		if(!prod.isEmpty()){
-			for(int i=0;i<prod.size();i++){
+		//if(!prod.isEmpty()){
+			/*for(int i=0;i<prod.size();i++){
 				Object [] obj1 = {prod.get(i).getDescricao().toString(), prod.get(i).getCategoria().toString(), prod.get(i).getValor().toString()};
 				tableM.addRow(obj1);
+			}*/
+			for(int i=0;i<5;i++){
+				Object [] obj1 = {"Produto "+i, "Categoria "+i, "10"+1};
+				tableM.addRow(obj1);
 			}
-		}
-
+			
+		//}
 		return tableM;
-		
 	}
 }
 //#endif

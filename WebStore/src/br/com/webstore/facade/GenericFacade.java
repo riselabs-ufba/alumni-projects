@@ -400,6 +400,11 @@ public class GenericFacade {
 		
 			return formaPagamentDataProvider.getList();
 		}
+		
+		public FormaPagamento findFormaPagamentoByNome(String nome){
+			return formaPagamentDataProvider.findByNome(nome);
+		}
+		
 		//#endif
 		
 	
@@ -530,6 +535,10 @@ public class GenericFacade {
 		public List<StatusVenda> findStatusVenda(StatusVenda query) {
 			return statusVendaDataProvider.getList();
 		}
+		
+		public StatusVenda findStatusVendabyName(String nome){
+			return statusVendaDataProvider.findByName(nome);
+		}
 		//#endif
 		
 		//#if ${TipoMensagem} == "T"
@@ -635,6 +644,10 @@ public class GenericFacade {
 
 		public List<Venda> findCategoria(Venda venda) {
 			return vendaDao.getList();
+		}
+		
+		public List<Venda> findVendaByUser(Usuario usuario, StatusVenda statusvenda){
+			return vendaDao.getVendaByUser(usuario, statusvenda);
 		}
 		//#endif
 		

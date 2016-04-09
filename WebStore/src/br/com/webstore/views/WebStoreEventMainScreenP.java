@@ -29,7 +29,7 @@ import br.com.webstore.features.CarrinhoCheckout;
 import br.com.webstore.features.CategoriaP;
 //#endif
 //#if ${FAQ} == "T"
-import br.com.webstore.features.FAQ;
+//import br.com.webstore.features.FAQ;
 import br.com.webstore.features.FaqListar;
 import br.com.webstore.features.FaqPesquisa;
 //#endif
@@ -39,7 +39,7 @@ import br.com.webstore.features.FaleConoscoView;
 //#endif
 
 //#if ${Usuario} == "T"
-import br.com.webstore.features.UsuarioInclusaoEdicao;
+//import br.com.webstore.features.UsuarioInclusaoEdicao;
 import br.com.webstore.features.UsuarioPesquisa;
 //#endif
 
@@ -88,11 +88,11 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${Produto} == "T"
-		panelTab.addTab("Ver Produto", new ProdutoView(gfacade,usuarioLogado));
+		panelTab.addTab("Ver Produto", new ProdutoView(gfacade, usuarioLogado));
 		//#endif
 		
 		//#if ${CarrinhoCheckout} == "T"
-		panelTab.addTab(CarrinhoCheckout.NAME, new CarrinhoCheckout(gfacade));
+		panelTab.addTab(CarrinhoCheckout.NAME, new CarrinhoCheckout(gfacade, usuarioLogado));
 		//#endif
 		
 		//#if ${Produto} == "T"

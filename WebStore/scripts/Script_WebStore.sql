@@ -192,3 +192,19 @@ INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (3
 
 insert into statususuario(idStatusUsuario, dsStatusUsuario) value(1,'Ativo')	
 insert into statususuario(idStatusUsuario, dsStatusUsuario) value(2,'Inativo')
+
+insert into webstoredb.statusvenda (dsStatusVenda) values ("Carrinho");
+insert into webstoredb.statusvenda (dsStatusVenda) values ("Finalizada");
+insert into webstoredb.statusvenda (dsStatusVenda) values ("Confirmando Pagamento");
+insert into webstoredb.statusvenda (dsStatusVenda) values ("Pagamento Realizado");
+insert into webstoredb.statusvenda (dsStatusVenda) values ("Enviado para depósito");
+insert into webstoredb.statusvenda (dsStatusVenda) values ("Enviado para transportadora");
+insert into webstoredb.statusvenda (dsStatusVenda) values ("Em trânsito para destino");
+insert into webstoredb.statusvenda (dsStatusVenda) values ("Entregue");
+
+insert into webstoredb.formapagamento (dsFormaPagamento) values ("Boleto Bancário");
+insert into webstoredb.formapagamento (dsFormaPagamento) values ("Depósito Bancário");
+insert into webstoredb.formapagamento (dsFormaPagamento) values ("Cartão Master Card");
+insert into webstoredb.formapagamento (dsFormaPagamento) values ("Cartão Visa");
+insert into webstoredb.formapagamento (dsFormaPagamento) values ("Cartão Dinners");
+insert into webstoredb.formapagamento (dsFormaPagamento) values ("Cartão Amex");

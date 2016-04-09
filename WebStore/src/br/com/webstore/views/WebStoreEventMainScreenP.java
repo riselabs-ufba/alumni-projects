@@ -47,6 +47,7 @@ import br.com.webstore.model.Usuario;
 //#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
 import br.com.webstore.features.ProdutoView;
+import br.com.webstore.features.UsuarioComumEdicao;
 //#endif
 
 /**
@@ -77,6 +78,9 @@ public class WebStoreEventMainScreenP extends JPanel {
 		if (usuarioLogado!=null && usuarioLogado.getPerfil().getDescricao().equals("Admin"))
 			panelTab.addTab(UsuarioPesquisa.NAME, new UsuarioPesquisa(gfacade));
 		//#endif
+		
+		if (usuarioLogado != null && !usuarioLogado.getPerfil().getDescricao().equals("Admin"))
+			panelTab.addTab(UsuarioComumEdicao.NAME, new UsuarioComumEdicao(usuarioLogado.getId()));
 		
 		//#if ${Categoria} == "T"
 		if (usuarioLogado!=null && usuarioLogado.getPerfil().getDescricao().equals("Admin"))

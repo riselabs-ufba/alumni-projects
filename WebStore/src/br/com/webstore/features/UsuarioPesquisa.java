@@ -44,8 +44,6 @@ public class UsuarioPesquisa extends JPanel
 	// private static JTable tableList;
 
 	private JTable table;
-
-	
 	
 	public UsuarioPesquisa(final GenericFacade gfacade)
 	{
@@ -81,12 +79,9 @@ public class UsuarioPesquisa extends JPanel
 		JButton btnPesquisa = new JButton("Pesquisar");
 		btnPesquisa.addActionListener(new ActionListener() 
 		{
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-							
-				
 				List<Usuario> lista = new GenericFacade().findUsuario(UsuarioPesquisa.this.textField.getText()) ;
 				DefaultTableModel model = new DefaultTableModel(headers, lista.size());
 				UsuarioPesquisa.this.table.setModel(model);
@@ -98,14 +93,11 @@ public class UsuarioPesquisa extends JPanel
 					UsuarioPesquisa.this.table.getModel().setValueAt(usuario.getDsLogin(), row, 1);
 					UsuarioPesquisa.this.table.getModel().setValueAt(usuario.getNome(), row, 2);
 					
-					
-					
 					row++;
 				}
 				UsuarioPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
 				UsuarioPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(135);
-				UsuarioPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(300);
-			
+				UsuarioPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(300);	
 			}
 		});
 		btnPesquisa.setBounds(312, 84, 96, 23);
@@ -114,7 +106,6 @@ public class UsuarioPesquisa extends JPanel
 		this.scrollPane.setViewportView(this.table);
 		this.add(this.scrollPane);
 
-		
 		JButton btnCadastrar = new JButton("Cadastro");
 		btnCadastrar.setBounds(80, 84, 89, 23);
 		btnCadastrar.addActionListener(new ActionListener() 
@@ -132,14 +123,11 @@ public class UsuarioPesquisa extends JPanel
 					public void actionPerformed(ActionEvent e) 
 					{
 						frame.dispose();
-						
-						
+												
 						List<Usuario> lista = new GenericFacade().findUsuario(UsuarioPesquisa.this.textField.getText());
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 						UsuarioPesquisa.this.table.setModel(model);
-						
-						
 
 						int row = 0;
 						for (Usuario usr : lista) 
@@ -147,14 +135,12 @@ public class UsuarioPesquisa extends JPanel
 							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getId(), row, 0);
 							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getDsLogin(),row,1);
 							UsuarioPesquisa.this.table.getModel().setValueAt(usr.getNome(), row, 2);
-									
 							
 							row++;
 						}
 						UsuarioPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
 						UsuarioPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(135);
 						UsuarioPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(300);
-					
 					}
 				});
 				frame.setModal(true);
@@ -200,34 +186,27 @@ public class UsuarioPesquisa extends JPanel
 							
 							DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
 							UsuarioPesquisa.this.table.setModel(model);
-							
-							
 
 							int row = 0;
-							for (Usuario usuario : lista) {
+							for (Usuario usuario : lista) 
+							{
 								UsuarioPesquisa.this.table.getModel().setValueAt(usuario.getId(), row, 0);
 								UsuarioPesquisa.this.table.getModel().setValueAt(usuario.getDsLogin(), row, 1);
-								UsuarioPesquisa.this.table.getModel().setValueAt(usuario.getNome(), row, 2);
-								
-								
+								UsuarioPesquisa.this.table.getModel().setValueAt(usuario.getNome(), row, 2);								
 								
 								row++;
 							}
 							UsuarioPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
 							UsuarioPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(135);
 							UsuarioPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(300);
-						
-							
 						}
 					});
-					
 					frame.setModal(true);
 					frame.setResizable(false);
 					frame.setBounds(400, 200, 480, 480);
 					frame.getContentPane().add(uie);
 					frame.setVisible(true);
 				}
-				
 			}
 		});
 		btnEditar.setBounds(430, 85, 79, 23);
@@ -236,7 +215,6 @@ public class UsuarioPesquisa extends JPanel
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() 
 		{
-			
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -257,9 +235,7 @@ public class UsuarioPesquisa extends JPanel
 						List<Usuario> lista = new GenericFacade().findUsuario(UsuarioPesquisa.this.textField.getText());
 						
 						DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
-						UsuarioPesquisa.this.table.setModel(model);
-						
-						
+						UsuarioPesquisa.this.table.setModel(model);				
 
 						int row = 0;
 						for (Usuario usr : lista) 
@@ -273,9 +249,7 @@ public class UsuarioPesquisa extends JPanel
 						UsuarioPesquisa.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
 						UsuarioPesquisa.this.table.getColumnModel().getColumn(1).setPreferredWidth(135);
 						UsuarioPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(300);
-					
 					}
-
 				}
 			}
 		});

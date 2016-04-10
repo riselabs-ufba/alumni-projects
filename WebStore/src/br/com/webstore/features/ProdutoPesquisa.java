@@ -98,6 +98,50 @@ public class ProdutoPesquisa extends JPanel {
 		ProdutoPesquisa.this.table.getColumnModel().getColumn(2).setPreferredWidth(290);
 		ProdutoPesquisa.this.table.getColumnModel().getColumn(3).setPreferredWidth(130);
 		
+		//INICIO BOTAO DETALHES DO PRODUTO
+		
+		
+		JButton btnDetalhes = new JButton("Detalhes");
+		btnDetalhes .addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ListSelectionModel lsm = ProdutoPesquisa.this.table.getSelectionModel();
+				int index = lsm.getLeadSelectionIndex();
+				
+				if (index == -1) {
+					JOptionPane.showMessageDialog(null, "É necessário selecionar um item.");
+				} else {
+					Integer id = (Integer) ProdutoPesquisa.this.table.getValueAt(index, 0);
+					
+					ProdutoDetalhes pd = new ProdutoDetalhes(id, usuarioLogado, gfacade);
+					
+					final JDialog frame = new JDialog();
+					
+					frame.setModal(true);
+					frame.setResizable(false);
+					frame.setBounds(500, 300, 460, 200);
+					frame.getContentPane().add(pd);
+					frame.setVisible(true);
+				}
+				
+			}
+		});
+		btnDetalhes .setBounds(440, 273, 90, 23);
+		this.add(btnDetalhes );
+		
+		
+		//FIM DETALHAR PRODUTO
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	// fim do listar inicial 
 
 		JButton btnCadastrp = new JButton("Pesquisar");

@@ -1,0 +1,30 @@
+/**
+ * 
+ */
+package br.com.webstore.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
+import br.com.webstore.features.CarrinhoCheckout;
+import br.com.webstore.model.Faq;
+
+/**
+ * @author webstore
+ *
+ */
+public class CarrinhoDao extends GenericDao<CarrinhoCheckout, Integer>{
+	public CarrinhoDao(EntityManager entityManager){
+		super(entityManager, CarrinhoCheckout.class);
+	}
+	
+	public List<CarrinhoCheckout> findByNome(String nome) {
+		/*TypedQuery<Faq> query = this.entityManager.createQuery("from Venda  v where v.descricao like :descricao", Faq.class);
+		query.setParameter("descricao", nome + "%");
+		return query.getResultList();*/
+		return null;
+	}
+
+}

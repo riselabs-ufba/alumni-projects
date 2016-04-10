@@ -3,6 +3,7 @@ package br.com.webstore.views;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import br.com.webstore.facade.GenericFacade;
 //#if ${BugTrack} == "T"
@@ -49,6 +51,7 @@ import br.com.webstore.features.ProdutoPesquisa;
 import br.com.webstore.features.ProdutoView;
 import br.com.webstore.features.UsuarioComumEdicao;
 //#endif
+import br.com.webstore.features.UsuarioInclusaoEdicao;
 
 /**
  * @author webstore
@@ -207,7 +210,36 @@ public class WebStoreEventMainScreenP extends JPanel {
 			}
 		});
 		
+		JButton btnCadastrar = new JButton("Cadastrar-se");
+		
+		btnCadastrar.setBounds(6, 108, 89, 23);
+		btnCadastrar.addActionListener(new java.awt.event.ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				UsuarioComumEdicao uie = new UsuarioComumEdicao();
+				
+				final JDialog frame = new JDialog();
+				
+				uie.setDoneEvent(new ActionListener() 
+				{
+					@Override
+					public void actionPerformed(ActionEvent e) 
+					{
+						frame.dispose();
+					}
+				});
+				frame.setModal(true);
+				frame.setResizable(false);
+				frame.setBounds(400, 200, 480, 480);
+				frame.getContentPane().add(uie);
+				frame.setVisible(true);
+			}
+		});
+		
 		panel.add(btnLogar);
+		panel.add(btnCadastrar);
 		dlgLogin.getContentPane().add(panel);
 		dlgLogin.setVisible(true);
 	}

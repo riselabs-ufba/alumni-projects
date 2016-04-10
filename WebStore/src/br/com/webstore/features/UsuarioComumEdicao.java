@@ -72,7 +72,7 @@ public class UsuarioComumEdicao extends JPanel
 		
 		if (this.editMode) 
 		{
-			usuario.setId(this.Id);
+			usuario = new GenericFacade().getUsuarioById(this.Id);
 		}
 		else
 		{
@@ -316,6 +316,7 @@ public class UsuarioComumEdicao extends JPanel
 		Usuario usuario = new GenericFacade().getUsuarioById(this.Id);
 		
 		this.loginFld.setEnabled(false);
+		this.loginFld.setText(usuario.getDsLogin());
 		this.nomeFld.setText(usuario.getNome());
 		this.emailFld.setText(usuario.getEmail());
 		this.senhaFld.setText(usuario.getSenha());

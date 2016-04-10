@@ -68,6 +68,7 @@ public class CategoriaP extends JPanel {
 		this.table = new JTable();
 		this.scrollPane.setViewportView(this.table);
 		this.add(this.scrollPane);
+		listagemcategoria(CategoriaP.this.textField.getText());
 		
 		JButton btnCadastrp = new JButton("Pesquisar");
 		btnCadastrp.addActionListener(new ActionListener() {
@@ -76,7 +77,6 @@ public class CategoriaP extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				listagemcategoria(CategoriaP.this.textField.getText());
 				}				
-			}
 		});
 
 			

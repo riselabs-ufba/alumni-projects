@@ -42,7 +42,7 @@ import br.com.webstore.features.FaleConoscoView;
 //import br.com.webstore.features.UsuarioInclusaoEdicao;
 import br.com.webstore.features.UsuarioPesquisa;
 //#endif
-
+import br.com.webstore.model.Carrinho;
 import br.com.webstore.model.Usuario;
 //#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
@@ -66,9 +66,18 @@ public class WebStoreEventMainScreenP extends JPanel {
 	private static final int HEIGHT_SCREEN = 400;
 	
 	static List<Usuario> user = null;
-	
+	//public int posTab = 0;
 	JFrame mainFrame = new JFrame(APPLICATION_NAME);
-
+	private static WebStoreEventMainScreenP instance;
+	
+	public static WebStoreEventMainScreenP getInstance(GenericFacade gfacade, Usuario usuarioLogado){
+		if(instance == null)
+			instance = new WebStoreEventMainScreenP(gfacade, usuarioLogado);
+		
+		return instance;
+	}
+	
+	
 	
 	public WebStoreEventMainScreenP(GenericFacade gfacade, Usuario usuarioLogado) {
 		JTabbedPane panelTab = new JTabbedPane();
@@ -92,7 +101,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		//#endif
 		
 		//#if ${CarrinhoCheckout} == "T"
-		panelTab.addTab(CarrinhoCheckout.NAME, new CarrinhoCheckout(gfacade, usuarioLogado));
+		panelTab.addTab(CarrinhoCheckout.NAME, CarrinhoCheckout.getInstance(gfacade, usuarioLogado));
 		//#endif
 		
 		//#if ${Produto} == "T"
@@ -125,6 +134,8 @@ public class WebStoreEventMainScreenP extends JPanel {
 		
 		//Setter tabs in the main panel
 		add(panelTab);
+		
+		//panelTab.setSelectedIndex(posTab);
 	}
 	
 	/**

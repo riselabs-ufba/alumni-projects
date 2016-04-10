@@ -186,25 +186,25 @@ INSERT INTO webstoreDB.SituacaoBug (`idSituacaoBug`, `dsSituacaoBug`) VALUES
 (2, 'Em andamento'),
 (3, 'Fechado');
 
-INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (1,'KG');
-INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (2,'UN');
-INSERT INTO webstoreDB.unidademedida (idUnidadeMedida,dsUnidadeMedida) VALUES (3,'CX');
+INSERT INTO webstoreDB.UnidadeMedida (idUnidadeMedida,dsUnidadeMedida) VALUES (1,'KG');
+INSERT INTO webstoreDB.UnidadeMedida (idUnidadeMedida,dsUnidadeMedida) VALUES (2,'UN');
+INSERT INTO webstoreDB.UnidadeMedida (idUnidadeMedida,dsUnidadeMedida) VALUES (3,'CX');
 
-insert into statususuario(idStatusUsuario, dsStatusUsuario) value(1,'Ativo')	
-insert into statususuario(idStatusUsuario, dsStatusUsuario) value(2,'Inativo')
+Insert into StatusUsuario(idStatusUsuario, dsStatusUsuario) value(1,'Ativo');	
+insert into StatusUsuario(idStatusUsuario, dsStatusUsuario) value(2,'Inativo');
 
-insert into webstoredb.statusvenda (dsStatusVenda) values ("Carrinho");
-insert into webstoredb.statusvenda (dsStatusVenda) values ("Finalizada");
-insert into webstoredb.statusvenda (dsStatusVenda) values ("Confirmando Pagamento");
-insert into webstoredb.statusvenda (dsStatusVenda) values ("Pagamento Realizado");
-insert into webstoredb.statusvenda (dsStatusVenda) values ("Enviado para depósito");
-insert into webstoredb.statusvenda (dsStatusVenda) values ("Enviado para transportadora");
-insert into webstoredb.statusvenda (dsStatusVenda) values ("Em trânsito para destino");
-insert into webstoredb.statusvenda (dsStatusVenda) values ("Entregue");
+insert into webstoreDB.StatusVenda (dsStatusVenda) values ("Carrinho");
+insert into webstoreDB.StatusVenda (dsStatusVenda) values ("Finalizada");
+insert into webstoreDB.StatusVenda (dsStatusVenda) values ("Confirmando Pagamento");
+insert into webstoreDB.StatusVenda (dsStatusVenda) values ("Pagamento Realizado");
+insert into webstoreDB.StatusVenda (dsStatusVenda) values ("Enviado para depósito");
+insert into webstoreDB.StatusVenda (dsStatusVenda) values ("Enviado para transportadora");
+insert into webstoreDB.StatusVenda (dsStatusVenda) values ("Em trânsito para destino");
+insert into webstoreDB.StatusVenda (dsStatusVenda) values ("Entregue");
 
-insert into webstoredb.formapagamento (dsFormaPagamento) values ("Boleto Bancário");
-insert into webstoredb.formapagamento (dsFormaPagamento) values ("Depósito Bancário");
-insert into webstoredb.formapagamento (dsFormaPagamento) values ("Cartão Master Card");
-insert into webstoredb.formapagamento (dsFormaPagamento) values ("Cartão Visa");
-insert into webstoredb.formapagamento (dsFormaPagamento) values ("Cartão Dinners");
-insert into webstoredb.formapagamento (dsFormaPagamento) values ("Cartão Amex");
+insert into webstoredb.FormaPagamento (dsFormaPagamento) values ("Boleto Bancário");
+insert into webstoredb.FormaPagamento (dsFormaPagamento) values ("Depósito Bancário");
+insert into webstoredb.FormaPagamento (dsFormaPagamento) values ("Cartão Master Card");
+insert into webstoredb.FormaPagamento (dsFormaPagamento) values ("Cartão Visa");
+insert into webstoredb.FormaPagamento (dsFormaPagamento) values ("Cartão Dinners");
+insert into webstoredb.FormaPagamento (dsFormaPagamento) values ("Cartão Amex");

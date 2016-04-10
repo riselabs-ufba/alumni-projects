@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
+import java.math.BigDecimal;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -38,6 +39,8 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.List;
 import java.util.Vector;
 
@@ -58,6 +61,8 @@ public class CarrinhoCheckout extends JPanel {
 	 */
 	Connection connection = null;
 	private JTable table;
+	private JLabel lblValor;
+	private JScrollPane scrollPane;
 	
 	private Usuario user;
 	private GenericFacade facade;
@@ -104,19 +109,36 @@ public class CarrinhoCheckout extends JPanel {
 		headers.addElement(new String("Codigo"));
 		headers.addElement(new String("Descrição"));
 		headers.addElement(new String("Quantidade"));
+		headers.addElement(new String("Valor"));
 
 		table = new JTable();
+		JLabel lblTituloValor = new JLabel("Valor Total");
+		lblValor = new JLabel("0");
+		this.scrollPane = new JScrollPane();
+		
+		this.scrollPane.setBounds(0, 0, 480, 99);
+		
+		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		DefaultTableModel modelCarrinho = new DefaultTableModel(headers, carrinho.getMapCarrinho().size());				
+		
+		
+		final DefaultTableModel modelCarrinho = new DefaultTableModel(headers, carrinho.getMapCarrinho().size());				
 		CarrinhoCheckout.this.table.setModel(modelCarrinho);
 		int row = 0;
+		BigDecimal valorTotal = BigDecimal.ZERO;
+		BigDecimal valorPorProduto = BigDecimal.ZERO;
 		for (Map.Entry<Produto, Integer> hashProduto : carrinho.getMapCarrinho().entrySet()) {
 			CarrinhoCheckout.this.table.getModel().setValueAt(hashProduto.getKey().getId().toString(), row, 0);
 			CarrinhoCheckout.this.table.getModel().setValueAt(hashProduto.getKey().getDescricao(), row, 1);
-			CarrinhoCheckout.this.table.getModel().setValueAt(hashProduto.getValue(), row, 2);
+			CarrinhoCheckout.this.table.getModel().setValueAt(hashProduto.getValue(), row, 2);		
+			valorPorProduto = calculoDoValorQuantidade(hashProduto);
+			CarrinhoCheckout.this.table.getModel().setValueAt(valorPorProduto, row, 3);
+			
+			valorTotal = valorTotal.add(valorPorProduto);
 			row++;
 		}		
 		
+		lblValor.setText(valorTotal.toString());
 		//table.setModel(new CarrinhoDao(null).getCarrinho(venda.get(0)));
 		javax.swing.Action action = new AbstractAction()
 		{
@@ -147,33 +169,56 @@ public class CarrinhoCheckout extends JPanel {
 		
 		add(table);
 		
-		/*JButton btnDetalhes = new JButton("Excluir");
+		JButton btnDetalhes = new JButton("Excluir");
 		btnDetalhes .addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ListSelectionModel lsm = CarrinhoCheckout.this.table.getSelectionModel();
-				int index = lsm.getLeadSelectionIndex();
-				
+				//ListSelectionModel lsm = CarrinhoCheckout.this.table.getSelectionModel();
+				int index = CarrinhoCheckout.this.table.getSelectedRow();
+				index = CarrinhoCheckout.this.table.convertRowIndexToModel(index);
 				if (index == -1) {
 					JOptionPane.showMessageDialog(null, "É necessário selecionar um item.");
 				} else {
-					Integer id = (Integer) CarrinhoCheckout.this.table.getValueAt(index, 0);
+					//remover da tabela
+					//CarrinhoCheckout.this.table.getRowCount();
+					//CarrinhoCheckout.this.table.remove(index);
+					Integer id = Integer.parseInt(CarrinhoCheckout.this.table.getValueAt(index, 0).toString());
+					modelCarrinho.removeRow(index);
+					CarrinhoCheckout.this.table.updateUI();
 					
-					//ProdutoDetalhes pd = new ProdutoDetalhes(id, usuarioLogado, gfacade);
-					
-					final JDialog frame = new JDialog();
-					
-					frame.setModal(true);
-					frame.setResizable(false);
-					frame.setBounds(500, 300, 460, 200);
-				//	frame.getContentPane().add(pd);
-					frame.setVisible(true);
+					//remover do HashMap 
+					Set<Entry<Produto, Integer>> aux = carrinho.getMapCarrinho().entrySet();
+					for (Map.Entry<Produto, Integer> hashProduto : aux) {
+						if(hashProduto.getKey().getId() == id){
+						    carrinho.getMapCarrinho().remove(hashProduto.getKey());
+						}						
+					}
+					//tenho que atualizar a tabela
 				}
 				
 			}
 		});
+		
+		this.scrollPane.setViewportView(this.table);
+		this.add(this.scrollPane);
 		btnDetalhes .setBounds(440, 273, 90, 23);
-		this.add(btnDetalhes );*/
+		lblTituloValor.setBounds(270, 200, 100, 30);
+		lblValor.setBounds(400, 200, 50, 30);
+		this.add(btnDetalhes );
+		this.add(lblTituloValor);
+		this.add(lblValor);
+	}
+
+
+	/**
+	 * @param hashProduto
+	 * @return
+	 */
+	private BigDecimal calculoDoValorQuantidade(Entry<Produto, Integer> hashProduto) {
+		BigDecimal valorProduto = hashProduto.getKey().getValor();
+		BigDecimal quantidade = new BigDecimal(hashProduto.getValue());
+		BigDecimal valorTotal = valorProduto.multiply(quantidade);
+		return valorTotal;
 	}
 }
 //#endif

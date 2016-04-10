@@ -5,12 +5,15 @@ import java.awt.Color;
 import java.awt.Desktop.Action;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -19,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 
+import org.jdesktop.swingx.plaf.basic.CalendarRenderingHandler;
 
 import br.com.webstore.dao.CarrinhoDao;
 import br.com.webstore.dao.ProdutoDao;
@@ -32,6 +36,7 @@ import br.com.webstore.views.WebStoreEventMainScreenP;
 
 import java.sql.*;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.List;
 import java.util.Vector;
@@ -118,21 +123,19 @@ public class CarrinhoCheckout extends JPanel {
 		    public void actionPerformed(ActionEvent e)
 		    {
 		        TableCellListener tcl = (TableCellListener)e.getSource();
-		       // Parei aqui 
+		        int id = Integer.parseInt(tcl.getTable().getValueAt(tcl.getRow(), 0).toString());
 		        
-		       /*for (Map.Entry<Produto, Integer> hashProduto : carrinho.getMapCarrinho().entrySet()) {
-					if(hashProduto.getKey().getId() == produto.getId()){
-					    carrinho.getMapCarrinho().put(hashProduto.getKey(), hashProduto.getValue() + 1);
+		       for (Map.Entry<Produto, Integer> hashProduto : carrinho.getMapCarrinho().entrySet()) {
+					if(hashProduto.getKey().getId() == id){
+					    carrinho.getMapCarrinho().put(hashProduto.getKey(), Integer.parseInt(tcl.getNewValue().toString()));
 					}
 					
-				}*/
-		        
-		        Object test = tcl.getTable().getValueAt(tcl.getRow(), 0);
-		        
-		        System.out.println("Row   : " + tcl.getRow());
+				}
+       
+/*		        System.out.println("Row   : " + tcl.getRow());
 		        System.out.println("Column: " + tcl.getColumn());
 		        System.out.println("Old   : " + tcl.getOldValue());
-		        System.out.println("New   : " + tcl.getNewValue());
+		        System.out.println("New   : " + tcl.getNewValue());*/
 		    }
 		};
 
@@ -140,8 +143,37 @@ public class CarrinhoCheckout extends JPanel {
 		
 		
 		table.setBounds(22, 24, 361, 76);	
+		table.setModel(modelCarrinho);
 		
 		add(table);
+		
+		/*JButton btnDetalhes = new JButton("Excluir");
+		btnDetalhes .addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ListSelectionModel lsm = CarrinhoCheckout.this.table.getSelectionModel();
+				int index = lsm.getLeadSelectionIndex();
+				
+				if (index == -1) {
+					JOptionPane.showMessageDialog(null, "É necessário selecionar um item.");
+				} else {
+					Integer id = (Integer) CarrinhoCheckout.this.table.getValueAt(index, 0);
+					
+					//ProdutoDetalhes pd = new ProdutoDetalhes(id, usuarioLogado, gfacade);
+					
+					final JDialog frame = new JDialog();
+					
+					frame.setModal(true);
+					frame.setResizable(false);
+					frame.setBounds(500, 300, 460, 200);
+				//	frame.getContentPane().add(pd);
+					frame.setVisible(true);
+				}
+				
+			}
+		});
+		btnDetalhes .setBounds(440, 273, 90, 23);
+		this.add(btnDetalhes );*/
 	}
 }
 //#endif

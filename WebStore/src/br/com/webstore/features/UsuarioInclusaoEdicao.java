@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -166,7 +165,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 	
 	public void EnviarEmail(Usuario usuario)
 	{
-		String message = "Parabens voce foi cadastrado realizando com sucesso.";
+		String message = "Parabens! \n\n  Seu cadastrado foi realizado com sucesso.";
 		 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -304,6 +303,14 @@ public class UsuarioInclusaoEdicao extends JPanel
 		DtNascimentoLbl.setBounds(7, 286, 150, 15);
 		DtNascimentoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(DtNascimentoLbl);
+		try
+		{
+		    javax.swing.text.MaskFormatter dataNascimento = new MaskFormatter("##/##/####");
+		    this.dtNascimentoFld = new JFormattedTextField(dataNascimento);
+		}
+		catch(Exception e)
+		{
+		};		
 		this.dtNascimentoFld = new JFormattedTextField();
 		this.dtNascimentoFld.setBounds(7, 299, 100, 25);
 		this.dtNascimentoFld.setToolTipText("Informe a data de nascimento.");

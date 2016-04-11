@@ -69,7 +69,11 @@ public class UsuarioInclusaoEdicao extends JPanel
 		
 		if (this.editMode) 
 		{
-			usuario.setId(this.Id);
+			usuario = new GenericFacade().getUsuarioById(this.Id);
+		}
+		else 
+		{
+			usuario.setDataInclusao(new Date());
 		}
 		
 		usuario.setNome(this.nomeFld.getText());
@@ -78,7 +82,6 @@ public class UsuarioInclusaoEdicao extends JPanel
 		usuario.setStatusUsuario(this.statusFld.getItemAt(this.statusFld.getSelectedIndex()));
 		usuario.setPerfil(this.perfilFld.getItemAt(this.perfilFld.getSelectedIndex()));
 		usuario.setDsLogin(this.loginFld.getText());
-		usuario.setDataInclusao(new Date());
 		usuario.setTelefone(this.telefoneFld.getText());
 		
         String pattern = "dd/MM/yyyy";

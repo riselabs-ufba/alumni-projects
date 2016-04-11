@@ -31,10 +31,10 @@ public class CategoriaP extends JPanel {
 	private static final long serialVersionUID = -5464321145565350625L;
 
 	public static final String NAME = "Categoria";
-	public JTable table;
+	private JTable table;
 	private JTextField textField;
 	private JScrollPane scrollPane;
-	//private static JTable tableList;
+	
 
 
 	/**
@@ -64,48 +64,21 @@ public class CategoriaP extends JPanel {
 		scrollPane.setToolTipText("");
 		scrollPane.setBounds(57, 165, 353, 99);
 		add(scrollPane);
-
-		final Vector<String> headers = new Vector<String>(3);
-		headers.addElement(new String("Id"));
-		headers.addElement(new String("Nome"));
-		//headers.addElement(new String("Valor"));
-
 		
-		table = new JTable();
-		scrollPane.setColumnHeaderView(table);
-		
-		JLabel lblPreenchimentoObrigatrio = new JLabel("Campo obrigatorio.");
-		lblPreenchimentoObrigatrio.setForeground(Color.RED);
-		lblPreenchimentoObrigatrio.setBounds(274, 275, 136, 14);
-		add(lblPreenchimentoObrigatrio);
-		
-		JLabel labelAterisk = new JLabel("*");
-		labelAterisk.setForeground(new Color(255, 0, 0));
-		labelAterisk.setBounds(165, 25, 46, 14);
-
-		
-		this.add(labelAterisk);
+		this.table = new JTable();
+		this.scrollPane.setViewportView(this.table);
+		this.add(this.scrollPane);
+		listagemcategoria(CategoriaP.this.textField.getText());
 		
 		JButton btnCadastrp = new JButton("Pesquisar");
 		btnCadastrp.addActionListener(new ActionListener() {
 				
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				List<Categoria> lista = gfacade.findCategoria(CategoriaP.this.textField.getText());				
-				DefaultTableModel model = new DefaultTableModel(headers, lista.size());				
-				CategoriaP.this.table.setModel(model);
-				
-
-				int row = 0;
-				for (Categoria categoria : lista) {
-					CategoriaP.this.table.getModel().setValueAt(categoria.getId(), row, 0);
-					CategoriaP.this.table.getModel().setValueAt(categoria.getDescricao(), row, 1);							
-					row++;
+				listagemcategoria(CategoriaP.this.textField.getText());
 				}				
-			}
 		});
-//		btnCadastrp.setBounds(176, 85, 96, 23);	
+
 			
 			
 		
@@ -141,6 +114,7 @@ public class CategoriaP extends JPanel {
 									cate.setDescricao(cDescricao.getText());									
 									gfacade.insertCategoria(cate);									
 									DxCad.dispose();
+									listagemcategoria(CategoriaP.this.textField.getText());
 
 						};
 						
@@ -180,6 +154,8 @@ public class CategoriaP extends JPanel {
 					if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(null, "Excluir item selecionado?", "Excluir?", JOptionPane.YES_NO_OPTION)) {
 						Integer id = (Integer) CategoriaP.this.table.getValueAt(index, 0);
 						gfacade.removerCategoria(id);
+						JOptionPane.showMessageDialog(null, "Categoria Apagada");
+						listagemcategoria(CategoriaP.this.textField.getText());
 					}
 
 				}
@@ -221,13 +197,14 @@ public class CategoriaP extends JPanel {
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								if(NovaCat.getText().length()==0){
-									JOptionPane.showMessageDialog(null, "O nome da Nova Categoria deve ser preenchido");
+									JOptionPane.showMessageDialog(null, "O campo descrição deve ser preenchido");
 								}
 								else{									
 									cat.setDescricao(NovaCat.getText());									
 									gfacade.updateCategoria(cat);
 									JOptionPane.showMessageDialog(null, "Alteracao Salva com Sucesso");
 									cxDialog.dispose();
+									listagemcategoria(CategoriaP.this.textField.getText());
 								}
 							}
 						});
@@ -248,5 +225,24 @@ public class CategoriaP extends JPanel {
 
 		
 	}
+	private void listagemcategoria(String nomecate) {
+		final Vector<String> headers = new Vector<String>(3);
+		headers.addElement(new String("Id"));
+		headers.addElement(new String("Nome"));
+		headers.addElement(new String("Valor"));
+		List<Categoria> lista = new GenericFacade().findCategoria(nomecate);		
+		DefaultTableModel modelList = new DefaultTableModel(headers, lista.size());
+		CategoriaP.this.table.setModel(modelList);
+		int row = 0;
+		for (Categoria categoria : lista) {
+			CategoriaP.this.table.getModel().setValueAt(categoria.getId(), row, 0);
+			CategoriaP.this.table.getModel().setValueAt(categoria.getDescricao(), row, 1);			
+			row++;
+			}
+		CategoriaP.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
+		CategoriaP.this.table.getColumnModel().getColumn(1).setPreferredWidth(200);
+			
+		}		
+	
 }
 //#endif

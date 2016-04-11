@@ -301,8 +301,8 @@ public class UsuarioInclusaoEdicao extends JPanel
 		catch(Exception e)
 		{
 		};		
-		this.dtNascimentoFld = new JFormattedTextField();
-		this.dtNascimentoFld.setBounds(7, 299, 100, 25);
+		
+		this.dtNascimentoFld.setBounds(7, 299, 150, 25);
 		this.dtNascimentoFld.setToolTipText("Informe a data de nascimento.");
 		this.dtNascimentoFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.dtNascimentoFld.setColumns(10);
@@ -322,7 +322,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 		{
 		};    
 		
-		this.telefoneFld.setBounds(7, 344, 100, 25);
+		this.telefoneFld.setBounds(7, 344, 150, 25);
 		this.telefoneFld.setToolTipText("Informe o telefone.");
 		this.telefoneFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.telefoneFld.setColumns(10);
@@ -352,7 +352,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 							{
 								JOptionPane.showMessageDialog(null, "Este login já existe. Tente outro, por favor!");
 							}
-						}
+						};
 					}
 					else
 					{
@@ -367,7 +367,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 							{
 								JOptionPane.showMessageDialog(null, "Este login já existe. Tente outro, por favor!");
 							}
-						}
+						};
 					}
 					
 					if (UsuarioInclusaoEdicao.this.doneEvent != null) 

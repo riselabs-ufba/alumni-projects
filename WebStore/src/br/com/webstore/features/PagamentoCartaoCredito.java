@@ -33,6 +33,7 @@ public class PagamentoCartaoCredito extends JFrame{
 		this.setLayout(null);	
 		this.setTitle("Cartao de Credito");
 		this.setSize(400, 300);
+		PagamentoCartaoCredito.this.setLocationRelativeTo(null);
 		
 		JLabel lbNome = new JLabel("Nome: ");		
 		lbNome.setBounds(2,10,200,15);

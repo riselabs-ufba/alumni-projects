@@ -35,6 +35,7 @@ public class PagamentoProduto  extends JFrame{
 		this.setLayout(null);	
 		this.setTitle("Concluir Compra");
 		this.setSize(400, 300);
+		PagamentoProduto.this.setLocationRelativeTo(null);
 		
 		JLabel lblTituloValor = new JLabel("Valor Total");		
 		lblTituloValor.setBounds(2,5,200,15);
@@ -82,9 +83,10 @@ public class PagamentoProduto  extends JFrame{
 				if (cartaoCredito.isSelected()) {
 					 new PagamentoCartaoCredito(gfacade, usuario, "cartaoCredito");
 				} else if (cupom.isSelected()) {
-					System.out.println("cUPOM");
+					new PagamentoCupom(gfacade, usuario, "boleto",valorTotal);
+					
 				} else if (boletoBancario.isSelected()) {
-					System.out.println("BOLETO");
+					new PagamentoBoleto(gfacade, usuario, "boleto",valorTotal);
 				}else{
 					JOptionPane.showMessageDialog(null, "Escolha uma forma de Pagamento!");
 				}

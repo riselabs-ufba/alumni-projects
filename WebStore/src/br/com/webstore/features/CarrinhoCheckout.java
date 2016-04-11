@@ -117,7 +117,7 @@ public class CarrinhoCheckout extends JPanel {
 		lblValor = new JLabel("0");
 		this.scrollPane = new JScrollPane();
 		
-		this.scrollPane.setBounds(0, 0, 480, 99);
+		this.scrollPane.setBounds(20, 20, 480, 99);
 		
 		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

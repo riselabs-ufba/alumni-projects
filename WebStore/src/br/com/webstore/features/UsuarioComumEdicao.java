@@ -229,6 +229,7 @@ public class UsuarioComumEdicao extends JPanel
 		DtNascimentoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(DtNascimentoLbl);
 		
+		// Data de Nascimento TextField
 		try
 		{
 		    javax.swing.text.MaskFormatter dataNascimento = new MaskFormatter("##/##/####");
@@ -238,9 +239,7 @@ public class UsuarioComumEdicao extends JPanel
 		{
 		};
 		
-		// Data de Nascimento TextField
-		this.dtNascimentoFld = new JFormattedTextField();
-		this.dtNascimentoFld.setBounds(7, 209, 438, 25);
+		this.dtNascimentoFld.setBounds(7, 209, 100, 25);
 		this.dtNascimentoFld.setToolTipText("Informe a data de nascimento.");
 		this.dtNascimentoFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.dtNascimentoFld.setColumns(10);
@@ -248,7 +247,7 @@ public class UsuarioComumEdicao extends JPanel
 		
 		// Telfone Label
 		JLabel TelefoneLbl = new JLabel("Telefone");
-		TelefoneLbl.setBounds(7, 241, 100, 15);
+		TelefoneLbl.setBounds(7, 241, 150, 15);
 		TelefoneLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(TelefoneLbl);
 				
@@ -262,7 +261,7 @@ public class UsuarioComumEdicao extends JPanel
 		};    
 		
 		// Telefone TextField
-		this.telefoneFld.setBounds(7, 258, 438, 25);
+		this.telefoneFld.setBounds(7, 258, 150, 25);
 		this.telefoneFld.setToolTipText("Informe o telefone.");
 		this.telefoneFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.telefoneFld.setColumns(10);
@@ -270,7 +269,7 @@ public class UsuarioComumEdicao extends JPanel
 		
 		// Botao Salvar
 		this.salvarBtn = new JButton("Salvar");
-		this.salvarBtn.setBounds(190, 400, 100, 32);
+		this.salvarBtn.setBounds(190, 300, 100, 32);
 		this.salvarBtn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.salvarBtn.addActionListener(new ActionListener() 
 		{
@@ -293,7 +292,7 @@ public class UsuarioComumEdicao extends JPanel
 							{
 								JOptionPane.showMessageDialog(null, "Este login já existe. Tente outro, por favor!");
 							}
-						}
+						};
 					}
 					else
 					{
@@ -308,7 +307,7 @@ public class UsuarioComumEdicao extends JPanel
 							{
 								JOptionPane.showMessageDialog(null, "Este login já existe. Tente outro, por favor!");
 							}
-						}
+						};
 					}
 					if (UsuarioComumEdicao.this.doneEvent != null) 
 					{

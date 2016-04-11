@@ -57,11 +57,11 @@ public class PagamentoCartaoCredito extends JFrame{
 		this.add(this.numeroCartaoField);
 		
 		JLabel lbCodigoSeguranca = new JLabel("Codigo de Seguranca: ");		
-		lbCodigoSeguranca.setBounds(2,95,200,15);
+		lbCodigoSeguranca.setBounds(2,100,200,15);
 		this.add(lbCodigoSeguranca);
 		
 		this.codigoSegurancaField = new JFormattedTextField();
-		this.codigoSegurancaField.setBounds(2, 100, 219, 25);
+		this.codigoSegurancaField.setBounds(2, 115, 219, 25);
 		this.codigoSegurancaField.setToolTipText("Informe o numero do cartao.");
 		this.codigoSegurancaField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.codigoSegurancaField.setColumns(10);

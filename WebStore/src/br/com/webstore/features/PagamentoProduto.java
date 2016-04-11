@@ -73,14 +73,14 @@ public class PagamentoProduto  extends JFrame{
 		this.add(rdBtEmbalarParaPresente);
 		
 		
-		JButton btFinalizarCompra = new JButton("Finalizar Compra");
+		JButton btFinalizarCompra = new JButton("Comprar");
 		this.add(btFinalizarCompra);
 		btFinalizarCompra .addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if (cartaoCredito.isSelected()) {
-					System.out.println("CARTÃO DE cREDITO ");
+					 new PagamentoCartaoCredito(gfacade, usuario, "cartaoCredito");
 				} else if (cupom.isSelected()) {
 					System.out.println("cUPOM");
 				} else if (boletoBancario.isSelected()) {

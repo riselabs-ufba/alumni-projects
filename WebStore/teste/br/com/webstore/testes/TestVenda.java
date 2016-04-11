@@ -5,7 +5,18 @@ package br.com.webstore.testes;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Test;
+
+import br.com.webstore.model.FormaPagamento;
+import br.com.webstore.model.StatusVenda;
+import br.com.webstore.model.Usuario;
+import br.com.webstore.model.UsuarioCupom;
+import br.com.webstore.model.Venda;
 
 /**
  * @author webstore
@@ -18,7 +29,11 @@ public class TestVenda {
 	 */
 	@Test
 	public void testSetStatusVenda() {
-		fail("Not yet implemented");
+		StatusVenda statusVenda = new StatusVenda();
+		statusVenda.setDescricao("StatusVenda");
+		Venda venda = new Venda();
+		venda.setStatusVenda(statusVenda);
+		assertEquals(statusVenda, venda.getStatusVenda());
 	}
 
 	/**
@@ -26,7 +41,11 @@ public class TestVenda {
 	 */
 	@Test
 	public void testSetUsuarioVenda() {
-		fail("Not yet implemented");
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+		Venda venda = new Venda();
+		venda.setIdUsuarioVenda(usuario);
+		assertEquals(usuario, venda.getIdUsuarioVenda());
 	}
 
 	/**
@@ -34,7 +53,11 @@ public class TestVenda {
 	 */
 	@Test
 	public void testSetUsuarioCupom() {
-		fail("Not yet implemented");
+		UsuarioCupom usuarioCupom = new UsuarioCupom();
+		usuarioCupom.setId(1);
+		Venda venda = new Venda();
+		venda.setIdUsuarioCupom(usuarioCupom);
+		assertEquals(usuarioCupom, venda.getIdUsuarioCupom());
 	}
 
 	/**
@@ -42,15 +65,23 @@ public class TestVenda {
 	 */
 	@Test
 	public void testSetFormaPagamento() {
-		fail("Not yet implemented");
+		FormaPagamento formaPagamento = new FormaPagamento();
+		formaPagamento.setId(1);
+		Venda venda = new Venda();
+		venda.setIdFormaPagamento(formaPagamento);
+		assertEquals(formaPagamento, venda.getIdFormaPagamento());
 	}
 
 	/**
 	 * Test method for {@link br.com.webstore.model.Venda#setDataVenda(java.util.Date)}.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void testSetDataVenda() {
-		fail("Not yet implemented");
+	public void testSetDataVenda() throws ParseException {
+		Date date = new SimpleDateFormat("dd/MM/yyyy").parse("10/04/2016");
+		Venda venda = new Venda();
+		venda.setDataVenda(date);
+		assertEquals(date, venda.getDataVenda());
 	}
 
 	/**
@@ -58,7 +89,10 @@ public class TestVenda {
 	 */
 	@Test
 	public void testSetValorTotal() {
-		fail("Not yet implemented");
+		Venda venda = new Venda();
+		BigDecimal valorTotal = new BigDecimal(0.35);;
+		venda.setValorTotal(valorTotal);
+		assertEquals(valorTotal, venda.getValorTotal());
 	}
 
 }

@@ -198,19 +198,42 @@ public class CarrinhoCheckout extends JPanel {
 					modelCarrinho.removeRow(index);
 					CarrinhoCheckout.this.table.updateUI();
 					
+					
+					//auxiliar 
+					Carrinho auxCarrinho = new Carrinho();
+					auxCarrinho.setMapCarrinho(new HashMap<Produto, Integer>());				
+					auxCarrinho.getMapCarrinho().putAll(carrinho.getMapCarrinho());
+
+					
+					for (Entry<Produto, Integer> mapProduto : auxCarrinho.getMapCarrinho().entrySet()) {
+						if(mapProduto.getKey().getId() == id){
+							BigDecimal valorProduto = mapProduto.getKey().getValor();
+							valorTotal = new BigDecimal(Integer.parseInt(lblValor.getText()));
+							valorTotal = valorTotal.subtract(valorProduto.multiply(new BigDecimal(quantidadeProd.toString())));
+							carrinho.getMapCarrinho().remove(mapProduto.getKey());							
+						}
+					}
+					
 					//remover do HashMap 
-					Set<Entry<Produto, Integer>> aux = carrinho.getMapCarrinho().entrySet();
+/*					Set<Entry<Produto, Integer>> aux = carrinho.getMapCarrinho().entrySet();
+				
+					
 					for (Map.Entry<Produto, Integer> hashProduto : aux) {
 						if(hashProduto.getKey().getId() == id){
 							BigDecimal valorProduto = hashProduto.getKey().getValor();
+							
 							valorTotal = new BigDecimal(Integer.parseInt(lblValor.getText()));
+							
 							valorTotal = valorTotal.subtract(valorProduto.multiply(new BigDecimal(quantidadeProd.toString())));
-						    carrinho.getMapCarrinho().remove(hashProduto.getKey());
+							auxCarrinho.getMapCarrinho().remove(hashProduto.getKey());
+							//auxCarrinho..remove(hashProduto.getKey());
 						}						
-					}
+					}*/
+					
+
 					lblValor.setText(valorTotal.toString());
 					//atualizando valor Total 
-									}
+			}
 				
 			}
 		});

@@ -23,7 +23,7 @@ public class Carrinho {
 		return instance;
 	}
 	
-	private Carrinho() {
+	public Carrinho() {
 		mapCarrinho = new HashMap<>();
 	}
 
@@ -33,6 +33,14 @@ public class Carrinho {
 	 */
 	public HashMap<Produto, Integer> getMapCarrinho() {
 		return mapCarrinho;
+	}
+
+	/**
+	 * Setter the mapCarrinho
+	 * @param mapCarrinho the mapCarrinho to set
+	 */
+	public void setMapCarrinho(HashMap<Produto, Integer> mapCarrinho) {
+		this.mapCarrinho = mapCarrinho;
 	}
 
 	/**

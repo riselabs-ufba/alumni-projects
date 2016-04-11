@@ -34,6 +34,7 @@ import br.com.webstore.model.StatusVenda;
 import br.com.webstore.model.Usuario;
 import br.com.webstore.model.Venda;
 import br.com.webstore.views.WebStoreEventMainScreenP;
+import br.com.webstore.features.PagamentoProduto;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -145,20 +146,29 @@ public class CarrinhoCheckout extends JPanel {
 		    public void actionPerformed(ActionEvent e)
 		    {
 		        TableCellListener tcl = (TableCellListener)e.getSource();
+		        if(tcl.getColumn() == 2){
 		        int id = Integer.parseInt(tcl.getTable().getValueAt(tcl.getRow(), 0).toString());
-		        
+		        BigDecimal valorProdutoAlterar = BigDecimal.ZERO;
+		        BigDecimal valorTotal = BigDecimal.ZERO;
 		       for (Map.Entry<Produto, Integer> hashProduto : carrinho.getMapCarrinho().entrySet()) {
 					if(hashProduto.getKey().getId() == id){
 					    carrinho.getMapCarrinho().put(hashProduto.getKey(), Integer.parseInt(tcl.getNewValue().toString()));
+					    valorProdutoAlterar = calculoDoValorQuantidade(hashProduto, Integer.parseInt(tcl.getNewValue().toString()));
+					    CarrinhoCheckout.this.table.getModel().setValueAt(valorProdutoAlterar, tcl.getRow(), 3);
+					    valorTotal = new BigDecimal(Integer.parseInt(lblValor.getText()));
+						valorTotal = valorTotal.subtract(hashProduto.getKey().getValor().multiply(new BigDecimal(tcl.getOldValue().toString())));
+						valorTotal = valorTotal.add(valorProdutoAlterar);
 					}
 					
 				}
-       
+		        lblValor.setText(valorTotal.toString());
 /*		        System.out.println("Row   : " + tcl.getRow());
 		        System.out.println("Column: " + tcl.getColumn());
 		        System.out.println("Old   : " + tcl.getOldValue());
 		        System.out.println("New   : " + tcl.getNewValue());*/
 		    }
+	        	
+	        }
 		};
 
 		TableCellListener tcl = new TableCellListener(table, action);
@@ -176,6 +186,7 @@ public class CarrinhoCheckout extends JPanel {
 				//ListSelectionModel lsm = CarrinhoCheckout.this.table.getSelectionModel();
 				int index = CarrinhoCheckout.this.table.getSelectedRow();
 				index = CarrinhoCheckout.this.table.convertRowIndexToModel(index);
+				BigDecimal valorTotal = BigDecimal.ZERO;
 				if (index == -1) {
 					JOptionPane.showMessageDialog(null, "É necessário selecionar um item.");
 				} else {
@@ -183,6 +194,7 @@ public class CarrinhoCheckout extends JPanel {
 					//CarrinhoCheckout.this.table.getRowCount();
 					//CarrinhoCheckout.this.table.remove(index);
 					Integer id = Integer.parseInt(CarrinhoCheckout.this.table.getValueAt(index, 0).toString());
+					Integer quantidadeProd = Integer.parseInt(CarrinhoCheckout.this.table.getValueAt(index, 2).toString());
 					modelCarrinho.removeRow(index);
 					CarrinhoCheckout.this.table.updateUI();
 					
@@ -190,10 +202,29 @@ public class CarrinhoCheckout extends JPanel {
 					Set<Entry<Produto, Integer>> aux = carrinho.getMapCarrinho().entrySet();
 					for (Map.Entry<Produto, Integer> hashProduto : aux) {
 						if(hashProduto.getKey().getId() == id){
+							BigDecimal valorProduto = hashProduto.getKey().getValor();
+							valorTotal = new BigDecimal(Integer.parseInt(lblValor.getText()));
+							valorTotal = valorTotal.subtract(valorProduto.multiply(new BigDecimal(quantidadeProd.toString())));
 						    carrinho.getMapCarrinho().remove(hashProduto.getKey());
 						}						
 					}
-					//tenho que atualizar a tabela
+					lblValor.setText(valorTotal.toString());
+					//atualizando valor Total 
+									}
+				
+			}
+		});
+		
+		JButton btnEfetuarPagamento = new JButton("Efetuar Pagamento");
+		btnEfetuarPagamento.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				if (Integer.parseInt(lblValor.getText()) <= 0) {
+					JOptionPane.showMessageDialog(null, "É necessário ter pelo menos produto adicionado ao Carrinho");
+				} else {
+					
+					new PagamentoProduto(facade, user, lblValor.getText());
 				}
 				
 			}
@@ -201,10 +232,12 @@ public class CarrinhoCheckout extends JPanel {
 		
 		this.scrollPane.setViewportView(this.table);
 		this.add(this.scrollPane);
-		btnDetalhes .setBounds(440, 273, 90, 23);
+		btnEfetuarPagamento.setBounds(400, 273, 150, 23);
+		btnDetalhes.setBounds(250, 273, 90, 23);
 		lblTituloValor.setBounds(270, 200, 100, 30);
 		lblValor.setBounds(400, 200, 50, 30);
-		this.add(btnDetalhes );
+		this.add(btnDetalhes);
+		this.add(btnEfetuarPagamento);
 		this.add(lblTituloValor);
 		this.add(lblValor);
 	}
@@ -218,6 +251,15 @@ public class CarrinhoCheckout extends JPanel {
 		BigDecimal valorProduto = hashProduto.getKey().getValor();
 		BigDecimal quantidade = new BigDecimal(hashProduto.getValue());
 		BigDecimal valorTotal = valorProduto.multiply(quantidade);
+		
+		return valorTotal;
+	}
+	
+	private BigDecimal calculoDoValorQuantidade(Entry<Produto, Integer> hashProduto, int qtd) {
+		BigDecimal valorProduto = hashProduto.getKey().getValor();
+		BigDecimal quantidade = new BigDecimal(qtd);
+		BigDecimal valorTotal = valorProduto.multiply(quantidade);
+		
 		return valorTotal;
 	}
 }

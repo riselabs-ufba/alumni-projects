@@ -4,17 +4,20 @@ package br.com.webstore.features;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import br.com.webstore.dao.ProdutoDao;
 import br.com.webstore.facade.GenericFacade;
+import br.com.webstore.model.Produto;
 import br.com.webstore.model.Usuario;
 import br.com.webstore.model.Venda;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 
 /**
@@ -33,11 +36,26 @@ public class ProdutoView extends JPanel {
 	 * Create the panel.
 	 */
 	public ProdutoView(final GenericFacade gfacade, final Usuario usuarioLogado) {
-		setLayout(null);		
+		setLayout(null);
+		final 	Vector<String> headers = new Vector<String>(3);
+		 headers.addElement(new String("Produto"));
+		 headers.addElement(new String("Categoria"));
+		 headers.addElement(new String("Valor"));
 
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setModel(new ProdutoDao(null).getProdutos());
+		List<Produto> produto = gfacade.getProdutos();
+		DefaultTableModel model = new DefaultTableModel(headers, produto.size());
+		ProdutoView.this.table.setModel(model);
+		 		 
+ 		int row = 0;
+ 		for (Produto prod : produto) {
+ 			ProdutoView.this.table.getModel().setValueAt(prod.getDescricao(), row, 0);
+ 			ProdutoView.this.table.getModel().setValueAt(prod.getCategoria(), row, 1);
+ 			ProdutoView.this.table.getModel().setValueAt(prod.getValor().toString(), row, 2);
+ 			row++;
+ 		}	
+		 		
 		table.setBounds(22, 24, 361, 76);
 		add(table);
 		

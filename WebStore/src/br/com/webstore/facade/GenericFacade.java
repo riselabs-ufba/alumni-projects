@@ -472,6 +472,11 @@ public class GenericFacade {
 		public void removerProduto(int id) {
 			this.produtoDataProvider.remove(id);
 		}
+		
+		public List<Produto> getProdutos() {
+			return this.produtoDataProvider.getProdutos();
+		}
+		
 		//#endif
 		
 	

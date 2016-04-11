@@ -629,10 +629,6 @@ public class GenericFacade {
 			return usuarioDataProvider.getUsuarioByLoginSenha(Login, Senha);
 		}
 		
-		public Usuario getUsuarioByLogin(String login){
-			return usuarioDataProvider.findByLogin(login);
-		}
-		
 		//#endif
 		
 		//Venda

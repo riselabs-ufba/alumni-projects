@@ -72,6 +72,7 @@ public class ProdutoDetalhes extends JPanel {
 	
 	public ProdutoDetalhes() {
 		
+		this.setLayout(null);
 		//codigo 
 		JLabel CodigoLabel = new JLabel("Código");
 		CodigoLabel.setBounds(2, 5, 100, 15);
@@ -80,37 +81,35 @@ public class ProdutoDetalhes extends JPanel {
 		
 		
 		this.codigoProduto = new JTextField();
-		this.codigoProduto.setBounds(2, 5, 438, 25);
+		
 		
 		this.codigoProduto.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.codigoProduto.setColumns(10);
 		this.add(this.codigoProduto);
 		this.codigoProduto.setEditable(false);
-		
+		this.codigoProduto.setBounds(2, 20, 438, 25);
 		
 		//descricao
 		JLabel descricaoLbl = new JLabel("Descrição");
-		descricaoLbl.setBounds(6, 10, 100, 15);
+		
 		descricaoLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(descricaoLbl);
-		
+		descricaoLbl.setBounds(2, 50, 100, 15);
 		
 		this.descricaoProduto = new JTextField();
-		this.descricaoProduto.setBounds(6, 16, 438, 25);
-		
 		this.descricaoProduto.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.descricaoProduto.setColumns(10);
 		this.add(this.descricaoProduto);
 		this.descricaoProduto.setEditable(false);
-
+		this.descricaoProduto.setBounds(2, 65, 438, 25);
 		// Valor
 		JLabel respostaLbl = new JLabel("Valor");
-		respostaLbl.setBounds(10, 74, 100, 15);
+		respostaLbl.setBounds(2, 95, 100, 15);
 		respostaLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(respostaLbl);
 		
 		this.precoProduto = new JTextField();
-		this.precoProduto.setBounds(10, 74, 438, 25);
+		this.precoProduto.setBounds(2, 110, 438, 25);
 		//this.respostaFld.setToolTipText("Informe a resposta para questao.");
 		this.precoProduto.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.precoProduto.setColumns(10);
@@ -119,24 +118,24 @@ public class ProdutoDetalhes extends JPanel {
 		
 		
 		JLabel categoriaLabel = new JLabel("Categoria");
-		categoriaLabel.setBounds(6, 20, 100, 15);
+		categoriaLabel.setBounds(2, 140, 100, 15);
 		categoriaLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(categoriaLabel);
 		
 		this.categoriaProduto = new JTextField();
-		this.categoriaProduto.setBounds(9, 32, 438, 25);
+		this.categoriaProduto.setBounds(2, 155, 438, 25);
 		this.categoriaProduto.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.categoriaProduto.setColumns(10);
 		this.add(this.categoriaProduto);
 		this.categoriaProduto.setEditable(false);
 		
-		JLabel unidadeDeMedidaLabel = new JLabel("Unidade de Medida:");
-		unidadeDeMedidaLabel.setBounds(6, 20, 100, 15);
+		JLabel unidadeDeMedidaLabel = new JLabel("Unidade de Medida");
+		unidadeDeMedidaLabel.setBounds(2, 185, 130, 15);
 		unidadeDeMedidaLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(unidadeDeMedidaLabel);
 		
 		this.unidadeMedida = new JTextField();
-		this.unidadeMedida.setBounds(9, 32, 438, 25);
+		this.unidadeMedida.setBounds(2, 200, 438, 25);
 		this.unidadeMedida.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.unidadeMedida.setColumns(10);
 		this.add(this.unidadeMedida);
@@ -147,11 +146,12 @@ public class ProdutoDetalhes extends JPanel {
 		btnAdicionarAoCarrinho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CarrinhoCheckout.getInstance(facade, user).criarLayout(produto);
+				JOptionPane.showMessageDialog(null, "Produto adicionado ao carrinho.");
 				//WebStoreEventMainScreenP janela = WebStoreEventMainScreenP.getInstance(facade, user);
 	
 			}
 		});
-		btnAdicionarAoCarrinho.setBounds(22, 114, 135, 23);
+		btnAdicionarAoCarrinho.setBounds(145, 240, 160, 23);
 		add(btnAdicionarAoCarrinho);
 		
 		

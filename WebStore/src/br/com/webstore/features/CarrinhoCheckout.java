@@ -87,7 +87,7 @@ public class CarrinhoCheckout extends JPanel {
 	
 	public void criarLayout(final Produto produto){
 		this.removeAll();
-		setLayout(null);
+		this.setLayout(null);
 		//List<Venda> venda = gfacade.findVendaByUser(usuario,  gfacade.findStatusVendabyName("Carrinho"));
 		final Carrinho carrinho = Carrinho.getInstance();
 		boolean flag = false;

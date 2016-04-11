@@ -6,7 +6,7 @@ package br.com.webstore.features;
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Usuario;
 
-import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
@@ -19,34 +19,78 @@ import javax.swing.*;
  */
 public class PagamentoProduto  extends JFrame{
 
-	private JScrollPane scrollPane;
-	private JRadioButton rbFormaDePamento;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2106593663257987796L;
+	/**
+	 * 
+	 */
+	JRadioButton cupom;
+	JRadioButton cartaoCredito;
+	JRadioButton boletoBancario;
+	
 	
 	public PagamentoProduto(final GenericFacade gfacade, final Usuario usuario, final String valorTotal) {
-			
-		this.setTitle("Pagamento - teste");
-		this.setSize(600, 500);
+		this.setLayout(null);	
+		this.setTitle("Concluir Compra");
+		this.setSize(400, 300);
 		
+		JLabel lblTituloValor = new JLabel("Valor Total");		
+		lblTituloValor.setBounds(2,5,200,15);
+		this.add(lblTituloValor);
 		
-		JLabel lblTituloValor = new JLabel("Valor Total");				
 		JLabel lblValor = new JLabel(valorTotal);
+		lblValor.setBounds(2, 20, 200, 15);
+		this.add(lblValor);
+		
 		
 		JLabel lbFormaPagamento = new JLabel("Forma de Pagamento");
-		JRadioButton cartaoCredito = new JRadioButton("Cartao de Crédito", false);
-		JRadioButton boletoBancario = new JRadioButton("Boleto Bancário", false);
-		JRadioButton cupom = new JRadioButton("Cupom", false);
-		
-		JLabel lbEmbalarParaPresente = new JLabel("Embalar para Presente");
-		JRadioButton rdBtEmbalarParaPresente = new JRadioButton("Embalar", false);
+		lbFormaPagamento.setBounds(2, 80, 200, 15);
+
+		this.add(lbFormaPagamento);
 
 		
+		cartaoCredito = new JRadioButton("Cartao de Crédito", false);
+		cartaoCredito.setBounds(20, 110, 200, 15);
+		this.add(cartaoCredito);
+
+		
+		boletoBancario = new JRadioButton("Boleto Bancário", false);
+		boletoBancario.setBounds(20, 130, 200, 15); 
+		this.add(boletoBancario);
+		
+		cupom = new JRadioButton("Cupom", false);
+		cupom.setBounds(20, 150, 200, 15);
+		this.add(cupom);
+		
+		JLabel lbEmbalarParaPresente = new JLabel("Embalar para Presente");
+		lbEmbalarParaPresente.setBounds(2, 180, 150, 15);
+		this.add(lbEmbalarParaPresente);
+		
+		JRadioButton rdBtEmbalarParaPresente = new JRadioButton("Sim", false);
+		rdBtEmbalarParaPresente.setBounds(160, 180, 200, 15); 
+		this.add(rdBtEmbalarParaPresente);
+		
+		
 		JButton btFinalizarCompra = new JButton("Finalizar Compra");
+		this.add(btFinalizarCompra);
 		btFinalizarCompra .addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				if (valorTotal!= null) {
+				if (cartaoCredito.isSelected()) {
+					System.out.println("CARTÃO DE cREDITO ");
+				} else if (cupom.isSelected()) {
+					System.out.println("cUPOM");
+				} else if (boletoBancario.isSelected()) {
+					System.out.println("BOLETO");
+				}else{
 					JOptionPane.showMessageDialog(null, "Escolha uma forma de Pagamento!");
+				}
+				
+				/*if (valorTotal!= null) {
+					
 				} else {
 					
 					FinalizarCompra pd = new FinalizarCompra(gfacade, usuario,"");
@@ -55,44 +99,14 @@ public class PagamentoProduto  extends JFrame{
 					
 					frame.setModal(true);
 					frame.setResizable(false);
-					frame.setBounds(500, 300, 460, 200);
+					frame.setBounds(500, 400, 360, 200);
 					frame.setVisible(true);
-				}
+				}*/
 				
 			}
+			
 		});
-		
-/*		this.scrollPane = new JScrollPane();
-		scrollPane.add(lblTituloValor);
-		scrollPane.add(lblValor);
-		*/
-		//this.scrollPane.setBounds(10, 10, 480, 99);
-		//this.add(this.scrollPane);
-		//this.scrollPane.setViewportView(this.table);
-		
-		lblTituloValor.setBounds(15, 15, 100, 50);
-		lblValor.setBounds(15, 50, 100, 50);
-		lbFormaPagamento.setBounds(30,50,100,50);
-		cartaoCredito.setBounds(40,50,100,50);
-		boletoBancario.setBounds(60,50,100,50);
-		cupom.setBounds(80,50,100,50);
-		lbEmbalarParaPresente.setBounds(200,50,100,50);
-		rdBtEmbalarParaPresente.setBounds(230,50,100,50);		
-		btFinalizarCompra.setBounds(400, 250, 100, 50);
-		
-		
-		
-		this.setLayout(new FlowLayout());
-		this.add(lblTituloValor);
-		this.add(lblValor);
-		this.add(lbFormaPagamento);
-		this.add(cartaoCredito);
-		this.add(boletoBancario);
-		this.add(cupom);
-		this.add(lbEmbalarParaPresente);
-		this.add(rdBtEmbalarParaPresente);
-		this.add(btFinalizarCompra);
-
+		btFinalizarCompra.setBounds(110,210,160,23);		
 		
 		this.setVisible(true);
 	}

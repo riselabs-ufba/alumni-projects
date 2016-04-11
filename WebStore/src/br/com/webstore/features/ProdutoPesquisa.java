@@ -119,9 +119,12 @@ public class ProdutoPesquisa extends JPanel {
 					
 					frame.setModal(true);
 					frame.setResizable(false);
-					frame.setBounds(500, 300, 460, 200);
+					frame.setBounds(500, 300, 460, 300);
 					frame.getContentPane().add(pd);
 					frame.setVisible(true);
+					
+							
+					
 				}
 				
 			}
@@ -132,14 +135,7 @@ public class ProdutoPesquisa extends JPanel {
 		
 		//FIM DETALHAR PRODUTO
 		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		
 	// fim do listar inicial 

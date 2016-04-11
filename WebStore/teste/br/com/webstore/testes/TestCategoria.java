@@ -23,9 +23,9 @@ public class TestCategoria extends TestCase {
 	 * Test method for {@link br.com.webstore.model.Categoria#setDescricao(java.lang.String)}.
 	 */
 	public void testSetDescricao() {
-		Categoria c2 = new Categoria();
-		c2.setDescricao("Categoria JUNIT");
-		assertEquals("Categoria JUNIT", c2.getDescricao());
+		Categoria categoria = new Categoria();
+		categoria.setDescricao("Categoria JUNIT");
+		assertEquals("Categoria JUNIT", categoria.getDescricao());
 	}
 
 }

@@ -229,7 +229,7 @@ public class CategoriaP extends JPanel {
 		final Vector<String> headers = new Vector<String>(3);
 		headers.addElement(new String("Id"));
 		headers.addElement(new String("Nome"));
-		headers.addElement(new String("Valor"));
+		//headers.addElement(new String("Valor"));
 		List<Categoria> lista = new GenericFacade().findCategoria(nomecate);		
 		DefaultTableModel modelList = new DefaultTableModel(headers, lista.size());
 		CategoriaP.this.table.setModel(modelList);

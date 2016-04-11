@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
+
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Usuario;
 import br.com.webstore.model.Perfil;
@@ -57,7 +58,6 @@ public class UsuarioComumEdicao extends JPanel
 	private JFormattedTextField telefoneFld;
 
 	private ActionListener doneEvent;
-	private String tmpLogin;
 	
 	private JButton salvarBtn;
 	
@@ -125,14 +125,6 @@ public class UsuarioComumEdicao extends JPanel
 			return false;
 		}
 		
-		Usuario usr = new GenericFacade().getUsuarioByLogin(this.loginFld.getText());
-		
-		if (usr!=null && !tmpLogin.equals(usr.getDsLogin()))
-		{
-			JOptionPane.showMessageDialog(null, "Login ja cadastrado.");
-			return false;
-		}
-		
 		return true;
 	}
 	
@@ -159,7 +151,7 @@ public class UsuarioComumEdicao extends JPanel
 	        MimeMessage msg = new MimeMessage(session);
 	        msg.setFrom(new InternetAddress("dccreuso@gmail.com"));
 	        msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse(usuario.getEmail()));
-	        msg.setSubject("Contato");
+	        msg.setSubject("Notificação de Cadastro");
 	        msg.setSentDate(new Date());
 	        msg.setText("De: "+"dccreuso@gmail.com"+"\n"+message);
 	        Transport.send(msg);
@@ -291,12 +283,32 @@ public class UsuarioComumEdicao extends JPanel
 					Usuario usuario = UsuarioComumEdicao.this.toModel();
 					if (UsuarioComumEdicao.this.editMode) 
 					{
-						new GenericFacade().updateUsuario(usuario);
+						try
+						{
+							new GenericFacade().updateUsuario(usuario);
+						}
+						catch(Exception ex)
+						{
+							if (ex.getCause() instanceof org.hibernate.exception.ConstraintViolationException)
+							{
+								JOptionPane.showMessageDialog(null, "Este login já existe. Tente outro, por favor!");
+							}
+						}
 					}
 					else
 					{
-						new GenericFacade().insertUsuario(usuario);
-						EnviarEmail(usuario);
+						try
+						{
+							new GenericFacade().insertUsuario(usuario);
+							EnviarEmail(usuario);
+						}
+						catch(Exception ex)
+						{
+							if (ex.getCause() instanceof org.hibernate.exception.ConstraintViolationException)
+							{
+								JOptionPane.showMessageDialog(null, "Este login já existe. Tente outro, por favor!");
+							}
+						}
 					}
 					if (UsuarioComumEdicao.this.doneEvent != null) 
 					{

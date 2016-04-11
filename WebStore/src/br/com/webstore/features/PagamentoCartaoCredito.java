@@ -74,7 +74,7 @@ public class PagamentoCartaoCredito extends JFrame
 		
 		try
 		{
-		    javax.swing.text.MaskFormatter dataVencimento = new MaskFormatter(" ##/##/####");
+		    javax.swing.text.MaskFormatter dataVencimento = new MaskFormatter(" ##/##");
 		    this.dataVencCartaoField = new JFormattedTextField(dataVencimento);
 		}
 		catch(Exception e)

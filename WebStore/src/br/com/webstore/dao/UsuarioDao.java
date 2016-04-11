@@ -38,12 +38,5 @@ public class UsuarioDao extends GenericDao<Usuario, Integer>{
 		return query.getResultList();
 	}
 	
-	public Usuario findByLogin(String login){
-		
-		TypedQuery<Usuario> query = this.entityManager.createQuery("from Usuario u where u.dsLogin =:login", Usuario.class);
-		query.setParameter("login", login);
-		return query.getSingleResult();
-	}
-	
 }
 //#endif

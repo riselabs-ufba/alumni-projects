@@ -61,7 +61,6 @@ public class UsuarioInclusaoEdicao extends JPanel
 	private JButton salvarBtn;
 	
 	private ActionListener doneEvent;
-	private String tmpLogin;
 	
 	public Usuario toModel() 
 	{
@@ -114,17 +113,6 @@ public class UsuarioInclusaoEdicao extends JPanel
 			return false;
 		}
 		
-		
-		
-		Usuario usr = new GenericFacade().getUsuarioByLogin(this.loginFld.getText());
-		
-		
-		if (usr!=null && !tmpLogin.equals(usr.getDsLogin()))
-		{
-			JOptionPane.showMessageDialog(null, "Login ja cadastrado.");
-			return false;
-		}
-		
 		return true;
 	}
 	
@@ -144,7 +132,6 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.emailFld.setText(usuario.getEmail());
 		this.senhaFld.setText(usuario.getSenha());
 		this.loginFld.setText(usuario.getDsLogin());
-		tmpLogin = this.loginFld.getText();
 		
 	    if (usuario.getDataNascimento() != null)
 	    {
@@ -189,7 +176,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 	        MimeMessage msg = new MimeMessage(session);
 	        msg.setFrom(new InternetAddress("dccreuso@gmail.com"));
 	        msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse(usuario.getEmail()));
-	        msg.setSubject("Contato");
+	        msg.setSubject("Notificação de Cadastro");
 	        msg.setSentDate(new Date());
 	        msg.setText("De: "+"dccreuso@gmail.com"+"\n"+message);
 	        Transport.send(msg);
@@ -355,12 +342,32 @@ public class UsuarioInclusaoEdicao extends JPanel
 					Usuario usuario = UsuarioInclusaoEdicao.this.toModel();
 					if (UsuarioInclusaoEdicao.this.editMode) 
 					{
-						new GenericFacade().updateUsuario(usuario);
-					} 
+						try
+						{
+							new GenericFacade().updateUsuario(usuario);
+						}
+						catch(Exception ex)
+						{
+							if (ex.getCause() instanceof org.hibernate.exception.ConstraintViolationException)
+							{
+								JOptionPane.showMessageDialog(null, "Este login já existe. Tente outro, por favor!");
+							}
+						}
+					}
 					else
 					{
-						new GenericFacade().insertUsuario(usuario);
-						EnviarEmail(usuario);
+						try
+						{
+							new GenericFacade().insertUsuario(usuario);
+							EnviarEmail(usuario);
+						}
+						catch(Exception ex)
+						{
+							if (ex.getCause() instanceof org.hibernate.exception.ConstraintViolationException)
+							{
+								JOptionPane.showMessageDialog(null, "Este login já existe. Tente outro, por favor!");
+							}
+						}
 					}
 					
 					if (UsuarioInclusaoEdicao.this.doneEvent != null) 

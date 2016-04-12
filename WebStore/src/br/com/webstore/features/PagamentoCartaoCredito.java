@@ -1,4 +1,5 @@
 //#if ${CarrinhoCompras} == "T"
+//#if ${CarrinhoFinalizarCompras} == "T"
 package br.com.webstore.features;
 
 import java.awt.Font;
@@ -112,4 +113,5 @@ public class PagamentoCartaoCredito extends JFrame
 		this.setVisible(true);
 	}
 }
+//#endif
 //#endif

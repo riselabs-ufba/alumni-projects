@@ -34,8 +34,9 @@ import br.com.webstore.model.StatusVenda;
 import br.com.webstore.model.Usuario;
 import br.com.webstore.model.Venda;
 import br.com.webstore.views.WebStoreEventMainScreenP;
+//#if ${CarrinhoFinalizarCompras} == "T"
 import br.com.webstore.features.PagamentoProduto;
-
+//#endif
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -238,6 +239,8 @@ public class CarrinhoCheckout extends JPanel {
 			}
 		});
 		
+		
+		//#if ${CarrinhoFinalizarCompras} == "T"
 		JButton btnEfetuarPagamento = new JButton("Efetuar Pagamento");
 		btnEfetuarPagamento.addActionListener(new ActionListener() {
 			@Override
@@ -253,14 +256,19 @@ public class CarrinhoCheckout extends JPanel {
 			}
 		});
 		
+		btnEfetuarPagamento.setBounds(400, 273, 150, 23);
+		this.add(btnEfetuarPagamento);
+		
+		//#endif
+		
 		this.scrollPane.setViewportView(this.table);
 		this.add(this.scrollPane);
-		btnEfetuarPagamento.setBounds(400, 273, 150, 23);
+		
 		btnDetalhes.setBounds(250, 273, 90, 23);
 		lblTituloValor.setBounds(270, 200, 100, 30);
 		lblValor.setBounds(400, 200, 50, 30);
 		this.add(btnDetalhes);
-		this.add(btnEfetuarPagamento);
+
 		this.add(lblTituloValor);
 		this.add(lblValor);
 	}

@@ -90,7 +90,7 @@
 			<property name="Usuario" value="T" />
 			<property name="BugTrackAlterar" value="T" />
 			<property name="CarrinhoCompras" value="T" />
-			
+			<property name="CarrinhoFinalizarCompras" value="T" />
 		</javapp>
 
 	</target>

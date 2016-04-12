@@ -1,8 +1,5 @@
 //#if ${CarrinhoCompras} == "T"
-
-/**
- * 
- */
+//#if ${CarrinhoFinalizarCompras} == "T"
 package br.com.webstore.features;
 
 import br.com.webstore.facade.GenericFacade;
@@ -117,4 +114,5 @@ public class PagamentoProduto  extends JFrame{
 		
 	
 }
+//#endif
 //#endif

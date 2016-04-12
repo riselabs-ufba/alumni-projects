@@ -50,7 +50,7 @@ public class PagamentoProduto  extends JFrame{
 
 		this.add(lbFormaPagamento);
 
-		//#if ${PagamentoCartaoCredito} == "T"
+		//#if ${PgtoCartaoCredito} == "T"
 		cartaoCredito = new JRadioButton("Cartao de Crédito", false);
 		cartaoCredito.setBounds(20, 110, 200, 15);
 		this.add(cartaoCredito);
@@ -69,6 +69,7 @@ public class PagamentoProduto  extends JFrame{
 		this.add(cupom);
 		//#endif
 		
+		//#if ${EnvioPresente} == "T"
 		JLabel lbEmbalarParaPresente = new JLabel("Embalar para Presente");
 		lbEmbalarParaPresente.setBounds(2, 180, 150, 15);
 		this.add(lbEmbalarParaPresente);
@@ -76,7 +77,7 @@ public class PagamentoProduto  extends JFrame{
 		JRadioButton rdBtEmbalarParaPresente = new JRadioButton("Sim", false);
 		rdBtEmbalarParaPresente.setBounds(160, 180, 200, 15); 
 		this.add(rdBtEmbalarParaPresente);
-		
+		//#endif
 		
 		JButton btFinalizarCompra = new JButton("Comprar");
 		this.add(btFinalizarCompra);
@@ -85,7 +86,7 @@ public class PagamentoProduto  extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if (cartaoCredito.isSelected()) {
-					//#if ${PagamentoCartaoCredito} == "T"
+					//#if ${PgtoCartaoCredito} == "T"
 					new PagamentoCartaoCredito(gfacade, usuario, "cartaoCredito");
 					//#endif
 				} else if (cupom.isSelected()) {

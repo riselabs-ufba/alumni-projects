@@ -1,6 +1,6 @@
 //#if ${CarrinhoCompras} == "T"
 //#if ${CarrinhoFinalizarCompras} == "T"
-//#if ${PagamentoCartaoCredito} == "T"
+//#if ${PgtoCartaoCredito} == "T"
 package br.com.webstore.features;
 
 import java.awt.Font;

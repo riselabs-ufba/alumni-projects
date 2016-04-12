@@ -3,22 +3,22 @@
 		<struct>
 			<and abstract="true" mandatory="true" name="WebStore">
 				<and mandatory="true" name="Usuario">
-					<alt mandatory="true" name="UsuarioConsultar">
-						<feature mandatory="true" name="UsuarioExcluir"/>
-						<feature mandatory="true" name="UsuarioMudarTipoDeConta"/>
-					</alt>
 					<feature mandatory="true" name="UsuarioCadastrar"/>
+					<or mandatory="true" name="UsuarioEditar">
+						<feature mandatory="true" name="UsuarioExcluir"/>
+						<feature mandatory="true" name="UsuarioMudarTipoConta"/>
+					</or>
+					<feature mandatory="true" name="UsuarioVisualizarPerfil"/>
 					<feature mandatory="true" name="UsuarioAlterar"/>
-					<feature mandatory="true" name="UsuarioVisualizar"/>
 					<feature name="UsuarioStatus"/>
 					<feature name="UsuarioNotificar"/>
 				</and>
 				<and mandatory="true" name="Produto">
-					<and mandatory="true" name="ProdutoConsultar">
-						<feature mandatory="true" name="ProdutoVerDetalhes"/>
-					</and>
 					<and mandatory="true" name="ProdutoCadastrar">
 						<feature mandatory="true" name="ProdutoVender"/>
+					</and>
+					<and mandatory="true" name="ProdutoConsultar">
+						<feature mandatory="true" name="ProdutoVerDetalhes"/>
 					</and>
 					<feature mandatory="true" name="ProdutoAlterar"/>
 					<feature mandatory="true" name="ProdutoExcluir"/>
@@ -26,15 +26,15 @@
 					<feature mandatory="true" name="ProdutoAcompanharCompra"/>
 				</and>
 				<and name="CategoriaProduto">
-					<feature mandatory="true" name="CategoriaConsultar"/>
 					<feature mandatory="true" name="CategoriaCadastrar"/>
+					<feature mandatory="true" name="CategoriaConsultar"/>
 					<feature mandatory="true" name="CategoriaAlterar"/>
 					<feature mandatory="true" name="CategoriaExcluir"/>
 				</and>
 				<and name="Comunicacao">
 					<and name="BugTrack">
+						<feature mandatory="true" name="BugTrackCadastrar"/>
 						<feature mandatory="true" name="BugTrackConsultar"/>
-						<feature name="BugTrackCadastrar"/>
 						<feature name="BugTrackAlterar"/>
 						<feature mandatory="true" name="BugTrackExcluir"/>
 					</and>
@@ -52,12 +52,13 @@
 					<feature mandatory="true" name="CarrinhoVisualizarProdutos"/>
 					<feature mandatory="true" name="CarrinhoRemoverProdutos"/>
 					<and mandatory="true" name="CarrinhoFinalizarCompras">
-						<feature mandatory="true" name="PgtoDinheiro"/>
-						<feature name="PgtoBoletoBancario"/>
-						<feature name="PgtoCartaoCredito"/>
-						<feature name="PgtoCupomDesconto"/>
-						<and name="EnvioPresente">
-							<feature name="EnvioPresenteCartao"/>
+						<or mandatory="true" name="Pagamento">
+							<feature mandatory="true" name="PgtoCartaoCredito"/>
+							<feature mandatory="true" name="PgtoCupomDesconto"/>
+							<feature mandatory="true" name="PgtoBoletoBancario"/>
+						</or>
+						<and name="EmbrulharPresente">
+							<feature name="EscreverCartaoPresente"/>
 						</and>
 					</and>
 				</and>

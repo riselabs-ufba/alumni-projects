@@ -1,5 +1,6 @@
 //#if ${CarrinhoCompras} == "T"
 //#if ${CarrinhoFinalizarCompras} == "T"
+//#if ${PagamentoBoleto} == "T"
 package br.com.webstore.features;
 
 import java.awt.event.ActionEvent;
@@ -65,5 +66,6 @@ public class PagamentoBoleto extends JFrame{
 
 
 }
+//#endif
 //#endif
 //#endif

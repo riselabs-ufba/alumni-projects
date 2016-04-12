@@ -57,9 +57,11 @@ public class PagamentoProduto  extends JFrame{
 		//#endif
 
 		
+		//#if ${PagamentoBoleto} == "T"
 		boletoBancario = new JRadioButton("Boleto Bancário", false);
 		boletoBancario.setBounds(20, 130, 200, 15); 
 		this.add(boletoBancario);
+		//#endif
 		
 		cupom = new JRadioButton("Cupom", false);
 		cupom.setBounds(20, 150, 200, 15);
@@ -88,7 +90,9 @@ public class PagamentoProduto  extends JFrame{
 					new PagamentoCupom(gfacade, usuario, "boleto",valorTotal);
 					
 				} else if (boletoBancario.isSelected()) {
+					//#if ${PagamentoBoleto} == "T"
 					new PagamentoBoleto(gfacade, usuario, "boleto",valorTotal);
+					//#endif
 				}else{
 					JOptionPane.showMessageDialog(null, "Escolha uma forma de Pagamento!");
 				}

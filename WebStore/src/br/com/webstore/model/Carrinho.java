@@ -1,6 +1,4 @@
-/**
- * 
- */
+//#if ${CarrinhoCompras} == "T"
 package br.com.webstore.model;
 
 import java.util.HashMap;
@@ -54,3 +52,4 @@ public class Carrinho {
 	
 
 }
+//#endif

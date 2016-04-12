@@ -1,6 +1,4 @@
-/**
- * 
- */
+//#if ${CarrinhoCompras} == "T"
 package br.com.webstore.dao;
 
 import java.util.List;
@@ -28,3 +26,4 @@ public class CarrinhoDao extends GenericDao<CarrinhoCheckout, Integer>{
 	}
 
 }
+//#endif

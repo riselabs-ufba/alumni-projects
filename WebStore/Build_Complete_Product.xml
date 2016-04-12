@@ -89,6 +89,7 @@
 			<property name="UsuarioPesquisa" value="T" />
 			<property name="Usuario" value="T" />
 			<property name="BugTrackAlterar" value="T" />
+			<property name="CarrinhoCompras" value="T" />
 			
 		</javapp>
 

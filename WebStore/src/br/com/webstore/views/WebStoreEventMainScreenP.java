@@ -24,8 +24,9 @@ import br.com.webstore.facade.GenericFacade;
 //#if ${BugTrack} == "T"
 import br.com.webstore.features.BugTrackView;
 //#endif
-//#if ${CarrinhoCheckout} == "T"
+//#if ${CarrinhoCompras} == "T"
 import br.com.webstore.features.CarrinhoCheckout;
+import br.com.webstore.model.Carrinho;
 //#endif
 //#if ${CategoriaP} == "T"
 import br.com.webstore.features.CategoriaP;
@@ -44,7 +45,7 @@ import br.com.webstore.features.FaleConoscoView;
 //import br.com.webstore.features.UsuarioInclusaoEdicao;
 import br.com.webstore.features.UsuarioPesquisa;
 //#endif
-import br.com.webstore.model.Carrinho;
+
 import br.com.webstore.model.Usuario;
 //#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
@@ -107,7 +108,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		/*panelTab.addTab("Ver Produto", new ProdutoView(gfacade, usuarioLogado));*/
 
 		
-		//#if ${CarrinhoCheckout} == "T"
+		//#if ${CarrinhoCompras} == "T"
 		panelTab.addTab(CarrinhoCheckout.NAME, CarrinhoCheckout.getInstance(gfacade, usuarioLogado));
 		//#endif
 		

@@ -1,3 +1,5 @@
+//#if ${CarrinhoCompras} == "T"
+
 /**
  * 
  */
@@ -115,3 +117,4 @@ public class PagamentoProduto  extends JFrame{
 		
 	
 }
+//#endif

@@ -141,7 +141,7 @@ public class ProdutoDetalhes extends JPanel {
 		this.add(this.unidadeMedida);
 		this.unidadeMedida.setEditable(false);
 		
-		
+		//#if ${CarrinhoCompras} == "T"
 		JButton btnAdicionarAoCarrinho = new JButton("Adicionar ao Carrinho");
 		btnAdicionarAoCarrinho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -153,6 +153,7 @@ public class ProdutoDetalhes extends JPanel {
 		});
 		btnAdicionarAoCarrinho.setBounds(145, 240, 160, 23);
 		add(btnAdicionarAoCarrinho);
+		//#endif
 		
 		
 	}

@@ -6,7 +6,7 @@
 					<feature mandatory="true" name="UsuarioCadastrar"/>
 					<or mandatory="true" name="UsuarioEditar">
 						<feature mandatory="true" name="UsuarioExcluir"/>
-						<feature mandatory="true" name="UsuarioMudarTipoConta1"/>
+						<feature mandatory="true" name="UsuarioMudarTipoConta"/>
 					</or>
 					<feature mandatory="true" name="UsuarioVisualizarPerfil"/>
 					<feature mandatory="true" name="UsuarioAlterar"/>

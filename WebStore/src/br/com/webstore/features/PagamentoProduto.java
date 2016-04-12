@@ -50,10 +50,11 @@ public class PagamentoProduto  extends JFrame{
 
 		this.add(lbFormaPagamento);
 
-		
+		//#if ${PagamentoCartaoCredito} == "T"
 		cartaoCredito = new JRadioButton("Cartao de Crédito", false);
 		cartaoCredito.setBounds(20, 110, 200, 15);
 		this.add(cartaoCredito);
+		//#endif
 
 		
 		boletoBancario = new JRadioButton("Boleto Bancário", false);
@@ -80,7 +81,9 @@ public class PagamentoProduto  extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if (cartaoCredito.isSelected()) {
-					 new PagamentoCartaoCredito(gfacade, usuario, "cartaoCredito");
+					//#if ${PagamentoCartaoCredito} == "T"
+					new PagamentoCartaoCredito(gfacade, usuario, "cartaoCredito");
+					//#endif
 				} else if (cupom.isSelected()) {
 					new PagamentoCupom(gfacade, usuario, "boleto",valorTotal);
 					

@@ -91,6 +91,8 @@
 			<property name="BugTrackAlterar" value="T" />
 			<property name="CarrinhoCompras" value="T" />
 			<property name="CarrinhoFinalizarCompras" value="T" />
+			<property name="PagamentoCartaoCredito" value="T" />
+			
 		</javapp>
 
 	</target>

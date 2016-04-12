@@ -57,15 +57,17 @@ public class PagamentoProduto  extends JFrame{
 		//#endif
 
 		
-		//#if ${PagamentoBoleto} == "T"
+		//#if ${PgtoBoletoBancario} == "T"
 		boletoBancario = new JRadioButton("Boleto Bancário", false);
 		boletoBancario.setBounds(20, 130, 200, 15); 
 		this.add(boletoBancario);
 		//#endif
 		
+		//#if ${PgtoCupomDesconto} == "T"
 		cupom = new JRadioButton("Cupom", false);
 		cupom.setBounds(20, 150, 200, 15);
 		this.add(cupom);
+		//#endif
 		
 		JLabel lbEmbalarParaPresente = new JLabel("Embalar para Presente");
 		lbEmbalarParaPresente.setBounds(2, 180, 150, 15);
@@ -87,10 +89,11 @@ public class PagamentoProduto  extends JFrame{
 					new PagamentoCartaoCredito(gfacade, usuario, "cartaoCredito");
 					//#endif
 				} else if (cupom.isSelected()) {
+					//#if ${PgtoCupomDesconto} == "T"
 					new PagamentoCupom(gfacade, usuario, "boleto",valorTotal);
-					
+					//#endif
 				} else if (boletoBancario.isSelected()) {
-					//#if ${PagamentoBoleto} == "T"
+					//#if ${PgtoBoletoBancario} == "T"
 					new PagamentoBoleto(gfacade, usuario, "boleto",valorTotal);
 					//#endif
 				}else{

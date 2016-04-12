@@ -1,5 +1,6 @@
 //#if ${CarrinhoCompras} == "T"
 //#if ${CarrinhoFinalizarCompras} == "T"
+//#if ${PgtoCupomDesconto} == "T"
 package br.com.webstore.features;
 
 import java.awt.Font;
@@ -68,5 +69,6 @@ public class PagamentoCupom extends JFrame {
 
 
 }
+//#endif
 //#endif
 //#endif

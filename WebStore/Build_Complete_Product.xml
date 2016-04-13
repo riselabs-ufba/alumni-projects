@@ -74,10 +74,7 @@
 			<property name="PgtoCupomDesconto" value="T" />
 			<property name="EnvioPresente" value="T" />
 			
-			<property name="Categoria" value="T" />
-			
-			
-			<property name="Cupom" value="T" />
+			<property name="Categoria" value="T" />		
 			
 			<property name="Endereco" value="T" />
 			<property name="FormaPagamento" value="T" />

@@ -1,4 +1,4 @@
-//#if ${Cupom} == "T"
+
 package br.com.webstore.dao;
 
 import javax.persistence.EntityManager;
@@ -11,4 +11,3 @@ public class CupomDao extends GenericDao<Cupom, Integer>{
 	}
 
 }
-//#endif

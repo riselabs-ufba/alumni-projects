@@ -190,7 +190,7 @@ INSERT INTO webstoreDB.UnidadeMedida (idUnidadeMedida,dsUnidadeMedida) VALUES (1
 INSERT INTO webstoreDB.UnidadeMedida (idUnidadeMedida,dsUnidadeMedida) VALUES (2,'UN');
 INSERT INTO webstoreDB.UnidadeMedida (idUnidadeMedida,dsUnidadeMedida) VALUES (3,'CX');
 
-Insert into StatusUsuario(idStatusUsuario, dsStatusUsuario) value(1,'Ativo');	
+insert into StatusUsuario(idStatusUsuario, dsStatusUsuario) value(1,'Ativo');	
 insert into StatusUsuario(idStatusUsuario, dsStatusUsuario) value(2,'Inativo');
 
 insert into webstoreDB.StatusVenda (dsStatusVenda) values ("Carrinho");

@@ -26,9 +26,8 @@ import br.com.webstore.model.Faq;
 import br.com.webstore.dao.CategoriaDao;
 //#endif
 
-//#if ${Cupom} == "T"
+
 import br.com.webstore.dao.CupomDao;
-//#endif
 
 //#if ${Endereco} == "T"
 import br.com.webstore.dao.EnderecoDao;
@@ -99,9 +98,9 @@ import br.com.webstore.dao.VendaProdutoEmbbedDao;
 import br.com.webstore.model.Categoria;
 //#endif
 
-//#if ${Cupom} == "T"
+
 import br.com.webstore.model.Cupom;
-//#endif
+
 
 //#if ${Endereco} == "T"
 import br.com.webstore.model.Endereco;
@@ -199,9 +198,9 @@ public class GenericFacade {
 		categoriaDataProvider=new CategoriaDao(entityManager);
 		//#endif
 		
-		//#if ${Cupom} == "T"
-		cupomDataProvider = new CupomDao(entityManager);
-		//#endif
+		
+	//	cupomDataProvider = new CupomDao(entityManager);
+		
 		
 		//#if ${Endereco} == "T"
 		enderecoDataProvider=new  EnderecoDao(entityManager);
@@ -363,10 +362,8 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//Cupom
-		//#if ${Cupom} == "T"
-
-		private CupomDao cupomDataProvider;
+		
+		/*private CupomDao cupomDataProvider;
 	
 		public Cupom insertCupom(Cupom cupom) {
 			
@@ -380,8 +377,8 @@ public class GenericFacade {
 
 		public List<Cupom> findCupom(Cupom query) {
 			return cupomDataProvider.getList();
-		}
-		//#endif
+		}*/
+		
 	
 		//Endereco
 		//#if ${Endereco} == "T"

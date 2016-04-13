@@ -1,4 +1,3 @@
-//#if ${Cupom} == "T"
 /**
  * 
  */
@@ -82,4 +81,3 @@ public class Cupom {
 		}
 	}
 }
-//#endif

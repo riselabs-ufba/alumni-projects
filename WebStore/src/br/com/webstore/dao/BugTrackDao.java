@@ -1,3 +1,4 @@
+//#if ${Comunicacao} == "T"
 //#if ${BugTrack} == "T"
 package br.com.webstore.dao;
 
@@ -27,4 +28,5 @@ public class BugTrackDao extends GenericDao<BugTrack, Integer>{
 		return query.getResultList();
 	}
 }
+//#endif
 //#endif

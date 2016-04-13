@@ -4,10 +4,8 @@ package br.com.webstore.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 
 import br.com.webstore.features.CarrinhoCheckout;
-import br.com.webstore.model.Faq;
 
 /**
  * @author webstore

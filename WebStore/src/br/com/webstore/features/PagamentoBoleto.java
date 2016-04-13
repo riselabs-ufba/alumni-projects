@@ -15,7 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import br.com.webstore.facade.GenericFacade;
-import br.com.webstore.model.FormaDePagamento;
 import br.com.webstore.model.Usuario;
 import br.com.webstore.model.Venda;
 

@@ -1,3 +1,4 @@
+//#if ${Comunicacao} == "T"
 //#if ${FAQ} == "T"
 package br.com.webstore.features;
 
@@ -51,4 +52,5 @@ public class FAQ extends JPanel {
 
 	}
 }
+//#endif
 //#endif

@@ -95,6 +95,8 @@
 			<property name="PgtoBoletoBancario" value="T" />
 			<property name="PgtoCupomDesconto" value="T" />
 			<property name="EnvioPresente" value="T" />
+			<property name="Comunicacao" value="T" />
+			
 			
 			
 		</javapp>

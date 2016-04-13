@@ -6,9 +6,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+//#if ${Comunicacao} == "T"
 //#if ${BugTrack} == "T"
 import br.com.webstore.dao.BugTrackDao;
 //#endif
+//#if ${FAQ} == "T"
+import br.com.webstore.dao.FaqDao;
+//#endif
+//#if ${BugTrack} == "T"
+import br.com.webstore.model.BugTrack;
+//#endif
+//#if ${FAQ} == "T"
+import br.com.webstore.model.Faq;
+//#endif
+//#endif
+
 
 //#if ${Categoria} == "T"
 import br.com.webstore.dao.CategoriaDao;
@@ -22,9 +34,7 @@ import br.com.webstore.dao.CupomDao;
 import br.com.webstore.dao.EnderecoDao;
 //#endif
 
-//#if ${FAQ} == "T"
-import br.com.webstore.dao.FaqDao;
-//#endif
+
 
 
 //#if ${FormaPagamento} == "T"
@@ -83,10 +93,6 @@ import br.com.webstore.dao.VendaProdutoDao;
 import br.com.webstore.dao.VendaProdutoEmbbedDao;
 //#endif
 
-//#if ${BugTrack} == "T"
-import br.com.webstore.model.BugTrack;
-//#endif
-
 //#if ${Categoria} == "T"
 import br.com.webstore.model.Categoria;
 //#endif
@@ -97,10 +103,6 @@ import br.com.webstore.model.Cupom;
 
 //#if ${Endereco} == "T"
 import br.com.webstore.model.Endereco;
-//#endif
-
-//#if ${FAQ} == "T"
-import br.com.webstore.model.Faq;
 //#endif
 
 
@@ -168,20 +170,26 @@ public class GenericFacade {
 	
 	
 	public GenericFacade() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("webstoreDB");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("webstoredb");
 		EntityManager entityManager = factory.createEntityManager();
 		
+		//#if ${Comunicacao} == "T"
 		//#if ${BugTrack} == "T"
 		bugTrackDao = new BugTrackDao(entityManager);
 		//#endif
+		
+		//#if ${FAQ} == "T"
+		faqDataProvider=new FaqDao(entityManager);
+		//#endif
+		
+		//#endif
+		
 		
 		//#if ${Produto} == "T"
 		produtoDataProvider = new ProdutoDao(entityManager);
 		//#endif
 		
-		//#if ${FAQ} == "T"
-		faqDataProvider=new FaqDao(entityManager);
-		//#endif		
+		
 		
 		//#if ${Categoria} == "T"
 		categoriaDataProvider=new CategoriaDao(entityManager);
@@ -242,6 +250,7 @@ public class GenericFacade {
 	    
 	}
 	
+	//#if ${Comunicacao} == "T"
 	//#if ${BugTrack} == "T"
 	private BugTrackDao bugTrackDao;
 	
@@ -277,11 +286,11 @@ public class GenericFacade {
 	public BugTrack getBugTrack(int id) {
 		return bugTrackDao.find(id);
 	}
-	
+
+	//#endif
 	//#endif
 	
-	
-	
+		//#if ${Comunicacao} == "T"
 		//#if ${FAQ} == "T"
 			private FaqDao faqDataProvider;
 
@@ -306,7 +315,8 @@ public class GenericFacade {
 				this.faqDataProvider.remove(id);
 			}
 	//#endif
-
+	//#endif
+			
 	
 	
 	

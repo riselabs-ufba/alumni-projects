@@ -1,3 +1,4 @@
+//#if ${Comunicacao} == "T"
 //#if ${FAQ} == "T"
 package br.com.webstore.dao;
 
@@ -21,4 +22,5 @@ public class FaqDao extends GenericDao<Faq, Integer>{
 	}
 
 }
+//#endif
 //#endif

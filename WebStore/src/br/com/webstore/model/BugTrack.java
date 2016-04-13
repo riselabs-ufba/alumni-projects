@@ -1,3 +1,4 @@
+//#if ${Comunicacao} == "T"
 //#if ${BugTrack} == "T"
 /**
  * 
@@ -190,4 +191,5 @@ public class BugTrack {
 		return titulo;
 	}
 }
+//#endif
 //#endif

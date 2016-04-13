@@ -21,7 +21,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.webstore.facade.GenericFacade;
-import br.com.webstore.model.Faq;
 import br.com.webstore.model.Produto;
 import br.com.webstore.model.Usuario;
 

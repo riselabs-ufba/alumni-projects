@@ -1,3 +1,4 @@
+//#if ${Comunicacao} == "T"
 //#if ${FAQ} == "T"
 /**
  *
@@ -65,4 +66,5 @@ public class Faq {
 	
 	
 }
+//#endif
 //#endif

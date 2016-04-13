@@ -21,15 +21,10 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.webstore.facade.GenericFacade;
+
+//#if ${Comunicacao} == "T"
 //#if ${BugTrack} == "T"
 import br.com.webstore.features.BugTrackView;
-//#endif
-//#if ${CarrinhoCompras} == "T"
-import br.com.webstore.features.CarrinhoCheckout;
-import br.com.webstore.model.Carrinho;
-//#endif
-//#if ${CategoriaP} == "T"
-import br.com.webstore.features.CategoriaP;
 //#endif
 //#if ${FAQ} == "T"
 //import br.com.webstore.features.FAQ;
@@ -40,6 +35,16 @@ import br.com.webstore.features.FaqPesquisa;
 //#if ${FaleConosco} == "T"
 import br.com.webstore.features.FaleConoscoView;
 //#endif
+//#endif
+
+//#if ${CarrinhoCompras} == "T"
+import br.com.webstore.features.CarrinhoCheckout;
+import br.com.webstore.model.Carrinho;
+//#endif
+//#if ${CategoriaP} == "T"
+import br.com.webstore.features.CategoriaP;
+//#endif
+
 
 //#if ${Usuario} == "T"
 //import br.com.webstore.features.UsuarioInclusaoEdicao;
@@ -100,10 +105,26 @@ public class WebStoreEventMainScreenP extends JPanel {
 			panelTab.addTab(CategoriaP.NAME, new CategoriaP(gfacade));
 		//#endif
 		
+		
+		//#if ${Comunicacao} == "T"
 		//#if ${FAQ} == "T"
 		panelTab.addTab(FaqListar.NAME, new FaqListar(gfacade));
 		//#endif
+		//#if ${BugTrack} == "T"
+		if (usuarioLogado!=null)
+			panelTab.addTab(BugTrackView.NAME, new BugTrackView(gfacade,usuarioLogado));
+		//#endif
 		
+		//#if ${FAQ} == "T"
+		if (usuarioLogado!=null && usuarioLogado.getPerfil().getDescricao().equals("Admin"))
+			panelTab.addTab(FaqPesquisa.NAME, new FaqPesquisa(gfacade));
+		//#endif
+				
+		//#if ${FaleConosco} == "T"
+		if (usuarioLogado!=null)
+			panelTab.addTab(FaleConoscoView.NAME, new FaleConoscoView(usuarioLogado));
+		//#endif
+		//#endif
 
 		/*panelTab.addTab("Ver Produto", new ProdutoView(gfacade, usuarioLogado));*/
 
@@ -117,21 +138,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 			panelTab.addTab(ProdutoPesquisa.NAME, new ProdutoPesquisa(gfacade,usuarioLogado));
 		//#endif
 		
-		//#if ${BugTrack} == "T"
-		if (usuarioLogado!=null)
-			panelTab.addTab(BugTrackView.NAME, new BugTrackView(gfacade,usuarioLogado));
-		//#endif
 		
-		
-		//#if ${FAQ} == "T"
-		if (usuarioLogado!=null && usuarioLogado.getPerfil().getDescricao().equals("Admin"))
-			panelTab.addTab(FaqPesquisa.NAME, new FaqPesquisa(gfacade));
-		//#endif
-		
-		//#if ${FaleConosco} == "T"
-		if (usuarioLogado!=null)
-			panelTab.addTab(FaleConoscoView.NAME, new FaleConoscoView(usuarioLogado));
-		//#endif
 		
 				
 		//Init the selected tab

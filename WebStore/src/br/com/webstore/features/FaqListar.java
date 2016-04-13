@@ -1,3 +1,4 @@
+//#if ${Comunicacao} == "T"
 //#if ${FAQ} == "T"
 package br.com.webstore.features;
 
@@ -115,4 +116,5 @@ public class FaqListar extends JPanel {
 
 	}
 }
+//#endif
 //#endif

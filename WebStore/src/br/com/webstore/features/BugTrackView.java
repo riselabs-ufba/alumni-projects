@@ -1,3 +1,4 @@
+//#if ${Comunicacao} == "T"
 //#if ${BugTrack} == "T"
 package br.com.webstore.features;
 
@@ -429,4 +430,5 @@ public class BugTrackView extends JPanel{
 		return data;
 	}
 }
+//#endif
 //#endif

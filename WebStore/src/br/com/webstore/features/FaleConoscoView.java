@@ -1,6 +1,5 @@
-/**
- * 
- */
+//#if ${Comunicacao} == "T"
+
 package br.com.webstore.features;
 
 import java.awt.event.ActionEvent;
@@ -95,3 +94,4 @@ public class FaleConoscoView extends JPanel {
 		add(btnSendBug);
 	}
 }
+//#endif

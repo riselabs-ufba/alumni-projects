@@ -1,3 +1,4 @@
+//#if ${Comunicacao} == "T"
 //#if ${FAQ} == "T"
 package br.com.webstore.features;
 
@@ -143,3 +144,5 @@ public class FaqEdit extends JPanel {
 
 }
 //#endif
+//#endif
+

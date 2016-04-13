@@ -13,7 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import br.com.webstore.facade.GenericFacade;
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
+//#endif
 import br.com.webstore.model.Venda;
 
 /**
@@ -23,7 +25,7 @@ import br.com.webstore.model.Venda;
 public class PagamentoBoleto extends JFrame{
 	
 	private static final long serialVersionUID = -3494096047070175713L;
-
+	//#if ${Usuario} == "T"
 	public PagamentoBoleto(final GenericFacade gfacade, final Usuario usuario, String string, final String valorTotal) {
 		final JDialog frame = new JDialog();
 		this.setLayout(null);	
@@ -66,6 +68,7 @@ public class PagamentoBoleto extends JFrame{
 		
 		this.setVisible(true);
 	}
+	//#endif
 
 
 }

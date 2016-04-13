@@ -1,3 +1,4 @@
+//#if ${Usuario} == "T"
 //#if ${UsuarioInclusaoEdicao} == "T"
 package br.com.webstore.features;
 
@@ -380,4 +381,5 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.add(this.salvarBtn);
 	}
 }
+//#endif
 //#endif

@@ -31,7 +31,9 @@ import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Carrinho;
 import br.com.webstore.model.Produto;
 import br.com.webstore.model.StatusVenda;
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
+//#endif
 import br.com.webstore.model.Venda;
 import br.com.webstore.views.WebStoreEventMainScreenP;
 //#if ${CarrinhoFinalizarCompras} == "T"
@@ -65,25 +67,30 @@ public class CarrinhoCheckout extends JPanel {
 	private JTable table;
 	private JLabel lblValor;
 	private JScrollPane scrollPane;
-	
+	//#if ${Usuario} == "T"
 	private Usuario user;
+	//#endif
 	private GenericFacade facade;
 	
 	private static CarrinhoCheckout instance;
 	
+	//#if ${Usuario} == "T"
 	public static CarrinhoCheckout getInstance(final GenericFacade gfacade, final Usuario usuario){
 		if(instance == null)
 			instance = new CarrinhoCheckout(gfacade, usuario);
 		
 		return instance;
 	}
-	
+
 	
 	public CarrinhoCheckout(final GenericFacade gfacade, final Usuario usuario) {
+		//#if ${Usuario} == "T"
 		this.user = usuario;
+		//#endif
 		this.facade = gfacade;
 		criarLayout(null);
 	}
+	//#endif
 	
 	
 	public void criarLayout(final Produto produto){
@@ -249,8 +256,9 @@ public class CarrinhoCheckout extends JPanel {
 				if (Integer.parseInt(lblValor.getText()) <= 0) {
 					JOptionPane.showMessageDialog(null, "É necessário ter pelo menos produto adicionado ao Carrinho");
 				} else {
-					
+					//#if ${Usuario} == "T"
 					new PagamentoProduto(facade, user, lblValor.getText());
+					//#endif
 				}
 				
 			}

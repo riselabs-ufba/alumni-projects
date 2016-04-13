@@ -72,12 +72,11 @@ import br.com.webstore.dao.TipoMensagemDao;
 import br.com.webstore.dao.UnidadeMedidaDao;
 //#endif
 
+//#if ${Usuario} == "T"
+import br.com.webstore.dao.UsuarioDao;
 //#if ${UsuarioCupom} == "T"
 import br.com.webstore.dao.UsuarioCupomDao;
 //#endif
-
-//#if ${Usuario} == "T"
-import br.com.webstore.dao.UsuarioDao;
 //#endif
 
 //#if ${CarrinhoCompras} == "T"
@@ -145,11 +144,11 @@ import br.com.webstore.model.UnidadeMedida;
 
 //#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
-//#endif
-
 //#if ${UsuarioCupom} == "T"
 import br.com.webstore.model.UsuarioCupom;
 //#endif
+//#endif
+
 
 //#if ${CarrinhoCompras} == "T"
 //#if ${Venda} == "T"
@@ -597,6 +596,7 @@ public class GenericFacade {
 		//#endif
 		
 	
+		//#if ${Usuario} == "T"
 		//#if ${UsuarioCupom} == "T"
 		private UsuarioCupomDao usuarioCupomDao;
 
@@ -612,7 +612,7 @@ public class GenericFacade {
 			return usuarioCupomDao.getList();
 		}
 		//#endif
-		
+		//#endif
 		
 	
 		//#if ${Usuario} == "T"
@@ -665,9 +665,11 @@ public class GenericFacade {
 			return vendaDao.getList();
 		}
 		
+		//#if ${Usuario} == "T"
 		public List<Venda> findVendaByUser(Usuario usuario, StatusVenda statusvenda){
 			return vendaDao.getVendaByUser(usuario, statusvenda);
 		}
+		//#endif
 		//#endif
 		//#endif
 		

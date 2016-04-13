@@ -3,8 +3,9 @@
 package br.com.webstore.features;
 
 import br.com.webstore.facade.GenericFacade;
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
-
+//#endif
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +30,7 @@ public class PagamentoProduto  extends JFrame{
 	JRadioButton cartaoCredito;
 	JRadioButton boletoBancario;
 	
-	
+	//#if ${Usuario} == "T"
 	public PagamentoProduto(final GenericFacade gfacade, final Usuario usuario, final String valorTotal) {
 		this.setLayout(null);	
 		this.setTitle("Concluir Compra");
@@ -124,7 +125,7 @@ public class PagamentoProduto  extends JFrame{
 		btFinalizarCompra.setBounds(110,210,160,23);		
 		
 		this.setVisible(true);
-	}
+	}//#endif
 		
 	
 }

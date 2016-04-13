@@ -24,7 +24,9 @@ import javax.swing.table.TableModel;
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.BugTrack;
 import br.com.webstore.model.SituacaoBug;
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
+//#endif
 
 public class BugTrackView extends JPanel{
 
@@ -42,6 +44,7 @@ public class BugTrackView extends JPanel{
 	TableModel myTableModel;
 	GenericFacade facade;
 	
+	//#if ${Usuario} == "T"
 	public BugTrackView(final GenericFacade facade, final Usuario usuarioLogado) {
 		//facade = new GenericFacade();
 		situacoes = facade.getListSituacaoBug();
@@ -374,7 +377,9 @@ public class BugTrackView extends JPanel{
 						String s = "<html>Titulo: "+bug.getTitulo()+"<br>";
 						s+="Situacao: "+bug.getSituacaoBug().getDescricao()+"<br>";
 						s+="Data registro: "+bug.getDataRegistro().toString()+"<br>";
+						//#if ${Usuario} == "T"
 						s+="Usuario cadastro: "+bug.getUsuarioRegistro().getNome()+"<br>";
+						//#endif
 						s+="Descricao: "+bug.getDescricao()+"<br>";
 						if(bug.getDataResposta()!=null)
 							s+="Data resposta: "+bug.getDataResposta().toString()+"<br>";
@@ -402,6 +407,7 @@ public class BugTrackView extends JPanel{
 		add(scrollPane);
 		
 	}
+	//#endif
 	
 	public Vector<Vector<String>> resultsToData(List<BugTrack> results){
 		Vector<Vector<String>> data = new Vector<Vector<String>>();
@@ -410,6 +416,7 @@ public class BugTrackView extends JPanel{
 			
 			System.out.println(results.get(i).getId());
 			vec.add(results.get(i).getId().toString());
+			//#if ${Usuario} == "T"
 			System.out.println(results.get(i).getUsuarioRegistro().getNome());
 			vec.add(results.get(i).getUsuarioRegistro().getNome());
 			if(results.get(i).getUsuarioResponde()!=null){
@@ -419,6 +426,7 @@ public class BugTrackView extends JPanel{
 			else{
 				vec.add("");
 			}
+			//#endif
 			System.out.println(results.get(i).getTitulo());
 			vec.add(results.get(i).getTitulo());
 			System.out.println(results.get(i).getSituacaoBug().getDescricao());

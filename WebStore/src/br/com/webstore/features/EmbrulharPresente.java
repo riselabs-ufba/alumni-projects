@@ -25,7 +25,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import br.com.webstore.facade.GenericFacade;
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
+//#endif
 
 /**
  * @author webstore
@@ -38,8 +40,9 @@ public class EmbrulharPresente extends JFrame
 	private JTextField paraField;
 	private JTextField deField;
 	private JTextArea mensagemField;
+	//#if ${Usuario} == "T"
 	Usuario usr;
-	
+	//#endif
 	private boolean validarCampos()
 	{
 		if ("".equals(paraField.getText()) || "".equals(deField.getText()) || "".equals(paraField.getText()))
@@ -53,7 +56,7 @@ public class EmbrulharPresente extends JFrame
 		}
 	}
 	
-	
+	//#if ${Usuario} == "T"	
 	public void EnviarEmail(Usuario usuario, String mensagem, String de, String para)
 	{	
 		StringBuilder str = new StringBuilder();
@@ -125,9 +128,10 @@ public class EmbrulharPresente extends JFrame
 	        JOptionPane.showMessageDialog(null, "Cartão para o embrulho de presente não criado.");
 	    }
 	}
-	
+	//#endif
+	//#if ${Usuario} == "T"
 	public EmbrulharPresente(GenericFacade gfacade, Usuario usuario, String string) 
-	{
+	{	
 		usr = usuario;
 		final JDialog frame = new JDialog();
 		this.setLayout(null);	
@@ -178,7 +182,9 @@ public class EmbrulharPresente extends JFrame
 			{
 				if (validarCampos())
 				{
+					//#if ${Usuario} == "T"
 					EnviarEmail(usr, mensagemField.getText(), deField.getText(), paraField.getText());
+					//#endif
 				}
 			}
 		});
@@ -186,4 +192,5 @@ public class EmbrulharPresente extends JFrame
 		
 		this.setVisible(true);
 	}
+	//#endif
 }

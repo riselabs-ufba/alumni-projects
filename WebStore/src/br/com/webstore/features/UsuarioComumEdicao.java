@@ -1,6 +1,4 @@
-/**
- * 
- */
+//#if ${Usuario} == "T"
 package br.com.webstore.features;
 
 import javax.swing.JPanel;
@@ -350,3 +348,4 @@ public class UsuarioComumEdicao extends JPanel
 		}	
 	}
 }
+//#endif

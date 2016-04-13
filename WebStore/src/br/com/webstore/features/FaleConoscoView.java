@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Properties;
 
-import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -20,10 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
-
+//#endif
 /**
  * @author webstore
  *
@@ -34,7 +32,7 @@ public class FaleConoscoView extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "Fale conosco";
-	
+	//#if ${Usuario} == "T"
 	public FaleConoscoView(final Usuario usuarioLogado){
 		this.setLayout(null);
 		/*final JTextField email = new JTextField(40);
@@ -93,6 +91,7 @@ public class FaleConoscoView extends JPanel {
 		
 		add(btnSendBug);
 	}
+	//#endif
 }
 //#endif
 //#endif

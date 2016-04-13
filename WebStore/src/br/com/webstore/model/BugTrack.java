@@ -31,13 +31,16 @@ public class BugTrack {
 	@Column(name="idBugTrack")
 	private Integer id;
 	
+	//#if ${Usuario} == "T"
 	@OneToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="idUsuarioResponde", referencedColumnName="idUsuario", nullable=true)
 	private Usuario usuarioResponde;
 	
+	
 	@OneToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="idUsuarioRegistro", referencedColumnName="idUsuario", nullable=false)
 	private Usuario usuarioRegistro;
+	//#endif
 	
 	@OneToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="idSituacaoBug", referencedColumnName="idSituacaoBug", nullable=false)
@@ -83,6 +86,8 @@ public class BugTrack {
 	public void setId(Integer codigo) {
 		this.id = codigo;
 	}
+	
+	//#if ${Usuario} == "T"
 	/**
 	 * Return the usuarioResponde 
 	 * @return the usuarioResponde
@@ -111,6 +116,7 @@ public class BugTrack {
 	public void setUsuarioRegistro(Usuario usuarioRegistro) {
 		this.usuarioRegistro = usuarioRegistro;
 	}
+	//#endif
 	/**
 	 * Return the situacaoBug 
 	 * @return the situacaoBug

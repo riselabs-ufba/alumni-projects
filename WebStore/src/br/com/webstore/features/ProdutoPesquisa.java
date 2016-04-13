@@ -22,7 +22,9 @@ import javax.swing.table.DefaultTableModel;
 
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Produto;
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
+//#endif
 
 public class ProdutoPesquisa extends JPanel {
 	
@@ -42,7 +44,7 @@ public class ProdutoPesquisa extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	
+	//#if ${Usuario} == "T"	
 	public ProdutoPesquisa(final GenericFacade gfacade, final Usuario usuarioLogado) {
 		this.setLayout(null);
 
@@ -314,5 +316,6 @@ public class ProdutoPesquisa extends JPanel {
 		
 		}
 	}
+	//#endif
 }
 //#endif

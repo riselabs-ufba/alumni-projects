@@ -31,6 +31,7 @@ public class Mensagem {
 	@Column(name="idMensagem")
 	private Integer id;
 	
+	//#if ${Usuario} == "T"
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idUsuarioResposta", referencedColumnName="idUsuario", nullable=true)
 	private Usuario usuarioResposta;
@@ -38,6 +39,7 @@ public class Mensagem {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idUsuarioRegistro", referencedColumnName="idUsuario", nullable=false)
 	private Usuario usuarioRegistro;
+	//#endif
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idTipoMensagem", referencedColumnName="idTipoMensagem", nullable=false)
@@ -71,6 +73,8 @@ public class Mensagem {
 	public void setId(Integer codigo) {
 		this.id = codigo;
 	}
+	
+	//#if ${Usuario} == "T"
 	/**
 	 * Return the usuarioResposta 
 	 * @return the usuarioResposta
@@ -99,6 +103,7 @@ public class Mensagem {
 	public void setUsuarioRegistro(Usuario usuarioRegistro) {
 		this.usuarioRegistro = usuarioRegistro;
 	}
+	//#endif
 	/**
 	 * Return the tipoMensagem 
 	 * @return the tipoMensagem

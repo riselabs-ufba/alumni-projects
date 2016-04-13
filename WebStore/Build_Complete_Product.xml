@@ -75,6 +75,9 @@
 			<property name="EnvioPresente" value="T" />
 			
 			<property name="Categoria" value="T" />		
+
+			<property name="Usuario" value="T" />
+			
 			
 			<property name="Endereco" value="T" />
 			<property name="FormaPagamento" value="T" />
@@ -87,7 +90,6 @@
 			<property name="TipoMensagem" value="T" />
 			<property name="UnidadeMedida" value="T" />
 			<property name="UsuarioCupom" value="T" />
-			<property name="Usuario" value="T" />
 			<property name="Venda" value="T" />
 			<property name="VendaProduto" value="T" />
 			<property name="VendaProdutoEmbbed" value="T" />
@@ -97,7 +99,7 @@
 
 			<property name="UsuarioInclusaoEdicao" value="T" />
 			<property name="UsuarioPesquisa" value="T" />
-			<property name="Usuario" value="T" />
+
 
 			
 			

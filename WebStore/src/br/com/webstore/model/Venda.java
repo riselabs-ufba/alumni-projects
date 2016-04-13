@@ -37,6 +37,7 @@ public class Venda {
 	@JoinColumn(name="idStatusVenda", referencedColumnName="idStatusVenda", nullable=false)
 	private StatusVenda statusVenda;
 	
+	//#if ${Usuario} == "T"
 	@ManyToOne(targetEntity = Usuario.class)
 	@JoinColumn(name="idUsuarioVenda", referencedColumnName="idUsuario", nullable=false)
 	private Usuario usuarioVenda;
@@ -44,6 +45,7 @@ public class Venda {
 	@ManyToOne(targetEntity = UsuarioCupom.class)
 	@JoinColumn(name="idUsuarioCupom", referencedColumnName="idUsuarioCupom", nullable=true)
 	private UsuarioCupom usuarioCupom;
+	//#endif
 	
 	@ManyToOne(targetEntity = FormaPagamento.class)
 	@JoinColumn(name="idFormaPagamento", referencedColumnName="idFormaPagamento", nullable=false)
@@ -84,6 +86,8 @@ public class Venda {
 	public void setStatusVenda(StatusVenda statusVenda) {
 		this.statusVenda = statusVenda;
 	}
+	
+	//#if ${Usuario} == "T"
 	/**
 	 * Return the usuarioVenda 
 	 * @return the usuarioVenda
@@ -112,6 +116,7 @@ public class Venda {
 	public void setUsuarioCupom(UsuarioCupom usuarioCupom) {
 		this.usuarioCupom = usuarioCupom;
 	}
+	//#endif
 	/**
 	 * Return the formaPagamento 
 	 * @return the formaPagamento
@@ -126,6 +131,8 @@ public class Venda {
 	public void setFormaPagamento(FormaPagamento formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
+	
+	//#if ${Usuario} == "T"
 	/**
 	 * Return the idUsuarioVenda 
 	 * @return the idUsuarioVenda
@@ -154,6 +161,7 @@ public class Venda {
 	public void setIdUsuarioCupom(UsuarioCupom codigoUsuarioCupom) {
 		this.usuarioCupom = codigoUsuarioCupom;
 	}
+	//#endif
 	/**
 	 * Return the idFormaPagamento 
 	 * @return the idFormaPagamento

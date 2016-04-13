@@ -19,7 +19,9 @@ import br.com.webstore.model.Categoria;
 //#endif
 import br.com.webstore.model.Produto;
 import br.com.webstore.model.UnidadeMedida;
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
+//#endif
 import br.com.webstore.model.Venda;
 import br.com.webstore.views.WebStoreEventMainScreenP;
 
@@ -47,14 +49,16 @@ public class ProdutoDetalhes extends JPanel {
 	private JTextField categoriaProduto;
 	//#endif
 	private JTextField unidadeMedida;
+	//#if ${Usuario} == "T"
 	private Usuario user;
+	//#endif
 	private GenericFacade facade;
 	/**
 	 * 
 	 */
 	
 	
-	
+	//#if ${Usuario} == "T"
 	public ProdutoDetalhes(Integer id, final Usuario usuario, final GenericFacade gfacade) {
 		this();
 		this.editMode = true;
@@ -69,11 +73,13 @@ public class ProdutoDetalhes extends JPanel {
 		this.categoriaProduto.setText(produto.getCategoria().getDescricao());
 		//#endif
 		this.unidadeMedida.setText(produto.getUnidadeMedida().getDescricao());
+		//#if ${Usuario} == "T"
 		this.user = usuario;
+		//#endif
 		this.facade = gfacade;
 		
 	}
-	
+	//#endif
 	
 	
 	public ProdutoDetalhes() {
@@ -153,7 +159,9 @@ public class ProdutoDetalhes extends JPanel {
 		JButton btnAdicionarAoCarrinho = new JButton("Adicionar ao Carrinho");
 		btnAdicionarAoCarrinho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//#if ${Usuario} == "T"
 				CarrinhoCheckout.getInstance(facade, user).criarLayout(produto);
+				//#endif
 				JOptionPane.showMessageDialog(null, "Produto adicionado ao carrinho.");
 				//WebStoreEventMainScreenP janela = WebStoreEventMainScreenP.getInstance(facade, user);
 	

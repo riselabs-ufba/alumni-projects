@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.Calendar;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
@@ -16,8 +17,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
+
 import br.com.webstore.facade.GenericFacade;
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
+//#endif
 import br.com.webstore.model.Venda;
 
 /**
@@ -33,7 +37,7 @@ public class PagamentoCartaoCredito extends JFrame
 	private JFormattedTextField dataVencCartaoField;
 	private JFormattedTextField codigoSegurancaField;
 	
-	
+	//#if ${Usuario} == "T"
 	public PagamentoCartaoCredito(final GenericFacade gfacade, final Usuario usuario, final String string, final String valorTotal) 
 	{
 		final JDialog frame = new JDialog();
@@ -136,6 +140,7 @@ public class PagamentoCartaoCredito extends JFrame
 		
 		this.setVisible(true);
 	}
+	//#endif	
 }
 //#endif
 //#endif

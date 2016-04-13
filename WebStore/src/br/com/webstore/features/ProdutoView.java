@@ -6,7 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Produto;
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
+//#endif
 //#if ${CarrinhoCompras} == "T"
 import br.com.webstore.model.Venda;
 //#endif
@@ -37,6 +39,7 @@ public class ProdutoView extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	//#if ${Usuario} == "T"
 	public ProdutoView(final GenericFacade gfacade, final Usuario usuarioLogado) {
 		setLayout(null);
 		final 	Vector<String> headers = new Vector<String>(3);
@@ -81,6 +84,7 @@ public class ProdutoView extends JPanel {
 		btnAdicionarAoCarrinho.setBounds(22, 114, 135, 23);
 		add(btnAdicionarAoCarrinho);
 	}
+
 	//#if ${CarrinhoCompras} == "T"
 	public Venda toModel(final GenericFacade gfacade, Usuario user, String valor) {
 		Venda venda = new Venda(); 
@@ -97,6 +101,6 @@ public class ProdutoView extends JPanel {
 		return venda;
 	}
 	//#endif
-	
+	//#endif	
 }
 //#endif

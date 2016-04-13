@@ -1,3 +1,4 @@
+//#if ${Usuario} == "T"
 //#if ${UsuarioCupom} == "T"
 package br.com.webstore.dao;
 
@@ -12,4 +13,5 @@ public class UsuarioCupomDao extends GenericDao<UsuarioCupom, Integer>{
 		super(entityManager, UsuarioCupom.class);
 	}
 }
+//#endif
 //#endif

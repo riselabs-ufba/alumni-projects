@@ -51,15 +51,18 @@ import br.com.webstore.features.CategoriaP;
 //#if ${Usuario} == "T"
 //import br.com.webstore.features.UsuarioInclusaoEdicao;
 import br.com.webstore.features.UsuarioPesquisa;
+import br.com.webstore.model.Usuario;
+import br.com.webstore.features.UsuarioInclusaoEdicao;
 //#endif
 
-import br.com.webstore.model.Usuario;
+
 //#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
 import br.com.webstore.features.ProdutoView;
+//#if ${Usuario} == "T"
 import br.com.webstore.features.UsuarioComumEdicao;
 //#endif
-import br.com.webstore.features.UsuarioInclusaoEdicao;
+//#endif
 
 /**
  * @author webstore
@@ -77,20 +80,22 @@ public class WebStoreEventMainScreenP extends JPanel {
 	private static final int WIDTH_SCREEN = 600;
 	private static final int HEIGHT_SCREEN = 400;
 	
+	//#if ${Usuario} == "T"
 	static List<Usuario> user = null;
+	//#endif
 	//public int posTab = 0;
 	JFrame mainFrame = new JFrame(APPLICATION_NAME);
 	private static WebStoreEventMainScreenP instance;
-	
+	//#if ${Usuario} == "T"
 	public static WebStoreEventMainScreenP getInstance(GenericFacade gfacade, Usuario usuarioLogado){
 		if(instance == null)
 			instance = new WebStoreEventMainScreenP(gfacade, usuarioLogado);
 		
 		return instance;
 	}
+	//#endif
 	
-	
-	
+	//#if ${Usuario} == "T"
 	public WebStoreEventMainScreenP(GenericFacade gfacade, Usuario usuarioLogado) {
 		JTabbedPane panelTab = new JTabbedPane();
 		
@@ -153,7 +158,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 		add(panelTab);
 		
 		//panelTab.setSelectedIndex(posTab);
-	}
+	}//#endif
 	
 	/**
 	 * Return the mainFrame 
@@ -205,7 +210,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 				}
 				else{
 					
-					
+					//#if ${Usuario} == "T"
 					user = gfacade.getUsuarioByLoginSenha(login.getText(), senha.getText());
 					
 					if (!user.isEmpty()){
@@ -227,6 +232,7 @@ public class WebStoreEventMainScreenP extends JPanel {
 					else{
 						JOptionPane.showMessageDialog(null, "Usuario " + login.getText() + " nao encontrado ou usuario e senha incorretos!");
 					}
+					//#endif
 				}
 			}
 		});
@@ -238,23 +244,26 @@ public class WebStoreEventMainScreenP extends JPanel {
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) 
-			{
+			{	//#if ${Usuario} == "T"
 				UsuarioComumEdicao uie = new UsuarioComumEdicao();
-				
+				//#endif
 				final JDialog frame = new JDialog();
-				
+				//#if ${Usuario} == "T"
 				uie.setDoneEvent(new ActionListener() 
+				
 				{
 					@Override
 					public void actionPerformed(ActionEvent e) 
 					{
 						frame.dispose();
 					}
-				});
+				});//#endif
 				frame.setModal(true);
 				frame.setResizable(false);
 				frame.setBounds(400, 200, 480, 480);
+				//#if ${Usuario} == "T"
 				frame.getContentPane().add(uie);
+				//#endif
 				frame.setVisible(true);
 			}
 		});

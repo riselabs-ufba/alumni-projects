@@ -17,7 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import br.com.webstore.facade.GenericFacade;
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
+//#endif
 import br.com.webstore.model.Venda;
 
 /**
@@ -28,7 +30,7 @@ public class PagamentoCupom extends JFrame {
 
 	private static final long serialVersionUID = 7046684960720630980L;
 	private JFormattedTextField cupomField;
-
+	//#if ${Usuario} == "T"
 	public PagamentoCupom(final GenericFacade gfacade, final Usuario usuario, String formaDePagamento, final String valorTotal) {
 		final JDialog frame = new JDialog();
 		this.setLayout(null);	
@@ -72,6 +74,7 @@ public class PagamentoCupom extends JFrame {
 		
 		this.setVisible(true);
 	}
+	//#endif
 
 
 }

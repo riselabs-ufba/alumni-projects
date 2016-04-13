@@ -81,8 +81,10 @@ import br.com.webstore.dao.UsuarioCupomDao;
 import br.com.webstore.dao.UsuarioDao;
 //#endif
 
+//#if ${CarrinhoCompras} == "T"
 //#if ${Venda} == "T"
 import br.com.webstore.dao.VendaDao;
+//#endif
 //#endif
 
 //#if ${VendaProduto} == "T"
@@ -150,8 +152,10 @@ import br.com.webstore.model.Usuario;
 import br.com.webstore.model.UsuarioCupom;
 //#endif
 
+//#if ${CarrinhoCompras} == "T"
 //#if ${Venda} == "T"
 import br.com.webstore.model.Venda;
+//#endif
 //#endif
 
 //#if ${VendaProduto} == "T"
@@ -170,7 +174,7 @@ public class GenericFacade {
 	
 	
 	public GenericFacade() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("webstoredb");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("webstoreDB");
 		EntityManager entityManager = factory.createEntityManager();
 		
 		//#if ${Comunicacao} == "T"
@@ -236,7 +240,9 @@ public class GenericFacade {
 		//#endif
 		
 		//#if ${Venda} == "T"
+		//#if ${CarrinhoCompras} == "T"
 		vendaDao = new VendaDao(entityManager);
+		//#endif
 		//#endif
 		
 		//#if ${VendaProdutoEmbbed} == "T"
@@ -647,6 +653,7 @@ public class GenericFacade {
 		
 		//Venda
 		//#if ${Venda} == "T"
+		//#if ${CarrinhoCompras} == "T"
 		private VendaDao vendaDao;
 
 		public Venda insertVenda(Venda venda) {
@@ -665,6 +672,8 @@ public class GenericFacade {
 			return vendaDao.getVendaByUser(usuario, statusvenda);
 		}
 		//#endif
+		//#endif
+		
 		
 		//VendaProdutoEmbbed
 		//#if ${VendaProdutoEmbbed} == "T"

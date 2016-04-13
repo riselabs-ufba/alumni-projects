@@ -235,6 +235,10 @@ public class GenericFacade {
 		usuarioDataProvider = new UsuarioDao(entityManager);
 		//#endif
 		
+		//#if ${Venda} == "T"
+		vendaDao = new VendaDao(entityManager);
+		//#endif
+		
 		//#if ${VendaProdutoEmbbed} == "T"
 	    vendaProdutoEmbbedDao = new VendaProdutoEmbbedDao(entityManager);
 	   //#endif

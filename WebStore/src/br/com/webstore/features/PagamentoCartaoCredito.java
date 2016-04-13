@@ -81,8 +81,8 @@ public class PagamentoCartaoCredito extends JFrame
 		{
 		};
 		
-		this.dataVencCartaoField.setBounds(2, 115, 219, 25);
-		this.dataVencCartaoField.setToolTipText("Informe o numero do cartao.");
+		this.dataVencCartaoField.setBounds(2, 115, 75, 25);
+		this.dataVencCartaoField.setToolTipText("Informe a data de vencimento.");
 		this.dataVencCartaoField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.dataVencCartaoField.setColumns(10);
 		this.add(this.dataVencCartaoField);
@@ -102,7 +102,7 @@ public class PagamentoCartaoCredito extends JFrame
 		};
 		
 		this.codigoSegurancaField.setBounds(2, 160, 75, 25);
-		this.codigoSegurancaField.setToolTipText("Informe o numero do cartao.");
+		this.codigoSegurancaField.setToolTipText("Informe o numero de segurança cartao.");
 		this.codigoSegurancaField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.codigoSegurancaField.setColumns(10);
 		this.add(this.codigoSegurancaField);

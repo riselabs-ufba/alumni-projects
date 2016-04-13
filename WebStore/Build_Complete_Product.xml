@@ -62,11 +62,12 @@
 		<javapp destdir="${src}" prefix="//#">
 			<fileset dir="${srcProject}" includes="**/*.java" />
 			<property name="BugTrack" value="T" />
+			<property name="FAQ" value="T" />
+		 	<property name="FaleConosco" value="T" />			
 			<property name="BugTrackAlterar" value="T" />
 			<property name="Cupom" value="T" />
 			<property name="Categoria" value="T" />
 			<property name="Endereco" value="T" />
-			<property name="FaleConosco" value="T" />
 			<property name="FormaPagamento" value="T" />
 			<property name="Mensagem" value="T" />
 			<property name="Perfil" value="T" />
@@ -84,7 +85,7 @@
 			<property name="CarrinhoCheckout" value="T" />
 			<property name="CategoriaEdit" value="T" />
 			<property name="CategoriaP" value="T" />
-			<property name="FAQ" value="T" />
+
 			<property name="UsuarioInclusaoEdicao" value="T" />
 			<property name="UsuarioPesquisa" value="T" />
 			<property name="Usuario" value="T" />

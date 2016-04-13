@@ -1,4 +1,4 @@
-//#if ${TipoMensagem} == "T"
+
 /**
  * 
  */
@@ -55,4 +55,3 @@ public class TipoMensagem {
 		this.descricao = descricao;
 	}
 }
-//#endif

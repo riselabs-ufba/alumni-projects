@@ -1,7 +1,4 @@
-//#if ${FormaPagamento} == "T"
-/**
- * 
- */
+
 package br.com.webstore.model;
 
 import javax.persistence.Column;
@@ -55,4 +52,3 @@ public class FormaPagamento {
 		this.descricao = descricao;
 	}
 }
-//#endif

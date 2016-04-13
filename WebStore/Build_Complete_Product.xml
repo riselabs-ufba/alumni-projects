@@ -61,6 +61,7 @@
 		<echo message="Step 3 - Copying code useful source for '${appName}'..." />
 		<javapp destdir="${src}" prefix="//#">
 			<fileset dir="${srcProject}" includes="**/*.java" />
+			
 			<property name="Comunicacao" value="T" />
 			<property name="BugTrack" value="T" />
 			<property name="BugTrackAlterar" value="T" />
@@ -79,30 +80,14 @@
 			<property name="Usuario" value="T" />
 			
 			
-			<property name="Endereco" value="T" />
-			<property name="FormaPagamento" value="T" />
-			<property name="Mensagem" value="T" />
 			<property name="Perfil" value="T" />
-			<property name="Produto" value="T" />
-			<property name="SituacaoBug" value="T" />
 			<property name="StatusUsuario" value="T" />
-			<property name="StatusVenda" value="T" />
-			<property name="TipoMensagem" value="T" />
-			<property name="UnidadeMedida" value="T" />
-			<property name="UsuarioCupom" value="T" />
-			<property name="Venda" value="T" />
-			<property name="VendaProduto" value="T" />
-			<property name="VendaProdutoEmbbed" value="T" />
-			<property name="CarrinhoCheckout" value="T" />
-			<property name="CategoriaEdit" value="T" />
-			<property name="CategoriaP" value="T" />
-
 			<property name="UsuarioInclusaoEdicao" value="T" />
 			<property name="UsuarioPesquisa" value="T" />
-
-
 			
-			
+			<property name="Produto" value="T" />
+			<property name="UnidadeMedida" value="T" />
+			<property name="SituacaoBug" value="T" />	
 			
 		</javapp>
 

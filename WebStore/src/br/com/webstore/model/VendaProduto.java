@@ -1,4 +1,4 @@
-//#if ${VendaProduto} == "T"
+
 /**
  * 
  */
@@ -71,4 +71,3 @@ public class VendaProduto {
 		this.valorUnitario = valorUnitario;
 	}
 }
-//#endif

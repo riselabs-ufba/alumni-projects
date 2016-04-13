@@ -1,7 +1,5 @@
-//#if ${Venda} == "T"
-/**
- * 
- */
+//#if ${CarrinhoCompras} == "T"
+
 package br.com.webstore.model;
 
 import java.math.BigDecimal;

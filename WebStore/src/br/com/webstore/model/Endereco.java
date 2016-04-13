@@ -1,7 +1,4 @@
-//#if ${Endereco} == "T"
-/**
- * 
- */
+
 package br.com.webstore.model;
 
 import javax.persistence.Column;
@@ -158,4 +155,3 @@ public class Endereco {
 		this.uf = uf;
 	}
 }
-//#endif

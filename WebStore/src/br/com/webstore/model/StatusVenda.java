@@ -1,4 +1,4 @@
-//#if ${StatusVenda} == "T"
+//#if ${CarrinhoCompras} == "T"
 /**
  * 
  */

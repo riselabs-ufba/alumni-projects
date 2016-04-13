@@ -1,4 +1,4 @@
-//#if ${Endereco} == "T"
+
 package br.com.webstore.dao;
 
 import javax.persistence.EntityManager;
@@ -10,4 +10,3 @@ public class EnderecoDao extends GenericDao<Endereco, Integer>{
 		super(entityManager, Endereco.class);
 	}
 }
-//#endif

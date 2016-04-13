@@ -1,7 +1,4 @@
-//#if ${Mensagem} == "T"
-/**
- * 
- */
+
 package br.com.webstore.model;
 
 import java.util.Date;
@@ -175,4 +172,3 @@ public class Mensagem {
 		this.descricaoResposta = descricaoResposta;
 	}
 }
-//#endif

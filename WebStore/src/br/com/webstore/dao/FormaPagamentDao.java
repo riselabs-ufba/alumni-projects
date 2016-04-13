@@ -1,4 +1,4 @@
-//#if ${FormaPagamento} == "T"
+
 package br.com.webstore.dao;
 
 
@@ -20,4 +20,3 @@ public class FormaPagamentDao extends GenericDao<FormaPagamento, Integer> {
 		return query.getSingleResult();
 	}
 }
-//#endif

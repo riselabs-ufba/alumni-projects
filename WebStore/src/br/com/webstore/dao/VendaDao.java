@@ -1,4 +1,4 @@
-//#if ${Venda} == "T"
+//#if ${CarrinhoCompras} == "T"
 package br.com.webstore.dao;
 
 import java.util.List;

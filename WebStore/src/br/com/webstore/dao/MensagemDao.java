@@ -1,4 +1,4 @@
-//#if ${Mensagem} == "T"
+
 /**
  * 
  */
@@ -18,4 +18,3 @@ public class MensagemDao extends GenericDao<Mensagem, Integer>{
 		super(entityManager, Mensagem.class);
 	}
 }
-//#endif

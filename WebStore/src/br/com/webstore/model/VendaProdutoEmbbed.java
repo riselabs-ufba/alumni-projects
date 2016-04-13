@@ -1,4 +1,4 @@
-//#if ${VendaProdutoEmbbed} == "T"
+
 /**
  * 
  */
@@ -59,4 +59,3 @@ public class VendaProdutoEmbbed implements Serializable {
 		this.idVenda = idVenda;
 	}
 }
-//#endif

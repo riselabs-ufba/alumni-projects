@@ -1,4 +1,4 @@
-//#if ${TipoMensagem} == "T"
+
 package br.com.webstore.dao;
 
 import javax.persistence.EntityManager;
@@ -12,4 +12,3 @@ public class TipoMensagemDao extends GenericDao<TipoMensagem, Integer>{
 	}
 
 }
-//#endif

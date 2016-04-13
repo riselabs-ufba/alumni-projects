@@ -1,4 +1,4 @@
-//#if ${VendaProdutoEmbbed} == "T"
+
 package br.com.webstore.dao;
 
 import javax.persistence.EntityManager;
@@ -12,4 +12,3 @@ public class VendaProdutoEmbbedDao extends GenericDao<VendaProdutoEmbbed, Intege
 	}
 
 }
-//#endif

@@ -1,4 +1,4 @@
-//#if ${StatusVenda} == "T"
+//#if ${CarrinhoCompras} == "T"
 package br.com.webstore.dao;
 
 import javax.persistence.EntityManager;

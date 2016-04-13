@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
+
 
 import br.com.webstore.facade.GenericFacade;
 
@@ -39,26 +39,23 @@ import br.com.webstore.features.FaleConoscoView;
 
 //#if ${CarrinhoCompras} == "T"
 import br.com.webstore.features.CarrinhoCheckout;
-import br.com.webstore.model.Carrinho;
 //#endif
 
 //#if ${Categoria} == "T"
-//#if ${CategoriaP} == "T"
 import br.com.webstore.features.CategoriaP;
 //#endif
-//#endif
+
 
 //#if ${Usuario} == "T"
 //import br.com.webstore.features.UsuarioInclusaoEdicao;
 import br.com.webstore.features.UsuarioPesquisa;
 import br.com.webstore.model.Usuario;
-import br.com.webstore.features.UsuarioInclusaoEdicao;
 //#endif
 
 
 //#if ${Produto} == "T"
 import br.com.webstore.features.ProdutoPesquisa;
-import br.com.webstore.features.ProdutoView;
+
 //#if ${Usuario} == "T"
 import br.com.webstore.features.UsuarioComumEdicao;
 //#endif

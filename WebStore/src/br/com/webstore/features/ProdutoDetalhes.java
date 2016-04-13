@@ -14,16 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import br.com.webstore.facade.GenericFacade;
-//#if ${Categoria} == "T"
-import br.com.webstore.model.Categoria;
-//#endif
 import br.com.webstore.model.Produto;
-import br.com.webstore.model.UnidadeMedida;
 //#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
 //#endif
-import br.com.webstore.model.Venda;
-import br.com.webstore.views.WebStoreEventMainScreenP;
+
 
 /**
  * @author webstore

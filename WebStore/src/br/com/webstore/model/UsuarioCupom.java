@@ -1,8 +1,5 @@
 //#if ${Usuario} == "T"
-//#if ${UsuarioCupom} == "T"
-/**
- * 
- */
+
 package br.com.webstore.model;
 
 import javax.persistence.CascadeType;
@@ -95,5 +92,4 @@ public class UsuarioCupom {
 		this.disponivel = disponivel;
 	}
 }
-//#endif
 //#endif

@@ -29,20 +29,19 @@ import br.com.webstore.dao.CategoriaDao;
 
 import br.com.webstore.dao.CupomDao;
 
-//#if ${Endereco} == "T"
+
 import br.com.webstore.dao.EnderecoDao;
-//#endif
 
 
 
 
-//#if ${FormaPagamento} == "T"
+
 import br.com.webstore.dao.FormaPagamentDao;
-//#endif
 
-//#if ${Mensagem} == "T"
+
+
 import br.com.webstore.dao.MensagemDao;
-//#endif
+
 
 //#if ${Perfil} == "T"
 import br.com.webstore.dao.PerfilDao;
@@ -60,13 +59,13 @@ import br.com.webstore.dao.SituacaoBugDao;
 import br.com.webstore.dao.StatusUsuarioDao;
 //#endif
 
-//#if ${StatusVenda} == "T"
+//#if ${CarrinhoCompras} == "T"
 import br.com.webstore.dao.StatusVendaDao;
 //#endif
 
-//#if ${TipoMensagem} == "T"
+
 import br.com.webstore.dao.TipoMensagemDao;
-//#endif
+
 
 //#if ${UnidadeMedida} == "T"
 import br.com.webstore.dao.UnidadeMedidaDao;
@@ -74,24 +73,20 @@ import br.com.webstore.dao.UnidadeMedidaDao;
 
 //#if ${Usuario} == "T"
 import br.com.webstore.dao.UsuarioDao;
-//#if ${UsuarioCupom} == "T"
 import br.com.webstore.dao.UsuarioCupomDao;
-//#endif
 //#endif
 
 //#if ${CarrinhoCompras} == "T"
-//#if ${Venda} == "T"
 import br.com.webstore.dao.VendaDao;
 //#endif
-//#endif
 
-//#if ${VendaProduto} == "T"
+
 import br.com.webstore.dao.VendaProdutoDao;
-//#endif
 
-//#if ${VendaProdutoEmbbed} == "T"
+
+
 import br.com.webstore.dao.VendaProdutoEmbbedDao;
-//#endif
+
 
 //#if ${Categoria} == "T"
 import br.com.webstore.model.Categoria;
@@ -101,18 +96,18 @@ import br.com.webstore.model.Categoria;
 import br.com.webstore.model.Cupom;
 
 
-//#if ${Endereco} == "T"
+
 import br.com.webstore.model.Endereco;
-//#endif
 
 
-//#if ${FormaPagamento} == "T"
+
+
 import br.com.webstore.model.FormaPagamento;
-//#endif
 
-//#if ${Mensagem} == "T"
+
+
 import br.com.webstore.model.Mensagem;
-//#endif
+
 
 //#if ${Perfil} == "T"
 import br.com.webstore.model.Perfil;
@@ -130,13 +125,13 @@ import br.com.webstore.model.SituacaoBug;
 import br.com.webstore.model.StatusUsuario;
 //#endif
 
-//#if ${StatusVenda} == "T"
+//#if ${CarrinhoCompras} == "T"
 import br.com.webstore.model.StatusVenda;
 //#endif
 
-//#if ${TipoMensagem} == "T"
+
 import br.com.webstore.model.TipoMensagem;
-//#endif
+
 
 //#if ${UnidadeMedida} == "T"
 import br.com.webstore.model.UnidadeMedida;
@@ -144,32 +139,28 @@ import br.com.webstore.model.UnidadeMedida;
 
 //#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
-//#if ${UsuarioCupom} == "T"
 import br.com.webstore.model.UsuarioCupom;
-//#endif
 //#endif
 
 
 //#if ${CarrinhoCompras} == "T"
-//#if ${Venda} == "T"
 import br.com.webstore.model.Venda;
 //#endif
-//#endif
 
-//#if ${VendaProduto} == "T"
+
 import br.com.webstore.model.VendaProduto;
-//#endif
 
-//#if ${VendaProdutoEmbbed} == "T"
+
+
 import br.com.webstore.model.VendaProdutoEmbbed;
-//#endif
+
 
 /**
  * @author webstore
  *
  */
 public class GenericFacade {
-	
+
 	
 	public GenericFacade() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("webstoreDB");
@@ -201,17 +192,17 @@ public class GenericFacade {
 	//	cupomDataProvider = new CupomDao(entityManager);
 		
 		
-		//#if ${Endereco} == "T"
+
 		enderecoDataProvider=new  EnderecoDao(entityManager);
-		//#endif
+
 		
-		//#if ${FormaPagamento} == "T"
+		
 		formaPagamentDataProvider=new FormaPagamentDao(entityManager);
-		//#endif
 		
-		//#if ${Mensagem} == "T"
+		
+		
 		mensagemDao=new MensagemDao(entityManager);
-		//#endif
+		
 		
 		//#if ${Perfil} == "T"
 		perfilDataProvider=new PerfilDao(entityManager);
@@ -225,31 +216,30 @@ public class GenericFacade {
 		statusUsuarioDataProvider = new StatusUsuarioDao(entityManager);
 		//#endif
 		
-		//#if ${StatusVenda} == "T"
+		//#if ${CarrinhoCompras} == "T"
 		statusVendaDataProvider=new StatusVendaDao(entityManager);
 		//#endif
 		
-		//#if ${TipoMensagem} == "T"
+		
 		tipoMensagemDataProvider = new TipoMensagemDao(entityManager);
-		//#endif
+	
 		
 		//#if ${Usuario} == "T"
 		usuarioDataProvider = new UsuarioDao(entityManager);
 		//#endif
 		
-		//#if ${Venda} == "T"
+
 		//#if ${CarrinhoCompras} == "T"
 		vendaDao = new VendaDao(entityManager);
 		//#endif
-		//#endif
 		
-		//#if ${VendaProdutoEmbbed} == "T"
+		
 	    vendaProdutoEmbbedDao = new VendaProdutoEmbbedDao(entityManager);
-	   //#endif
+	   
 
-	    //#if ${VendaProduto} == "T"
+
 	  	vendaProdutoDao = new VendaProdutoDao(entityManager);
-	  	//#endif
+
 	  	
 	  	//#if ${UnidadeMedida} == "T"
 	  	unidadeMedidaDao=new  UnidadeMedidaDao(entityManager);
@@ -379,8 +369,7 @@ public class GenericFacade {
 		}*/
 		
 	
-		//Endereco
-		//#if ${Endereco} == "T"
+
 		
 		private EnderecoDao enderecoDataProvider;
 	
@@ -397,9 +386,9 @@ public class GenericFacade {
 			
 			return enderecoDataProvider.getList();
 		}
-		//#endif
+
 		
-		//#if ${FormaPagamento} == "T"
+		
 		private FormaPagamentDao formaPagamentDataProvider;
 	
 		public FormaPagamento insertFormaPagamento(FormaPagamento formaPagamento) {
@@ -421,10 +410,10 @@ public class GenericFacade {
 			return formaPagamentDataProvider.findByNome(nome);
 		}
 		
-		//#endif
+
 		
 	
-		//#if ${Mensagem} == "T"
+	
 		private MensagemDao mensagemDao;
 		
 		public void insert(Mensagem mensagem) {
@@ -442,7 +431,7 @@ public class GenericFacade {
 		public List<Mensagem> list(Mensagem query) {
 			return this.mensagemDao.getList();
 		}
-		//#endif
+		
 		
 	
 		//#if ${Perfil} == "T"
@@ -542,7 +531,7 @@ public class GenericFacade {
 		//#endif
 		
 	
-		//#if ${StatusVenda} == "T"
+		//#if ${CarrinhoCompras} == "T"
 		private StatusVendaDao statusVendaDataProvider;
 
 		public StatusVenda insertStatusVenda(StatusVenda statusVenda) {
@@ -562,7 +551,7 @@ public class GenericFacade {
 		}
 		//#endif
 		
-		//#if ${TipoMensagem} == "T"
+		
 		private TipoMensagemDao tipoMensagemDataProvider;
 
 		public TipoMensagem findTipoMensagem(Integer id) {
@@ -572,7 +561,7 @@ public class GenericFacade {
 		public List<TipoMensagem> listTipoMensagem() {
 			return tipoMensagemDataProvider.getList();
 		}
-		//#endif
+		
 		
 	
 		//#if ${UnidadeMedida} == "T"
@@ -597,7 +586,6 @@ public class GenericFacade {
 		
 	
 		//#if ${Usuario} == "T"
-		//#if ${UsuarioCupom} == "T"
 		private UsuarioCupomDao usuarioCupomDao;
 
 		public UsuarioCupom insertUsuarioCupom(UsuarioCupom usuarioCupom) {
@@ -611,11 +599,6 @@ public class GenericFacade {
 		public List<UsuarioCupom> findUsuarioCupom(UsuarioCupom usuarioCupom) {
 			return usuarioCupomDao.getList();
 		}
-		//#endif
-		//#endif
-		
-	
-		//#if ${Usuario} == "T"
 		
 		private UsuarioDao usuarioDataProvider;
 		
@@ -645,11 +628,9 @@ public class GenericFacade {
 		{
 			return usuarioDataProvider.getUsuarioByLoginSenha(Login, Senha);
 		}
-		
 		//#endif
 		
 		//Venda
-		//#if ${Venda} == "T"
 		//#if ${CarrinhoCompras} == "T"
 		private VendaDao vendaDao;
 
@@ -671,11 +652,9 @@ public class GenericFacade {
 		}
 		//#endif
 		//#endif
-		//#endif
 		
 		
 		//VendaProdutoEmbbed
-		//#if ${VendaProdutoEmbbed} == "T"
 		private VendaProdutoEmbbedDao vendaProdutoEmbbedDao;
 
 		public VendaProdutoEmbbed insertVendaProdutoEmbbed(VendaProdutoEmbbed vendaProdutoEmbbed) {
@@ -689,10 +668,10 @@ public class GenericFacade {
 		public List<VendaProdutoEmbbed> findVendaProdutoEmbbed(VendaProdutoEmbbed vendaProdutoEmbbed) {
 			return vendaProdutoEmbbedDao.getList();
 		}
-		//#endif
+
 		
 		//VendaProduto
-		//#if ${VendaProduto} == "T"
+
 		private VendaProdutoDao vendaProdutoDao;
 		
 		public VendaProduto insertVendaProduto(VendaProduto vendaProduto) {
@@ -706,5 +685,5 @@ public class GenericFacade {
 		public List<VendaProduto> findVendaProduto(VendaProduto vendaProduto) {
 			return vendaProdutoDao.getList();
 		}
-		//#endif
+
 }

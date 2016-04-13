@@ -4,17 +4,21 @@
 package br.com.webstore.features;
 
 import java.awt.Font;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
-
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Usuario;
+import br.com.webstore.model.Venda;
 
 /**
  * @author webstore
@@ -30,7 +34,7 @@ public class PagamentoCartaoCredito extends JFrame
 	private JFormattedTextField codigoSegurancaField;
 	
 	
-	public PagamentoCartaoCredito(GenericFacade gfacade, Usuario usuario, String string) 
+	public PagamentoCartaoCredito(final GenericFacade gfacade, final Usuario usuario, final String string, final String valorTotal) 
 	{
 		final JDialog frame = new JDialog();
 		this.setLayout(null);	
@@ -110,6 +114,25 @@ public class PagamentoCartaoCredito extends JFrame
 		JButton btFinalizarCompra = new JButton("Finalizar Compra");
 		btFinalizarCompra.setBounds(110,210,160,23);
 		this.add(btFinalizarCompra);
+		btFinalizarCompra.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				//falta a validação Acredito que essa informações seriam suficiente. 
+				Venda v = new Venda();
+				Calendar c = Calendar.getInstance(); 					
+				v.setDataVenda(c.getTime());
+				v.setUsuarioVenda(usuario);
+				//v.setIdUsuarioCupom(null);
+				v.setValorTotal(new BigDecimal(valorTotal));
+				v.setStatusVenda(gfacade.findStatusVendabyName("Finalizada"));
+				v.setFormaPagamento(gfacade.findFormaPagamentoByNome("Cartão Master Card"));
+				gfacade.insertVenda(v);
+				JOptionPane.showMessageDialog(null, "Venda finalizada com sucesso!");
+				PagamentoCartaoCredito.this.setVisible(false);
+				CarrinhoCheckout.getInstance(gfacade, usuario).criarLayout(null);
+				
+			}
+		});
 		
 		this.setVisible(true);
 	}

@@ -87,15 +87,18 @@ public class PagamentoProduto  extends JFrame{
 				
 				if (cartaoCredito.isSelected()) {
 					//#if ${PgtoCartaoCredito} == "T"
-					new PagamentoCartaoCredito(gfacade, usuario, "cartaoCredito");
+					new PagamentoCartaoCredito(gfacade, usuario, "cartaoCredito", valorTotal);
+					PagamentoProduto.this.setVisible(false);
 					//#endif
 				} else if (cupom.isSelected()) {
 					//#if ${PgtoCupomDesconto} == "T"
-					new PagamentoCupom(gfacade, usuario, "boleto",valorTotal);
+					new PagamentoCupom(gfacade, usuario, "boleto", valorTotal);
+					PagamentoProduto.this.setVisible(false);
 					//#endif
 				} else if (boletoBancario.isSelected()) {
 					//#if ${PgtoBoletoBancario} == "T"
-					new PagamentoBoleto(gfacade, usuario, "boleto",valorTotal);
+					new PagamentoBoleto(gfacade, usuario, "boleto", valorTotal);
+					PagamentoProduto.this.setVisible(false);
 					//#endif
 				}else{
 					JOptionPane.showMessageDialog(null, "Escolha uma forma de Pagamento!");

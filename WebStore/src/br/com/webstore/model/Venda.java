@@ -33,19 +33,19 @@ public class Venda {
 	@Column(name="idVenda")
 	private Integer id;
 
-	@OneToOne(targetEntity = StatusVenda.class, cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = StatusVenda.class)
 	@JoinColumn(name="idStatusVenda", referencedColumnName="idStatusVenda", nullable=false)
 	private StatusVenda statusVenda;
 	
-	@ManyToOne(targetEntity = Usuario.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Usuario.class)
 	@JoinColumn(name="idUsuarioVenda", referencedColumnName="idUsuario", nullable=false)
 	private Usuario usuarioVenda;
 	
-	@ManyToOne(targetEntity = UsuarioCupom.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = UsuarioCupom.class)
 	@JoinColumn(name="idUsuarioCupom", referencedColumnName="idUsuarioCupom", nullable=true)
 	private UsuarioCupom usuarioCupom;
 	
-	@ManyToOne(targetEntity = FormaPagamento.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = FormaPagamento.class)
 	@JoinColumn(name="idFormaPagamento", referencedColumnName="idFormaPagamento", nullable=false)
 	private FormaPagamento formaPagamento;
 	

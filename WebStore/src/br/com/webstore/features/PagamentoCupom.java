@@ -14,6 +14,7 @@ import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Usuario;
@@ -57,9 +58,14 @@ public class PagamentoCupom extends JFrame {
 				Calendar c = Calendar.getInstance(); 					
 				v.setDataVenda(c.getTime());
 				v.setUsuarioVenda(usuario);
-				//formaDePagamento só que aqui é uma String
+				//v.setIdUsuarioCupom(null);
 				v.setValorTotal(new BigDecimal(valorTotal));
-				gfacade.insertVenda(v);		
+				v.setStatusVenda(gfacade.findStatusVendabyName("Finalizada"));
+				v.setFormaPagamento(gfacade.findFormaPagamentoByNome("Depósito Bancário"));
+				gfacade.insertVenda(v);
+				JOptionPane.showMessageDialog(null, "Venda finalizada com sucesso!");
+				PagamentoCupom.this.setVisible(false);
+				CarrinhoCheckout.getInstance(gfacade, usuario).criarLayout(null);	
 			}
 		});
 		

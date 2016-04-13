@@ -7,13 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.Calendar;
-import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Usuario;
 import br.com.webstore.model.Venda;
@@ -52,8 +50,14 @@ public class PagamentoBoleto extends JFrame{
 				Calendar c = Calendar.getInstance(); 					
 				v.setDataVenda(c.getTime());
 				v.setUsuarioVenda(usuario);
+				//v.setIdUsuarioCupom(null);
 				v.setValorTotal(new BigDecimal(valorTotal));
-				gfacade.insertVenda(v);		
+				v.setStatusVenda(gfacade.findStatusVendabyName("Finalizada"));
+				v.setFormaPagamento(gfacade.findFormaPagamentoByNome("Boleto Bancário"));
+				gfacade.insertVenda(v);
+				JOptionPane.showMessageDialog(null, "Venda finalizada com sucesso!");
+				PagamentoBoleto.this.setVisible(false);
+				CarrinhoCheckout.getInstance(gfacade, usuario).criarLayout(null);
 			}
 		});
 		

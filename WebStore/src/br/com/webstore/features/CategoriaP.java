@@ -1,3 +1,4 @@
+//#if ${Categoria} == "T"
 //#if ${CategoriaP} == "T"
 package br.com.webstore.features;
 
@@ -245,4 +246,5 @@ public class CategoriaP extends JPanel {
 		}		
 	
 }
+//#endif
 //#endif

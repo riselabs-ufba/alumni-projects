@@ -27,10 +27,12 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idProduto")
 	private Integer id;
-
+	
+	//#if ${Categoria} == "T"
 	@OneToOne(cascade = {})
 	@JoinColumn(name = "idCategoria", referencedColumnName = "idCategoria", nullable = false)
 	private Categoria categoria;
+	//#endif
 
 	@ManyToOne(cascade = {})
 	@JoinColumn(name = "idUnidadeMedida", referencedColumnName = "idUnidadeMedida", nullable = false)
@@ -64,6 +66,8 @@ public class Produto {
 		this.id = codigo;
 	}
 	
+	
+	//#if ${Categoria} == "T"
 	/**
 	 * Return the categoria
 	 * 
@@ -82,7 +86,7 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
+	//#endif
 	/**
 	 * Return the unidadeMedida
 	 * 

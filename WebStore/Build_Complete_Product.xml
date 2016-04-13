@@ -61,12 +61,24 @@
 		<echo message="Step 3 - Copying code useful source for '${appName}'..." />
 		<javapp destdir="${src}" prefix="//#">
 			<fileset dir="${srcProject}" includes="**/*.java" />
+			<property name="Comunicacao" value="T" />
 			<property name="BugTrack" value="T" />
-			<property name="FAQ" value="T" />
-		 	<property name="FaleConosco" value="T" />			
 			<property name="BugTrackAlterar" value="T" />
-			<property name="Cupom" value="T" />
+			<property name="FAQ" value="T" />
+		 	<property name="FaleConosco" value="T" />
+			
+			<property name="CarrinhoCompras" value="T" />
+			<property name="CarrinhoFinalizarCompras" value="T" />
+			<property name="PgtoCartaoCredito" value="T" />
+			<property name="PgtoBoletoBancario" value="T" />
+			<property name="PgtoCupomDesconto" value="T" />
+			<property name="EnvioPresente" value="T" />
+			
 			<property name="Categoria" value="T" />
+			
+			
+			<property name="Cupom" value="T" />
+			
 			<property name="Endereco" value="T" />
 			<property name="FormaPagamento" value="T" />
 			<property name="Mensagem" value="T" />
@@ -89,14 +101,7 @@
 			<property name="UsuarioInclusaoEdicao" value="T" />
 			<property name="UsuarioPesquisa" value="T" />
 			<property name="Usuario" value="T" />
-			<property name="BugTrackAlterar" value="T" />
-			<property name="CarrinhoCompras" value="T" />
-			<property name="CarrinhoFinalizarCompras" value="T" />
-			<property name="PgtoCartaoCredito" value="T" />
-			<property name="PgtoBoletoBancario" value="T" />
-			<property name="PgtoCupomDesconto" value="T" />
-			<property name="EnvioPresente" value="T" />
-			<property name="Comunicacao" value="T" />
+
 			
 			
 			

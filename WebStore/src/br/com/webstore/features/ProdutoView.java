@@ -51,7 +51,9 @@ public class ProdutoView extends JPanel {
  		int row = 0;
  		for (Produto prod : produto) {
  			ProdutoView.this.table.getModel().setValueAt(prod.getDescricao(), row, 0);
+ 			//#if ${Categoria} == "T"
  			ProdutoView.this.table.getModel().setValueAt(prod.getCategoria(), row, 1);
+ 			//#endif
  			ProdutoView.this.table.getModel().setValueAt(prod.getValor().toString(), row, 2);
  			row++;
  		}	

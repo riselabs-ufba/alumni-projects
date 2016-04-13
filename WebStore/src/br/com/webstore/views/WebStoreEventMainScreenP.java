@@ -41,10 +41,12 @@ import br.com.webstore.features.FaleConoscoView;
 import br.com.webstore.features.CarrinhoCheckout;
 import br.com.webstore.model.Carrinho;
 //#endif
+
+//#if ${Categoria} == "T"
 //#if ${CategoriaP} == "T"
 import br.com.webstore.features.CategoriaP;
 //#endif
-
+//#endif
 
 //#if ${Usuario} == "T"
 //import br.com.webstore.features.UsuarioInclusaoEdicao;

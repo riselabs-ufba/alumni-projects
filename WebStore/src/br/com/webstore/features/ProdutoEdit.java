@@ -40,8 +40,9 @@ public class ProdutoEdit extends JPanel {
 	private JFormattedTextField numeroFld;
 	private JFormattedTextField valorFld;
 	private JComboBox<UnidadeMedida> unidadeMedidaFld;
+	//#if ${Categoria} == "T"
 	private JComboBox<br.com.webstore.model.Categoria> categoriaFld;
-
+	//#endif
 	private JButton salvarBtn;
 	
 	private ActionListener doneEvent;
@@ -57,7 +58,9 @@ public class ProdutoEdit extends JPanel {
 		produto.setNumero(((Number) this.numeroFld.getValue()).intValue());
 		
 		produto.setValor(BigDecimal.valueOf(((Number) this.valorFld.getValue()).doubleValue()));
+		//#if ${Categoria} == "T"
 		produto.setCategoria(this.categoriaFld.getItemAt(this.categoriaFld.getSelectedIndex()));
+		//#endif
 		produto.setUnidadeMedida(this.unidadeMedidaFld.getItemAt(this.unidadeMedidaFld.getSelectedIndex()));
 		return produto;
 	}
@@ -95,7 +98,9 @@ public class ProdutoEdit extends JPanel {
 		this.descricaoFld.setText(produto.getDescricao());
 		this.valorFld.setValue(produto.getValor());
 		this.numeroFld.setValue(produto.getNumero());
+		//#if ${Categoria} == "T"
 		this.categoriaFld.setSelectedItem(produto.getCategoria());
+		//#endif
 		this.unidadeMedidaFld.setSelectedItem(produto.getUnidadeMedida());
 	}
 	
@@ -170,25 +175,29 @@ public class ProdutoEdit extends JPanel {
 			nidadeMedidaModel.addElement(unidadeMedida);
 		}
 		this.unidadeMedidaFld.setModel(nidadeMedidaModel);
-
+		
+		//#if ${Categoria} == "T"
 		// Categoria
 		JLabel categoriaLbl = new JLabel("Categoria");
 		categoriaLbl.setBounds(7, 196, 100, 15);
 		categoriaLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(categoriaLbl);
 		
+	
 		this.categoriaFld = new JComboBox<br.com.webstore.model.Categoria>();
 		this.categoriaFld.setBounds(7, 209, 438, 25);
 		this.categoriaFld.setToolTipText("Informe o nome da categoria.");
 		this.categoriaFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(this.categoriaFld);
-
+		
+		
 		List<br.com.webstore.model.Categoria> categoriaList = new GenericFacade().getListCategoria();
 		DefaultComboBoxModel<br.com.webstore.model.Categoria> categoriaModel = new DefaultComboBoxModel<br.com.webstore.model.Categoria>();
 		for (br.com.webstore.model.Categoria categoria : categoriaList) {
 			categoriaModel.addElement(categoria);
 		}
 		this.categoriaFld.setModel(categoriaModel);
+		//#endif
 		
 		// Botao Salvar
 		this.salvarBtn = new JButton("Salvar");

@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import br.com.webstore.facade.GenericFacade;
+//#if ${Categoria} == "T"
 import br.com.webstore.model.Categoria;
+//#endif
 import br.com.webstore.model.Produto;
 import br.com.webstore.model.UnidadeMedida;
 import br.com.webstore.model.Usuario;
@@ -41,7 +43,9 @@ public class ProdutoDetalhes extends JPanel {
 	private JTextField codigoProduto;
 	private JTextField descricaoProduto;
 	private JTextField precoProduto;
+	//#if ${Categoria} == "T"
 	private JTextField categoriaProduto;
+	//#endif
 	private JTextField unidadeMedida;
 	private Usuario user;
 	private GenericFacade facade;
@@ -61,7 +65,9 @@ public class ProdutoDetalhes extends JPanel {
 		this.codigoProduto.setText(produto.getNumero().toString());
 		this.descricaoProduto.setText(produto.getDescricao());
 		this.precoProduto.setText(produto.getValor().toString());
+		//#if ${Categoria} == "T"
 		this.categoriaProduto.setText(produto.getCategoria().getDescricao());
+		//#endif
 		this.unidadeMedida.setText(produto.getUnidadeMedida().getDescricao());
 		this.user = usuario;
 		this.facade = gfacade;
@@ -122,12 +128,14 @@ public class ProdutoDetalhes extends JPanel {
 		categoriaLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.add(categoriaLabel);
 		
+		//#if ${Categoria} == "T"
 		this.categoriaProduto = new JTextField();
 		this.categoriaProduto.setBounds(2, 155, 438, 25);
 		this.categoriaProduto.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.categoriaProduto.setColumns(10);
 		this.add(this.categoriaProduto);
 		this.categoriaProduto.setEditable(false);
+		//#endif
 		
 		JLabel unidadeDeMedidaLabel = new JLabel("Unidade de Medida");
 		unidadeDeMedidaLabel.setBounds(2, 185, 130, 15);

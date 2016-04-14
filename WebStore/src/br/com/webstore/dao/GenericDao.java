@@ -1,4 +1,4 @@
-//#if ${BugTrack} == "T" or  ${Comunicacao} == "T" or  ${Categoria} == "T" or  ${CarrinhoCompras} == "T" or ${FormaPagament} == "T" or  ${Perfil} == "T" or  ${Produto} == "T" or  ${SituacaoBug} == "T" or  ${StatusUsuario} == "T" or  ${StatusVenda} == "T" or  ${UnidadeMedida} == "T" or  ${Usuario} == "T" or  ${Venda} == "T"  
+//#if ${BugTrack} == "T" or  ${Comunicacao} == "T" or  ${Categoria} == "T" or  ${CarrinhoCompras} == "T" or ${FormaPagament} == "T" or  ${Perfil} == "T" or  ${Produto} == "T" or  ${SituacaoBug} == "T" or  ${StatusUsuario} == "T" or  ${StatusVenda} == "T" or  ${UnidadeMedida} == "T" or  ${Usuario} == "T" or  ${Venda} == "T" or ${UsuarioStatus} == "T" 
 /**
  * 
  */

@@ -28,7 +28,9 @@ import javax.swing.text.MaskFormatter;
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Usuario;
 import br.com.webstore.model.Perfil;
+//#if ${UsuarioStatus} == "T"
 import br.com.webstore.model.StatusUsuario;
+//#endif
 
 
 /**
@@ -77,13 +79,13 @@ public class UsuarioComumEdicao extends JPanel
 			Perfil perfil = new Perfil();
 			perfil.setId(2);
 			perfil.setDescricao("Cliente");
-			
+			//#if ${UsuarioStatus} == "T"
 			StatusUsuario statusUsuario = new StatusUsuario();
 			statusUsuario.setId(1);
 			statusUsuario.setDescricao("Ativo");
-			
-			usuario.setPerfil(perfil);
 			usuario.setStatusUsuario(statusUsuario);
+			//#endif
+			usuario.setPerfil(perfil);
 			usuario.setDsLogin(this.loginFld.getText());
 			usuario.setDataInclusao(new Date());
 		}

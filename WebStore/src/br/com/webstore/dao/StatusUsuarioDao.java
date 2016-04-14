@@ -1,4 +1,5 @@
-//#if ${StatusUsuario} == "T"
+//#if ${Usuario} == "T"
+//#if ${UsuarioStatus} == "T"
 package br.com.webstore.dao;
 
 import javax.persistence.EntityManager;
@@ -12,4 +13,5 @@ public class StatusUsuarioDao extends GenericDao<StatusUsuario, Integer>{
 	}
 
 }
+//#endif
 //#endif

@@ -55,9 +55,12 @@ import br.com.webstore.dao.ProdutoDao;
 import br.com.webstore.dao.SituacaoBugDao;
 //#endif
 
-//#if ${StatusUsuario} == "T"
+//#if ${Usuario} == "T"
+//#if ${UsuarioStatus} == "T"
 import br.com.webstore.dao.StatusUsuarioDao;
 //#endif
+//#endif
+
 
 //#if ${CarrinhoCompras} == "T"
 import br.com.webstore.dao.StatusVendaDao;
@@ -121,8 +124,10 @@ import br.com.webstore.model.Produto;
 import br.com.webstore.model.SituacaoBug;
 //#endif
 
-//#if ${StatusUsuario} == "T"
+//#if ${Usuario} == "T"
+//#if ${UsuarioStatus} == "T"
 import br.com.webstore.model.StatusUsuario;
+//#endif
 //#endif
 
 //#if ${CarrinhoCompras} == "T"
@@ -212,8 +217,10 @@ public class GenericFacade {
 		situacaoBugDataProvider= new SituacaoBugDao(entityManager);
 		//#endif
 		
-		//#if ${StatusUsuario} == "T"
+		//#if ${Usuario} == "T"
+		//#if ${UsuarioStatus} == "T"
 		statusUsuarioDataProvider = new StatusUsuarioDao(entityManager);
+		//#endif
 		//#endif
 		
 		//#if ${CarrinhoCompras} == "T"
@@ -513,8 +520,8 @@ public class GenericFacade {
 		}
 		//#endif
 		
-	
-		//#if ${StatusUsuario} == "T"
+		//#if ${Usuario} == "T"
+		//#if ${UsuarioStatus} == "T"
 		private StatusUsuarioDao statusUsuarioDataProvider;
 
 		public StatusUsuario insertStatusUsuario(StatusUsuario statusUsuario) {
@@ -528,6 +535,7 @@ public class GenericFacade {
 		public List<StatusUsuario> findStatusUsuario(StatusUsuario query) {
 			return statusUsuarioDataProvider.getList();
 		}
+		//#endif
 		//#endif
 		
 	

@@ -31,7 +31,9 @@ import javax.swing.text.MaskFormatter;
 
 import br.com.webstore.facade.GenericFacade;
 import br.com.webstore.model.Perfil;
+//#if ${UsuarioStatus} == "T"
 import br.com.webstore.model.StatusUsuario;
+//#endif
 import br.com.webstore.model.Usuario;
 
 /**
@@ -56,7 +58,9 @@ public class UsuarioInclusaoEdicao extends JPanel
 	private JFormattedTextField dtNascimentoFld;
 	private JFormattedTextField telefoneFld;
 	private JFormattedTextField loginFld;
+	//#if ${UsuarioStatus} == "T"
 	private JComboBox<br.com.webstore.model.StatusUsuario> statusFld;
+	//#endif
 	private JComboBox<br.com.webstore.model.Perfil> perfilFld;
 
 	private JButton salvarBtn;
@@ -78,8 +82,10 @@ public class UsuarioInclusaoEdicao extends JPanel
 		
 		usuario.setNome(this.nomeFld.getText());
 		usuario.setEmail(this.emailFld.getText());
-		usuario.setSenha(new String(this.senhaFld.getPassword()));		
+		usuario.setSenha(new String(this.senhaFld.getPassword()));
+		//#if ${UsuarioStatus} == "T" 		
 		usuario.setStatusUsuario(this.statusFld.getItemAt(this.statusFld.getSelectedIndex()));
+		//#endif
 		usuario.setPerfil(this.perfilFld.getItemAt(this.perfilFld.getSelectedIndex()));
 		usuario.setDsLogin(this.loginFld.getText());
 		usuario.setTelefone(this.telefoneFld.getText());
@@ -151,7 +157,9 @@ public class UsuarioInclusaoEdicao extends JPanel
 		     this.telefoneFld.setText(usuario.getTelefone());
 		}
 		this.perfilFld.setSelectedItem(usuario.getPerfil());
-		this.statusFld.setSelectedItem(usuario.getStatusUsuario());		
+		//#if ${UsuarioStatus} == "T"
+		this.statusFld.setSelectedItem(usuario.getStatusUsuario());	
+		//#endif
 	}
 	
 	public void EnviarEmail(Usuario usuario)
@@ -248,8 +256,8 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.senhaFld.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.senhaFld.setColumns(10);
 		this.add(this.senhaFld);
-
 		// Status de Usuario
+		//#if ${UsuarioStatus} == "T"
 		JLabel statusLbl = new JLabel("Status");
 		statusLbl.setBounds(7, 196, 100, 15);
 		statusLbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -268,7 +276,8 @@ public class UsuarioInclusaoEdicao extends JPanel
 			statusUsuarioModel.addElement(status);
 		}
 		this.statusFld.setModel(statusUsuarioModel);
-
+		//#endif
+		
 		// Perfil
 		JLabel pefilLbl = new JLabel("Perfil");
 		pefilLbl.setBounds(7, 241, 100, 15);

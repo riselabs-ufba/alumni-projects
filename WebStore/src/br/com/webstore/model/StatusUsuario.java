@@ -1,4 +1,5 @@
-//#if ${StatusUsuario} == "T"
+//#if ${Usuario} == "T"
+//#if ${UsuarioStatus} == "T"
 /**
  * 
  */
@@ -74,5 +75,5 @@ public class StatusUsuario {
 	
 }
 	
-
+//#endif
 //#endif

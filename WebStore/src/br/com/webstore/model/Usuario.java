@@ -30,10 +30,11 @@ public class Usuario {
 	@GeneratedValue
 	@Column(name="idUsuario")
 	private Integer id;
-	
+	//#if ${UsuarioStatus} == "T"
 	@ManyToOne(targetEntity = StatusUsuario.class)
 	@JoinColumn(name="idStatusUsuario", referencedColumnName="idStatusUsuario", nullable=true)
 	private StatusUsuario statusUsuario;
+	//#endif
 	
 	@ManyToOne(targetEntity= Perfil.class)
 	@JoinColumn(name="idPerfil", referencedColumnName="idPerfil", nullable=false)
@@ -171,6 +172,7 @@ public class Usuario {
 			this.dataInclusao = (Date) dataInclusao.clone();
 		}
 	}
+	//#if ${UsuarioStatus} == "T"
 	/**
 	 * Return the statusUsuario 
 	 * @return the statusUsuario
@@ -185,6 +187,8 @@ public class Usuario {
 	public void setStatusUsuario(StatusUsuario statusUsuario) {
 		this.statusUsuario = statusUsuario;
 	}
+	//#endif
+	
 	//#if ${Perfil} == "T"
 	
 	/**

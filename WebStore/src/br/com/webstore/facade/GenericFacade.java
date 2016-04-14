@@ -70,9 +70,9 @@ import br.com.webstore.dao.StatusVendaDao;
 import br.com.webstore.dao.TipoMensagemDao;
 
 
-//#if ${UnidadeMedida} == "T"
+
 import br.com.webstore.dao.UnidadeMedidaDao;
-//#endif
+
 
 //#if ${Usuario} == "T"
 import br.com.webstore.dao.UsuarioDao;
@@ -138,9 +138,9 @@ import br.com.webstore.model.StatusVenda;
 import br.com.webstore.model.TipoMensagem;
 
 
-//#if ${UnidadeMedida} == "T"
+
 import br.com.webstore.model.UnidadeMedida;
-//#endif
+
 
 //#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
@@ -248,9 +248,9 @@ public class GenericFacade {
 	  	vendaProdutoDao = new VendaProdutoDao(entityManager);
 
 	  	
-	  	//#if ${UnidadeMedida} == "T"
+
 	  	unidadeMedidaDao=new  UnidadeMedidaDao(entityManager);
-	  	//#endif		
+		
 
 	    
 	}
@@ -571,8 +571,7 @@ public class GenericFacade {
 		}
 		
 		
-	
-		//#if ${UnidadeMedida} == "T"
+
 		private UnidadeMedidaDao unidadeMedidaDao;
 
 		public UnidadeMedida insertUnidadeMedida(UnidadeMedida unidadeMedida) {
@@ -590,7 +589,7 @@ public class GenericFacade {
 		public List<UnidadeMedida> getListUnidadeMedida() {
 			return unidadeMedidaDao.getList();
 		}
-		//#endif
+
 		
 	
 		//#if ${Usuario} == "T"

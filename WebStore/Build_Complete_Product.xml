@@ -76,18 +76,17 @@
 			<property name="EnvioPresente" value="T" />
 			
 			<property name="Categoria" value="T" />		
-
-			<property name="Usuario" value="T" />
+			
 			<property name="UsuarioStatus" value="T" />
 			
 			<property name="Perfil" value="T" />
 			<property name="StatusUsuario" value="T" />
-			<property name="UsuarioInclusaoEdicao" value="T" />
-			<property name="UsuarioPesquisa" value="T" />
+			
+			<property name="SituacaoBug" value="T" />	
+			
 			
 			<property name="Produto" value="T" />
-			<property name="UnidadeMedida" value="T" />
-			<property name="SituacaoBug" value="T" />	
+			<property name="Usuario" value="T" />
 			
 		</javapp>
 

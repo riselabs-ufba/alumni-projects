@@ -1,5 +1,4 @@
 //#if ${Usuario} == "T"
-//#if ${UsuarioPesquisa} == "T"
 package br.com.webstore.features;
 
 
@@ -257,5 +256,4 @@ public class UsuarioPesquisa extends JPanel
 		this.add(btnExcluir);
 	}
 }
-//#endif
 //#endif

@@ -175,9 +175,11 @@ public class WebStoreEventMainScreenP extends JPanel {
 	
 	public static void main(String[] args) {
 		GenericFacade gfacade = new GenericFacade();
+		//#if ${Usuario} == "T"
 		webStoreEventLogar(gfacade);
+		//#endif
 	}
-	
+	//#if ${Usuario} == "T"
 	public static void webStoreEventLogar(final GenericFacade gfacade){
 		final JDialog dlgLogin = new JDialog();
 		
@@ -270,5 +272,6 @@ public class WebStoreEventMainScreenP extends JPanel {
 		dlgLogin.getContentPane().add(panel);
 		dlgLogin.setVisible(true);
 	}
+	//#endif
 	
 }

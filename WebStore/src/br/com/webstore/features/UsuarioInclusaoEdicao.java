@@ -1,5 +1,4 @@
 //#if ${Usuario} == "T"
-//#if ${UsuarioInclusaoEdicao} == "T"
 package br.com.webstore.features;
 
 import java.awt.Font;
@@ -391,4 +390,4 @@ public class UsuarioInclusaoEdicao extends JPanel
 	}
 }
 //#endif
-//#endif
+

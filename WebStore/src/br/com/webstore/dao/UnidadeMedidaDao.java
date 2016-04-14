@@ -1,4 +1,3 @@
-//#if ${UnidadeMedida} == "T"
 package br.com.webstore.dao;
 
 import javax.persistence.EntityManager;
@@ -12,4 +11,3 @@ public class UnidadeMedidaDao extends GenericDao<UnidadeMedida, Integer>{
 	}
 
 }
-//#endif

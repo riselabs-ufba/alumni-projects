@@ -1,4 +1,4 @@
-//#if ${UnidadeMedida} == "T"
+
 /**
  * 
  */
@@ -74,4 +74,3 @@ public class UnidadeMedida {
 	}
 	
 }
-//#endif

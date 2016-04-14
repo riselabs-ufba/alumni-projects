@@ -160,7 +160,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 		this.statusFld.setSelectedItem(usuario.getStatusUsuario());	
 		//#endif
 	}
-	
+	//#if ${UsuarioNotificar} == "T"
 	public void EnviarEmail(Usuario usuario)
 	{
 		String message = "Parabens! \n\n  Seu cadastrado foi realizado com sucesso.";
@@ -195,7 +195,7 @@ public class UsuarioInclusaoEdicao extends JPanel
 	        System.out.println("send failed, exception: " + mex);
 	        JOptionPane.showMessageDialog(null, "Notificacao de cadastro nao pode ser enviada.");
 	    }
-	}
+	}//#endif
 	
 	/**
 	 * Create the panel.
@@ -368,7 +368,9 @@ public class UsuarioInclusaoEdicao extends JPanel
 						try
 						{
 							new GenericFacade().insertUsuario(usuario);
+							//#if ${UsuarioNotificar} == "T"							
 							EnviarEmail(usuario);
+							//#endif
 						}
 						catch(Exception ex)
 						{

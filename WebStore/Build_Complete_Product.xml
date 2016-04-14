@@ -78,6 +78,7 @@
 			<property name="Categoria" value="T" />		
 			
 			<property name="UsuarioStatus" value="T" />
+			<property name="UsuarioNotificar" value="T" />
 			
 			<property name="Perfil" value="T" />
 			<property name="StatusUsuario" value="T" />

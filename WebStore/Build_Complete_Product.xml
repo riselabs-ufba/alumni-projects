@@ -71,6 +71,13 @@
 			<property name="BugTrackAlterar" value="T" />
 			
 			<property name="FAQ" value="T" />
+			<property name="FAQCadastrar" value="T" />
+			<property name="FAQConsultar" value="T" />
+			<property name="FAQExcluir" value="T" />
+			<property name="FAQAlterar" value="T" />
+			<property name="FAQDetalhar" value="T" />
+			<property name="FAQListar" value="T" />
+			
 		 	<property name="FaleConosco" value="T" />
 			
 			<property name="CarrinhoCompras" value="T" />
@@ -86,7 +93,7 @@
 			<property name="UsuarioNotificar" value="T" />		
 			
 			<property name="Produto" value="T" />
-			<property name="Usuario" value="F" />
+			<property name="Usuario" value="T" />
 			
 		</javapp>
 

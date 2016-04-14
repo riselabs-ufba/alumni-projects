@@ -1,5 +1,6 @@
 //#if ${Comunicacao} == "T"
 //#if ${FAQ} == "T"
+//#if  ${FAQListar} == "T"
 package br.com.webstore.features;
 
 
@@ -83,7 +84,7 @@ public class FaqListar extends JPanel {
 				}				
 				FaqListar.this.table.getColumnModel().getColumn(0).setPreferredWidth(40);
 				FaqListar.this.table.getColumnModel().getColumn(1).setPreferredWidth(435);
-	
+				//#if ${FAQDetalhar} == "T" 
 				JButton btnDetalhes = new JButton("Detalhes");
 				btnDetalhes .addActionListener(new ActionListener() {
 					@Override
@@ -113,8 +114,10 @@ public class FaqListar extends JPanel {
 				});
 				btnDetalhes .setBounds(440, 273, 90, 23);
 				this.add(btnDetalhes );
+				//#endif
 
 	}
 }
+//#endif
 //#endif
 //#endif

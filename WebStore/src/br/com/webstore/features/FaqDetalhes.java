@@ -1,5 +1,6 @@
 //#if ${Comunicacao} == "T"
 //#if ${FAQ} == "T"
+//#if ${FAQDetalhar} == "T" 
 package br.com.webstore.features;
 
 import java.awt.Font;
@@ -113,6 +114,7 @@ public class FaqDetalhes extends JPanel {
 	}
 
 }
+//#endif
 //#endif
 //#endif
 

@@ -1,5 +1,6 @@
 //#if ${Comunicacao} == "T"
 //#if ${FAQ} == "T"
+//#if ${FAQCadastrar} == "T" or ${FAQConsultar} == "T" or ${FAQExcluir} == "T" or ${FAQAlterar} == "T"  or ${FAQDetalhar} == "T" or ${FAQListar} == "T"
 /**
  *
  */
@@ -66,5 +67,6 @@ public class Faq {
 	
 	
 }
+//#endif
 //#endif
 //#endif

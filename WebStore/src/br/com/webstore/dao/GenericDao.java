@@ -1,4 +1,4 @@
-//#if ${BugTrack} == "T" or  ${Comunicacao} == "T" or  ${Categoria} == "T" or  ${CarrinhoCompras} == "T" or ${FormaPagament} == "T" or  ${Perfil} == "T" or  ${Produto} == "T" or  ${SituacaoBug} == "T" or  ${StatusUsuario} == "T" or  ${StatusVenda} == "T" or  ${UnidadeMedida} == "T" or  ${Usuario} == "T" or  ${Venda} == "T" or ${UsuarioStatus} == "T"  or ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T"
+//#if ${BugTrack} == "T" or  ${Comunicacao} == "T" or  ${Categoria} == "T" or  ${CarrinhoCompras} == "T" or ${FormaPagament} == "T" or  ${Perfil} == "T" or  ${Produto} == "T" or  ${SituacaoBug} == "T" or  ${StatusUsuario} == "T" or  ${StatusVenda} == "T" or  ${UnidadeMedida} == "T" or  ${Usuario} == "T" or  ${Venda} == "T" or ${UsuarioStatus} == "T"  or ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T" or ${FAQCadastrar} == "T" or ${FAQConsultar} == "T" or ${FAQExcluir} == "T" or ${FAQAlterar} == "T"  or ${FAQDetalhar} == "T"  or ${FAQListar} == "T" 
 /**
  * 
  */

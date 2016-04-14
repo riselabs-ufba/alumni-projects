@@ -14,8 +14,10 @@ import br.com.webstore.model.BugTrack;
 //#endif
 //#endif
 //#if ${FAQ} == "T"
+//#if ${FAQCadastrar} == "T" or ${FAQConsultar} == "T" or ${FAQExcluir} == "T" or ${FAQAlterar} == "T" or ${FAQDetalhar} == "T" 
 import br.com.webstore.dao.FaqDao;
 import br.com.webstore.model.Faq;
+//#endif
 //#endif
 //#endif
 
@@ -177,7 +179,9 @@ public class GenericFacade {
 		//#endif
 		
 		//#if ${FAQ} == "T"
+		//#if ${FAQCadastrar} == "T" or ${FAQConsultar} == "T" or ${FAQExcluir} == "T" or ${FAQAlterar} == "T" 
 		faqDataProvider=new FaqDao(entityManager);
+		//#endif
 		//#endif
 		
 		//#endif
@@ -298,6 +302,7 @@ public class GenericFacade {
 	
 		//#if ${Comunicacao} == "T"
 		//#if ${FAQ} == "T"
+		//#if ${FAQCadastrar} == "T" or ${FAQConsultar} == "T" or ${FAQExcluir} == "T" or ${FAQAlterar} == "T"  or ${FAQDetalhar} == "T" or ${FAQListar} == "T"
 			private FaqDao faqDataProvider;
 
 			public Faq insertFaq(Faq faq) {
@@ -320,6 +325,7 @@ public class GenericFacade {
 			public void removerFaq(int id) {
 				this.faqDataProvider.remove(id);
 			}
+	//#endif
 	//#endif
 	//#endif
 			

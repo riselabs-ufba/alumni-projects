@@ -28,7 +28,9 @@ import br.com.webstore.features.BugTrackView;
 //#endif
 //#if ${FAQ} == "T"
 //import br.com.webstore.features.FAQ;
+//#if  ${FAQListar} == "T"
 import br.com.webstore.features.FaqListar;
+//#endif
 import br.com.webstore.features.FaqPesquisa;
 //#endif
 
@@ -112,7 +114,9 @@ public class WebStoreEventMainScreenP extends JPanel {
 		
 		//#if ${Comunicacao} == "T"
 		//#if ${FAQ} == "T"
+		//#if  ${FAQListar} == "T"
 		panelTab.addTab(FaqListar.NAME, new FaqListar(gfacade));
+		//#endif
 		//#endif
 		//#if ${BugTrack} == "T"
 		if (usuarioLogado!=null)

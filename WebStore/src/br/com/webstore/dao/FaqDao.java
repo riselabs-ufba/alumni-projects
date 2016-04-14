@@ -1,5 +1,6 @@
 //#if ${Comunicacao} == "T"
 //#if ${FAQ} == "T"
+//#if ${FAQCadastrar} == "T" or ${FAQConsultar} == "T" or ${FAQExcluir} == "T" or ${FAQAlterar} == "T"  or ${FAQDetalhar} == "T" or ${FAQListar} == "T"
 package br.com.webstore.dao;
 
 import java.util.List;
@@ -22,5 +23,6 @@ public class FaqDao extends GenericDao<Faq, Integer>{
 	}
 
 }
+//#endif
 //#endif
 //#endif

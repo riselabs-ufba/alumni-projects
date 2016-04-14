@@ -1,7 +1,4 @@
-//#if ${SituacaoBug} == "T"
-/**
- * 
- */
+
 package br.com.webstore.model;
 
 import javax.persistence.Column;
@@ -55,4 +52,3 @@ public class SituacaoBug {
 		this.descricao = descricao;
 	}
 }
-//#endif

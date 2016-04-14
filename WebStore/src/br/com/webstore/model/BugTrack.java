@@ -1,5 +1,7 @@
 //#if ${Comunicacao} == "T"
 //#if ${BugTrack} == "T"
+//#if ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T" 
+
 /**
  * 
  */
@@ -197,5 +199,6 @@ public class BugTrack {
 		return titulo;
 	}
 }
+//#endif
 //#endif
 //#endif

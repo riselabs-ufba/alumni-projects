@@ -22,7 +22,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import br.com.webstore.facade.GenericFacade;
+//#if ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T"
 import br.com.webstore.model.BugTrack;
+//#endif
 import br.com.webstore.model.SituacaoBug;
 //#if ${Usuario} == "T"
 import br.com.webstore.model.Usuario;
@@ -45,6 +47,7 @@ public class BugTrackView extends JPanel{
 	GenericFacade facade;
 	
 	//#if ${Usuario} == "T"
+	//#if ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T"
 	public BugTrackView(final GenericFacade facade, final Usuario usuarioLogado) {
 		//facade = new GenericFacade();
 		situacoes = facade.getListSituacaoBug();
@@ -92,6 +95,7 @@ public class BugTrackView extends JPanel{
 	    });
 	    add(submit);
 	    
+	    //#if ${BugTrackCadastrar} == "T"
 	    JButton btnNewBug = new JButton("Reportar");
 		btnNewBug.setBounds(6, 85, 89, 23);
 		btnNewBug.addActionListener(new ActionListener() {
@@ -161,7 +165,9 @@ public class BugTrackView extends JPanel{
 		});
 
 		add(btnNewBug);
+		//#endif
 		
+		//#if ${BugTrackExcluir} == "T"
 		if(usuarioLogado.getPerfil().getDescricao().equals("Admin")){
 			JButton btnDeleteBug = new JButton("Deletar");
 			btnDeleteBug.setBounds(6, 85, 89, 23);
@@ -194,6 +200,7 @@ public class BugTrackView extends JPanel{
 	
 			add(btnDeleteBug);
 		}
+		//#endif
 		//#if ${BugTrackAlterar} == "T"
 		if(usuarioLogado.getPerfil().getDescricao().equals("Admin")){
 			JButton btnFixingBug = new JButton("Consertando");
@@ -408,7 +415,9 @@ public class BugTrackView extends JPanel{
 		
 	}
 	//#endif
+	//#endif
 	
+//#if ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T"	
 	public Vector<Vector<String>> resultsToData(List<BugTrack> results){
 		Vector<Vector<String>> data = new Vector<Vector<String>>();
 		for(int i=0; i<results.size();i++){
@@ -437,6 +446,7 @@ public class BugTrackView extends JPanel{
 		}
 		return data;
 	}
+	//#endif
 }
 //#endif
 //#endif

@@ -1,4 +1,3 @@
-//#if ${SituacaoBug} == "T"
 package br.com.webstore.dao;
 
 import javax.persistence.EntityManager;
@@ -12,4 +11,3 @@ public class SituacaoBugDao extends GenericDao<SituacaoBug, Integer>{
 	}
 
 }
-//#endif

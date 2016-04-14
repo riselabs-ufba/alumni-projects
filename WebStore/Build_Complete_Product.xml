@@ -63,8 +63,13 @@
 			<fileset dir="${srcProject}" includes="**/*.java" />
 			
 			<property name="Comunicacao" value="T" />
+			
 			<property name="BugTrack" value="T" />
+			<property name="BugTrackCadastrar" value="T" />
+			<property name="BugTrackConsultar" value="T" />
+			<property name="BugTrackExcluir" value="T" />
 			<property name="BugTrackAlterar" value="T" />
+			
 			<property name="FAQ" value="T" />
 		 	<property name="FaleConosco" value="T" />
 			
@@ -78,16 +83,10 @@
 			<property name="Categoria" value="T" />		
 			
 			<property name="UsuarioStatus" value="T" />
-			<property name="UsuarioNotificar" value="T" />
-			
-			<property name="Perfil" value="T" />
-			<property name="StatusUsuario" value="T" />
-			
-			<property name="SituacaoBug" value="T" />	
-			
+			<property name="UsuarioNotificar" value="T" />		
 			
 			<property name="Produto" value="T" />
-			<property name="Usuario" value="T" />
+			<property name="Usuario" value="F" />
 			
 		</javapp>
 

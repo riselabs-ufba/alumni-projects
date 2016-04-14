@@ -189,7 +189,7 @@ public class Usuario {
 	}
 	//#endif
 	
-	//#if ${Perfil} == "T"
+
 	
 	/**
 	 * Return the perfil 
@@ -220,6 +220,6 @@ public class Usuario {
 	public void setDsLogin(String dsLogin) {
 		this.dsLogin = dsLogin;
 	}
-	//#endif
+
 }
 //#endif

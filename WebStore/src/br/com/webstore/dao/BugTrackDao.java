@@ -1,5 +1,6 @@
 //#if ${Comunicacao} == "T"
 //#if ${BugTrack} == "T"
+//#if ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T"
 package br.com.webstore.dao;
 
 import java.util.List;
@@ -28,5 +29,6 @@ public class BugTrackDao extends GenericDao<BugTrack, Integer>{
 		return query.getResultList();
 	}
 }
+//#endif
 //#endif
 //#endif

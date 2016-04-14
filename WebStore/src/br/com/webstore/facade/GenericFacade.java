@@ -8,15 +8,13 @@ import javax.persistence.Persistence;
 
 //#if ${Comunicacao} == "T"
 //#if ${BugTrack} == "T"
+//#if ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T"
 import br.com.webstore.dao.BugTrackDao;
+import br.com.webstore.model.BugTrack;
+//#endif
 //#endif
 //#if ${FAQ} == "T"
 import br.com.webstore.dao.FaqDao;
-//#endif
-//#if ${BugTrack} == "T"
-import br.com.webstore.model.BugTrack;
-//#endif
-//#if ${FAQ} == "T"
 import br.com.webstore.model.Faq;
 //#endif
 //#endif
@@ -43,7 +41,7 @@ import br.com.webstore.dao.FormaPagamentDao;
 import br.com.webstore.dao.MensagemDao;
 
 
-//#if ${Perfil} == "T"
+//#if ${Usuario} == "T"
 import br.com.webstore.dao.PerfilDao;
 //#endif
 
@@ -51,9 +49,9 @@ import br.com.webstore.dao.PerfilDao;
 import br.com.webstore.dao.ProdutoDao;
 //#endif
 
-//#if ${SituacaoBug} == "T"
+
 import br.com.webstore.dao.SituacaoBugDao;
-//#endif
+
 
 //#if ${Usuario} == "T"
 //#if ${UsuarioStatus} == "T"
@@ -112,7 +110,7 @@ import br.com.webstore.model.FormaPagamento;
 import br.com.webstore.model.Mensagem;
 
 
-//#if ${Perfil} == "T"
+//#if ${Usuario} == "T"
 import br.com.webstore.model.Perfil;
 //#endif
 
@@ -120,9 +118,9 @@ import br.com.webstore.model.Perfil;
 import br.com.webstore.model.Produto;
 //#endif
 
-//#if ${SituacaoBug} == "T"
+
 import br.com.webstore.model.SituacaoBug;
-//#endif
+
 
 //#if ${Usuario} == "T"
 //#if ${UsuarioStatus} == "T"
@@ -173,7 +171,9 @@ public class GenericFacade {
 		
 		//#if ${Comunicacao} == "T"
 		//#if ${BugTrack} == "T"
+		//#if ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T"
 		bugTrackDao = new BugTrackDao(entityManager);
+		//#endif
 		//#endif
 		
 		//#if ${FAQ} == "T"
@@ -209,13 +209,13 @@ public class GenericFacade {
 		mensagemDao=new MensagemDao(entityManager);
 		
 		
-		//#if ${Perfil} == "T"
+		//#if ${Usuario} == "T"
 		perfilDataProvider=new PerfilDao(entityManager);
 		//#endif
 		
-		//#if ${SituacaoBug} == "T"
+
 		situacaoBugDataProvider= new SituacaoBugDao(entityManager);
-		//#endif
+
 		
 		//#if ${Usuario} == "T"
 		//#if ${UsuarioStatus} == "T"
@@ -257,6 +257,7 @@ public class GenericFacade {
 	
 	//#if ${Comunicacao} == "T"
 	//#if ${BugTrack} == "T"
+	//#if ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T"
 	private BugTrackDao bugTrackDao;
 	
 	public BugTrack insertBugTrack(BugTrack bugTrack) {
@@ -291,7 +292,7 @@ public class GenericFacade {
 	public BugTrack getBugTrack(int id) {
 		return bugTrackDao.find(id);
 	}
-
+	//#endif
 	//#endif
 	//#endif
 	
@@ -441,7 +442,7 @@ public class GenericFacade {
 		
 		
 	
-		//#if ${Perfil} == "T"
+		//#if ${Usuario} == "T"
 		private PerfilDao perfilDataProvider;
 		
 		public Perfil insertPerfil(Perfil perfil) {
@@ -492,7 +493,7 @@ public class GenericFacade {
 		//#endif
 		
 	
-		//#if ${SituacaoBug} == "T"
+
 		private SituacaoBugDao situacaoBugDataProvider;
 
 		public SituacaoBug insertSituacaoBug(SituacaoBug situacaoBug) {
@@ -518,7 +519,7 @@ public class GenericFacade {
 		public SituacaoBugDao getDaoSituacaoBug(){
 			return situacaoBugDataProvider;
 		}
-		//#endif
+
 		
 		//#if ${Usuario} == "T"
 		//#if ${UsuarioStatus} == "T"

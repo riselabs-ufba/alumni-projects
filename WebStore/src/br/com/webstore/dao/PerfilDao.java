@@ -1,4 +1,4 @@
-//#if ${Perfil} == "T"
+//#if ${Usuario} == "T"
 package br.com.webstore.dao;
 
 import javax.persistence.EntityManager;

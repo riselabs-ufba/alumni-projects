@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="performBuild.run">
+
+	<import file="commonIncludes\commonSettings.xml" as="commonSettings"/>
+
+	
+	
+	<!-- ATIVAR AQUI TODAS AS TAGS PARA AS FEATURES OPCIONAIS E ALTERNATIVAS DOMINANTES/PREFERENCIAIS -->
+	<property name="ExcluirUsuario"                 value="T" />
+	<property name="MudarTipoContaUsuario"          value="T" />
+	<property name="StatusUsuario"                  value="T" />
+	<property name="NotificarUsuario"               value="T" />
+	<property name="CategoriaProduto"               value="T" />
+	<property name="CadastrarCategoria"             value="T" />
+	<property name="ExcluirCategoria"               value="T" />
+	<property name="AlterarCategoria"               value="T" />
+	<property name="ConsultarCategoria"             value="T" />
+	<property name="Comunicacao"                    value="T" />
+	<property name="BugTrack"                       value="T" />
+	<property name="CadastrarBugTrack"              value="T" />
+	<property name="ExcluirBugTrack"                value="T" />
+	<property name="AlterarBugTrack"                value="T" />
+	<property name="ConsultarBugTrack"              value="T" />
+	<property name="FAQ"                            value="T" />
+	<property name="CadastrarFAQ"                   value="T" />
+	<property name="ExcluirFAQ"                     value="T" />
+	<property name="AlterarFAQ"                     value="T" />
+	<property name="ConsultarFAQ"                   value="T" />
+	<property name="FaleConosco"                    value="T" />
+	<property name="EnviarMensagem"                 value="T" />
+	<property name="EscreverCartao"                 value="T" />
+
+
+
+	
+	
+	<import file="commonIncludes\performBuild.xml" as="performBuild"/>
+
+</project>

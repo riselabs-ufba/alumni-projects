@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+
+	<path id="classpath">
+		<fileset dir="${libs}">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="${build}" />
+	</path>
+
+	<taskdef classpath="${libsExternal}/javapp.jar" resource="javapp-defs.xml" />
+
+	<target name="clean">
+		<echo />
+		<echo message="Step 1 - Clearing the previous build..." />
+        <delete includeEmptyDirs="true" quiet="true">
+	      <fileset dir="${outputAppDir}"/>
+		</delete>	
+        <delete includeEmptyDirs="true" quiet="true">
+	      <fileset dir="${deployAppDir}"/>
+		</delete>	
+	</target>
+
+	
+	<target depends="clean" name="init">
+		<echo />
+		<echo message="Step 2 - Creating the project structure..." />
+		<mkdir dir="${outputAppDir}" />
+		<mkdir dir="${deployAppDir}" />
+		<mkdir dir="${img}" />
+		<mkdir dir="${libs}" />
+		<mkdir dir="${build}" />
+		<mkdir dir="${meta.inf}" />
+		<copy todir="${img}">
+			<fileset dir="${imgProject}" includes="**/*.png, **/*.gif, **/*.jpg" />
+		</copy>
+		<copy todir="${libs}">
+			<fileset dir="${libsExternal}" includes="**/*.jar" />
+		</copy>
+		<copy todir="${meta.inf}">
+			<fileset dir="${srcProject}/META-INF" includes="**/*.xml" />
+		</copy>
+
+		<jar jarfile="${libs}/dependencies-all.jar">
+			<zipgroupfileset dir="${libs}">
+				<include name="**/*.jar" />
+			</zipgroupfileset>
+		</jar>
+	</target>
+
+	<target depends="init" name="preprocess">
+		<echo />
+		<echo message="Step 3 - Copying code useful source for '${appName}'..." />
+		<javapp destdir="${src}" prefix="//#">
+			<fileset dir="${srcProject}" includes="**/*.java" />
+            <!-- features selection moved to the xml of each derivative product. -->
+		</javapp>
+	</target>
+
+
+
+	<target depends="preprocess" name="build">
+		<echo message="Step 4 - Building..." />
+		<javac srcdir="${src}" destdir="${build}" includeantruntime = "false">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<target depends="build" name="jar">
+		<echo />
+		<echo message="Step 5 - Creating jar..." />
+		<jar basedir="${build}" jarfile="${jar.file}">
+			<manifest>
+				<attribute name="Main-Class" value="br.com.webstore.views.WebStoreEventMainScreenP" />
+			</manifest>
+			<fileset dir="." includes="img/**/*.png, img/**/*.gif, img/**/*.jpg"/>
+			<zipfileset src="${libs}/dependencies-all.jar" excludes="META-INF/*.SF" />
+		</jar>
+	</target>
+
+	<target depends="jar" name="run">
+		<echo message="Step 6 - Running the derived product..." />
+		<java fork="true" jar="${jar.file}" />
+	</target>
+	
+</project>

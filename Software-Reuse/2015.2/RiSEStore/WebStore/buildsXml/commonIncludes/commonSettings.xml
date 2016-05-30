@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<property name="outputDir" value="output" />
+	<property name="deployDir" value="deploy" />
+	<basename file="${ant.file}" property="buildFile" suffix=".xml"/>	
+	
+	<property name="appName" value="${buildFile}" />
+
+	<property name="outputAppDir" value="${outputDir}/${appName}" />
+	<property name="deployAppDir" value="${deployDir}/${appName}" />
+
+	<property name="src" location="${outputAppDir}/src" />
+	<property name="libs" location="${outputAppDir}/libs" />
+	<property name="img" location="${outputAppDir}/img" />
+	<property name="build" location="${outputAppDir}/build" />
+	<property name="classes" location="${build}/br/com/webstore" />
+	<property name="meta.inf" location="${build}/META-INF" />
+
+	<property name="imgProject" value="..\img" />
+	<property name="libsExternal" location="..\libs" />
+	<property name="srcProject" location="..\src" />
+	
+	<property name="jar.file" location="${deployAppDir}/${appName}.jar" />
+	
+	<import file="mandatoryFeatures.xml" as="mandatoryFeatures" />
+	
+</project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="performBuild.run">
+
+	<import file="commonIncludes\commonSettings.xml" as="commonSettings"/>
+	
+	<!-- ATIVAR AQUI AS TAGS PARA AS FEATURES ALTERNATIVAS -->
+	
+	<import file="commonIncludes\performBuild.xml" as="performBuild"/>
+
+</project>

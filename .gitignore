@@ -1,1 +1,6 @@
 *.DS_Store
+/WebStore/webstore_p
+buildsXml/deploy
+buildsXml/output
+/WebStore/products/.tmpBin
+

@@ -1,0 +1,204 @@
+//#if ${Comunicacao} == "T"
+//#if ${BugTrack} == "T"
+//#if ${BugTrackCadastrar} == "T" or ${BugTrackConsultar} == "T" or ${BugTrackExcluir} == "T" or ${BugTrackAlterar} == "T" 
+
+/**
+ * 
+ */
+package br.com.webstore.model;
+
+import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+/**
+ * @author webstore
+ *
+ */
+@Entity
+@Table(name="BugTrack")
+public class BugTrack {
+
+	@Id 
+	@GeneratedValue
+	@Column(name="idBugTrack")
+	private Integer id;
+	
+	//#if ${Usuario} == "T"
+	@OneToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name="idUsuarioResponde", referencedColumnName="idUsuario", nullable=true)
+	private Usuario usuarioResponde;
+	
+	
+	@OneToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name="idUsuarioRegistro", referencedColumnName="idUsuario", nullable=false)
+	private Usuario usuarioRegistro;
+	//#endif
+	
+	@OneToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name="idSituacaoBug", referencedColumnName="idSituacaoBug", nullable=false)
+	private SituacaoBug situacaoBug;
+	
+	@Column(name="dsBUG", nullable=false)
+	private String descricao;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="dtMensagemRegistro", nullable=false)
+	private Date dataRegistro;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="dtResposta")
+	private Date dataResposta;
+	
+	@Column(name="dsResposta")
+	private String descricaoResposta;
+
+	@Column(name="titulo", nullable=false)
+	private String titulo;
+	
+	/*public BugTrack(String titulo, String descricao, Usuario usuario, SituacaoBug situacaoBug){
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.dataRegistro = new Date();
+		this.usuarioRegistro = usuario;
+		this.situacaoBug = situacaoBug;
+		
+	}*/
+	
+	/**
+	 * Return the id 
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+	/**
+	 * Setter the id
+	 * @param id the id to set
+	 */
+	public void setId(Integer codigo) {
+		this.id = codigo;
+	}
+	
+	//#if ${Usuario} == "T"
+	/**
+	 * Return the usuarioResponde 
+	 * @return the usuarioResponde
+	 */
+	public Usuario getUsuarioResponde() {
+		return usuarioResponde;
+	}
+	/**
+	 * Setter the usuarioResponde
+	 * @param usuarioResponde the usuarioResponde to set
+	 */
+	public void setUsuarioResponde(Usuario usuarioResponde) {
+		this.usuarioResponde = usuarioResponde;
+	}
+	/**
+	 * Return the usuarioRegistro 
+	 * @return the usuarioRegistro
+	 */
+	public Usuario getUsuarioRegistro() {
+		return usuarioRegistro;
+	}
+	/**
+	 * Setter the usuarioRegistro
+	 * @param usuarioRegistro the usuarioRegistro to set
+	 */
+	public void setUsuarioRegistro(Usuario usuarioRegistro) {
+		this.usuarioRegistro = usuarioRegistro;
+	}
+	//#endif
+	/**
+	 * Return the situacaoBug 
+	 * @return the situacaoBug
+	 */
+	public SituacaoBug getSituacaoBug() {
+		return situacaoBug;
+	}
+	/**
+	 * Setter the situacaoBug
+	 * @param situacaoBug the situacaoBug to set
+	 */
+	public void setSituacaoBug(SituacaoBug situacaoBug) {
+		this.situacaoBug = situacaoBug;
+	}
+	/**
+	 * Return the descricao 
+	 * @return the descricao
+	 */
+	public String getDescricao() {
+		return descricao;
+	}
+	/**
+	 * Setter the descricao
+	 * @param descricao the descricao to set
+	 */
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	/**
+	 * Return the dataRegistro 
+	 * @return the dataRegistro
+	 */
+	public Date getDataRegistro() {
+		return dataRegistro;
+	}
+	/**
+	 * Setter the dataRegistro
+	 * @param dataRegistro the dataRegistro to set
+	 */
+	public void setDataRegistro(Date dataRegistro) {
+		this.dataRegistro = dataRegistro;
+	}
+	/**
+	 * Return the dataResposta 
+	 * @return the dataResposta
+	 */
+	public Date getDataResposta() {
+		return dataResposta;
+	}
+	/**
+	 * Setter the dataResposta
+	 * @param dataResposta the dataResposta to set
+	 */
+	public void setDataResposta(Date dataResposta) {
+		this.dataResposta = dataResposta;
+	}
+	/**
+	 * Return the descricaoResposta 
+	 * @return the descricaoResposta
+	 */
+	public String getDescricaoResposta() {
+		return descricaoResposta;
+	}
+	/**
+	 * Setter the descricaoResposta
+	 * @param descricaoResposta the descricaoResposta to set
+	 */
+	public void setDescricaoResposta(String descricaoResposta) {
+		this.descricaoResposta = descricaoResposta;
+	}
+	/**
+	 * @param text
+	 */
+	public void setTitulo(String text) {
+		this.titulo = text;	
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+}
+//#endif
+//#endif
+//#endif

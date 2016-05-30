@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and abstract="true" mandatory="true" name="WebStore">
+				<and mandatory="true" name="Usuario">
+					<feature mandatory="true" name="UsuarioCadastrar"/>
+					<or mandatory="true" name="UsuarioEditar">
+						<feature mandatory="true" name="UsuarioExcluir"/>
+						<feature mandatory="true" name="UsuarioMudarTipoConta"/>
+					</or>
+					<feature mandatory="true" name="UsuarioVisualizarPerfil"/>
+					<feature mandatory="true" name="UsuarioAlterar"/>
+					<feature name="UsuarioStatus"/>
+					<feature name="UsuarioNotificar"/>
+				</and>
+				<and mandatory="true" name="Produto">
+					<and mandatory="true" name="ProdutoCadastrar">
+						<feature mandatory="true" name="ProdutoVender"/>
+					</and>
+					<and mandatory="true" name="ProdutoConsultar">
+						<feature mandatory="true" name="ProdutoVerDetalhes"/>
+					</and>
+					<feature mandatory="true" name="ProdutoAlterar"/>
+					<feature mandatory="true" name="ProdutoExcluir"/>
+					<feature mandatory="true" name="ProdutoComprar"/>
+					<feature mandatory="true" name="ProdutoAcompanharCompra"/>
+				</and>
+				<and name="CategoriaProduto">
+					<feature mandatory="true" name="CategoriaCadastrar"/>
+					<feature mandatory="true" name="CategoriaConsultar"/>
+					<feature mandatory="true" name="CategoriaAlterar"/>
+					<feature mandatory="true" name="CategoriaExcluir"/>
+				</and>
+				<and name="Comunicacao">
+					<and name="BugTrack">
+						<feature mandatory="true" name="BugTrackCadastrar"/>
+						<feature mandatory="true" name="BugTrackConsultar"/>
+						<feature name="BugTrackAlterar"/>
+						<feature mandatory="true" name="BugTrackExcluir"/>
+					</and>
+					<and name="Faq">
+						<feature mandatory="true" name="FaqConsultar"/>
+						<feature mandatory="true" name="FaqCadastrar"/>
+						<feature mandatory="true" name="FaqAlterar"/>
+						<feature mandatory="true" name="FaqExcluir"/>
+					</and>
+					<and name="FaleConosco">
+						<feature mandatory="true" name="EnviarMensagem"/>
+					</and>
+				</and>
+				<and mandatory="true" name="CarrinhoCompras">
+					<feature mandatory="true" name="CarrinhoVisualizarProdutos"/>
+					<feature mandatory="true" name="CarrinhoRemoverProdutos"/>
+					<and mandatory="true" name="CarrinhoFinalizarCompras">
+						<or mandatory="true" name="Pagamento">
+							<feature mandatory="true" name="PgtoCartaoCredito"/>
+							<feature mandatory="true" name="PgtoCupomDesconto"/>
+							<feature mandatory="true" name="PgtoBoletoBancario"/>
+						</or>
+						<and name="EmbrulharPresente">
+							<feature name="EscreverCartaoPresente"/>
+						</and>
+					</and>
+				</and>
+			</and>
+		</struct>
+		<constraints/>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

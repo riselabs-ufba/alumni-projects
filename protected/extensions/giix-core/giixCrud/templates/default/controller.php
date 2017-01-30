@@ -5,7 +5,7 @@
  * - $this: the CrudCode object
  */
 ?>
-<?php echo "<?php\n//BeginFeature:{$this->modelClass}\n"; ?>
+<?php echo "<?php //BeginFeature:{$this->modelClass}\n"; ?>
 
 class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseControllerClass; ?> {
 

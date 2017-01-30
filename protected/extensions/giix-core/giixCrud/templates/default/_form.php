@@ -3,6 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
+echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
 ?>
 <div class="form">
 
@@ -48,3 +49,4 @@ echo GxHtml::submitButton(Yii::t('app', 'Save'));
 \$this->endWidget();
 ?>\n"; ?>
 </div><!-- form -->
+<?php echo "<?php //EndFeature:{$this->modelClass}";

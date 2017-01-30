@@ -3,6 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
+echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
 ?>
 <?php
 echo "<?php\n
@@ -32,3 +33,4 @@ foreach ($this->tableSchema->columns as $column)
 ?>
 	),
 ));
+<?php echo "//EndFeature:{$this->modelClass}";

@@ -3,6 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
+echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
 ?>
 <?php
 echo "<?php\n
@@ -69,3 +70,4 @@ if ($count >= 7)
 		),
 	),
 )); 
+<?php echo "//EndFeature:{$this->modelClass}";

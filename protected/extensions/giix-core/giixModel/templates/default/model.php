@@ -23,12 +23,5 @@ class <?php echo $modelClass; ?> extends <?php echo $this->baseModelClass."\n"; 
     public static function model($className=__CLASS__) {
             return parent::model($className);
     }
-        
-    public function behaviors() {
-        return array(
-            'LoggableBehavior' =>
-            'application.modules.auditTrail.behaviors.LoggableBehavior',
-        );
-    }        
 }
 //EndFeature:<?php echo $modelClass; 

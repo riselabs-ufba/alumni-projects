@@ -3,6 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
+echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
 ?>
 <div class="wide form">
 
@@ -26,7 +27,6 @@
 		<?php echo "<?php echo \$form->label(\$model, '{$column->name}'); ?>\n"; ?>
 		<?php echo "<?php " . $this->generateSearchField($this->modelClass, $column)."; ?>\n"; ?>
 	</div>
-    
 <?php
         if ($column->isForeignKey) {            
             echo "\t<?php //EndFeature:{$relatedModelClass} ?>\n";
@@ -41,3 +41,4 @@
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
 
 </div><!-- search-form -->
+<?php echo "<?php //EndFeature:{$this->modelClass}";

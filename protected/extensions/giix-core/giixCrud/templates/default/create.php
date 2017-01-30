@@ -3,10 +3,10 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
+echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
 ?>
 <?php
-echo "<?php\n
-//BeginFeature:{$this->modelClass}\n"; ?>
+echo "<?php
 \$this->breadcrumbs = array(
 	\$model->label(2) => array('index'),
 	Yii::t('app', 'Create'),
@@ -25,4 +25,4 @@ $this->menu = array(
 $this->renderPartial('_form', array(
 		'model' => $model,
 		'buttons' => 'create'));
-<?php echo "<?php\n//EndFeature:{$this->modelClass}\n";
+<?php echo "//EndFeature:{$this->modelClass}";

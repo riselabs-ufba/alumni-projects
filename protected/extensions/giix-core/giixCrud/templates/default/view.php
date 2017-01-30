@@ -28,8 +28,16 @@ $this->menu=array(
 	'data' => $model,
 	'attributes' => array(
 <?php
-foreach ($this->tableSchema->columns as $column)
+foreach ($this->tableSchema->columns as $column){
+        if ($column->isForeignKey) {
+            $relatedModelClass = $this->findRelation($this->modelClass, $column)[3];
+            echo "\t\t//BeginFeature:{$relatedModelClass}\n";
+        }
 		echo $this->generateDetailViewAttribute($this->modelClass, $column) . ",\n";
+        if ($column->isForeignKey) {            
+            echo "\t\t//EndFeature:{$relatedModelClass}\n";
+        }                
+}
 ?>
 	),
 ));

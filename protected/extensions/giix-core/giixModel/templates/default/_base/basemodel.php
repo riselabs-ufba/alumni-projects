@@ -20,7 +20,7 @@ foreach(array_keys($relations) as $name): ?>
     }
 endforeach;
 ?>
-<?php echo "<?php\n//BeginFeature:{$modelClass}"; ?>
+<?php echo "<?php //BeginFeature:{$modelClass}"; ?>
 
 /**
  * This is the model base class for the table "<?php echo $tableName; ?>".

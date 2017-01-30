@@ -31,6 +31,11 @@ class SiteController extends Controller
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index');
 	}
+        
+        public function actionDeploy(){
+            Feature::deploy();
+            echo CHtml::link('Clique aqui!', Yii::app()->getBaseUrl().'-temp', array('target' => '_blank'));
+        }
 
 	/**
 	 * This is the action to handle external exceptions.

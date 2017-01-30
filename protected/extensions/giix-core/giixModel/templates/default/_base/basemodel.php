@@ -11,6 +11,14 @@
  * - $representingColumn: the name of the representing column for the table (string) or
  *   the names of the representing columns (array)
  */
+$relationColumns = array();
+foreach(array_keys($relations) as $name): ?>
+<?php 
+    $relationData = $this->getRelationData($modelClass, $name);
+    if ($relationData[0]== GxActiveRecord::BELONGS_TO) {
+        $relationColumns[$relationData[3]] = $relationData[1];
+    }
+endforeach;
 ?>
 <?php echo "<?php\n//BeginFeature:{$modelClass}"; ?>
 
@@ -28,18 +36,19 @@
 <?php endif; ?>
  *
 <?php foreach($columns as $column): ?>
-<?php if($column->isForeignKey){ ?>
- * BeginFeature:<?php echo "{$column->name}"; ?>    
+<?php if(isset($relationColumns[$column->name])){ ?>
+ * BeginFeature:<?php echo "{$relationColumns[$column->name]}"; ?>    
 <?php } ?>
- * @property <?php echo $column->type.' $'.$column->name."\n"; ?>
-<?php if($column->isForeignKey){ ?>
- * EndFeature:<?php echo "{$column->name}"; }?>    
+ * @property <?php echo $column->type.' $'.$column->name; ?>
+<?php if(isset($relationColumns[$column->name])){ 
+        echo "\n";
+?>
+ * EndFeature:<?php echo "{$relationColumns[$column->name]}"; }?>    
 <?php endforeach; ?>
  *
 <?php foreach(array_keys($relations) as $name): ?>
 <?php 
             $relationData = $this->getRelationData($modelClass, $name);
-            var_dump($relationData);
             $relationType = $relationData[0];
             $relationModel = $relationData[1];
 ?>
@@ -92,9 +101,15 @@ abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->ba
 
 	public function rules() {
 		return array(
-<?php foreach($rules as $rule): ?>
-			<?php echo $rule.",\n"; ?>
-<?php endforeach; ?>
+<?php
+//FixMe: Rever último item, pois não tem vírgula
+foreach($rules as $rule):
+    foreach ($relationColumns as $key => $value) {
+        $rule = str_replace("{$key}, ", "'.\n\t\t\t//BeginFeature:{$value}\n\t\t\t'{$key}, '.\n\t\t\t//EndFeature:{$value}\n\t\t\t'", $rule);
+    }
+    $rule = str_replace("''.", '', $rule);
+    echo "\t\t\t{$rule},\n"; 
+endforeach; ?>
 			array('<?php echo implode(', ', array_keys($columns)); ?>', 'safe', 'on'=>'search'),
 		);
 	}
@@ -105,9 +120,9 @@ abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->ba
             $relationModel = $this->getRelationData($modelClass, $name)[1];
             $relationLabel[$name] = $relationModel;
 ?>
-            <?php echo "//BeginFeature:{$relationModel}\n"; ?>
+            <?php echo "\t\t//BeginFeature:{$relationModel}\n"; ?>
 			<?php echo "'{$name}' => {$relation},\n"; ?>
-            <?php echo "//EndFeature:{$relationModel}\n"; ?>
+            <?php echo "\t\t//EndFeature:{$relationModel}\n"; ?>
 <?php endforeach; ?>
 		);
 	}
@@ -122,24 +137,17 @@ abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->ba
 
 	public function attributeLabels() {
 		return array(
-<?php foreach($labels as $name=>$label): ?>
-<?php if($label === null): ?>
-            <?php 
-            if(isset($relationLabel[$name])){
-                echo "//BeginFeature:{$relationLabel[$name]}\n";
-            }
-            ?>
-			<?php echo "'{$name}' => null,\n"; ?>
-            <?php
-            if(isset($relationLabel[$name])){
-                echo "//EndFeature:{$relationLabel[$name]}"; 
-            }
-            ?>
-                            
-<?php else: ?>
-			<?php echo "'{$name}' => {$label},\n"; ?>
-<?php endif; ?>
-<?php endforeach; ?>
+<?php 
+$relationlabels = CMap::mergeArray($relationLabel, $relationColumns);
+foreach($labels as $name=>$label):
+    if($label === null): 
+        echo "\t\t\t//BeginFeature:{$relationlabels[$name]}\n";
+        echo "\t\t\t'{$name}' => null,\n";
+        echo "\t\t\t//EndFeature:{$relationlabels[$name]}\n"; 
+    else: 
+        echo "\t\t\t'{$name}' => {$label},\n";
+    endif; 
+endforeach; ?>
 		);
 	}
 
@@ -147,9 +155,17 @@ abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->ba
 		$criteria = new CDbCriteria;
 
 <?php foreach($columns as $name=>$column): ?>
-<?php $partial = ($column->type==='string' and !$column->isForeignKey); ?>
+<?php $partial = ($column->type==='string' and !$column->isForeignKey); 
+ if (isset($relationColumns[$name])) {
+     echo "\t\t//BeginFeature:{$relationColumns[$name]}\n";
+ }
+?>
 		$criteria->compare('<?php echo $name; ?>', $this-><?php echo $name; ?><?php echo $partial ? ', true' : ''; ?>);
-<?php endforeach; ?>
+<?php 
+ if (isset($relationColumns[$name])) {
+     echo "\t\t//EndFeature:{$relationColumns[$name]}\n";
+ }
+endforeach; ?>
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

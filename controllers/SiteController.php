@@ -38,6 +38,7 @@ class SiteController extends MainController
         return $this->render('index');
     }
 
+
     /**
      * Login action.
      *

@@ -3,7 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
-echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
+echo "<?php /*BeginFeature:{$this->modelClass}*/ ?>\n";
 ?>
 <?php
 echo "<?php
@@ -14,7 +14,6 @@ echo "<?php
 ?>
 
 $this->menu = array(
-	array('label'=>Yii::t('app', 'List') . ' ' . $model->label(2), 'url' => array('index')),
 	array('label'=>Yii::t('app', 'Manage') . ' ' . $model->label(2), 'url' => array('admin')),
 );
 ?>
@@ -25,4 +24,4 @@ $this->menu = array(
 $this->renderPartial('_form', array(
 		'model' => $model,
 		'buttons' => 'create'));
-<?php echo "//EndFeature:{$this->modelClass}";
+<?php echo "/*EndFeature:{$this->modelClass}*/";

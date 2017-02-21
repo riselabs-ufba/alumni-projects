@@ -33,7 +33,7 @@ class SiteController extends Controller
 	}
         
         public function actionDeploy(){
-            Feature::deploy();
+            (new Feature)->deploy();
             echo CHtml::link('Clique aqui!', Yii::app()->getBaseUrl().'-temp', array('target' => '_blank'));
         }
 

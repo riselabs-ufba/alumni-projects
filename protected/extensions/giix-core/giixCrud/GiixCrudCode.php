@@ -77,7 +77,7 @@ class GiixCrudCode extends CrudCode {
 		if ($column->isForeignKey) {
 			$relation = $this->findRelation($modelClass, $column);
 			$relatedModelClass = $relation[3];
-			return "echo \$form->dropDownList(\$model, '{$column->name}', GxHtml::listDataEx({$relatedModelClass}::model()->findAllAttributes(null, true)),array('empty' => Yii::t('app', 'Select')))";
+			return "echo \$form->dropDownList(\$model, '{$column->name}', GxHtml::listDataEx({$relatedModelClass}*/::model()->findAllAttributes(null, true)),array('empty' => Yii::t('app', 'Select')))";
 		}
 
 		if (strtoupper($column->dbType) == 'TINYINT(1)'
@@ -210,7 +210,7 @@ class GiixCrudCode extends CrudCode {
 			return "array(
 				'name'=>'{$column->name}',
 				'value'=>'GxHtml::valueEx(\$data->{$relationName})',
-				'filter'=>GxHtml::listDataEx({$relatedModelClass}::model()->findAllAttributes(null, true)),
+				'filter'=>GxHtml::listDataEx({$relatedModelClass}*/::model()->findAllAttributes(null, true)),
 				)";
 		}
 	}
@@ -236,7 +236,7 @@ class GiixCrudCode extends CrudCode {
 			// Find the related model for this column.
 			$relation = $this->findRelation($modelClass, $column);
 			$relatedModelClass = $relation[3];
-			return "echo \$form->dropDownList(\$model, '{$column->name}', GxHtml::listDataEx({$relatedModelClass}::model()->findAllAttributes(null, true)), array('prompt' => Yii::t('app', 'All')))";
+			return "echo \$form->dropDownList(\$model, '{$column->name}', GxHtml::listDataEx({$relatedModelClass}*/::model()->findAllAttributes(null, true)), array('prompt' => Yii::t('app', 'All')))";
 		}
 	}
 

@@ -5,7 +5,7 @@
  * - $this: the CrudCode object
  */
 ?>
-<?php echo "<?php //BeginFeature:{$this->modelClass}\n"; ?>
+<?php echo "<?php /*BeginFeature:{$this->modelClass}*/\n"; ?>
 
 class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseControllerClass; ?> {
 
@@ -85,13 +85,6 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 			throw new CHttpException(400, Yii::t('app', 'Your request is invalid.'));
 	}
 
-	public function actionIndex() {
-		$dataProvider = new CActiveDataProvider('<?php echo $this->modelClass; ?>');
-		$this->render('index', array(
-			'dataProvider' => $dataProvider,
-		));
-	}
-
 	public function actionAdmin() {
 		$model = new <?php echo $this->modelClass; ?>('search');
 		$model->unsetAttributes();
@@ -105,4 +98,4 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	}
 
 }
-//EndFeature:<?php echo $this->modelClass;
+/*EndFeature:<?php echo $this->modelClass.'*/';

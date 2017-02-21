@@ -20,7 +20,7 @@ foreach(array_keys($relations) as $name): ?>
     }
 endforeach;
 ?>
-<?php echo "<?php //BeginFeature:{$modelClass}"; ?>
+<?php echo "<?php /*BeginFeature:{$modelClass}"; ?>
 
 /**
  * This is the model base class for the table "<?php echo $tableName; ?>".
@@ -105,7 +105,7 @@ abstract class <?php echo $this->baseModelClass; ?> extends <?php echo $this->ba
 //FixMe: Rever último item, pois não tem vírgula
 foreach($rules as $rule):
     foreach ($relationColumns as $key => $value) {
-        $rule = str_replace("{$key}, ", "'.\n\t\t\t//BeginFeature:{$value}\n\t\t\t'{$key}, '.\n\t\t\t//EndFeature:{$value}\n\t\t\t'", $rule);
+        $rule = str_replace("{$key}, ", "'.\n\t\t\t/*BeginFeature:{$value}\n\t\t\t'{$key}, '.\n\t\t\t/*EndFeature:{$value}\n\t\t\t'", $rule);
     }
     $rule = str_replace("''.", '', $rule);
     echo "\t\t\t{$rule},\n"; 
@@ -120,9 +120,9 @@ endforeach; ?>
             $relationModel = $this->getRelationData($modelClass, $name)[1];
             $relationLabel[$name] = $relationModel;
 ?>
-            <?php echo "\t\t//BeginFeature:{$relationModel}\n"; ?>
+            <?php echo "\t\t/*BeginFeature:{$relationModel}\n"; ?>
 			<?php echo "'{$name}' => {$relation},\n"; ?>
-            <?php echo "\t\t//EndFeature:{$relationModel}\n"; ?>
+            <?php echo "\t\t/*EndFeature:{$relationModel}\n"; ?>
 <?php endforeach; ?>
 		);
 	}
@@ -141,9 +141,9 @@ endforeach; ?>
 $relationlabels = CMap::mergeArray($relationLabel, $relationColumns);
 foreach($labels as $name=>$label):
     if($label === null): 
-        echo "\t\t\t//BeginFeature:{$relationlabels[$name]}\n";
+        echo "\t\t\t/*BeginFeature:{$relationlabels[$name]}\n";
         echo "\t\t\t'{$name}' => null,\n";
-        echo "\t\t\t//EndFeature:{$relationlabels[$name]}\n"; 
+        echo "\t\t\t/*EndFeature:{$relationlabels[$name]}\n"; 
     else: 
         echo "\t\t\t'{$name}' => {$label},\n";
     endif; 
@@ -157,13 +157,13 @@ endforeach; ?>
 <?php foreach($columns as $name=>$column): ?>
 <?php $partial = ($column->type==='string' and !$column->isForeignKey); 
  if (isset($relationColumns[$name])) {
-     echo "\t\t//BeginFeature:{$relationColumns[$name]}\n";
+     echo "\t\t/*BeginFeature:{$relationColumns[$name]}\n";
  }
 ?>
 		$criteria->compare('<?php echo $name; ?>', $this-><?php echo $name; ?><?php echo $partial ? ', true' : ''; ?>);
 <?php 
  if (isset($relationColumns[$name])) {
-     echo "\t\t//EndFeature:{$relationColumns[$name]}\n";
+     echo "\t\t/*EndFeature:{$relationColumns[$name]}\n";
  }
 endforeach; ?>
 
@@ -172,4 +172,4 @@ endforeach; ?>
 		));
 	}
 }
-//EndFeature:<?php echo $modelClass;
+/*EndFeature:<?php echo $modelClass;

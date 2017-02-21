@@ -3,7 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
-echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
+echo "<?php /*BeginFeature:{$this->modelClass}*/ ?>\n";
 ?>
 <div class="wide form">
 
@@ -20,7 +20,7 @@ echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
         
         if ($column->isForeignKey) {
             $relatedModelClass = $this->findRelation($this->modelClass, $column)[3];
-            echo "\t<?php //BeginFeature:{$relatedModelClass} ?>\n";
+            echo "\t<?php /*BeginFeature:{$relatedModelClass}*/ ?>\n";
         }        
 ?>
 	<div class="row">
@@ -29,7 +29,7 @@ echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
 	</div>
 <?php
         if ($column->isForeignKey) {            
-            echo "\t<?php //EndFeature:{$relatedModelClass} ?>\n";
+            echo "\t<?php /*EndFeature:{$relatedModelClass}*/ ?>\n";
         }
 ?>
 
@@ -41,4 +41,4 @@ echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
 
 </div><!-- search-form -->
-<?php echo "<?php //EndFeature:{$this->modelClass}";
+<?php echo "<?php /*EndFeature:{$this->modelClass}*/";

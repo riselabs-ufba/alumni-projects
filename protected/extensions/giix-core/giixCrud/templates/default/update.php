@@ -3,7 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
-echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
+echo "<?php /*BeginFeature:{$this->modelClass}*/ ?>\n";
 ?>
 <?php
 echo "<?php\n
@@ -15,7 +15,6 @@ echo "<?php\n
 ?>
 
 $this->menu = array(
-	array('label' => Yii::t('app', 'List') . ' ' . $model->label(2), 'url'=>array('index')),
 	array('label' => Yii::t('app', 'Create') . ' ' . $model->label(), 'url'=>array('create')),
 	array('label' => Yii::t('app', 'View') . ' ' . $model->label(), 'url'=>array('view', 'id' => GxActiveRecord::extractPkValue($model, true))),
 	array('label' => Yii::t('app', 'Manage') . ' ' . $model->label(2), 'url'=>array('admin')),
@@ -27,4 +26,4 @@ $this->menu = array(
 <?php echo "<?php\n"; ?>
 $this->renderPartial('_form', array(
 		'model' => $model));
-<?php echo "//EndFeature:{$this->modelClass}";
+<?php echo "/*EndFeature:{$this->modelClass}*/";

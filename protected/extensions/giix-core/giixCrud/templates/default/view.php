@@ -3,7 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
-echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
+echo "<?php /*BeginFeature:{$this->modelClass}*/ ?>\n";
 ?>
 <?php
 echo "<?php\n
@@ -14,7 +14,6 @@ echo "<?php\n
 ?>
 
 $this->menu=array(
-	array('label'=>Yii::t('app', 'List') . ' ' . $model->label(2), 'url'=>array('index')),
 	array('label'=>Yii::t('app', 'Create') . ' ' . $model->label(), 'url'=>array('create')),
 	array('label'=>Yii::t('app', 'Update') . ' ' . $model->label(), 'url'=>array('update', 'id' => $model-><?php echo $this->tableSchema->primaryKey; ?>)),
 	array('label'=>Yii::t('app', 'Delete') . ' ' . $model->label(), 'url'=>'#', 'linkOptions' => array('submit' => array('delete', 'id' => $model-><?php echo $this->tableSchema->primaryKey; ?>), 'confirm'=>'Are you sure you want to delete this item?')),
@@ -31,14 +30,14 @@ $this->menu=array(
 foreach ($this->tableSchema->columns as $column){
         if ($column->isForeignKey) {
             $relatedModelClass = $this->findRelation($this->modelClass, $column)[3];
-            echo "\t\t//BeginFeature:{$relatedModelClass}\n";
+            echo "\t\t/*BeginFeature:{$relatedModelClass}*/\n";
         }
 		echo $this->generateDetailViewAttribute($this->modelClass, $column) . ",\n";
         if ($column->isForeignKey) {            
-            echo "\t\t//EndFeature:{$relatedModelClass}\n";
+            echo "\t\t/*EndFeature:{$relatedModelClass}*/\n";
         }                
 }
 ?>
 	),
 ));
-<?php echo "//EndFeature:{$this->modelClass}";
+<?php echo "/*EndFeature:{$this->modelClass}*/";

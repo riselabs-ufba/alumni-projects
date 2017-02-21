@@ -14,7 +14,7 @@
  *   the names of the representing columns (array)
  */
 ?>
-<?php echo "<?php //BeginFeature:{$modelClass}"; ?>
+<?php echo "<?php /*BeginFeature:{$modelClass}"; ?>
 
 Yii::import('<?php echo "{$this->baseModelPath}.{$this->baseModelClass}"; ?>');
 
@@ -24,4 +24,4 @@ class <?php echo $modelClass; ?> extends <?php echo $this->baseModelClass."\n"; 
             return parent::model($className);
     }
 }
-//EndFeature:<?php echo $modelClass; 
+/*EndFeature:<?php echo $modelClass; 

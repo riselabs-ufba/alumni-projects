@@ -3,7 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
-echo "<?php //BeginFeature:{$this->modelClass} ?>\n";
+echo "<?php /* BeginFeature:{$this->modelClass}*/ ?>\n";
 ?>
 <div class="form">
 
@@ -28,7 +28,7 @@ $form = $this->beginWidget('GxActiveForm', array(
 <?php
                 if ($column->isForeignKey) {
                     $relatedModelClass = $this->findRelation($this->modelClass, $column)[3];
-                    echo "\t\t<?php //BeginFeature:{$relatedModelClass} ?>\n";
+                    echo "\t\t<?php /*BeginFeature:{$relatedModelClass}*/ ?>\n";
                 }
 ?>
 		<div class="row">
@@ -38,7 +38,7 @@ $form = $this->beginWidget('GxActiveForm', array(
 		</div><!-- row -->
 <?php
                 if ($column->isForeignKey) {            
-                    echo "\t\t<?php //EndFeature:{$relatedModelClass} ?>\n";
+                    echo "\t\t<?php /*EndFeature:{$relatedModelClass}*/ ?>\n";
                 }
 ?>
 <?php endif; ?>
@@ -49,4 +49,4 @@ echo GxHtml::submitButton(Yii::t('app', 'Save'));
 \$this->endWidget();
 ?>\n"; ?>
 </div><!-- form -->
-<?php echo "<?php //EndFeature:{$this->modelClass}";
+<?php echo "<?php /*EndFeature:{$this->modelClass}*/";

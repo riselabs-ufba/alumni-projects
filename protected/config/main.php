@@ -14,7 +14,7 @@ return array(
     'import' => array(
         'application.models.*',
         'application.components.*',
-        'ext.giix-components.*', // giix components           
+        'ext.giix-components.*', // giix components
     ),
     'modules' => array(
         // uncomment the following to enable the Gii tool

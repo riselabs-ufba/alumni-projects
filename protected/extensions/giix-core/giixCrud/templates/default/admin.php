@@ -3,7 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
-echo "<?php /*BeginFeature:{$this->modelClass}*/ ?>\n";
+echo "<?php /* BeginFeature:{$this->modelClass} */ ?>\n";
 ?>
 <?php
 echo "<?php\n
@@ -52,13 +52,13 @@ $count = 0;
 foreach ($this->tableSchema->columns as $column) {
         if ($column->isForeignKey) {
             $relatedModelClass = $this->findRelation($this->modelClass, $column)[3];
-            echo "\t\t/*BeginFeature:{$relatedModelClass}*/\n";
+            echo "\t\t/* BeginFeature:{$relatedModelClass} */\n";
         }    
 	if (++$count == 7)
 		echo "\t\t/*\n";
 	echo "\t\t" . $this->generateGridViewColumn($this->modelClass, $column).",\n";
         if ($column->isForeignKey) {            
-            echo "\t\t/*EndFeature:{$relatedModelClass}*/\n";
+            echo "\t\t/* EndFeature:{$relatedModelClass}*/\n";
         }        
 }
 if ($count >= 7)
@@ -69,4 +69,4 @@ if ($count >= 7)
 		),
 	),
 )); 
-<?php echo "/*EndFeature:{$this->modelClass}*/";
+<?php echo "/* EndFeature:{$this->modelClass} */";

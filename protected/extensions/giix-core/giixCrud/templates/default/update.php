@@ -3,7 +3,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
-echo "<?php /*BeginFeature:{$this->modelClass}*/ ?>\n";
+echo "<?php /* BeginFeature:{$this->modelClass} */ ?>\n";
 ?>
 <?php
 echo "<?php\n
@@ -26,4 +26,4 @@ $this->menu = array(
 <?php echo "<?php\n"; ?>
 $this->renderPartial('_form', array(
 		'model' => $model));
-<?php echo "/*EndFeature:{$this->modelClass}*/";
+<?php echo "/* EndFeature:{$this->modelClass} */";

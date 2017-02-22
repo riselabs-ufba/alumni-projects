@@ -31,6 +31,20 @@ return array(
     ),
     // application components
     'components' => array(
+        'cache' => array(
+            'class' => 'CMemCache',
+            'servers' => array(
+                array(
+                    'host' => 'localhost',
+                    'port' => 11211,
+                ),
+            ),
+        ),        
+        'session' => array(
+            'class' => 'CHttpSession',
+            'timeout' => 1200,
+            'sessionName' => 'sessionReuse',
+        ),        
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
@@ -68,18 +82,11 @@ return array(
              */
             ),
         ),
-        'widgetFactory' => array(
-            'widgets' => array(
-                'CJuiDatePicker' => array(
-                    'language' => 'pt',
-                ),
-            ),
-        ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params' => array(
         // this is used in contact page
-        'adminEmail' => 'webmaster@example.com',
+        'adminEmail' => 'fosales@gmail.com',
     ),
 );

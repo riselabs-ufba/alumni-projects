@@ -14,7 +14,7 @@
  *   the names of the representing columns (array)
  */
 ?>
-<?php echo "<?php /*BeginFeature:{$modelClass}"; ?>
+<?php echo "<?php /*BeginFeature:{$modelClass}*/"; ?>
 
 Yii::import('<?php echo "{$this->baseModelPath}.{$this->baseModelClass}"; ?>');
 

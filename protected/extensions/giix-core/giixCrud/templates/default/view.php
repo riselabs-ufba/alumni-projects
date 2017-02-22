@@ -28,6 +28,7 @@ $this->menu=array(
 	'attributes' => array(
 <?php
 foreach ($this->tableSchema->columns as $column){
+        if ($column->autoIncrement) continue;
         if ($column->isForeignKey) {
             $relatedModelClass = $this->findRelation($this->modelClass, $column)[3];
             echo "\t\t/* BeginFeature:{$relatedModelClass} */\n";

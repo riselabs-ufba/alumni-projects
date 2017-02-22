@@ -14,6 +14,7 @@ echo "<?php /* BeginFeature:{$this->modelClass} */ ?>\n";
 
 <?php foreach($this->tableSchema->columns as $column): ?>
 <?php
+        if ($column->autoIncrement) continue;
 	$field = $this->generateInputField($this->modelClass, $column);
 	if (strpos($field, 'password') !== false)
 		continue;

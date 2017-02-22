@@ -50,6 +50,7 @@ $('.search-form form').submit(function(){
 <?php
 $count = 0;
 foreach ($this->tableSchema->columns as $column) {
+        if ($column->autoIncrement) continue;
         if ($column->isForeignKey) {
             $relatedModelClass = $this->findRelation($this->modelClass, $column)[3];
             echo "\t\t/* BeginFeature:{$relatedModelClass} */\n";

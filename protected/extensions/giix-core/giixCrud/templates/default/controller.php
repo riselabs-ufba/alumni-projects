@@ -9,6 +9,7 @@
 
 class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseControllerClass; ?> {
 
+        public $defaultAction = 'admin';
 <?php 
 	$authpath = 'ext.giix-core.giixCrud.templates.default.auth.';
 	Yii::app()->controller->renderPartial($authpath . $this->authtype);

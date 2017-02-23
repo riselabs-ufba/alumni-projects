@@ -68,6 +68,18 @@ class StateController extends GxController {
 			'model' => $model,
 		));
 	}
+        
+        /* BeginFeature:Country */
+        public function actionGetAllByCountry() {
+            $models = State::model()->findAll('id_country=:id_country', array(':id_country' => (int) $_POST['City']['id_country']));
+
+            $data = CHtml::listData($models, 'id', 'code');
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Select'), true);
+            foreach ($data as $value => $name) {
+                echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+            }
+        }
+        /* EndFeature:Country */        
 
 }
 /* EndFeature:State */

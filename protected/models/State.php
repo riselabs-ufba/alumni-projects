@@ -10,7 +10,9 @@ class State extends BaseState
     public function rules() {
         $b = parent::rules();
         $a = array(
+            /* BeginFeature:Country */
             array('code','ext.UniqueAttributesValidator','with' => 'id_country')
+            /* EndFeature:Country */
         );
         
         return CMap::mergeArray($a, $b);

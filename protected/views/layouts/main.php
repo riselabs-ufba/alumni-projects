@@ -30,6 +30,9 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
+                                /* BeginFeature:City */
+                                array('label'=>'City', 'url'=>array('/city'), 'visible'=>!Yii::app()->user->isGuest),
+                                /* EndFeature:City */
                                 /* BeginFeature:Country */
                                 array('label'=>'Country', 'url'=>array('/country'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:Country */

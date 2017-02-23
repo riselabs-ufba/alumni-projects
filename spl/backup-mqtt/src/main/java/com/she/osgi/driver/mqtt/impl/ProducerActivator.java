@@ -13,9 +13,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
-
-//primeiro teste
-// Outro
 public class ProducerActivator implements BundleActivator {
 
     RequestResponseApi requestResponse = new RequestResponseService();

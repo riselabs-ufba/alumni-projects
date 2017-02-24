@@ -1,7 +1,7 @@
-<?php /* BeginFeature:Manufacturer */
-Yii::import('application.models._base.BaseManufacturer');
+<?php /* BeginFeature:VehicleType */
+Yii::import('application.models._base.BaseVehicleType');
 
-class Manufacturer extends BaseManufacturer
+class VehicleType extends BaseVehicleType
 {
     public static function model($className=__CLASS__) {
             return parent::model($className);
@@ -15,4 +15,4 @@ class Manufacturer extends BaseManufacturer
         return CMap::mergeArray($a, $b);
     }    
 }
-/* EndFeature:Manufacturer */
+/* EndFeature:VehicleType */

@@ -42,6 +42,9 @@
                                 /* BeginFeature:State */
                                 array('label'=>'State', 'url'=>array('/state'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:State */
+                                /* BeginFeature:VehicleType */
+                                array('label'=>'Vehicle Type', 'url'=>array('/vehicleType'), 'visible'=>!Yii::app()->user->isGuest),
+                                /* EndFeature:VehicleType */                            
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),

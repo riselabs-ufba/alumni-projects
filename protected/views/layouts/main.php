@@ -36,6 +36,9 @@
                                 /* BeginFeature:Country */
                                 array('label'=>'Country', 'url'=>array('/country'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:Country */
+                                /* BeginFeature:Manufacturer */
+                                array('label'=>'Manufacturer', 'url'=>array('/manufacturer'), 'visible'=>!Yii::app()->user->isGuest),
+                                /* EndFeature:Manufacturer */                            
                                 /* BeginFeature:State */
                                 array('label'=>'State', 'url'=>array('/state'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:State */

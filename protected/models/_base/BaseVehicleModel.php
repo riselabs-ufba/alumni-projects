@@ -33,7 +33,7 @@ abstract class BaseVehicleModel extends GxActiveRecord {
 	}
 
 	public static function label($n = 1) {
-		return Yii::t('app', 'Vehicle Model|Vehicle Models', $n);
+		return Yii::t('app', 'VehicleModel|VehicleModels', $n);
 	}
 
 	public static function representingColumn() {

@@ -37,11 +37,14 @@
                                 array('label'=>'Country', 'url'=>array('/country'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:Country */
                                 /* BeginFeature:DocumentType */
-                                array('label'=>'DocumentType', 'url'=>array('/documentType'), 'visible'=>!Yii::app()->user->isGuest),
+                                array('label'=>'Document Type', 'url'=>array('/documentType'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:DocumentType */                            
                                 /* BeginFeature:Manufacturer */
                                 array('label'=>'Manufacturer', 'url'=>array('/manufacturer'), 'visible'=>!Yii::app()->user->isGuest),
-                                /* EndFeature:Manufacturer */                            
+                                /* EndFeature:Manufacturer */
+                                /* BeginFeature:SeatType */
+                                array('label'=>'Seat Type', 'url'=>array('/seatType'), 'visible'=>!Yii::app()->user->isGuest),
+                                /* EndFeature:SeatType */                            
                                 /* BeginFeature:State */
                                 array('label'=>'State', 'url'=>array('/state'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:State */

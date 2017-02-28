@@ -8,9 +8,6 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 
-
-//primeiro teste
-// Outro
 public class ProducerActivator implements BundleActivator {
 
     RequestResponseApi requestResponse = new RequestResponseService();

@@ -68,6 +68,19 @@ class CityController extends GxController {
 			'model' => $model,
 		));
 	}
+        
+        /* BeginFeature:State */
+        public function actionGetAllByState() {
+            $post = array_values($_POST);
+            $models = City::model()->findAll('id_state=:id_state', array(':id_state' => (int) $post[0]['id_state']));
+
+            $data = CHtml::listData($models, 'id', 'name');
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Select'), true);
+            foreach ($data as $value => $name) {
+                echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+            }
+        }
+        /* EndFeature:State */                
 
 }
 /* EndFeature:City */

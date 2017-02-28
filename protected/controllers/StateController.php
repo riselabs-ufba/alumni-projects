@@ -71,7 +71,8 @@ class StateController extends GxController {
         
         /* BeginFeature:Country */
         public function actionGetAllByCountry() {
-            $models = State::model()->findAll('id_country=:id_country', array(':id_country' => (int) $_POST['City']['id_country']));
+            $post = array_values($_POST);
+            $models = State::model()->findAll('id_country=:id_country', array(':id_country' => (int) $post[0]['id_country']));
 
             $data = CHtml::listData($models, 'id', 'code');
             echo CHtml::tag('option', array('value' => ''), CHtml::encode('Select'), true);

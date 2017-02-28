@@ -24,7 +24,7 @@ class City extends BaseCity
     protected function afterFind() {
         /* BeginFeature:Country */
         if (!$this->isNewRecord) {
-            $this->id_country = $this->idState->id_country;
+            $this->id_country = isset($this->idState) ? $this->idState->id_country : null;
         }
         /* EndFeature:Country */
         parent::afterFind();

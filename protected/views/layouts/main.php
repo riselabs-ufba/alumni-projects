@@ -48,13 +48,15 @@
                                 /* BeginFeature:State */
                                 array('label'=>'State', 'url'=>array('/state'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:State */
+                                /* BeginFeature:Station */
+                                array('label'=>'Station', 'url'=>array('/station'), 'visible'=>!Yii::app()->user->isGuest),
+                                /* EndFeature:Station */                            
                                 /* BeginFeature:VehicleModel */
                                 array('label'=>'Vehicle Model', 'url'=>array('/vehicleModel'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:VehicleModel */                            
                                 /* BeginFeature:VehicleType */
                                 array('label'=>'Vehicle Type', 'url'=>array('/vehicleType'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:VehicleType */                            
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)

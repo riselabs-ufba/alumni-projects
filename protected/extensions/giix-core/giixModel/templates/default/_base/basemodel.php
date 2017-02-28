@@ -115,6 +115,7 @@ $columnsSearch = implode(', ', array_keys($columns));
 foreach ($relationColumns as $key => $value) {
     $columnsSearch = str_replace("{$key}, ", "'.\n\t\t\t/* BeginFeature:{$value} */\n\t\t\t'{$key}, '.\n\t\t\t/* EndFeature:{$value} */\n\t\t\t'", $columnsSearch);
 }
+$columnsSearch = str_replace("''.", '', $columnsSearch);
 
 ?>
 			array('<?php echo $columnsSearch; ?>', 'safe', 'on'=>'search'),

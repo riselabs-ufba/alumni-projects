@@ -1,6 +1,8 @@
 package com.packt.osgi.starter.hello.impl;
 
 import com.packt.osgi.starter.hello.RequestResponseApi;
+
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
@@ -23,14 +25,13 @@ public class ProducerActivator implements BundleActivator {
         //Register the Interface, implementation and possible properties
         init();
         registration = bundleContext.registerService(RequestResponseApi.class.getName(), requestResponse, null);
+         
     }
 
     public void stop(BundleContext bundleContext) throws Exception {
         //When we stop, clean up the references.
         registration.unregister();
     }
-
-
 
     // <Ramon>
         public static String topicPrefix = "dev/";

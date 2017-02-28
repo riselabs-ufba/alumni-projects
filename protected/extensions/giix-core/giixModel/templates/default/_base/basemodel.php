@@ -109,8 +109,15 @@ foreach($rules as $rule):
     }
     $rule = str_replace("''.", '', $rule);
     echo "\t\t\t{$rule},\n"; 
-endforeach; ?>
-			array('<?php echo implode(', ', array_keys($columns)); ?>', 'safe', 'on'=>'search'),
+endforeach; 
+
+$columnsSearch = implode(', ', array_keys($columns));
+foreach ($relationColumns as $key => $value) {
+    $columnsSearch = str_replace("{$key}, ", "'.\n\t\t\t/* BeginFeature:{$value} */\n\t\t\t'{$key}, '.\n\t\t\t/* EndFeature:{$value} */\n\t\t\t'", $columnsSearch);
+}
+
+?>
+			array('<?php echo $columnsSearch; ?>', 'safe', 'on'=>'search'),
 		);
 	}
 

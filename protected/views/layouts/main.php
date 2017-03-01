@@ -51,6 +51,9 @@
                                 /* BeginFeature:Station */
                                 array('label'=>'Station', 'url'=>array('/station'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:Station */                            
+                                /* BeginFeature:Vehicle */
+                                array('label'=>'Vehicle', 'url'=>array('/vehicle'), 'visible'=>!Yii::app()->user->isGuest),
+                                /* EndFeature:Vehicle */                              
                                 /* BeginFeature:VehicleModel */
                                 array('label'=>'Vehicle Model', 'url'=>array('/vehicleModel'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:VehicleModel */                            

@@ -8,8 +8,8 @@
 
 	<?php /* BeginFeature:Manufacturer */ ?>
 	<div class="row">
-		<?php echo $form->label($model, 'id_manufactorer'); ?>
-		<?php echo $form->dropDownList($model, 'id_manufactorer', GxHtml::listDataEx(Manufacturer::model()->findAllAttributes(null, true)), array('prompt' => Yii::t('app', 'All'))); ?>
+		<?php echo $form->label($model, 'id_manufacturer'); ?>
+		<?php echo $form->dropDownList($model, 'id_manufacturer', GxHtml::listDataEx(Manufacturer::model()->findAllAttributes(null, true)), array('prompt' => Yii::t('app', 'All'))); ?>
 	</div>
 	<?php /* EndFeature:Manufacturer */ ?>
 

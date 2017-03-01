@@ -68,6 +68,19 @@ class VehicleModelController extends GxController {
 			'model' => $model,
 		));
 	}
+        
+        /* BeginFeature:Manufacturer */
+        public function actionGetAllByManufacturer() {
+            $post = array_values($_POST);
+            $models = VehicleModel::model()->findAll('id_manufacturer=:id_manufacturer', array(':id_manufacturer' => (int) $post[0]['id_manufacturer']));
+
+            $data = CHtml::listData($models, 'id', 'name');
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Select'), true);
+            foreach ($data as $value => $name) {
+                echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+            }
+        }
+        /* EndFeature:Manufacturer */                
 
 }
 /* EndFeature:VehicleModel */

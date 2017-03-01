@@ -21,9 +21,9 @@ $this->menu=array(
 	'attributes' => array(
 		/* BeginFeature:Manufacturer */
 array(
-			'name' => 'idManufactorer',
+			'name' => 'idManufacturer',
 			'type' => 'raw',
-			'value' => $model->idManufactorer !== null ? GxHtml::link(GxHtml::encode(GxHtml::valueEx($model->idManufactorer)), array('manufacturer/view', 'id' => GxActiveRecord::extractPkValue($model->idManufactorer, true))) : null,
+			'value' => $model->idManufacturer !== null ? GxHtml::link(GxHtml::encode(GxHtml::valueEx($model->idManufacturer)), array('manufacturer/view', 'id' => GxActiveRecord::extractPkValue($model->idManufacturer, true))) : null,
 			),
 		/* EndFeature:Manufacturer */
 'name',

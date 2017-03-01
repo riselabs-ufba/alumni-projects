@@ -10,7 +10,7 @@
  *
  * @property integer $id    
  * BeginFeature:Manufacturer    
- * @property integer $id_manufactorer
+ * @property integer $id_manufacturer
  * EndFeature:Manufacturer    
  * @property string $name    
  * @property integer $active    
@@ -19,7 +19,7 @@
  * @property Vehicle[] $vehicles
  * EndFeature:Vehicle
  * BeginFeature:Manufacturer
- * @property Manufacturer $idManufactorer
+ * @property Manufacturer $idManufacturer
  * EndFeature:Manufacturer
  */
 abstract class BaseVehicleModel extends GxActiveRecord {
@@ -33,7 +33,7 @@ abstract class BaseVehicleModel extends GxActiveRecord {
 	}
 
 	public static function label($n = 1) {
-		return Yii::t('app', 'VehicleModel|VehicleModels', $n);
+		return Yii::t('app', 'Vehicle Model|Vehicle Models', $n);
 	}
 
 	public static function representingColumn() {
@@ -44,17 +44,21 @@ abstract class BaseVehicleModel extends GxActiveRecord {
 		return array(
 			array(
 			/* BeginFeature:Manufacturer */
-			'id_manufactorer, '.
+			'id_manufacturer, '.
 			/* EndFeature:Manufacturer */
 			'name', 'required'),
 			array(
 			/* BeginFeature:Manufacturer */
-			'id_manufactorer, '.
+			'id_manufacturer, '.
 			/* EndFeature:Manufacturer */
 			'active', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>45),
 			array('active', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, id_manufactorer, name, active', 'safe', 'on'=>'search'),
+			array('id, '.
+			/* BeginFeature:Manufacturer */
+			'id_manufacturer, '.
+			/* EndFeature:Manufacturer */
+			'name, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +68,7 @@ abstract class BaseVehicleModel extends GxActiveRecord {
 			'vehicles' => array(self::HAS_MANY, 'Vehicle', 'id_vehicle_model'),
             		/* EndFeature:Vehicle */
             		/* BeginFeature:Manufacturer */
-			'idManufactorer' => array(self::BELONGS_TO, 'Manufacturer', 'id_manufactorer'),
+			'idManufacturer' => array(self::BELONGS_TO, 'Manufacturer', 'id_manufacturer'),
             		/* EndFeature:Manufacturer */
 		);
 	}
@@ -78,7 +82,7 @@ abstract class BaseVehicleModel extends GxActiveRecord {
 		return array(
 			'id' => Yii::t('app', 'ID'),
 			/* BeginFeature:Manufacturer */
-			'id_manufactorer' => null,
+			'id_manufacturer' => null,
 			/* EndFeature:Manufacturer */
 			'name' => Yii::t('app', 'Name'),
 			'active' => Yii::t('app', 'Active'),
@@ -86,7 +90,7 @@ abstract class BaseVehicleModel extends GxActiveRecord {
 			'vehicles' => null,
 			/* EndFeature:Vehicle */
 			/* BeginFeature:Manufacturer */
-			'idManufactorer' => null,
+			'idManufacturer' => null,
 			/* EndFeature:Manufacturer */
 		);
 	}
@@ -96,7 +100,7 @@ abstract class BaseVehicleModel extends GxActiveRecord {
 
 		$criteria->compare('id', $this->id);
 		/* BeginFeature:Manufacturer */
-		$criteria->compare('id_manufactorer', $this->id_manufactorer);
+		$criteria->compare('id_manufacturer', $this->id_manufacturer);
 		/* EndFeature:Manufacturer */
 		$criteria->compare('name', $this->name, true);
 		$criteria->compare('active', $this->active);

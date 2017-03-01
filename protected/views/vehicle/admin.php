@@ -1,4 +1,4 @@
-<?php /* BeginFeature:VehicleModel */ ?>
+<?php /* BeginFeature:Vehicle */ ?>
 <?php
 
 $this->breadcrumbs = array(
@@ -17,7 +17,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('vehicle-model-grid', {
+	$.fn.yiiGridView.update('vehicle-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -35,18 +35,26 @@ $('.search-form form').submit(function(){
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id' => 'vehicle-model-grid',
+	'id' => 'vehicle-grid',
 	'dataProvider' => $model->search(),
 	'filter' => $model,
 	'columns' => array(
-		/* BeginFeature:Manufacturer */
+		'code',
+		/* BeginFeature:VehicleType */
 		array(
-				'name'=>'id_manufacturer',
-				'value'=>'GxHtml::valueEx($data->idManufacturer)',
-				'filter'=>GxHtml::listDataEx(Manufacturer::model()->findAllAttributes(null, true)),
+				'name'=>'id_vehicle_type',
+				'value'=>'GxHtml::valueEx($data->idVehicleType)',
+				'filter'=>GxHtml::listDataEx(VehicleType::model()->findAllAttributes(null, true)),
 				),
-		/* EndFeature:Manufacturer*/
-		'name',
+		/* EndFeature:VehicleType*/
+		/* BeginFeature:VehicleModel */
+		array(
+				'name'=>'id_vehicle_model',
+				'value'=>'GxHtml::valueEx($data->idVehicleModel)',
+				'filter'=>GxHtml::listDataEx(VehicleModel::model()->findAllAttributes(null, true)),
+				),
+		/* EndFeature:VehicleModel*/
+		'capacity',
 		array(
 					'name' => 'active',
 					'value' => '($data->active === 0) ? Yii::t(\'app\', \'No\') : Yii::t(\'app\', \'Yes\')',
@@ -57,4 +65,4 @@ $('.search-form form').submit(function(){
 		),
 	),
 )); 
-/* EndFeature:VehicleModel */
+/* EndFeature:Vehicle */

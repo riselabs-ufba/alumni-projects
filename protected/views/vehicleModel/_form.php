@@ -16,9 +16,9 @@
 
 		<?php /* BeginFeature:Manufacturer */ ?>
 		<div class="row">
-		<?php echo $form->labelEx($model,'id_manufactorer'); ?>
-		<?php echo $form->dropDownList($model, 'id_manufactorer', GxHtml::listDataEx(Manufacturer::model()->findAllAttributes(null, true)),array('empty' => Yii::t('app', 'Select'))); ?>
-		<?php echo $form->error($model,'id_manufactorer'); ?>
+		<?php echo $form->labelEx($model,'id_manufacturer'); ?>
+		<?php echo $form->dropDownList($model, 'id_manufacturer', GxHtml::listDataEx(Manufacturer::model()->findAllAttributes(null, true)),array('empty' => Yii::t('app', 'Select'))); ?>
+		<?php echo $form->error($model,'id_manufacturer'); ?>
 		</div><!-- row -->
 		<?php /* EndFeature:Manufacturer */ ?>
 		<div class="row">

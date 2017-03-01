@@ -42,6 +42,9 @@
                                 /* BeginFeature:Manufacturer */
                                 array('label'=>'Manufacturer', 'url'=>array('/manufacturer'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:Manufacturer */
+                                /* BeginFeature:Passenger */
+                                array('label'=>'Passenger', 'url'=>array('/passenger'), 'visible'=>!Yii::app()->user->isGuest),
+                                /* EndFeature:Passenger */                            
                                 /* BeginFeature:SeatType */
                                 array('label'=>'Seat Type', 'url'=>array('/seatType'), 'visible'=>!Yii::app()->user->isGuest),
                                 /* EndFeature:SeatType */                            

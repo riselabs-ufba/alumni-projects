@@ -1,8 +1,8 @@
-package com.she.osgi.driver.mqtt.impl;
+package com.she.core.driver.mqtt.impl;
 
-import com.she.osgi.driver.mqtt.MqttListener;
-import com.she.osgi.driver.mqtt.RequestResponseApi;
-import com.she.osgi.driver.mqtt.DriverMqtt;
+import com.she.core.driver.mqtt.DriverMqtt;
+import com.she.core.driver.mqtt.MqttListener;
+import com.she.core.driver.mqtt.RequestResponseApi;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

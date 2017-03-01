@@ -1,4 +1,4 @@
-package com.she.osgi.driver.mqtt;
+package com.she.core.driver.mqtt;
 
 public interface RequestResponseApi {
 

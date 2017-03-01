@@ -1,4 +1,4 @@
-package com.she.osgi.driver;
+package com.she.core.driver;
 
 /**
  * Hello world!

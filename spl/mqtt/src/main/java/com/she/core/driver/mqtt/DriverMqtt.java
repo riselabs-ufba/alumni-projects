@@ -1,4 +1,4 @@
-package com.she.osgi.driver.mqtt;
+package com.she.core.driver.mqtt;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;

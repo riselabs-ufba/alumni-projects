@@ -1,6 +1,6 @@
-package com.she.osgi.driver.mqtt.impl;
+package com.she.core.driver.mqtt.impl;
 
-import com.she.osgi.driver.mqtt.RequestResponseApi;
+import com.she.core.driver.mqtt.RequestResponseApi;
 
 
 public class RequestResponseService implements RequestResponseApi {

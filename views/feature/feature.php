@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'WebStore';
+$this->title = 'WebCRM';
 ?>
 <div class="box box-info">
     <div class="box-header with-border">

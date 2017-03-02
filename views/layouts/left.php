@@ -18,18 +18,6 @@ use webvimark\modules\UserManagement\UserManagementModule;
             </div>
         </div>
 
-        <!-- search form -->
-        <!--        <form action="#" method="get" class="sidebar-form">-->
-        <!--            <div class="input-group">-->
-        <!--                <input type="text" name="q" class="form-control" placeholder="Search..."/>-->
-        <!--                <span class="input-group-btn">-->
-        <!--                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>-->
-        <!--                </button>-->
-        <!--              </span>-->
-        <!--            </div>-->
-        <!--        </form>-->
-        <!-- /.search form -->
-
 
         <?=
         GhostMenu::widget([
@@ -47,6 +35,46 @@ use webvimark\modules\UserManagement\UserManagementModule;
                         ['label' => '<i class="fa fa-circle-o"></i> ' . UserManagementModule::t('back', 'Permissions'), 'url' => ['/user-management/permission/index']],
                         ['label' => '<i class="fa fa-circle-o"></i> ' . UserManagementModule::t('back', 'Permission groups'), 'url' => ['/user-management/auth-item-group/index']],
                         ['label' => '<i class="fa fa-circle-o"></i> ' . UserManagementModule::t('back', 'Visit log'), 'url' => ['/user-management/user-visit-log/index']],
+                    ]
+                ],
+                [
+                    'label' => '<i class="fa fa-building"></i> ' . 'Opportunities',
+                    'url' => '#',
+                    'items' => [
+                        ['label' => '<i class="fa fa-circle-o"></i> Gerenciar', 'url' => ['/opportunity/']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Novo', 'url' => ['/opportunity/create']],
+                    ]
+                ],
+                [
+                    'label' => '<i class="fa fa-handshake-o"></i> ' . 'Partners',
+                    'url' => '#',
+                    'items' => [
+                        ['label' => '<i class="fa fa-circle-o"></i> Gerenciar', 'url' => ['/partner']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Novo', 'url' => ['/partner/create']],
+                    ]
+                ],
+                [
+                    'label' => '<i class="fa fa-cart-plus"></i> ' . 'Products',
+                    'url' => '#',
+                    'items' => [
+                        ['label' => '<i class="fa fa-circle-o"></i> Gerenciar', 'url' => ['/product']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Novo', 'url' => ['/product/create']],
+                    ]
+                ],
+                [
+                    'label' => '<i class="fa fa-suitcase"></i> ' . 'POC',
+                    'url' => '#',
+                    'items' => [
+                        ['label' => '<i class="fa fa-circle-o"></i> Gerenciar', 'url' => ['/poc']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Novo', 'url' => ['/poc/create']],
+                    ]
+                ],
+                [
+                    'label' => '<i class="fa fa-eye"></i> ' . 'Finder',
+                    'url' => '#',
+                    'items' => [
+                        ['label' => '<i class="fa fa-circle-o"></i> Gerenciar', 'url' => ['/finder']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Novo', 'url' => ['/finder/create']],
                     ]
                 ],
             ],

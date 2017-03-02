@@ -52,7 +52,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
     <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2017 <a href="#">webStore</a>.</strong> All rights
+    <strong>Copyright &copy; 2017 <a href="#">WebCRM</a>.</strong> All rights
     reserved.
 </footer>
 

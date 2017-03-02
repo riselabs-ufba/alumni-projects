@@ -21,19 +21,7 @@ public class ManagerActivator implements BundleActivator {
     	System.out.println("Started");
 //    	
     	driver = new DriverMqtt.DriverMqttBuilder().topicListener("connections").build("manager");
-    	
-//    	try {
-//    		System.out.println("Starting");
-//            listenerClient = new MqttClient("tcp://" + this.brokerUrl + ":"
-//    				+ this.brokerPort, this.username);
-//            listenerClient.setCallback(callback);
-//            listenerClient.subscribe("teste");
-//            callback.setClient(listenerClient);
-//            publish("Hello!");
-//            System.out.println("Well i'm active");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+    	System.out.println("Driver builded");
     	
     }
 

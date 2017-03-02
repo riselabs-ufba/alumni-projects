@@ -1,4 +1,4 @@
-package com.she.core.driver.mqtt;
+package com.she.manager;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -16,19 +16,26 @@ public class DriverMqtt {
 	private String serverId;
 	private String username;
 	private String password;
+	private String topicListener;
 	private int publish;
-	private MqttClient publisher;
+	private MqttClient client;
+	private MqttListener callback;
 	
 
+	// Manager	
+//	private MqttClient manager;
+	
 	public DriverMqtt(String brokerUrl, String brokerPort, String serverId,
-			String username, String password) {
+			String username, String password, String topicListener) {
 		super();
 		this.brokerUrl = brokerUrl;
 		this.brokerPort = brokerPort;
 		this.serverId = serverId;
 		this.username = username;
 		this.password = password;
+		this.topicListener = topicListener;
 		
+		callback = new MqttListener();
 		MqttConnectOptions connOpt = new MqttConnectOptions();
 		if (!this.username.isEmpty())
 			connOpt.setUserName(this.username);
@@ -36,11 +43,20 @@ public class DriverMqtt {
 			connOpt.setPassword(this.password.toCharArray());
 		try {
 			long unixTime = System.currentTimeMillis() / 1000L;
-			publisher = new MqttClient("tcp://" + this.brokerUrl + ":"
-					+ this.brokerPort, 
+			client = new MqttClient("tcp://" + this.brokerUrl + ":"
+					+ this.brokerPort,  
 					this.serverId + "_pub" + unixTime);
-			publisher.connect(connOpt);		
+			client.connect(connOpt);
 			announce();
+			
+			// Callback test
+			 client.setCallback(callback);
+			 System.out.println("Callback set");
+			 client.subscribe(topicListener);
+			 System.out.println("Client Subscribed");
+			 callback.setClient(client);
+			 System.out.println("Client is set");
+//			 publish("Hello i'm the manager!");
 			
 		}catch (MqttSecurityException e) {
 			// TODO Auto-generated catch block
@@ -56,7 +72,7 @@ public class DriverMqtt {
 		MqttMessage msg = new MqttMessage();
 		String topic = "connections";
 		msg.setPayload(username.getBytes());
-		publisher.publish(topic, msg);
+		client.publish(topic, msg);
 		
 	}
 	
@@ -66,7 +82,7 @@ public class DriverMqtt {
 		String topic = topicPrefix + username;
 		msg.setPayload(messageString.getBytes());
 		try {
-			publisher.publish(topic, msg);
+			client.publish(topic, msg);
 		} catch (MqttPersistenceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,7 +96,7 @@ public class DriverMqtt {
 //	subscribe
 	public boolean subscribe() {
 		try {
-			publisher.subscribe(topicPrefix + username);
+			client.subscribe(topicPrefix + username);
 		} catch (MqttException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -173,15 +189,25 @@ public class DriverMqtt {
 
 
 	public MqttClient getPublisher() {
-		return publisher;
+		return client;
 	}
 
 
 
 	public void setPublisher(MqttClient publisher) {
-		this.publisher = publisher;
+		this.client = publisher;
 	}
 	
+	public void disconnect() {
+		try {
+			System.out.println("Disconnecting " + username);
+			client.disconnect();
+		} catch (MqttException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+//	Builder pattern
 	public static class DriverMqttBuilder {
 		private String brokerUrl = "localhost";
 		private String brokerPort = "1883";
@@ -189,10 +215,12 @@ public class DriverMqtt {
 		private String username;
 		private String password = "";
 		private MqttClient publisher;
+		private MqttListener listener;
+		private String topicListener = topicPrefix + username;
 		
 		public DriverMqtt build(String _name) {
 			this.username = _name;
-		    return new DriverMqtt(brokerUrl, brokerPort, serverId, username, password);
+		    return new DriverMqtt(brokerUrl, brokerPort, serverId, username, password,topicListener);
 		}
 
 	    public DriverMqttBuilder host(String host)
@@ -204,6 +232,11 @@ public class DriverMqtt {
 	    public DriverMqttBuilder password(String password)
 	    {
 	        this.password = password;
+	        return this;
+	    }
+	    public DriverMqttBuilder topicListener(String topicListener)
+	    {
+	        this.topicListener = topicListener;
 	        return this;
 	    }
 	}

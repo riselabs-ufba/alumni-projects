@@ -43,9 +43,9 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Export-Package>com.she.osgi.driver.mqtt</Export-Package>
-            <Private-Package>com.she.osgi.driver.mqtt.impl</Private-Package>
-            <Bundle-Activator>com.she.osgi.driver.mqtt.impl.ProducerActivator</Bundle-Activator>
+            <Export-Package>com.she.core.driver.mqtt</Export-Package>
+            <Private-Package>com.she.core.driver.mqtt.impl</Private-Package>
+            <Bundle-Activator>com.she.core.driver.mqtt.impl.ProducerActivator</Bundle-Activator>
           </instructions>
         </configuration>
       </plugin>

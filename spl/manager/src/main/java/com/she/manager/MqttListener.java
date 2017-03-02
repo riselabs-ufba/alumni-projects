@@ -25,7 +25,7 @@ public class MqttListener implements MqttCallback {
 	@Override
 	public void messageArrived(String arg0, MqttMessage arg1) throws Exception {
 		// TODO Auto-generated method stub
-		publish("Follow-me");
+		publish("Follow-me " + arg1.toString());
 		
 	}
 
@@ -40,7 +40,7 @@ public class MqttListener implements MqttCallback {
 //	The method for correctly publish
 	public boolean publish(String messageString) {
 		MqttMessage msg = new MqttMessage();
-		String topic = "connections";
+		String topic = "serviceChat";
 		msg.setPayload(messageString.getBytes());
 		try {
 			client.publish(topic, msg);

@@ -12,6 +12,7 @@ public class ProducerActivator implements BundleActivator {
 
     RequestResponseApi requestResponse = new RequestResponseService();
     ServiceRegistration registration;
+    ServiceRegistration serviceDriverRegistration;
     DriverMqtt driver;
     MqttListener listener;
 
@@ -22,6 +23,7 @@ public class ProducerActivator implements BundleActivator {
     	driver = new DriverMqtt.DriverMqttBuilder().password("password").build("device01");
     	
         registration = bundleContext.registerService(RequestResponseApi.class.getName(), requestResponse, null);
+//        serviceDriverRegistration = bundleContext.registerService(DriverMqtt.class.getName(), listener, null);
     }
 
     public void stop(BundleContext bundleContext) throws Exception {

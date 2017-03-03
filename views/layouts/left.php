@@ -41,40 +41,40 @@ use webvimark\modules\UserManagement\UserManagementModule;
                     'label' => '<i class="fa fa-building"></i> ' . 'Opportunities',
                     'url' => '#',
                     'items' => [
-                        ['label' => '<i class="fa fa-circle-o"></i> Gerenciar', 'url' => ['/opportunity/']],
-                        ['label' => '<i class="fa fa-circle-o"></i> Novo', 'url' => ['/opportunity/create']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Management', 'url' => ['/opportunity/']],
+                        ['label' => '<i class="fa fa-circle-o"></i> New', 'url' => ['/opportunity/create']],
                     ]
                 ],
                 [
                     'label' => '<i class="fa fa-handshake-o"></i> ' . 'Partners',
                     'url' => '#',
                     'items' => [
-                        ['label' => '<i class="fa fa-circle-o"></i> Gerenciar', 'url' => ['/partner']],
-                        ['label' => '<i class="fa fa-circle-o"></i> Novo', 'url' => ['/partner/create']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Management', 'url' => ['/partner']],
+                        ['label' => '<i class="fa fa-circle-o"></i> New', 'url' => ['/partner/create']],
                     ]
                 ],
                 [
                     'label' => '<i class="fa fa-cart-plus"></i> ' . 'Products',
                     'url' => '#',
                     'items' => [
-                        ['label' => '<i class="fa fa-circle-o"></i> Gerenciar', 'url' => ['/product']],
-                        ['label' => '<i class="fa fa-circle-o"></i> Novo', 'url' => ['/product/create']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Management', 'url' => ['/product']],
+                        ['label' => '<i class="fa fa-circle-o"></i> New', 'url' => ['/product/create']],
                     ]
                 ],
                 [
                     'label' => '<i class="fa fa-suitcase"></i> ' . 'POC',
                     'url' => '#',
                     'items' => [
-                        ['label' => '<i class="fa fa-circle-o"></i> Gerenciar', 'url' => ['/poc']],
-                        ['label' => '<i class="fa fa-circle-o"></i> Novo', 'url' => ['/poc/create']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Management', 'url' => ['/poc']],
+                        ['label' => '<i class="fa fa-circle-o"></i> New', 'url' => ['/poc/create']],
                     ]
                 ],
                 [
                     'label' => '<i class="fa fa-eye"></i> ' . 'Finder',
                     'url' => '#',
                     'items' => [
-                        ['label' => '<i class="fa fa-circle-o"></i> Gerenciar', 'url' => ['/finder']],
-                        ['label' => '<i class="fa fa-circle-o"></i> Novo', 'url' => ['/finder/create']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Management', 'url' => ['/finder']],
+                        ['label' => '<i class="fa fa-circle-o"></i> New', 'url' => ['/finder/create']],
                     ]
                 ],
             ],

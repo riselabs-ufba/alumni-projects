@@ -11,6 +11,7 @@ $this->menu=array(
 	array('label'=>Yii::t('app', 'Update') . ' ' . $model->label(), 'url'=>array('update', 'id' => $model->id)),
 	array('label'=>Yii::t('app', 'Delete') . ' ' . $model->label(), 'url'=>'#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>Yii::t('app', 'Manage') . ' ' . $model->label(2), 'url'=>array('admin')),
+        array('label'=>Yii::t('app', 'Create') . ' ' . VehicleSeat::label(), 'url'=>array('vehicleSeat/create', 'id' => $model->id)),
 );
 ?>
 
@@ -44,4 +45,9 @@ array(
 'active:boolean',
 	),
 ));
+/* BeginFeature:VehicleSeat*/
+$modelSeat = new VehicleSeat();
+$modelSeat->id_vehicle = $model->id;
+$this->renderPartial('application.views.vehicleSeat.admin',array('model' => $modelSeat));
+/* EndFeature:VehicleSeat*/
 /* EndFeature:Vehicle*/

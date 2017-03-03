@@ -1,7 +1,7 @@
 <?php /* BeginFeature:Manufacturer */ ?>
 <?php
 $this->breadcrumbs = array(
-	$model->label(2) => array('index'),
+	$model->label(2) => array('admin'),
 	Yii::t('app', 'Create'),
 );
 

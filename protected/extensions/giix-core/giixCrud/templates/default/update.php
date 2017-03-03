@@ -8,7 +8,7 @@ echo "<?php /* BeginFeature:{$this->modelClass} */ ?>\n";
 <?php
 echo "<?php\n
 \$this->breadcrumbs = array(
-	\$model->label(2) => array('index'),
+	\$model->label(2) => array('admin'),
 	GxHtml::valueEx(\$model) => array('view', 'id' => GxActiveRecord::extractPkValue(\$model, true)),
 	Yii::t('app', 'Update'),
 );\n";

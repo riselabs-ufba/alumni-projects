@@ -57,7 +57,7 @@ use webvimark\modules\UserManagement\UserManagementModule;
                     'label' => '<i class="fa fa-cart-plus"></i> ' . 'Products',
                     'url' => '#',
                     'items' => [
-                        ['label' => '<i class="fa fa-circle-o"></i> Management', 'url' => ['/product']],
+                        ['label' => '<i class="fa fa-circle-o"></i> Management', 'url' => ['/product/index']],
                         ['label' => '<i class="fa fa-circle-o"></i> New', 'url' => ['/product/create']],
                     ]
                 ],

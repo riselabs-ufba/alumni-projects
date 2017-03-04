@@ -32,7 +32,7 @@ class FeatureController extends MainController
         $basePath = Yii::getAlias('@webroot') . '/../';
         $destinationFolder = $this->webRoot . $productName;
         $folders = ['assets', 'commands', 'config', 'controllers', 'mail', 'models', 'runtime', 'tests', 'views', 'web'];
-        $subFolder = ['web' => ['assets', 'css', 'plugins']];
+        $subFolder = ['web' => ['assets', 'css', 'plugins'], 'views' => ['product', 'site', 'layouts']];
         $files = [
             'assets' => [
                 'AppAsset'
@@ -44,7 +44,7 @@ class FeatureController extends MainController
                 'console', 'db', 'params', 'test', 'test_db', 'web'
             ],
             'controllers' => [
-                'ProductController'
+                'ProductController', 'SiteController', 'MainController'
             ],
             'models' => [
                 'Product', 'ProductSearch'
@@ -54,7 +54,20 @@ class FeatureController extends MainController
             ],
             '.' => [
                 '.bowerrc', '.gitignore', '.htaccess', 'codeception.yml', 'composer.json',
-                'composer.lock', 'LICENSE.md', 'README.md', 'requirements.php', 'yii', 'yii.bat'
+                'composer.lock', 'LICENSE.md', 'README.md', 'requirements.php', 'yii', 'yii.bat',
+                'vendor.zip'
+            ]
+        ];
+
+        $views = [
+            'product' => [
+                '_form', '_search', 'create', 'index', 'update', 'view'
+            ],
+            'site' => [
+                'index', 'error', 'login'
+            ],
+            'layouts' => [
+                'content', 'header', 'left', 'main', 'main-login'
             ]
         ];
         if (!is_dir($destinationFolder)) {
@@ -82,6 +95,27 @@ class FeatureController extends MainController
                     }
                 }
             }
+
+            /*COPIA AS VIEWS PARA DENTRO DA PASTAS CORRESPONDENTES*/
+            foreach ($views as $folder => $arrFiles) {
+                foreach ($arrFiles as $file) {
+                    copy($basePath . 'views/' . $folder . '/' . $file . '.php', $destinationFolder . '/views/' . $folder . '/' . $file . '.php');
+                }
+            }
+
+            /*EXTRAI A PASTA VENDOR PARA O NOVO PRODUTO*/
+            if (!is_dir('vendor')) {
+                $zip = new \ZipArchive();
+                if ($zip->open($basePath . 'vendor.zip') === TRUE) {
+                    $zip->extractTo($destinationFolder);
+                    $zip->close();
+                    echo 'ok';
+                } else {
+                    echo 'failed';
+                }
+            }
+
+
         }
     }
 

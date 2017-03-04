@@ -1,6 +1,7 @@
 package com.she.manager;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
+
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -212,7 +213,7 @@ public class DriverMqtt {
 		private String brokerUrl = "localhost";
 		private String brokerPort = "1883";
 		private String serverId = "1";
-		private String username;
+		private String username = "";
 		private String password = "";
 		private MqttClient publisher;
 		private MqttListener listener;

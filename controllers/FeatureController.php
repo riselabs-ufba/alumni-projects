@@ -70,7 +70,7 @@ class FeatureController extends MainController
                         'encodeLabels' => false,
                         'activateParents' => true,
                         'options' => ['class' => 'sidebar-menu'],
-                        'submenuTemplate' => '" . '"\n<ul class="treeview-menu" {show}>\n{items}\n</ul>\n"' . "',
+                        'submenuTemplate' => '" . '"\n<ul class=' . "'treeview-menu'" . ' {show}>\n{items}\n</ul>\n"' . "',
                         'items' => [
                             [
                                 'label' => '<i class=\"fa fa-users\"></i> ' . 'Management Control Access',

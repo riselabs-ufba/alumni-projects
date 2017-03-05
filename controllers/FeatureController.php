@@ -19,6 +19,7 @@ class FeatureController extends MainController
 
     public function actionFeatureConfiguration()
     {
+
         $this->layout = 'feature-selection';
         if (!empty(Yii::$app->request->post())) {
             //var_dump(Yii::$app->request->post());
@@ -27,21 +28,31 @@ class FeatureController extends MainController
                 $labelMenu = explode('-', $feature);
                 if ($labelMenu[0] != 'user' && $labelMenu[0] != 'report')
                     $menuArray .= "[
-                        'label' => '<i class=" . '"fa fa-building"' . "></i> $labelMenu[0]',
+                        'label' => '<i class=" . '"fa fa-building"' . "></i> " . ucfirst($labelMenu[0]) . "',
                         'url' => '#',
                         'items' => [
                             ['label' => '<i class=" . '"fa fa-circle-o"' . "></i> Management', 'url' => ['/$labelMenu[0]/']],
-                            ['label' => '<i class=" . 'fa fa-circle-o"' . "></i> New', 'url' => ['/$labelMenu[0]/create']],
+                            ['label' => '<i class=" . '"fa fa-circle-o"' . "></i> New', 'url' => ['/$labelMenu[0]/create']],
                         ]
                     ],";
             }
 
+            $basePath = Yii::getAlias('@webroot') . '/../';
+            $destinationFolder = $this->webRoot . Yii::$app->request->post('productName');
             $this->mountMenu($menuArray);
-            $this->commonFeatures(Yii::$app->request->post('productName'));
+            $this->commonFeatures(Yii::$app->request->post('productName'), $destinationFolder, $basePath);
+            $this->variabilityFeatures($_POST['features'], $destinationFolder, $basePath);
+            Yii::$app->session->setFlash('success');
+            return $this->render('feature', ['link' => '/' . Yii::$app->request->post('productName')]);
         }
         return $this->render('feature');
     }
 
+    /**
+     * @param $featuresSelected
+     *
+     * Método auxiliar responsável por estruturar o menu do produto conforme as features selecionadas
+     */
     private function mountMenu($featuresSelected)
     {
         $stringMenu = '<?php
@@ -70,7 +81,7 @@ class FeatureController extends MainController
                         'encodeLabels' => false,
                         'activateParents' => true,
                         'options' => ['class' => 'sidebar-menu'],
-                        'submenuTemplate' => '" . '"\n<ul class=' . "'treeview-menu'" . ' {show}>\n{items}\n</ul>\n"' . "',
+                        'submenuTemplate' => " . '"\n<ul class=' . "'treeview-menu'" . ' {show}>\n{items}\n</ul>\n"' . ",
                         'items' => [
                             [
                                 'label' => '<i class=\"fa fa-users\"></i> ' . 'Management Control Access',
@@ -96,13 +107,18 @@ class FeatureController extends MainController
         fclose($file);
     }
 
-    private function commonFeatures($productName)
+    /**
+     * @param $productName
+     * @param $destinationFolder
+     * @param $basePath
+     *
+     * Método auxiliar responsável por estruturar os códigos e pastas em comum à todos produtos
+     */
+    private function commonFeatures($productName, $destinationFolder, $basePath)
     {
 
-        $basePath = Yii::getAlias('@webroot') . '/../';
-        $destinationFolder = $this->webRoot . $productName;
         $folders = ['assets', 'commands', 'config', 'controllers', 'mail', 'models', 'runtime', 'tests', 'views', 'web'];
-        $subFolder = ['web' => ['assets', 'css', 'plugins'], 'views' => ['product', 'site', 'layouts']];
+        $subFolder = ['web' => ['assets', 'css', 'plugins'], 'views' => ['site', 'layouts']];
         $files = [
             'assets' => [
                 'AppAsset'
@@ -114,10 +130,7 @@ class FeatureController extends MainController
                 'console', 'params', 'test', 'test_db', 'web'
             ],
             'controllers' => [
-                'ProductController', 'SiteController', 'MainController'
-            ],
-            'models' => [
-                'Product', 'ProductSearch'
+                'SiteController', 'MainController'
             ],
             'web' => [
                 '.htaccess', 'favicon.ico', 'index.php', 'index-test.php', 'robots.txt'
@@ -130,9 +143,6 @@ class FeatureController extends MainController
         ];
 
         $views = [
-            'product' => [
-                '_form', '_search', 'create', 'index', 'update', 'view'
-            ],
             'site' => [
                 'index', 'error', 'login'
             ],
@@ -147,43 +157,10 @@ class FeatureController extends MainController
             foreach ($folders as $folder) {
                 mkdir($destinationFolder . '/' . $folder);
             }
-            /*CRIA SUBPASTAS*/
-            foreach ($subFolder as $key => $item) {
-                foreach ($item as $sub) {
-                    mkdir($destinationFolder . '/' . $key . '/' . $sub);
-                }
-            }
-            /*COPIA OS ARQUIVOS PARA DENTRO DA PASTAS CORRESPONDENTES*/
-            foreach ($files as $folder => $arrFiles) {
-                if ($folder != '.' && $folder != "web") {
-                    foreach ($arrFiles as $file) {
-                        copy($basePath . $folder . '/' . $file . '.php', $destinationFolder . '/' . $folder . '/' . $file . '.php');
-                    }
-                } else {
-                    foreach ($arrFiles as $file) {
-                        copy($basePath . $folder . '/' . $file, $destinationFolder . '/' . $folder . '/' . $file);
-                    }
-                }
-            }
 
-            /*COPIA AS VIEWS PARA DENTRO DA PASTAS CORRESPONDENTES*/
-            foreach ($views as $folder => $arrFiles) {
-                foreach ($arrFiles as $file) {
-                    copy($basePath . 'views/' . $folder . '/' . $file . '.php', $destinationFolder . '/views/' . $folder . '/' . $file . '.php');
-                }
-            }
-
-            /*EXTRAI A PASTA VENDOR PARA O NOVO PRODUTO*/
-            if (!is_dir('vendor')) {
-                $zip = new \ZipArchive();
-                if ($zip->open($basePath . 'vendor.zip') === TRUE) {
-                    $zip->extractTo($destinationFolder);
-                    $zip->close();
-                    echo 'ok';
-                } else {
-                    echo 'failed';
-                }
-            }
+            $this->createSubFolder($subFolder, $destinationFolder);
+            $this->copyFiles($files, $basePath, $destinationFolder);
+            $this->copyViews($views, $basePath, $destinationFolder);
 
             copy('left.php', $destinationFolder . '/views/layouts/left.php');
             unlink('left.php');
@@ -194,6 +171,68 @@ class FeatureController extends MainController
         }
     }
 
+    /**
+     * @param $subFolder
+     * @param $destinationFolder
+     *
+     * CRIA ESTRUTURA DE SUBPASTAS DO PRODUTO
+     */
+    private function createSubFolder($subFolder, $destinationFolder)
+    {
+
+        foreach ($subFolder as $key => $item) {
+            foreach ($item as $sub) {
+                mkdir($destinationFolder . '/' . $key . '/' . $sub);
+            }
+        }
+    }
+
+    /**
+     * @param $files
+     * @param $basePath
+     * @param $destinationFolder
+     *
+     * COPIA OS ARQUIVOS PARA DENTRO DA PASTAS CORRESPONDENTES
+     */
+    private function copyFiles($files, $basePath, $destinationFolder)
+    {
+        foreach ($files as $folder => $arrFiles) {
+            if ($folder != '.' && $folder != "web") {
+                foreach ($arrFiles as $file) {
+                    copy($basePath . $folder . '/' . $file . '.php', $destinationFolder . '/' . $folder . '/' . $file . '.php');
+                }
+            } else {
+                foreach ($arrFiles as $file) {
+                    copy($basePath . $folder . '/' . $file, $destinationFolder . '/' . $folder . '/' . $file);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param $views
+     * @param $basePath
+     * @param $destinationFolder
+     *
+     * COPIA AS VIEWS PARA DENTRO DA PASTAS CORRESPONDENTES
+     */
+    private function copyViews($views, $basePath, $destinationFolder)
+    {
+        /**/
+        foreach ($views as $folder => $arrFiles) {
+            foreach ($arrFiles as $file) {
+                copy($basePath . 'views/' . $folder . '/' . $file . '.php', $destinationFolder . '/views/' . $folder . '/' . $file . '.php');
+            }
+        }
+    }
+
+    /**
+     * @param $productName
+     * @param $destinationFolder
+     *
+     * Método responsável por criar a estrutura dinâmica do arquivo de configuração do
+     * banco de dados
+     */
     private function createDbFile($productName, $destinationFolder)
     {
         $config = "<?php
@@ -211,6 +250,11 @@ class FeatureController extends MainController
         unlink('db.php');
     }
 
+    /**
+     * @param $productName
+     *
+     * Método auxiliar responsável por criar o script do schema da base de dados
+     */
     private function createDbSchema($productName)
     {
         $sqlNewDatabase = "CREATE DATABASE IF NOT EXISTS `$productName` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;";
@@ -253,6 +297,38 @@ class FeatureController extends MainController
         $command = $connection->createCommand($sqlAlterTable);
         $command->execute();
 
+    }
+
+    /**
+     * @param $featuresSelected
+     * @param $destinationFolder
+     * @param $basePath
+     *
+     * Método auxiliar responsável por estruturar os códigos e pastas conforme features selecionadas
+     */
+    private function variabilityFeatures($featuresSelected, $destinationFolder, $basePath)
+    {
+        $commonViews = ['_form', '_search', 'create', 'index', 'update', 'view'];
+        $subFolder = ['views' => []];
+        $files = [
+            'controllers' => [],
+            'models' => [],
+        ];
+        $views = array();
+
+        foreach ($featuresSelected as $item) {
+            $feature = explode('-', $item);
+            if ($feature[0] != 'user' && $feature[0] != 'report') {
+                $subFolder['views'][] = $feature[0];
+                $files['controllers'][] = ucfirst($feature[0]) . 'Controller';
+                $files['models'][] = ucfirst($feature[0]);
+                $files['models'][] = ucfirst($feature[0]) . 'Search';
+                $views[$feature[0]] = $commonViews;
+            }
+        }
+        $this->createSubFolder($subFolder, $destinationFolder);
+        $this->copyFiles($files, $basePath, $destinationFolder);
+        $this->copyViews($views, $basePath, $destinationFolder);
     }
 
 

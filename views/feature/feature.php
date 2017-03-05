@@ -4,6 +4,14 @@
 
 $this->title = 'WebCRM';
 ?>
+<?php if (Yii::$app->session->hasFlash('success')): ?>
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i> Alerta</h4>
+        Produto criado com sucesso, para acessar o seu sistema clique neste <a target="_blank"
+                                                                               href="<?= $link ?>">link</a>
+    </div>
+<?php endif; ?>
 <div class="box box-info">
     <div class="box-header with-border">
         <h3 class="box-title">Configuração do Produto</h3>

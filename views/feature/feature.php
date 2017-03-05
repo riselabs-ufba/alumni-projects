@@ -21,25 +21,25 @@ $this->title = 'WebCRM';
     </div>
     <div style="clear: both"></div>
     <div class="box-body" style="margin-bottom: 3%">
-        <select multiple="multiple" class="multi-select" id="my_multi_select2" name="my_multi_select2[]">
+        <select multiple="multiple" class="multi-select" id="my_multi_select2" name="features[]">
             <optgroup label="User">
-                <option selected>Executive</option>
-                <option>Director</option>
+                <option value="user-executive">Executive</option>
+                <option value="user-director" selected>Director</option>
             </optgroup>
             <optgroup label="Products">
-                <option selected>Static</option>
-                <option>Dynamic</option>
+                <option value="product-static" selected>Static</option>
+                <option value="product-dynamic">Dynamic</option>
             </optgroup>
             <optgroup label="Opportunities">
-                <option>Proof of concept</option>
-                <option>Finders</option>
-                <option>Business Accreditation</option>
+                <option value="poc">Proof of concept</option>
+                <option value="finder">Finders</option>
+                <option value="partner">Business Accreditation</option>
             </optgroup>
             <optgroup label="Reports">
-                <option>Closed Opportunities</option>
-                <option>Refused Opportunities</option>
-                <option selected>Acquired Products</option>
-                <option selected>Refused Products</option>
+                <option value="report-co">Closed Opportunities</option>
+                <option value="report-ro">Refused Opportunities</option>
+                <option value="report-ap" selected>Acquired Products</option>
+                <option value="report-rp" selected>Refused Products</option>
             </optgroup>
         </select>
     </div>

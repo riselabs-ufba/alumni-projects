@@ -21,14 +21,84 @@ class FeatureController extends MainController
     {
         $this->layout = 'feature-selection';
         if (!empty(Yii::$app->request->post())) {
-            $this->commonFeatures(Yii::$app->request->post('productName'));
             //var_dump(Yii::$app->request->post());
+            $menuArray = '';
+            foreach ($_POST['features'] as $feature) {
+                $labelMenu = explode('-', $feature);
+                if ($labelMenu[0] != 'user' && $labelMenu[0] != 'report')
+                    $menuArray .= "[
+                        'label' => '<i class=" . '"fa fa-building"' . "></i> $labelMenu[0]',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => '<i class=" . '"fa fa-circle-o"' . "></i> Management', 'url' => ['/$labelMenu[0]/']],
+                            ['label' => '<i class=" . 'fa fa-circle-o"' . "></i> New', 'url' => ['/$labelMenu[0]/create']],
+                        ]
+                    ],";
+            }
+
+            $this->mountMenu($menuArray);
+            $this->commonFeatures(Yii::$app->request->post('productName'));
         }
         return $this->render('feature');
     }
 
+    private function mountMenu($featuresSelected)
+    {
+        $stringMenu = '<?php
+            use webvimark\modules\UserManagement\components\GhostMenu;
+            use webvimark\modules\UserManagement\UserManagementModule;
+            
+            ?>
+            <aside class="main-sidebar">
+            
+                <section class="sidebar">
+            
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                        </div>
+                        <div class="pull-left info">
+                            <p><?= \webvimark\modules\UserManagement\models\User::getCurrentUser()->username ?></p>
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>';
+
+        $stringMenu .= "    
+                    <?=
+                    GhostMenu::widget([
+                        'encodeLabels' => false,
+                        'activateParents' => true,
+                        'options' => ['class' => 'sidebar-menu'],
+                        'submenuTemplate' => '" . '"\n<ul class="treeview-menu" {show}>\n{items}\n</ul>\n"' . "',
+                        'items' => [
+                            [
+                                'label' => '<i class=\"fa fa-users\"></i> ' . 'Management Control Access',
+                                'url' => '#',
+                                'items' => [
+                                    ['label' => '<i class=\"fa fa-circle-o\"></i> ' . UserManagementModule::t('back', 'Users'), 'url' => ['/user-management/user/index']],
+                                    ['label' => '<i class=\"fa fa-circle-o\"></i> ' . UserManagementModule::t('back', 'Roles'), 'url' => ['/user-management/role/index']],
+                                    ['label' => '<i class=\"fa fa-circle-o\"></i> ' . UserManagementModule::t('back', 'Permissions'), 'url' => ['/user-management/permission/index']],
+                                    ['label' => '<i class=\"fa fa-circle-o\"></i> ' . UserManagementModule::t('back', 'Permission groups'), 'url' => ['/user-management/auth-item-group/index']],
+                                    ['label' => '<i class=\"fa fa-circle-o\"></i> ' . UserManagementModule::t('back', 'Visit log'), 'url' => ['/user-management/user-visit-log/index']],
+                                ]
+                            ]," .
+            $featuresSelected . "
+                        ],
+                    ]);
+                    ?>
+                </section>
+            
+            </aside>";
+
+        $file = fopen('left.php', 'w');
+        fwrite($file, $stringMenu);
+        fclose($file);
+    }
+
     private function commonFeatures($productName)
     {
+
         $basePath = Yii::getAlias('@webroot') . '/../';
         $destinationFolder = $this->webRoot . $productName;
         $folders = ['assets', 'commands', 'config', 'controllers', 'mail', 'models', 'runtime', 'tests', 'views', 'web'];
@@ -41,7 +111,7 @@ class FeatureController extends MainController
                 'HelloController'
             ],
             'config' => [
-                'console', 'db', 'params', 'test', 'test_db', 'web'
+                'console', 'params', 'test', 'test_db', 'web'
             ],
             'controllers' => [
                 'ProductController', 'SiteController', 'MainController'
@@ -67,7 +137,7 @@ class FeatureController extends MainController
                 'index', 'error', 'login'
             ],
             'layouts' => [
-                'content', 'header', 'left', 'main', 'main-login'
+                'content', 'header', 'main', 'main-login'
             ]
         ];
         if (!is_dir($destinationFolder)) {
@@ -115,8 +185,74 @@ class FeatureController extends MainController
                 }
             }
 
+            copy('left.php', $destinationFolder . '/views/layouts/left.php');
+            unlink('left.php');
+
+            $this->createDbFile($productName, $destinationFolder);
+            $this->createDbSchema($productName);
 
         }
+    }
+
+    private function createDbFile($productName, $destinationFolder)
+    {
+        $config = "<?php
+                return [
+                    'class' => 'yii\\db\\Connection',
+                    'dsn' => 'mysql:host=localhost;dbname=" . $productName . "',
+                    'username' => 'root',
+                    'password' => '',
+                    'charset' => 'utf8',
+                ];";
+        $file = fopen('db.php', 'w');
+        fwrite($file, $config);
+        fclose($file);
+        copy('db.php', $destinationFolder . '/config/db.php');
+        unlink('db.php');
+    }
+
+    private function createDbSchema($productName)
+    {
+        $sqlNewDatabase = "CREATE DATABASE IF NOT EXISTS `$productName` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;";
+        $connection = Yii::$app->getDb();
+        $command = $connection->createCommand($sqlNewDatabase);
+        $command->execute();
+
+        $sqlCreateAuthTables = "  USE `$productName`;";
+        $sqlCreateAuthTables .= file_get_contents(Yii::getAlias('@app') . '/scripts/auths-tables.sql');
+        $command = $connection->createCommand($sqlCreateAuthTables);
+        $command->execute();
+
+        $sqlGeneralTable = "  USE `$productName`;";
+        $sqlGeneralTable .= file_get_contents(Yii::getAlias('@app') . '/scripts/general-tables.sql');
+        $command = $connection->createCommand($sqlGeneralTable);
+        $command->execute();
+
+        $sqlInsertAuthItem = "  USE `$productName`;";
+        $sqlInsertAuthItem .= file_get_contents(Yii::getAlias('@app') . '/scripts/insert-auth-item.sql');
+        $command = $connection->createCommand($sqlInsertAuthItem);
+        $command->execute();
+
+        $sqlInsertAuthItemChild = "  USE `$productName`;";
+        $sqlInsertAuthItemChild .= file_get_contents(Yii::getAlias('@app') . '/scripts/insert-auth-item-child.sql');
+        $command = $connection->createCommand($sqlInsertAuthItemChild);
+        $command->execute();
+
+        $insertAuthItemGroup = "  USE `$productName`;";
+        $insertAuthItemGroup .= file_get_contents(Yii::getAlias('@app') . '/scripts/insert-auth-item-group.sql');
+        $command = $connection->createCommand($insertAuthItemGroup);
+        $command->execute();
+
+        $insertUser = "  USE `$productName`;";
+        $insertUser .= file_get_contents(Yii::getAlias('@app') . '/scripts/insert-user.sql');
+        $command = $connection->createCommand($insertUser);
+        $command->execute();
+
+        $sqlAlterTable = "  USE `$productName`;";
+        $sqlAlterTable .= file_get_contents(Yii::getAlias('@app') . '/scripts/alter-tables.sql');
+        $command = $connection->createCommand($sqlAlterTable);
+        $command->execute();
+
     }
 
 

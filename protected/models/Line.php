@@ -31,6 +31,22 @@ class Line extends BaseLine {
 
         return CMap::mergeArray($a, $b);
     }
+    
+    protected function afterSave() {
+        $segment = new Segment();
+        $segment->id_line = $this->id;
+        $segment->id_station_arrival = $this->id_station_arrival;
+        $segment->id_station_departure = $this->id_station_departure; 
+        $segment->sequence_number = 1;
+        $segment->save();
+        
+        parent::afterSave();
+    }
+    
+    protected function beforeDelete() {
+        Segment::model()->deleteAllByAttributes(array('id_line' => $this->id));
+        return parent::beforeDelete();
+    }
 
 }
 

@@ -34,9 +34,6 @@ class Item extends \yii\db\ActiveRecord
         return [
             [['amount', 'opportunity_id', 'product_id'], 'integer'],
             [['price'], 'number'],
-            [['opportunity_id', 'product_id'], 'required'],
-            [['opportunity_id'], 'exist', 'skipOnError' => true, 'targetClass' => Opportunity::className(), 'targetAttribute' => ['opportunity_id' => 'id']],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
         ];
     }
 

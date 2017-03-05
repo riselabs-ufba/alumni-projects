@@ -39,7 +39,6 @@ class Opportunity extends \yii\db\ActiveRecord
         return [
             [['open_date', 'next_contact_date'], 'safe'],
             [['note'], 'string'],
-            [['user_id'], 'required'],
             [['user_id'], 'integer'],
             [['company'], 'string', 'max' => 255],
             [['person_name', 'person_email', 'person_tel'], 'string', 'max' => 45],

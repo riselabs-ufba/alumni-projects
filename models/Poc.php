@@ -35,10 +35,8 @@ class Poc extends \yii\db\ActiveRecord
     {
         return [
             [['previous_duration', 'real_duration', 'fk_oportunity', 'product_id'], 'integer'],
-            [['fk_oportunity', 'final_status', 'product_id'], 'required'],
+            [['final_status'], 'required'],
             [['person_name', 'final_status'], 'string', 'max' => 45],
-            [['fk_oportunity'], 'exist', 'skipOnError' => true, 'targetClass' => Opportunity::className(), 'targetAttribute' => ['fk_oportunity' => 'id']],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
         ];
     }
 

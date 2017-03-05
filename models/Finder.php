@@ -31,10 +31,8 @@ class Finder extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['partner_id'], 'required'],
             [['partner_id'], 'integer'],
             [['name', 'phone', 'email'], 'string', 'max' => 45],
-            [['partner_id'], 'exist', 'skipOnError' => true, 'targetClass' => Partner::className(), 'targetAttribute' => ['partner_id' => 'id']],
         ];
     }
 

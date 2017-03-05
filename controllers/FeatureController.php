@@ -138,7 +138,6 @@ class FeatureController extends MainController
             '.' => [
                 '.bowerrc', '.gitignore', '.htaccess', 'codeception.yml', 'composer.json',
                 'composer.lock', 'LICENSE.md', 'README.md', 'requirements.php', 'yii', 'yii.bat',
-                'vendor.zip'
             ]
         ];
 

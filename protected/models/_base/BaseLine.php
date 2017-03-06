@@ -24,6 +24,9 @@
  * BeginFeature:Station
  * @property Station $idStationDeparture
  * EndFeature:Station
+ * BeginFeature:Segment
+ * @property Segment[] $segments
+ * EndFeature:Segment
  * BeginFeature:Travel
  * @property Travel[] $travels
  * EndFeature:Travel
@@ -84,6 +87,9 @@ abstract class BaseLine extends GxActiveRecord {
             		/* BeginFeature:Station */
 			'idStationDeparture' => array(self::BELONGS_TO, 'Station', 'id_station_departure'),
             		/* EndFeature:Station */
+            		/* BeginFeature:Segment */
+			'segments' => array(self::HAS_MANY, 'Segment', 'id_line'),
+            		/* EndFeature:Segment */
             		/* BeginFeature:Travel */
 			'travels' => array(self::HAS_MANY, 'Travel', 'id_line'),
             		/* EndFeature:Travel */
@@ -112,6 +118,9 @@ abstract class BaseLine extends GxActiveRecord {
 			/* BeginFeature:Station */
 			'idStationDeparture' => null,
 			/* EndFeature:Station */
+			/* BeginFeature:Segment */
+			'segments' => null,
+			/* EndFeature:Segment */
 			/* BeginFeature:Travel */
 			'travels' => null,
 			/* EndFeature:Travel */

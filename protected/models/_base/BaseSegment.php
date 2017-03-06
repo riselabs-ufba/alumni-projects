@@ -9,7 +9,9 @@
  * followed by relations of table "segment" available as properties of the model.
  *
  * @property integer $id    
- * @property integer $id_line    
+ * BeginFeature:Line    
+ * @property integer $id_line
+ * EndFeature:Line    
  * BeginFeature:Station    
  * @property integer $id_station_departure
  * EndFeature:Station    
@@ -19,6 +21,9 @@
  * @property integer $sequence_number    
  * @property string $estimated_time    
  *
+ * BeginFeature:Line
+ * @property Line $idLine
+ * EndFeature:Line
  * BeginFeature:Station
  * @property Station $idStationArrival
  * EndFeature:Station
@@ -49,7 +54,11 @@ abstract class BaseSegment extends GxActiveRecord {
 
 	public function rules() {
 		return array(
-			array('id_line, '.
+			array(
+			/* BeginFeature:Line */
+			'id_line, '.
+			/* EndFeature:Line */
+			
 			/* BeginFeature:Station */
 			'id_station_departure, '.
 			/* EndFeature:Station */
@@ -58,7 +67,11 @@ abstract class BaseSegment extends GxActiveRecord {
 			'id_station_arrival, '.
 			/* EndFeature:Station */
 			'sequence_number', 'required'),
-			array('id_line, '.
+			array(
+			/* BeginFeature:Line */
+			'id_line, '.
+			/* EndFeature:Line */
+			
 			/* BeginFeature:Station */
 			'id_station_departure, '.
 			/* EndFeature:Station */
@@ -69,7 +82,11 @@ abstract class BaseSegment extends GxActiveRecord {
 			'sequence_number', 'numerical', 'integerOnly'=>true),
 			array('estimated_time', 'safe'),
 			array('estimated_time', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('id, id_line, '.
+			array('id, '.
+			/* BeginFeature:Line */
+			'id_line, '.
+			/* EndFeature:Line */
+			
 			/* BeginFeature:Station */
 			'id_station_departure, '.
 			/* EndFeature:Station */
@@ -83,6 +100,9 @@ abstract class BaseSegment extends GxActiveRecord {
 
 	public function relations() {
 		return array(
+            		/* BeginFeature:Line */
+			'idLine' => array(self::BELONGS_TO, 'Line', 'id_line'),
+            		/* EndFeature:Line */
             		/* BeginFeature:Station */
 			'idStationArrival' => array(self::BELONGS_TO, 'Station', 'id_station_arrival'),
             		/* EndFeature:Station */
@@ -103,7 +123,9 @@ abstract class BaseSegment extends GxActiveRecord {
 	public function attributeLabels() {
 		return array(
 			'id' => Yii::t('app', 'ID'),
-			'id_line' => Yii::t('app', 'Id Line'),
+			/* BeginFeature:Line */
+			'id_line' => null,
+			/* EndFeature:Line */
 			/* BeginFeature:Station */
 			'id_station_departure' => null,
 			/* EndFeature:Station */
@@ -112,6 +134,9 @@ abstract class BaseSegment extends GxActiveRecord {
 			/* EndFeature:Station */
 			'sequence_number' => Yii::t('app', 'Sequence Number'),
 			'estimated_time' => Yii::t('app', 'Estimated Time'),
+			/* BeginFeature:Line */
+			'idLine' => null,
+			/* EndFeature:Line */
 			/* BeginFeature:Station */
 			'idStationArrival' => null,
 			/* EndFeature:Station */
@@ -128,7 +153,9 @@ abstract class BaseSegment extends GxActiveRecord {
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id);
+		/* BeginFeature:Line */
 		$criteria->compare('id_line', $this->id_line);
+		/* EndFeature:Line */
 		/* BeginFeature:Station */
 		$criteria->compare('id_station_departure', $this->id_station_departure);
 		/* EndFeature:Station */

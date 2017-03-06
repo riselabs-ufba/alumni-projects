@@ -22,23 +22,25 @@ class Line extends BaseLine {
         $a = parent::attributeLabels();
         $b = array(
             /* BeginFeature:Station */
-            'id_station_departure' => 'Departure Station ',
+            'id_station_arrival' => 'Arrival Station',
+            'id_station_departure' => 'Departure Station',
+            'idStationArrival' => 'Arrival Station',
+            'idStationDeparture' => 'Departure Station',
             /* EndFeature:Station */
-            /* BeginFeature:Station */
-            'id_station_arrival' => 'Arrival Station ',
-                /* EndFeature:Station */
         );
 
         return CMap::mergeArray($a, $b);
     }
     
     protected function afterSave() {
-        $segment = new Segment();
-        $segment->id_line = $this->id;
-        $segment->id_station_arrival = $this->id_station_arrival;
-        $segment->id_station_departure = $this->id_station_departure; 
-        $segment->sequence_number = 1;
-        $segment->save();
+        if ($this->isNewRecord) {
+            $segment = new Segment();
+            $segment->id_line = $this->id;
+            $segment->id_station_arrival = $this->id_station_arrival;
+            $segment->id_station_departure = $this->id_station_departure; 
+            $segment->sequence_number = 1;
+            $segment->save();            
+        }
         
         parent::afterSave();
     }

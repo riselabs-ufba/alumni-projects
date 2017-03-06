@@ -19,6 +19,19 @@ class Segment extends BaseSegment
         );
 
         return CMap::mergeArray($a, $b);
-    }    
+    }
+
+    public function rules() {
+        $b = parent::rules();
+        $a = array(
+            /* BeginFeature:Line */
+            array('sequence_number','ext.UniqueAttributesValidator','with' => 'id_line'),
+            array('id_station_departure','ext.UniqueAttributesValidator','with' => 'id_line'),
+            array('sequence_number','ext.UniqueAttributesValidator','with' => 'id_line'),
+            /* EndFeature:Line */
+        );
+        
+        return CMap::mergeArray($a, $b);
+    }
 }
 /* EndFeature:Segment */

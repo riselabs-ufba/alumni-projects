@@ -58,9 +58,9 @@ public class USBListener {
 			byte[] buffer = new byte[ 1024 ];
 			int len = -1;
 			
-			DriverMqtt driver = new DriverMqtt.DriverMqttBuilder().build("temperatureSensor");
+			DriverMqtt driver = new DriverMqtt.DriverMqttBuilder().build("sensor");
 			String message;
-			Sensor sensor = new TemperatureSensor(driver.getUsername(), "DHT");
+			Sensor sensor = new LuminositySensor(driver.getUsername(), "DHT");
 			
 			try {
 
@@ -75,19 +75,20 @@ public class USBListener {
 					message = new String(buffer);
 					System.out.println(message);
 					
-//					Here the 
-					JSONObject json = new JSONObject(message);
-					int value =  json.getInt("time");
-					sensor.setValue(String.valueOf(value));
-					driver.publish(sensor.getValue());
-					
+//					Here the incoming value is transformed and published 
+//					JSONObject json = new JSONObject(message);
+//					int value =  json.getInt("value");
+//					sensor.setValue(String.valueOf(value));
+//					driver.publish(sensor.getValue());
+					driver.publish(message);
 				}
 			} catch( IOException e ) {
 				e.printStackTrace();
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} 
+//			catch (JSONException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		}
 	}
 

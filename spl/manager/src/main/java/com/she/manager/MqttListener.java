@@ -27,7 +27,8 @@ public class MqttListener implements MqttCallback {
 	@Override
 	public void messageArrived(String arg0, MqttMessage arg1) throws Exception {
 		// TODO Auto-generated method stub
-		publish("Follow-me " + arg1.toString());
+//		publish("Follow-me " + arg1.toString());
+		publish(arg1.toString());
 //		System.out.println("Follow-me " + arg1.toString());
 	}
 

@@ -26,7 +26,7 @@ class Feature extends CFormModel {
     
     public function rules() {
         return array(
-            array('toKeep','safe'),
+            array('toKeep','validateDependencies'),
         );
     }
     
@@ -57,6 +57,19 @@ class Feature extends CFormModel {
                 ),
             ),              
         );
+    }
+    
+    public function validateDependencies($attribute, $params){
+        $optionalFeatures = $this->getOptionalFeatures();
+        $toRemove = array_diff(array_keys($optionalFeatures), (array) $this->toKeep);
+        foreach ((array) $this->toKeep as $featureToKeep) {
+            foreach ($toRemove as $featureToRemove) {
+                if (array_search($featureToRemove, $optionalFeatures[$featureToKeep]['requires'])!==false) {
+                    $error = "The feature {$optionalFeatures[$featureToKeep]['label']} needs feature {$optionalFeatures[$featureToRemove]['label']}.";
+                    $this->addError($attribute, $error);
+                }
+            }
+        }
     }
 
     public function deploy() {

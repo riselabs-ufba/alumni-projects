@@ -38,7 +38,7 @@ class SiteController extends Controller
             if (isset($_POST['Feature'])) {                    
                     $model->setAttributes($_POST['Feature']);
                     
-                    if ($model->deploy()) {
+                    if ($model->validate() && $model->deploy()) {
                         echo CHtml::link('Clique aqui!', Yii::app()->getBaseUrl().'-temp', array('target' => '_blank'));
                         Yii::app()->end();
                     }

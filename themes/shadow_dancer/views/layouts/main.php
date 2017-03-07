@@ -39,7 +39,7 @@
 			'items'=>array(
 				array('label'=>'Main Features', 'url'=>array('/site/index')),
 				array('label'=>'Auxiliary Features', 'url'=>array('/site/page', 'view'=>'auxiliary'),'itemOptions'=>array('class'=>'icon_chart')),
-				array('label'=>'Feature Manager', 'url'=>array('#')),
+				array('label'=>'Feature Manager', 'url'=>array('/site/featureManager')),
 			),
 		)); ?>
 	</div> <!--mainmenu -->

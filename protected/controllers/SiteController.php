@@ -32,9 +32,19 @@ class SiteController extends Controller
 		$this->render('index');
 	}
         
-        public function actionDeploy(){
-            (new Feature)->deploy();
-            echo CHtml::link('Clique aqui!', Yii::app()->getBaseUrl().'-temp', array('target' => '_blank'));
+        public function actionFeatureManager(){
+            $model = new Feature();
+
+            if (isset($_POST['Feature'])) {                    
+                    $model->setAttributes($_POST['Feature']);
+                    
+                    if ($model->deploy()) {
+                        echo CHtml::link('Clique aqui!', Yii::app()->getBaseUrl().'-temp', array('target' => '_blank'));
+                        Yii::app()->end();
+                    }
+            }
+
+            $this->render('feature', array( 'model' => $model));            
         }
 
 	/**

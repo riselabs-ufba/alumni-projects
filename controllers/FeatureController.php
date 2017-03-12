@@ -22,11 +22,12 @@ class FeatureController extends MainController
 
         $this->layout = 'feature-selection';
         if (!empty(Yii::$app->request->post())) {
-            //var_dump(Yii::$app->request->post());
+//            var_dump(Yii::$app->request->post());
+//            die();
             $menuArray = '';
             foreach ($_POST['features'] as $feature) {
                 $labelMenu = explode('-', $feature);
-                if ($labelMenu[0] != 'user' && $labelMenu[0] != 'report')
+                if ($labelMenu[0] != 'user' && $labelMenu[0] != 'report' && $labelMenu[0] != 'rr') {
                     $menuArray .= "[
                         'label' => '<i class=" . '"fa fa-building"' . "></i> " . ucfirst($labelMenu[0]) . "',
                         'url' => '#',
@@ -35,15 +36,37 @@ class FeatureController extends MainController
                             ['label' => '<i class=" . '"fa fa-circle-o"' . "></i> New', 'url' => ['/$labelMenu[0]/create']],
                         ]
                     ],";
+                } elseif ($labelMenu[0] == 'report' && $labelMenu[1] == 'opportunity') {
+                    $menuArray .= "[
+                        'label' => '<i class=" . '"fa fa-building"' . "></i> " . ucfirst($labelMenu[0]) . " " . ucfirst($labelMenu[1]) . "',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => '<i class=" . '"fa fa-circle-o"' . "></i> Closed', 'url' => ['/$feature/closed/']],
+                            ['label' => '<i class=" . '"fa fa-circle-o"' . "></i> Refused', 'url' => ['/$feature/refused']],
+                        ]
+                    ],";
+
+                } elseif ($labelMenu[0] == 'report' && $labelMenu[1] == 'product') {
+                    $menuArray .= "[
+                        'label' => '<i class=" . '"fa fa-building"' . "></i> " . ucfirst($labelMenu[0]) . " " . ucfirst($labelMenu[1]) . "',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => '<i class=" . '"fa fa-circle-o"' . "></i> Acquired', 'url' => ['/$feature/acquired/']],
+                            ['label' => '<i class=" . '"fa fa-circle-o"' . "></i> Refused', 'url' => ['/$feature/refused']],
+                        ]
+                    ],";
+
+                }
+
             }
 
             $basePath = Yii::getAlias('@webroot') . '/../';
-            $destinationFolder = $this->webRoot . Yii::$app->request->post('productName');
+            $destinationFolder = $this->webRoot . str_replace(" ", "", Yii::$app->request->post('productName'));
             $this->mountMenu($menuArray);
             $this->commonFeatures(Yii::$app->request->post('productName'), $destinationFolder, $basePath);
             $this->variabilityFeatures($_POST['features'], $destinationFolder, $basePath);
             Yii::$app->session->setFlash('success');
-            return $this->render('feature', ['link' => '/' . Yii::$app->request->post('productName')]);
+            return $this->render('feature', ['link' => '/' . str_replace(" ", "", Yii::$app->request->post('productName'))]);
         }
         return $this->render('feature');
     }
@@ -84,14 +107,10 @@ class FeatureController extends MainController
                         'submenuTemplate' => " . '"\n<ul class=' . "'treeview-menu'" . ' {show}>\n{items}\n</ul>\n"' . ",
                         'items' => [
                             [
-                                'label' => '<i class=\"fa fa-users\"></i> ' . 'Management Control Access',
+                                'label' => '<i class=\"fa fa-users\"></i> ' . 'Users',
                                 'url' => '#',
                                 'items' => [
-                                    ['label' => '<i class=\"fa fa-circle-o\"></i> ' . UserManagementModule::t('back', 'Users'), 'url' => ['/user-management/user/index']],
-                                    ['label' => '<i class=\"fa fa-circle-o\"></i> ' . UserManagementModule::t('back', 'Roles'), 'url' => ['/user-management/role/index']],
-                                    ['label' => '<i class=\"fa fa-circle-o\"></i> ' . UserManagementModule::t('back', 'Permissions'), 'url' => ['/user-management/permission/index']],
-                                    ['label' => '<i class=\"fa fa-circle-o\"></i> ' . UserManagementModule::t('back', 'Permission groups'), 'url' => ['/user-management/auth-item-group/index']],
-                                    ['label' => '<i class=\"fa fa-circle-o\"></i> ' . UserManagementModule::t('back', 'Visit log'), 'url' => ['/user-management/user-visit-log/index']],
+                                    ['label' => '<i class=\"fa fa-circle-o\"></i> Management', 'url' => ['/user-management/user/index']],
                                 ]
                             ]," .
             $featuresSelected . "
@@ -149,12 +168,14 @@ class FeatureController extends MainController
                 'content', 'header', 'main', 'main-login'
             ]
         ];
-        if (!is_dir($destinationFolder)) {
+        if (!is_dir($destinationFolder))
             /*CRIA A PASTA RAIZ*/
             mkdir($destinationFolder);
+
             /*CRIA PASTAS*/
             foreach ($folders as $folder) {
-                mkdir($destinationFolder . '/' . $folder);
+                if (!is_dir($destinationFolder . '/' . $folder))
+                    mkdir($destinationFolder . '/' . $folder);
             }
 
             $this->createSubFolder($subFolder, $destinationFolder);
@@ -167,7 +188,7 @@ class FeatureController extends MainController
             $this->createDbFile($productName, $destinationFolder);
             $this->createDbSchema($productName);
 
-        }
+
     }
 
     /**
@@ -181,7 +202,8 @@ class FeatureController extends MainController
 
         foreach ($subFolder as $key => $item) {
             foreach ($item as $sub) {
-                mkdir($destinationFolder . '/' . $key . '/' . $sub);
+                if (!is_dir($destinationFolder . '/' . $key . '/' . $sub))
+                    mkdir($destinationFolder . '/' . $key . '/' . $sub);
             }
         }
     }
@@ -317,12 +339,20 @@ class FeatureController extends MainController
 
         foreach ($featuresSelected as $item) {
             $feature = explode('-', $item);
-            if ($feature[0] != 'user' && $feature[0] != 'report') {
+            if ($feature[0] != 'user' && $feature[0] != 'report' && $feature[0] != 'rr') {
                 $subFolder['views'][] = $feature[0];
                 $files['controllers'][] = ucfirst($feature[0]) . 'Controller';
                 $files['models'][] = ucfirst($feature[0]);
                 $files['models'][] = ucfirst($feature[0]) . 'Search';
                 $views[$feature[0]] = $commonViews;
+            } elseif ($feature[0] == 'report' && $feature[1] == 'product') {
+                $subFolder['views'][] = $item;
+                $files['controllers'][] = ucfirst($feature[0]) . ucfirst($feature[1]) . 'Controller';
+                $views[$item] = ['acquired', 'refused'];
+            } elseif ($feature[0] == 'report' && $feature[1] == 'opportunity') {
+                $subFolder['views'][] = $item;
+                $files['controllers'][] = ucfirst($feature[0]) . ucfirst($feature[1]) . 'Controller';
+                $views[$item] = ['closed', 'refused'];
             }
         }
         $this->createSubFolder($subFolder, $destinationFolder);

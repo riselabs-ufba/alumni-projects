@@ -24,30 +24,30 @@ $this->title = 'WebCRM';
     <?= \yii\bootstrap\Html::beginForm('', '', ['id' => 'form-selection']) ?>
 
     <div class="form-group col-lg-3">
-        <label>Nome da empresa</label>
+        <label>Produto</label>
         <input id="productName" class="form-control " name="productName">
     </div>
     <div style="clear: both"></div>
     <div class="box-body" style="margin-bottom: 3%">
         <select multiple="multiple" class="multi-select" id="my_multi_select2" name="features[]">
             <optgroup label="User">
-                <option value="user-executive">Executive</option>
-                <option value="user-director" selected>Director</option>
+                <option value="user-executive" selected>Executive</option>
+                <option value="user-director">Director</option>
             </optgroup>
             <optgroup label="Products">
                 <option value="product-static" selected>Static</option>
                 <option value="product-dynamic">Dynamic</option>
             </optgroup>
             <optgroup label="Opportunities">
-                <option value="poc">Proof of concept</option>
+                <option value="poc" selected>Proof of concept</option>
                 <option value="finder">Finders</option>
-                <option value="partner">Business Accreditation</option>
+                <option value="partner">Partner</option>
             </optgroup>
             <optgroup label="Reports">
-                <option value="report-co">Closed Opportunities</option>
-                <option value="report-ro">Refused Opportunities</option>
-                <option value="report-ap" selected>Acquired Products</option>
-                <option value="report-rp" selected>Refused Products</option>
+                <option value="report-opportunity">Closed Opportunities</option>
+                <option value="rr">Refused Opportunities</option>
+                <option value="report-product" selected>Acquired Products</option>
+                <option value="rr" selected>Refused Products</option>
             </optgroup>
         </select>
     </div>

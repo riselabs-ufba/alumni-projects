@@ -27,14 +27,11 @@ use webvimark\modules\UserManagement\UserManagementModule;
             'submenuTemplate' => "\n<ul class='treeview-menu' {show}>\n{items}\n</ul>\n",
             'items' => [
                 [
-                    'label' => '<i class="fa fa-users"></i> ' . 'Management Control Access',
+                    'label' => '<i class="fa fa-users"></i> ' . 'Users',
                     'url' => '#',
                     'items' => [
                         ['label' => '<i class="fa fa-circle-o"></i> ' . UserManagementModule::t('back', 'Users'), 'url' => ['/user-management/user/index']],
                         ['label' => '<i class="fa fa-circle-o"></i> ' . UserManagementModule::t('back', 'Roles'), 'url' => ['/user-management/role/index']],
-                        ['label' => '<i class="fa fa-circle-o"></i> ' . UserManagementModule::t('back', 'Permissions'), 'url' => ['/user-management/permission/index']],
-                        ['label' => '<i class="fa fa-circle-o"></i> ' . UserManagementModule::t('back', 'Permission groups'), 'url' => ['/user-management/auth-item-group/index']],
-                        ['label' => '<i class="fa fa-circle-o"></i> ' . UserManagementModule::t('back', 'Visit log'), 'url' => ['/user-management/user-visit-log/index']],
                     ]
                 ],
                 [

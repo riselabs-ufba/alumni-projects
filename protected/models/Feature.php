@@ -13,6 +13,7 @@ if(!function_exists("array_column")) {
  */
 class Feature extends CFormModel {
     
+    const CONTACT_US = 4;
     const MANUFACTURER = 0;
     const VEHICLE_MODEL = 1;
     const VEHICLE_SEAT = 2;
@@ -38,6 +39,11 @@ class Feature extends CFormModel {
     
     public function getOptionalFeatures(){
         return array(
+            self::CONTACT_US => array(
+                'label' => 'Contact Us',
+                'annotation' => 'ContactUs',
+                'requires' => array(),
+            ),            
             self::MANUFACTURER => array(
                 'label' => Manufacturer::label(),
                 'annotation' => get_class(Manufacturer::model()), 

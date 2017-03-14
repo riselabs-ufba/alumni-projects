@@ -9,6 +9,12 @@
             <div class="dashIconText "><?php echo CHtml::link('City', array('/city')); ?></div>
         </div>
         <?php /* EndFeature:City */ ?>
+        <?php /* BeginFeature:ContactUs */ ?>
+        <div class="dashIcon span-3">
+            <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-mail.png' />", array('contact')); ?>            
+            <div class="dashIconText "><?php echo CHtml::link('Contact Us', array('contact')); ?></div>
+        </div>
+        <?php /* EndFeature:ContactUs */ ?>        
         <?php /* BeginFeature:Country */ ?>
         <div class="dashIcon span-3">
             <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-earth.png' />", array('/country')); ?>

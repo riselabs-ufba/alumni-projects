@@ -61,6 +61,7 @@ class SiteController extends Controller
 		}
 	}
 
+        /* BeginFeature:ContactUs */
 	/**
 	 * Displays the contact page
 	 */
@@ -86,6 +87,7 @@ class SiteController extends Controller
 		}
 		$this->render('contact',array('model'=>$model));
 	}
+        /* EndFeature:ContactUs */
 
 	/**
 	 * Displays the login page

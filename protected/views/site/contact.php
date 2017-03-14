@@ -1,4 +1,4 @@
-<?php
+<?php /* BeginFeature:ContactUs */
 /* @var $this SiteController */
 /* @var $model ContactForm */
 /* @var $form CActiveForm */
@@ -82,4 +82,5 @@ If you have business inquiries or other questions, please fill out the following
 
 </div><!-- form -->
 
-<?php endif; ?>
+<?php endif; 
+/* EndFeature:ContactUs */

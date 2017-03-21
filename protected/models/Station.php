@@ -58,5 +58,16 @@ class Station extends BaseStation
     public static function model($className=__CLASS__) {
             return parent::model($className);
     }
+    
+    public function scopes() {
+        return array(
+            'airport' => array(
+                'condition' => 'id_vehicle_type = :airport',
+                'params' => array(
+                    ':airport' => VehicleType::PLANE,
+                ),                
+            ),
+        );
+    }
 }
 /* EndFeature:Station */

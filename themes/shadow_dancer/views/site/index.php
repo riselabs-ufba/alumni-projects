@@ -3,6 +3,12 @@
 <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i> Dashboard</h1>
 <div class="span-23 showgrid">
     <div class="dashboardIcons span-16">
+        <?php /* BeginFeature:FlightPlan */ ?>
+        <div class="dashIcon span-3">
+            <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-plane.png' />", array('/flightPlan')); ?>            
+            <div class="dashIconText "><?php echo CHtml::link('Flight Plan', array('/flightPlan')); ?></div>
+        </div>
+        <?php /* EndFeature:FlightPlan */ ?>        
         <?php /* BeginFeature:Line */ ?>
         <div class="dashIcon span-3">
             <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-move.png' />", array('/line')); ?>            

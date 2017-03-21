@@ -2,7 +2,10 @@
 Yii::import('application.models._base.BaseVehicleType');
 
 class VehicleType extends BaseVehicleType
-{
+{    
+    const BUS = 1;
+    const PLANE = 2;    
+    
     public static function model($className=__CLASS__) {
             return parent::model($className);
     }

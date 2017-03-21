@@ -27,6 +27,12 @@
             <div class="dashIconText"><?php echo CHtml::link('Station', array('/station')); ?></div>
         </div>
         <?php /* EndFeature:Station */ ?>
+        <?php /* BeginFeature:Ticket */ ?>
+        <div class="dashIcon span-3">
+            <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-tag-cash.png' />", array('/ticket')); ?>
+            <div class="dashIconText"><?php echo CHtml::link('Ticket', array('/ticket')); ?></div>
+        </div>
+        <?php /* EndFeature:Ticket */ ?>        
         <?php /* BeginFeature:Travel */ ?>
         <div class="dashIcon span-3">
             <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-clock2.png' />", array('/travel')); ?>

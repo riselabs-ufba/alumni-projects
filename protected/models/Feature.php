@@ -17,6 +17,7 @@ class Feature extends CFormModel {
     const MANUFACTURER = 0;
     const VEHICLE_MODEL = 1;
     const VEHICLE_SEAT = 2;
+    const PASSENGER = 5;
     const SEAT_TYPE = 3;
     
     public $toKeep = array();
@@ -56,6 +57,11 @@ class Feature extends CFormModel {
                 'annotation' => get_class(VehicleModel::model()), 
                 'requires' => array(),
             ), 
+            self::PASSENGER => array(
+                'label' => Passenger::label(),
+                'annotation' => get_class(Passenger::model()), 
+                'requires' => array(),
+            ),             
             self::VEHICLE_SEAT => array(
                 'label' => VehicleSeat::label(),
                 'annotation' => get_class(VehicleSeat::model()),

@@ -262,7 +262,7 @@ DROP TABLE IF EXISTS `ticket`;
 CREATE TABLE `ticket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_travel` int(11) NOT NULL,
-  `id_passenger` int(11) NOT NULL,
+  `id_passenger` int(11) NULL,
   `total_price` float NOT NULL,
   `id_station_departure` int(11) NOT NULL,
   `id_station_arrival` int(11) NOT NULL,

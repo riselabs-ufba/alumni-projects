@@ -28,7 +28,7 @@
 
 <div class="container" id="page">
 	<div id="topnav">
-		<div class="topnav_text"><a href='#'>Home</a> | <a href='#'>My Account</a> | <a href='#'>Settings</a> | <a href='#'>Logout</a> </div>
+            <div class="topnav_text"><a href='?r=site/index'>Home</a> <?php if(!Yii::app()->user->isGuest): ?>| <a href='?r=site/logout'>Logout</a> <?php endif; ?> </div>
 	</div>
 	<div id="header">
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>

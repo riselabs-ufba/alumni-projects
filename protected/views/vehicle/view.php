@@ -26,7 +26,7 @@ $this->menu=array(
     /* BeginFeature:Manufacturer */
     array(
         'name' => 'id_manufacturer',
-        'value' => $model->idVehicleModel->idManufacturer,
+        'value' => isset($model->idVehicleModel) ? $model->idVehicleModel->idManufacturer : null,
     ),    
     /* EndFeature:Manufacturer */            
 		/* BeginFeature:VehicleType */

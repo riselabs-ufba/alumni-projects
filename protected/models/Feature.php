@@ -78,6 +78,10 @@ class Feature extends CFormModel {
     }
     
     public function validateDependencies($attribute, $params){
+        if($this->toKeep=='-1'){
+            return;
+        }
+        
         $optionalFeatures = $this->getOptionalFeatures();
         $toRemove = array_diff(array_keys($optionalFeatures), (array) $this->toKeep);
         foreach ((array) $this->toKeep as $featureToKeep) {

@@ -114,7 +114,7 @@ public class USBListener {
 
 	public static void main( String[] args ) {
 		try {
-			( new USBListener() ).connect( "/dev/ttyACM0" );
+			( new USBListener() ).connect( "/dev/ttyACM1" );
 		} catch( Exception e ) {
 			e.printStackTrace();
 		}

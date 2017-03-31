@@ -20,12 +20,12 @@ public class ProducerActivator implements BundleActivator {
   
     	driver = new DriverMqtt.DriverMqttBuilder().topicListener("dev/sensor").build("device01");
     	
-//      registration = bundleContext.registerService(RequestResponseApi.class.getName(), requestResponse, null);
+      registration = bundleContext.registerService(DriverMqtt.class.getName(),driver, null);
     }
 
     public void stop(BundleContext bundleContext) throws Exception {
         //When we stop, clean up the references.
-//        registration.unregister();
+        registration.unregister();
     }
 
 }

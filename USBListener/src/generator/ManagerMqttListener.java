@@ -1,4 +1,6 @@
-package com.she.manager;
+package generator;
+
+import java.util.ArrayList;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -8,9 +10,14 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
+import org.json.JSONObject;
 
-public abstract class MqttListener implements MqttCallback {
+import com.she.manager.MqttListener;
+
+public class ManagerMqttListener extends MqttListener{
 	MqttClient client;
+	Manager manager = new Manager();
+	
 
 	@Override
 	public void connectionLost(Throwable arg0) {
@@ -28,6 +35,8 @@ public abstract class MqttListener implements MqttCallback {
 	public void messageArrived(String arg0, MqttMessage arg1) throws Exception {
 		// TODO Auto-generated method stub
 //		publish("Follow-me " + arg1.toString());
+//		System.out.println();
+		manager.iterativeStatusSet(new JSONObject(arg1.toString()));
 		publish(arg1.toString());
 //		System.out.println("Follow-me " + arg1.toString());
 	}

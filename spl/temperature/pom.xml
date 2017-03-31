@@ -5,14 +5,12 @@
   <parent>
     <artifactId>driver</artifactId>
     <relativePath>../</relativePath>
-    <groupId>com.she.core</groupId>
+    <groupId>driver</groupId>
     <version>1.0</version>
   </parent>
-  <groupId>com.she.core.driver</groupId>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>mqtt</artifactId>
+  <artifactId>temperature</artifactId>
   <packaging>bundle</packaging>
-  
 
   <!-- Dependencies -->
 
@@ -34,12 +32,6 @@
       <artifactId>mqtt-client</artifactId>
       <version>0.4.0</version>
     </dependency>
-    <dependency>
-    	<groupId>org.json</groupId>
-    	<artifactId>json</artifactId>
-    	<version>20160810</version>
-    	<type>bundle</type>
-    </dependency>
   </dependencies>
 
   <build>
@@ -51,9 +43,9 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Export-Package>com.she.core.driver</Export-Package>
-            <Private-Package>com.she.core.driver.mqtt.impl</Private-Package>
-            <Bundle-Activator>com.she.core.driver.mqtt.impl.ProducerActivator</Bundle-Activator>
+            <Export-Package>com.she.core.driver.temperature</Export-Package>
+            <Private-Package>com.she.core.driver.temperature.impl</Private-Package>
+            <Bundle-Activator>com.she.core.driver.temperature.impl.ProducerActivator</Bundle-Activator>
           </instructions>
         </configuration>
       </plugin>

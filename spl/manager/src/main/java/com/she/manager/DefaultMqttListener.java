@@ -9,7 +9,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
-public abstract class MqttListener implements MqttCallback {
+public class DefaultMqttListener extends MqttListener {
 	MqttClient client;
 
 	@Override
@@ -65,7 +65,8 @@ public abstract class MqttListener implements MqttCallback {
 		}
 		return true;
 	}
-	
+
+//	This auxClient is a <workaround> to fix a <bug>!
 	private MqttClient auxBuilder() {
 		long unixTime = System.currentTimeMillis() / 1000L;
 		MqttClient auxClient;

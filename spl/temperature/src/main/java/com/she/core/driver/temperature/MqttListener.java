@@ -1,4 +1,4 @@
-package com.she.manager;
+package com.she.core.driver.temperature;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -8,9 +8,14 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
+import org.json.JSONObject;
 
-public abstract class MqttListener implements MqttCallback {
+//import com.she.core.driver.sensors.Sensor;
+//import com.she.core.driver.sensors.TemperatureSensor;
+
+public class MqttListener implements MqttCallback {
 	MqttClient client;
+	Sensor sensor = new TemperatureSensor("TemperatureSensor", "DHT");
 
 	@Override
 	public void connectionLost(Throwable arg0) {
@@ -27,19 +32,16 @@ public abstract class MqttListener implements MqttCallback {
 	@Override
 	public void messageArrived(String arg0, MqttMessage arg1) throws Exception {
 		// TODO Auto-generated method stub
-//		publish("Follow-me " + arg1.toString());
-		publish(arg1.toString());
-//		System.out.println("Follow-me " + arg1.toString());
-	}
-
-	public MqttClient getClient() {
-		return client;
+		JSONObject json = new JSONObject(arg1.toString());
+		int value =  json.getInt("value");
+		sensor.setValue(String.valueOf(value));
+		publish(sensor.getValue());
 	}
 
 	public void setClient(MqttClient client) {
+		// TODO Auto-generated method stub
 		this.client = client;
 	}
-
 	
 //	The method for correctly publish
 	public boolean publish(String messageString) {
@@ -47,7 +49,7 @@ public abstract class MqttListener implements MqttCallback {
 		MqttClient auxClient;
 //		System.out.println("Entrei");
 		MqttMessage msg = new MqttMessage();
-		String topic = "serviceChat";
+		String topic = sensor.getName();
 		msg.setPayload(messageString.getBytes());
 		auxClient = auxBuilder();
 		try {
@@ -90,5 +92,6 @@ public abstract class MqttListener implements MqttCallback {
 		}
 		return auxClient;
 	}
-	
+
+
 }

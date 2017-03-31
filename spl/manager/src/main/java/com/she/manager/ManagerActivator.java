@@ -1,5 +1,7 @@
 package com.she.manager;
 
+
+
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -19,8 +21,11 @@ public class ManagerActivator implements BundleActivator {
 	
     public void start(BundleContext bundleContext) throws Exception {
     	System.out.println("Started");
+    	
+    	MqttListener callback = new ManagerMqttListener(); 
+		DriverMqtt driver = new DriverMqtt.DriverMqttBuilder().topicListener("manager").callback(callback).build("manager");
 //    	
-    	driver = new DriverMqtt.DriverMqttBuilder().topicListener("Sensor").build("manager");
+//    	driver = new DriverMqtt.DriverMqttBuilder().topicListener("Sensor").build("manager");
     	System.out.println("Driver builded");
     	
     }

@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <groupId>com.she.core</groupId>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>driver</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>mqttConsumer</artifactId>
   <version>1.0</version>
 
-  <modules>
-    <module>hello</module>
-    <module>mqtt</module>
-    <module>manager</module>
-    <module>consumer</module>
-    <module>Manager</module>
-  </modules>
-  <!-- Inherited properties -->
+ <!--   <dependencies>
+    <dependency>
+      <groupId>com.she.core.driver</groupId>
+      <artifactId>mqtt</artifactId>
+      <version>1.0</version>
+    </dependency>
+  </dependencies> -->
+
   <properties>
     <aether.version>1.4.2</aether.version>
     <blueprint.version>0.3.1</blueprint.version>
@@ -195,9 +196,19 @@
             <maxmem>256M</maxmem>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <extensions>true</extensions>
+          <configuration>
+            <instructions>
+              <Export-Package>com.she.core.driver</Export-Package>
+            </instructions>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-    </plugins>
   </build>
 </project>
+
+<packaging>bundle</packaging>

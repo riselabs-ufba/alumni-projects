@@ -9,6 +9,12 @@
             <div class="dashIconText "><?php echo CHtml::link('Flight Plan', array('/flightPlan')); ?></div>
         </div>
         <?php /* EndFeature:FlightPlan */ ?>        
+        <?php /* BeginFeature:Luggage */ ?>
+        <div class="dashIcon span-3">
+            <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-bag3.png' />", array('/luggage')); ?>            
+            <div class="dashIconText "><?php echo CHtml::link('Luggage Regist.', array('/luggage')); ?></div>
+        </div>
+        <?php /* EndFeature:Luggage */ ?>        
         <?php /* BeginFeature:Line */ ?>
         <div class="dashIcon span-3">
             <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-move.png' />", array('/line')); ?>            
@@ -18,7 +24,7 @@
         <?php /* BeginFeature:Passenger */ ?>
         <div class="dashIcon span-3">
             <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-person.png' />", array('/passenger')); ?>
-            <div class="dashIconText"><?php echo CHtml::link('Register Passenger', array('/passenger')); ?></div>
+            <div class="dashIconText"><?php echo CHtml::link('Regist. Passenger', array('/passenger')); ?></div>
         </div>
         <?php /* EndFeature:Passenger */ ?>
         <?php /* BeginFeature:Station */ ?>
@@ -42,7 +48,7 @@
         <?php /* BeginFeature:Vehicle */ ?>
         <div class="dashIcon span-3">
             <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-car.png' />", array('/vehicle')); ?>
-            <div class="dashIconText"><?php echo CHtml::link('Transportation Registration', array('/vehicle')); ?></div>
+            <div class="dashIconText"><?php echo CHtml::link('Transport. Regist.', array('/vehicle')); ?></div>
         </div>
         <?php /* EndFeature:Vehicle */ ?>
     </div><!-- END OF .dashIcons -->

@@ -68,6 +68,19 @@ class TicketController extends GxController {
 			'model' => $model,
 		));
 	}
+        
+        /* BeginFeature:Passenger */
+        public function actionGetAllByPassenger() {
+            $post = array_values($_POST);
+            $models = Ticket::model()->findAll('id_passenger=:id_passenger', array(':id_passenger' => (int) $post[0]['id_passenger']));
+
+            $data = CHtml::listData($models, 'id', 'id');
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Select'), true);
+            foreach ($data as $value => $name) {
+                echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+            }
+        }
+        /* EndFeature:Passenger */        
 
 }
 /* EndFeature:Ticket */

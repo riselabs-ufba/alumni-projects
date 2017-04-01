@@ -42,8 +42,7 @@ class SiteController extends Controller
                     $model->setAttributes($_POST['Feature']);
                     
                     if ($model->validate() && $model->deploy()) {
-                        echo CHtml::link('Clique aqui!', Yii::app()->getBaseUrl().'-temp', array('target' => '_blank'));
-                        Yii::app()->end();
+                        $this->redirect('http://localhost/reuse-temp');
                     }
             }
 

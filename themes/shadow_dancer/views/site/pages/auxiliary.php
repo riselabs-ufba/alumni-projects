@@ -12,7 +12,7 @@
         <?php /* BeginFeature:ContactUs */ ?>
         <div class="dashIcon span-3">
             <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-mail.png' />", array('contact')); ?>            
-            <div class="dashIconText "><?php echo CHtml::link('Contact Us', array('contact')); ?></div>
+            <div class="dashIconText "><?php echo CHtml::link('Contact Developer', array('contact')); ?></div>
         </div>
         <?php /* EndFeature:ContactUs */ ?>        
         <?php /* BeginFeature:Country */ ?>
@@ -27,6 +27,12 @@
             <div class="dashIconText"><?php echo CHtml::link('Document Type', array('/documentType')); ?></div>
         </div>        
         <?php /* EndFeature:DocumentType */ ?>
+        <?php /* BeginFeature:Manufacturer */ ?>
+        <div class="dashIcon span-3">
+            <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-tools.png' />", array('/manufacturer')); ?>            
+            <div class="dashIconText "><?php echo CHtml::link('Manufacturer', array('/manufacturer')); ?></div>
+        </div>
+        <?php /* EndFeature:Manufacturer */ ?>        
         <?php /* BeginFeature:State */ ?>
         <div class="dashIcon span-3">
             <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-map2.png' />", array('/state')); ?>
@@ -45,5 +51,11 @@
             <div class="dashIconText"><?php echo CHtml::link('Vehicle Type', array('/vehicleType')); ?></div>
         </div>          
         <?php /* EndFeature:VehicleType */ ?>
+        <?php /* BeginFeature:VehicleModel */ ?>
+        <div class="dashIcon span-3">
+            <?php echo CHtml::link("<img src='" . Yii::app()->theme->baseUrl . "/images/big_icons/icon-brush.png' />", array('/vehicleModel')); ?>
+            <div class="dashIconText"><?php echo CHtml::link('Vehicle Model', array('/vehicleModel')); ?></div>
+        </div>  
+        <?php /* EndFeature:VehicleModel */ ?>        
     </div><!-- END OF .dashIcons -->
 </div>

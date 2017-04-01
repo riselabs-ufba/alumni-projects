@@ -14,6 +14,7 @@ if(!function_exists("array_column")) {
 class Feature extends CFormModel {
     
     const CONTACT_US = 4;
+    const FEATURE_MANAGER = 6;
     const MANUFACTURER = 0;
     const VEHICLE_MODEL = 1;
     const VEHICLE_SEAT = 2;
@@ -45,18 +46,6 @@ class Feature extends CFormModel {
                 'annotation' => 'ContactUs',
                 'requires' => array(),
             ),            
-            self::MANUFACTURER => array(
-                'label' => Manufacturer::label(),
-                'annotation' => get_class(Manufacturer::model()), 
-                'requires' => array(
-                    self::VEHICLE_MODEL
-                ),
-            ),
-            self::VEHICLE_MODEL => array(
-                'label' => VehicleModel::label(),
-                'annotation' => get_class(VehicleModel::model()), 
-                'requires' => array(),
-            ), 
             self::PASSENGER => array(
                 'label' => Passenger::label(),
                 'annotation' => get_class(Passenger::model()), 
@@ -96,6 +85,7 @@ class Feature extends CFormModel {
 
     public function deploy() {
         $optionalFeatures = $this->getOptionalFeatures();
+        $optionalFeatures[self::FEATURE_MANAGER]['annotation'] = 'FeatureManager';
         $toRemove = array_diff(array_keys($optionalFeatures), (array) $this->toKeep);
         
         $root = str_replace('protected', '*', Yii::app()->getBasePath());

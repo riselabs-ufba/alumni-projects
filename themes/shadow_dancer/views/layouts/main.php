@@ -39,7 +39,9 @@
 			'items'=>array(
 				array('label'=>'Main Features', 'url'=>array('/site/index')),
 				array('label'=>'Auxiliary Features', 'url'=>array('/site/page', 'view'=>'auxiliary'),'itemOptions'=>array('class'=>'icon_chart')),
-				array('label'=>'Feature Manager', 'url'=>array('/site/featureManager')),
+                                /* BeginFeature:FeatureManager */
+				array('label'=>'Feature Manager', 'url'=>array('/site/featureManager'),'linkOptions'=>array('target'=>'_blank')),
+                                /* EndFeature:FeatureManager */
 			),
 		)); ?>
 	</div> <!--mainmenu -->

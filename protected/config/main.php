@@ -39,7 +39,8 @@ return array(
                     'port' => 11211,
                 ),
             ),
-        ),        
+        ),   
+        'jsonize'=>array('class'=>'jsonize'),
         'session' => array(
             'class' => 'CHttpSession',
             'timeout' => 1200,

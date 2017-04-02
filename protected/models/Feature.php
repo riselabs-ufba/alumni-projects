@@ -18,6 +18,7 @@ if (!function_exists("array_column")) {
 class Feature extends CFormModel {
 
     const CONTACT_US = 4;
+    const EXPORT_JSON = 11;
     const FEATURE_MANAGER = 6;
     const FLIGHT_PLAN = 7;
     const MANUFACTURER = 0;
@@ -74,6 +75,11 @@ class Feature extends CFormModel {
                 'annotation' => 'ContactUs',
                 'requires' => array(),
             ),
+            self::EXPORT_JSON => array(
+                'label' => 'Export to JSON',
+                'annotation' => 'JSON',
+                'requires' => array(),
+            ),            
             self::FLIGHT_PLAN => array(
                 'label' => FlightPlan::label(),
                 'annotation' => get_class(FlightPlan::model()),

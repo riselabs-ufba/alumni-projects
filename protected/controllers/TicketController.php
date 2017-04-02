@@ -80,7 +80,28 @@ class TicketController extends GxController {
                 echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
             }
         }
-        /* EndFeature:Passenger */        
-
+        /* EndFeature:Passenger */   
+        /* BeginFeature:JSON */
+        public function actionToJson($id){
+            $model = Ticket::model()->with(array(                
+                /* BeginFeature:Luggage */
+                'luggages',
+                /* EndFeature:Luggage */
+                /* BeginFeature:Station */
+                'idStationArrival',
+                'idStationDeparture',
+                /* EndFeature:Station */
+                /* BeginFeature:Passenger */
+                'idPassenger',
+                /* EndFeature:Passenger */
+                /* BeginFeature:Travel */
+                'idTravel',                
+                /* EndFeature:Travel */
+            ))->findByPk($id);
+            Yii::app()->jsonize;            
+            echo  jsonizenc($model);
+            Yii::app()->end();
+        }
+        /* EndFeature:JSON */
 }
 /* EndFeature:Ticket */

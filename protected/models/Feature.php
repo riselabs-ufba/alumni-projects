@@ -19,8 +19,10 @@ class Feature extends CFormModel {
 
     const CONTACT_US = 4;
     const EXPORT_JSON = 11;
+    const EXPORT_XML = 12;
     const FEATURE_MANAGER = 6;
     const FLIGHT_PLAN = 7;
+    const LUGGAGE = 13;
     const MANUFACTURER = 0;
     const VEHICLE_MODEL = 1;
     const VEHICLE_SEAT = 2;
@@ -79,6 +81,18 @@ class Feature extends CFormModel {
                 'label' => 'Export to JSON',
                 'annotation' => 'JSON',
                 'requires' => array(),
+            ),   
+            self::EXPORT_XML => array(
+                'label' => 'Export to XML',
+                'annotation' => 'XML',
+                'requires' => array(),
+            ),            
+            self::LUGGAGE => array(
+                'label' => Luggage::label(),
+                'annotation' => get_class(Luggage::model()),
+                'requires' => array(
+                    self::PASSENGER,
+                ),
             ),            
             self::FLIGHT_PLAN => array(
                 'label' => FlightPlan::label(),
@@ -119,7 +133,7 @@ class Feature extends CFormModel {
 
     public function validateDependencies($attribute, $params) {
 
-        if ($this->hasErrors() || $this->toKeep == '-1') {
+        if (empty($this->vehicleType) || $this->toKeep == '-1') {
             return;
         }
         

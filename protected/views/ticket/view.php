@@ -14,6 +14,9 @@ $this->menu=array(
         /* BeginFeature:JSON */
         array('label'=>Yii::t('app', 'Export to JSON'), 'url'=>array('toJson', 'id' => $model->id),'linkOptions'=>array('target'=>'_blank')),
         /* EndFeature:JSON */
+        /* BeginFeature:XML */
+        array('label'=>Yii::t('app', 'Export to XML'), 'url'=>array('toXml', 'id' => $model->id),'linkOptions'=>array('target'=>'_blank')),
+        /* EndFeature:XML */    
 );
 ?>
 

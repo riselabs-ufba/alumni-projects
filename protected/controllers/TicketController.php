@@ -103,5 +103,27 @@ class TicketController extends GxController {
             Yii::app()->end();
         }
         /* EndFeature:JSON */
+        /* BeginFeature:XML */        
+        public function actionToXml($id){
+            $this->layout = 'xml';
+            $model = Ticket::model()->with(array(                
+                /* BeginFeature:Luggage */
+                'luggages',
+                /* EndFeature:Luggage */
+                /* BeginFeature:Station */
+                'idStationArrival',
+                'idStationDeparture',
+                /* EndFeature:Station */
+                /* BeginFeature:Passenger */
+                'idPassenger',
+                /* EndFeature:Passenger */
+                /* BeginFeature:Travel */
+                'idTravel',                
+                /* EndFeature:Travel */
+            ))->findByPk($id);            
+            
+            $this->render('xml',array('model' => $model));
+        }
+        /* EndFeature:XML */
 }
 /* EndFeature:Ticket */

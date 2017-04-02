@@ -123,7 +123,7 @@ abstract class BaseTicket extends GxActiveRecord {
 			'idTravel' => array(self::BELONGS_TO, 'Travel', 'id_travel'),
             		/* EndFeature:Travel */
             		/* BeginFeature:TicketSegment */
-			'ticketSegments' => array(self::HAS_MANY, 'TicketSegment', 'id_ticket'),
+			//'ticketSegments' => array(self::HAS_MANY, 'TicketSegment', 'id_ticket'),
             		/* EndFeature:TicketSegment */
 		);
 	}

@@ -17,17 +17,17 @@ class Travel extends BaseTravel
     public function rules() {
         $parentRules = parent::rules();
         $childRules = array(
-            array('start_date, end_date', 'date', 'format' => 'M/d/yyyy H:m'),
+            array('start_date, end_date', 'date', 'format' => 'M/d/yyyy H:m:s'),
             array('end_date',
                 'ext.EDateCompare',
                 'compareAttribute' => 'start_date',
-                'dateFormat' => 'm/d/Y H:i',
+                'dateFormat' => 'm/d/Y H:i:s',
                 'operator' => '>',
             ),
             array('start_date',
                 'ext.EDateCompare',
                 'compareValue' => date('m/d/Y H:i'),
-                'dateFormat' => 'm/d/Y H:i',
+                'dateFormat' => 'm/d/Y H:i:s',
                 'operator' => '>',
             ),            
         );

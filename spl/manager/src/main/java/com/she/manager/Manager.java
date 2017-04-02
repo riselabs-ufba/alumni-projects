@@ -28,7 +28,7 @@ public class Manager {
 		} else if (type == "generator") {
 			iterativeStatusSet(json.getJSONObject("list"));			
 		} else if (type == "list") {
-			
+//			publis
 		}
 		
 	}

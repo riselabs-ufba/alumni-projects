@@ -23,7 +23,7 @@ public class ManagerActivator implements BundleActivator {
     	System.out.println("Started");
     	
     	MqttListener callback = new ManagerMqttListener(); 
-		DriverMqtt driver = new DriverMqtt.DriverMqttBuilder().topicListener("manager").callback(callback).build("manager");
+		DriverMqtt driver = new DriverMqtt.DriverMqttBuilder().topicListener("manager01").callback(callback).build("manager01");
 //    	
 //    	driver = new DriverMqtt.DriverMqttBuilder().topicListener("Sensor").build("manager");
     	System.out.println("Driver builded");
@@ -32,25 +32,8 @@ public class ManagerActivator implements BundleActivator {
 
     public void stop(BundleContext bundleContext) throws Exception {
         //When we stop, clean up the references.
-//    	driver.disconnect();
+    	driver.disconnect();
     }
-    
-//	The method for correctly publish
-//	public boolean publish(String messageString) {
-//		MqttMessage msg = new MqttMessage();
-//		String topic = "dev/" + username;
-//		msg.setPayload(messageString.getBytes());
-//		try {
-//			listenerClient.publish(topic, msg);
-//		} catch (MqttPersistenceException e) {
-//			// TODO Auto-generated catch block
-//			
-//		} catch (MqttException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return true;
-//	}
 
 }
 

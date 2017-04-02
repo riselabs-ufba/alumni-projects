@@ -40,14 +40,16 @@ public abstract class MqttListener implements MqttCallback {
 		this.client = client;
 	}
 
-	
-//	The method for correctly publish
 	public boolean publish(String messageString) {
+		return publish(messageString,"serviceChat");
+	}
+//	The method for correctly publish
+	public boolean publish(String messageString,String topic) {
 //		This auxClient is a <workaround> to fix a <bug>!
 		MqttClient auxClient;
 //		System.out.println("Entrei");
 		MqttMessage msg = new MqttMessage();
-		String topic = "serviceChat";
+//		String topic = "serviceChat";
 		msg.setPayload(messageString.getBytes());
 		auxClient = auxBuilder();
 		try {

@@ -22,15 +22,21 @@ $this->menu = array(
     ?>
 
     <p class="note">
-<?php echo Yii::t('app', 'Fields with'); ?> <span class="required">*</span> <?php echo Yii::t('app', 'are required'); ?>.
+        <?php echo Yii::t('app', 'Fields with'); ?> <span class="required">*</span> <?php echo Yii::t('app', 'are required'); ?>.
     </p>
 
-<?php echo $form->errorSummary($model); ?>
+    <?php echo $form->errorSummary($model); ?>
+
+    <div class="row">
+        <?php echo $form->labelEx($model, 'vehicleType'); ?>
+        <?php echo $form->radioButtonList($model, 'vehicleType', $model->getFeaturesToList($model->getVehicleTypeFeatures())); ?>
+        <?php echo $form->error($model, 'vehicleType'); ?>
+    </div><!-- row -->
 
     <div class="row">
         <?php echo $form->labelEx($model, 'toKeep'); ?>
-        <?php echo $form->checkboxList($model, 'toKeep', array_column($model->getOptionalFeatures(), 'label'), array('separator' => '', 'uncheckValue' => '-1')); ?>
-<?php echo $form->error($model, 'toKeep'); ?>
+        <?php echo $form->checkboxList($model, 'toKeep', $model->getFeaturesToList($model->getOptionalFeatures()) , array('separator' => '</br>', 'uncheckValue' => '-1')); ?>
+        <?php echo $form->error($model, 'toKeep'); ?>
     </div><!-- row -->
 
     <?php

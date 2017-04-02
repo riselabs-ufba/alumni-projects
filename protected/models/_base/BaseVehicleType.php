@@ -30,7 +30,7 @@ abstract class BaseVehicleType extends GxActiveRecord {
 	}
 
 	public static function label($n = 1) {
-		return Yii::t('app', 'Vehicle Type|Vehicle Types', $n);
+		return Yii::t('app', 'Transportation Type|Transportation Types', $n);
 	}
 
 	public static function representingColumn() {

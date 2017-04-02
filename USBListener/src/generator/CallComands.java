@@ -32,7 +32,7 @@ public class CallComands {
 //		System.out.println("Chamou");
 //		MqttListener callback = new ManagerMqttListen public void  doIt() {
 	    try {
-	    	JSONObject json = new JSONObject("{\"Temperature\":false,\"Luminosity\":false}");
+	    	JSONObject json = new JSONObject("{\"temperature\":true,\"luminosity\":false,\"LCD\":true}");
 	        File f1 = new File("/home/ramon/Estudos/2016_2/reuso_soft/spl/arduSPL/device/flags.h");
 	        FileReader fr = new FileReader(f1);
 	        BufferedReader br = new BufferedReader(fr);

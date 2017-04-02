@@ -4,6 +4,9 @@ foreach ($model->getAttributes() as $key => $value) {
     echo '<' . $tagName . '>' . CHtml::encode($value) . '</' . $tagName . '>';
 }
 foreach ($model->relations() as $relation => $relationValue) {
+    if (!isset($model->$relation)) {
+        continue;
+    }
     echo '<' . $relation . '>';   
     if ($relationValue[0] != 'CBelongsToRelation') {
         foreach ($model->$relation as $key => $relationChild){
@@ -14,7 +17,7 @@ foreach ($model->relations() as $relation => $relationValue) {
             }
             echo '</' . get_class($relationChild) . '>';
         }        
-    }else{    
+    }else{ 
         foreach ($model->$relation->getAttributes() as $key => $value) {
             $tagName = str_replace(' ', '', CHtml::encode($model->getAttributeLabel($key)));
             echo '<' . $tagName . '>' . CHtml::encode($value) . '</' . $tagName . '>';

@@ -1,4 +1,4 @@
-package com.she.core.driver.luminosity;
+package com.she.core.driver.sensors;
 
 public class TemperatureSensor extends Sensor {
 

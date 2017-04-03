@@ -1,6 +1,4 @@
-package com.she.core.driver.luminosity;
-
-import org.json.JSONObject;
+package com.she.core.driver.sensors;
 
 public class LuminositySensor extends Sensor {
 
@@ -10,11 +8,10 @@ public class LuminositySensor extends Sensor {
 	}
 
 	@Override
-	public String transformation(JSONObject value) {
+	public String transformation(String value) {
 		// TODO Auto-generated method stub
 //		Convert value to lumis
-		
-		float lumis = Float.valueOf(value.getInt("value")); 
+		float lumis = Float.valueOf(value); 
 		lumis = (float) ( lumis*(5.0/1024.0));
 		lumis = (float) (( ( 2500.0 / lumis ) - 400.0)/2.0);
 				

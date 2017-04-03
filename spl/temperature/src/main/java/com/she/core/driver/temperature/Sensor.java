@@ -1,8 +1,10 @@
 package com.she.core.driver.temperature;
 
+import org.json.JSONObject;
+
 public abstract class Sensor {
 	private String name;
-	private String value;
+	private JSONObject value;
 	private String type;
 	public Sensor(String name, String type) {
 		super();
@@ -18,13 +20,14 @@ public abstract class Sensor {
 	}
 		
 	public String getValue() {
+		System.out.println("Vou transformar!");
 		return transformation(value);
 	}
-	public void setValue(String value) {
+	public void setValue(JSONObject value) {
 		this.value = value;
 	}
 	
-	public abstract String transformation(String value);
+	public abstract String transformation(JSONObject value);
 	
 	
 }

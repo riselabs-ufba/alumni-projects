@@ -13,7 +13,7 @@ public class ProducerActivator implements BundleActivator {
 
     public void start(BundleContext bundleContext) throws Exception {
   
-    	driver = new DriverMqtt.DriverMqttBuilder().topicListener("dev/sensor").build("LuminosityDevice");
+    	driver = new DriverMqtt.DriverMqttBuilder().topicListener("dev/LuminositySensor").build("lumis");
     	
     }
 

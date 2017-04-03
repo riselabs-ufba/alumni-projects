@@ -1,6 +1,4 @@
-package com.she.core.driver.sensors;
-
-import org.json.JSONObject;
+package com.she.core.driver.temperature;
 
 public class TemperatureSensor extends Sensor {
 
@@ -12,9 +10,7 @@ public class TemperatureSensor extends Sensor {
 	@Override
 	public String transformation(String value) {
 		// TODO Auto-generated method stub
-		
-		
-		return value.toString();
+		return value;
 	}
 
 }

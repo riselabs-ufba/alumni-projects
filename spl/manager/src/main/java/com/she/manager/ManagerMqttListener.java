@@ -53,14 +53,16 @@ public class ManagerMqttListener extends MqttListener{
 			if (!contains) {
 				devices.add(json);
 			}
-			publish("Sensor", "connections");
-		} else if (Objects.equals("generator", type)) {
+			publish("Sensor", "screen");
+		} else if (type.equals("generator")) {
 			iterativeStatusSet(json.getJSONObject("list"));
-			publish("generator", "connections");
-		} else if (Objects.equals("list", type)) {
-			publish("list", "connections");
+			publish("generator", "screen");
+		} else if (type.equals("list")) {
+//			publish("Lista!!", "screen");
+			publish(devices.toString(), "screen");
 		} else {
-			publish("nem foi: " + type + "Sensor", "connections");
+			System.out.println("Retorno!");
+//			publish("nem foi: " + type + "Sensor", "connections");
 		}
 		
 	}

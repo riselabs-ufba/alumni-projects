@@ -1,7 +1,5 @@
 package com.she.core.driver.temperature;
 
-import java.util.concurrent.TimeUnit;
-
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -35,10 +33,9 @@ public class MqttListener implements MqttCallback {
 	public void messageArrived(String arg0, MqttMessage arg1) throws Exception {
 		// TODO Auto-generated method stub
 		JSONObject json = new JSONObject(arg1.toString());
-//		int value =  json.getInt("value");
-//		sensor.setValue(String.valueOf(value));
-		sensor.setValue(json);
-		publish("Value : " + sensor.getValue());
+		int value =  json.getInt("value");
+		sensor.setValue(String.valueOf(value));
+		publish(sensor.getValue());
 	}
 
 	public void setClient(MqttClient client) {
@@ -72,12 +69,6 @@ public class MqttListener implements MqttCallback {
 	}
 	
 	private MqttClient auxBuilder() {
-//		try {
-//			TimeUnit.MILLISECONDS.sleep(2);
-//		} catch (InterruptedException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
 		long unixTime = System.currentTimeMillis() / 1000L;
 		MqttClient auxClient;
 		MqttConnectOptions connOpt = new MqttConnectOptions();

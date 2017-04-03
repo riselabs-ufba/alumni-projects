@@ -1,10 +1,8 @@
-package com.she.core.driver.luminosity;
-
-import org.json.JSONObject;
+package com.she.core.driver.temperature;
 
 public abstract class Sensor {
 	private String name;
-	private JSONObject value;
+	private String value;
 	private String type;
 	public Sensor(String name, String type) {
 		super();
@@ -22,11 +20,11 @@ public abstract class Sensor {
 	public String getValue() {
 		return transformation(value);
 	}
-	public void setValue(JSONObject value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
 	
-	public abstract String transformation(JSONObject value);
+	public abstract String transformation(String value);
 	
 	
 }

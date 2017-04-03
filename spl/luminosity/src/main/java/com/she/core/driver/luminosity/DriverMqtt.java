@@ -72,7 +72,7 @@ public class DriverMqtt {
 		// After a successful connection: announce
 		MqttMessage msg = new MqttMessage();
 		String topic = "connections";
-		msg.setPayload(username.getBytes());
+		msg.setPayload("{\"typeDevice\":\"Sensor\",\"name\":\"LuminositySensor\",\"model\":\"LDR\"}".getBytes());
 		client.publish(topic, msg);
 		
 	}

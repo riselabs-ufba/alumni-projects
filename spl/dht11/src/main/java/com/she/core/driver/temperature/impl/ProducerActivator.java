@@ -11,7 +11,7 @@ public class ProducerActivator implements BundleActivator {
 
     public void start(BundleContext bundleContext) throws Exception {
   
-    	driver = new DriverMqtt.DriverMqttBuilder().topicListener("dev/TemperatureSensor").build("Temperature");
+    	driver = new DriverMqtt.DriverMqttBuilder().topicListener("dev/sensor").build("TemperatureDevice");
     	
     }
 

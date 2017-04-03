@@ -1,5 +1,7 @@
 package com.she.manager;
 
+import java.util.concurrent.TimeUnit;
+
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -69,6 +71,12 @@ public abstract class MqttListener implements MqttCallback {
 	}
 	
 	private MqttClient auxBuilder() {
+		try {
+			TimeUnit.MILLISECONDS.sleep(2);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		long unixTime = System.currentTimeMillis() / 1000L;
 		MqttClient auxClient;
 		MqttConnectOptions connOpt = new MqttConnectOptions();
@@ -79,7 +87,7 @@ public abstract class MqttListener implements MqttCallback {
 		try {
 			auxClient = new MqttClient("tcp://" + "localhost" + ":"
 					+ 1883,  
-					5 + "_pub_" + unixTime);
+					5 + "_pub_manager_" + unixTime);
 			auxClient.connect(connOpt);
 		}catch (MqttSecurityException e) {
 			// TODO Auto-generated catch block

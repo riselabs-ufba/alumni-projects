@@ -1,4 +1,4 @@
-package com.she.manager;
+package com.she.core.driver.temperature;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
 
@@ -21,12 +21,13 @@ public class DriverMqtt {
 	private int publish;
 	private MqttClient client;
 	private MqttListener callback;
+	
 
 	// Manager	
 //	private MqttClient manager;
 	
 	public DriverMqtt(String brokerUrl, String brokerPort, String serverId,
-			String username, String password, String topicListener, MqttListener callback) {
+			String username, String password, String topicListener) {
 		super();
 		this.brokerUrl = brokerUrl;
 		this.brokerPort = brokerPort;
@@ -34,9 +35,8 @@ public class DriverMqtt {
 		this.username = username;
 		this.password = password;
 		this.topicListener = topicListener;
-		this.callback = callback;
 		
-//		callback = new DefaultMqttListener();
+		callback = new MqttListener();
 		MqttConnectOptions connOpt = new MqttConnectOptions();
 		if (!this.username.isEmpty())
 			connOpt.setUserName(this.username);
@@ -48,13 +48,13 @@ public class DriverMqtt {
 					+ this.brokerPort,  
 					this.serverId + "_pub" + unixTime);
 			client.connect(connOpt);
-//			announce();
+			announce();
 			
 			// Callback test
 			 client.setCallback(callback);
 			 System.out.println("Callback set");
 			 client.subscribe(topicListener);
-			 System.out.println("Client Subscribed: " + topicListener);
+			 System.out.println("Client Subscribed");
 			 callback.setClient(client);
 			 System.out.println("Client is set");
 //			 publish("Hello i'm the manager!");
@@ -216,16 +216,12 @@ public class DriverMqtt {
 		private String username = "";
 		private String password = "";
 		private MqttClient publisher;
-		private MqttListener callback = new DefaultMqttListener();
-		private String topicListener = "";
-		
+		private MqttListener listener;
+		private String topicListener = topicPrefix + username;
 		
 		public DriverMqtt build(String _name) {
 			this.username = _name;
-			if (topicListener == "") {
-				topicListener = topicPrefix + username;
-			}
-			return new DriverMqtt(brokerUrl, brokerPort, serverId, username, password,topicListener,callback);
+		    return new DriverMqtt(brokerUrl, brokerPort, serverId, username, password,topicListener);
 		}
 
 	    public DriverMqttBuilder host(String host)
@@ -244,12 +240,6 @@ public class DriverMqtt {
 	        this.topicListener = topicListener;
 	        return this;
 	    }
-	    public DriverMqttBuilder callback(MqttListener callback)
-	    {
-	        this.callback = callback;
-	        return this;
-	    }
-
 	}
 
 	

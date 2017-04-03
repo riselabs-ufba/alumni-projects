@@ -1,5 +1,7 @@
 package com.she.core.driver.sensors;
 
+import org.json.JSONObject;
+
 public abstract class Sensor {
 	private String name;
 	private String value;

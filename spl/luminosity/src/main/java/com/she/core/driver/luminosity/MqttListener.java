@@ -33,8 +33,9 @@ public class MqttListener implements MqttCallback {
 	public void messageArrived(String arg0, MqttMessage arg1) throws Exception {
 		// TODO Auto-generated method stub
 		JSONObject json = new JSONObject(arg1.toString());
-		int value =  json.getInt("value");
-		sensor.setValue(String.valueOf(value));
+//		int value =  json.getInt("value");
+//		sensor.setValue(String.valueOf(value));
+		sensor.setValue(json);
 		publish(sensor.getValue());
 	}
 

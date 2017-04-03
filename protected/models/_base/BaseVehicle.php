@@ -18,6 +18,12 @@
  * EndFeature:VehicleModel    
  * @property integer $capacity    
  * @property integer $active    
+ * @property string $manufacturing_year    
+ * @property double $fuel_capacity    
+ * @property string $color    
+ * @property string $bus_plate    
+ * @property double $plane_true_airspeed_knots    
+ * @property integer $plane_cruising_altitude    
  *
  * BeginFeature:Travel
  * @property Travel[] $travels
@@ -56,10 +62,6 @@ abstract class BaseVehicle extends GxActiveRecord {
 			/* BeginFeature:VehicleType */
 			'id_vehicle_type, '.
 			/* EndFeature:VehicleType */
-			
-			/* BeginFeature:VehicleModel */
-			'id_vehicle_model, '.
-			/* EndFeature:VehicleModel */
 			'capacity', 'required'),
 			array(
 			/* BeginFeature:VehicleType */
@@ -69,9 +71,16 @@ abstract class BaseVehicle extends GxActiveRecord {
 			/* BeginFeature:VehicleModel */
 			'id_vehicle_model, '.
 			/* EndFeature:VehicleModel */
-			'capacity, active', 'numerical', 'integerOnly'=>true),
-			array('code', 'length', 'max'=>45),
-			array('active', 'default', 'setOnEmpty' => true, 'value' => null),
+			'capacity, active, plane_cruising_altitude', 'numerical', 'integerOnly'=>true),
+			array('fuel_capacity, plane_true_airspeed_knots', 'numerical'),
+			array('code, color', 'length', 'max'=>45),
+			array('manufacturing_year', 'length', 'max'=>4),
+			array('bus_plate', 'length', 'max'=>20),
+			array(
+			/* BeginFeature:VehicleModel */
+			'id_vehicle_model, '.
+			/* EndFeature:VehicleModel */
+			'active, manufacturing_year, fuel_capacity, color, bus_plate, plane_true_airspeed_knots, plane_cruising_altitude', 'default', 'setOnEmpty' => true, 'value' => null),
 			array('id, code, '.
 			/* BeginFeature:VehicleType */
 			'id_vehicle_type, '.
@@ -80,7 +89,7 @@ abstract class BaseVehicle extends GxActiveRecord {
 			/* BeginFeature:VehicleModel */
 			'id_vehicle_model, '.
 			/* EndFeature:VehicleModel */
-			'capacity, active', 'safe', 'on'=>'search'),
+			'capacity, active, manufacturing_year, fuel_capacity, color, bus_plate, plane_true_airspeed_knots, plane_cruising_altitude', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -118,6 +127,12 @@ abstract class BaseVehicle extends GxActiveRecord {
 			/* EndFeature:VehicleModel */
 			'capacity' => Yii::t('app', 'Capacity'),
 			'active' => Yii::t('app', 'Active'),
+			'manufacturing_year' => Yii::t('app', 'Manufacturing Year'),
+			'fuel_capacity' => Yii::t('app', 'Fuel Capacity'),
+			'color' => Yii::t('app', 'Color'),
+			'bus_plate' => Yii::t('app', 'Bus Plate'),
+			'plane_true_airspeed_knots' => Yii::t('app', 'Plane True Airspeed Knots'),
+			'plane_cruising_altitude' => Yii::t('app', 'Plane Cruising Altitude'),
 			/* BeginFeature:Travel */
 			'travels' => null,
 			/* EndFeature:Travel */
@@ -146,6 +161,12 @@ abstract class BaseVehicle extends GxActiveRecord {
 		/* EndFeature:VehicleModel */
 		$criteria->compare('capacity', $this->capacity);
 		$criteria->compare('active', $this->active);
+		$criteria->compare('manufacturing_year', $this->manufacturing_year, true);
+		$criteria->compare('fuel_capacity', $this->fuel_capacity);
+		$criteria->compare('color', $this->color, true);
+		$criteria->compare('bus_plate', $this->bus_plate, true);
+		$criteria->compare('plane_true_airspeed_knots', $this->plane_true_airspeed_knots);
+		$criteria->compare('plane_cruising_altitude', $this->plane_cruising_altitude);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

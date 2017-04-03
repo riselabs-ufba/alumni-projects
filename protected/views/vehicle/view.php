@@ -16,7 +16,7 @@ $this->menu=array(
         /* EndFeature:VehicleSeat*/
         /* BeginFeature:BatchRegistration*/
         array('label'=>Yii::t('app', 'Create') . ' ' . VehicleSeat::label().' - Batch Registration', 'url'=>array('vehicleSeat/batchRegistration', 'id' => $model->id)),
-        /* EndFeature:BatchRegistration*/    
+        /* EndFeature:BatchRegistration*/        
 );
 ?>
 
@@ -26,12 +26,6 @@ $this->menu=array(
 	'data' => $model,
 	'attributes' => array(
 'code',
-    /* BeginFeature:Manufacturer */
-    array(
-        'name' => 'id_manufacturer',
-        'value' => isset($model->idVehicleModel) ? $model->idVehicleModel->idManufacturer : null,
-    ),    
-    /* EndFeature:Manufacturer */            
 		/* BeginFeature:VehicleType */
 array(
 			'name' => 'idVehicleType',
@@ -48,6 +42,16 @@ array(
 		/* EndFeature:VehicleModel */
 'capacity',
 'active:boolean',
+'manufacturing_year',
+'fuel_capacity',
+'color',
+/* BeginFeature:Bus*/
+'bus_plate',
+/* EndFeature:Bus*/            
+/* BeginFeature:Plane*/
+'plane_true_airspeed_knots',
+'plane_cruising_altitude',
+/* EndFeature:Plane*/            
 	),
 ));
 /* BeginFeature:VehicleSeat*/

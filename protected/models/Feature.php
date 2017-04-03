@@ -58,14 +58,17 @@ class Feature extends CFormModel {
         return array(
             self::VEHICLE_TYPE_BOAT => array(
                 'label' => 'Boat',
+                'annotation' => 'Boat',
                 'requires' => array(),
             ),
             self::VEHICLE_TYPE_BUS => array(
                 'label' => 'Bus',
+                'annotation' => 'Bus',
                 'requires' => array(),
             ),
             self::VEHICLE_TYPE_PLANE => array(
                 'label' => 'Plane',
+                'annotation' => 'Plane',
                 'requires' => array(),
             ),
         );
@@ -150,7 +153,7 @@ class Feature extends CFormModel {
         $vehicleTypeToRemove = array_diff(array_keys($this->getVehicleTypeFeatures()), (array) $this->vehicleType);
         $optionalFeatures = $this->getOptionalFeatures();
         $optionalFeaturesToRemove = array_diff(array_keys($optionalFeatures), (array) $this->toKeep);
-        $toRemove = $vehicleTypeToRemove + $optionalFeaturesToRemove;
+        $toRemove = CMap::mergeArray($vehicleTypeToRemove,$optionalFeaturesToRemove);
         
         $this->toKeep[] = $this->vehicleType;
 
@@ -167,7 +170,11 @@ class Feature extends CFormModel {
     public function deploy() {
         $optionalFeatures = $this->getOptionalFeatures();
         $optionalFeatures[self::FEATURE_MANAGER]['annotation'] = 'FeatureManager';
-        $toRemove = array_diff(array_keys($optionalFeatures), (array) $this->toKeep);
+        $vehicleTypeFeatures = $this->getVehicleTypeFeatures();
+
+        $vehicleTypeToRemove = array_diff(array_keys($vehicleTypeFeatures), (array) $this->vehicleType);
+        $optionalFeaturesToRemove = array_diff(array_keys($optionalFeatures), (array) $this->toKeep);
+        $toRemove = CMap::mergeArray($vehicleTypeToRemove,$optionalFeaturesToRemove);
 
         $root = str_replace('protected', '*', Yii::app()->getBasePath());
         $rootTemp = str_replace('/protected', '-temp', Yii::app()->getBasePath());
@@ -177,9 +184,11 @@ class Feature extends CFormModel {
         shell_exec("rm -R {$rootTemp}/nbproject");
         shell_exec("rm -R {$rootTemp}/assets/*");
         shell_exec("rm -R {$rootTemp}/protected/runtime/*");
+        
+        $features = $vehicleTypeFeatures+$optionalFeatures;
 
         foreach ($toRemove as $feature) {
-            $annotation = $optionalFeatures[$feature]['annotation'];
+            $annotation = $features[$feature]['annotation'];
             echo shell_exec("find {$rootTemp} -type f -print0 | xargs -0 sed -i '/BeginFeature:{$annotation}/,/EndFeature:{$annotation}/d'");
         }
 

@@ -60,6 +60,14 @@ $('.search-form form').submit(function(){
 					'value' => '($data->active === 0) ? Yii::t(\'app\', \'No\') : Yii::t(\'app\', \'Yes\')',
 					'filter' => array('0' => Yii::t('app', 'No'), '1' => Yii::t('app', 'Yes')),
 					),
+		'manufacturing_year',
+		/*
+		'fuel_capacity',
+		'color',
+		'bus_plate',
+		'plane_true_airspeed_knots',
+		'plane_cruising_altitude',
+		*/
 		array(
 			'class' => 'CButtonColumn',
 		),

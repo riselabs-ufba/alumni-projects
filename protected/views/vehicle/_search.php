@@ -35,6 +35,37 @@
 		<?php echo $form->dropDownList($model, 'active', array('0' => Yii::t('app', 'No'), '1' => Yii::t('app', 'Yes')), array('prompt' => Yii::t('app', 'All'))); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model, 'manufacturing_year'); ?>
+		<?php echo $form->textField($model, 'manufacturing_year', array('maxlength' => 4)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model, 'fuel_capacity'); ?>
+		<?php echo $form->textField($model, 'fuel_capacity'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model, 'color'); ?>
+		<?php echo $form->textField($model, 'color', array('maxlength' => 45)); ?>
+	</div>        
+        <?php /* BeginFeature:Bus */ ?>
+	<div class="row">
+		<?php echo $form->label($model, 'bus_plate'); ?>
+		<?php echo $form->textField($model, 'bus_plate', array('maxlength' => 20)); ?>
+	</div>
+        <?php /* EndFeature:Bus */ ?>
+        <?php /* BeginFeature:Plane */ ?>
+	<div class="row">
+		<?php echo $form->label($model, 'plane_true_airspeed_knots'); ?>
+		<?php echo $form->textField($model, 'plane_true_airspeed_knots'); ?>
+	</div>
+        
+	<div class="row">
+		<?php echo $form->label($model, 'plane_cruising_altitude'); ?>
+		<?php echo $form->textField($model, 'plane_cruising_altitude'); ?>
+	</div>
+        <?php /* EndFeature:Plane */ ?>
 	<div class="row buttons">
 		<?php echo GxHtml::submitButton(Yii::t('app', 'Search')); ?>
 	</div>

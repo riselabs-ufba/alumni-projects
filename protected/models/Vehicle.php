@@ -11,6 +11,22 @@ class Vehicle extends BaseVehicle
             return parent::model($className);
     }
     
+    public static function label($n = 1) {                    
+                    /* BeginFeature:Boat*/
+                    $label = 'Boat|Boat'; 
+                    /* EndFeature:Boat*/                    
+                    /* BeginFeature:Bus*/
+                    $label = 'Bus|Bus'; 
+                    /* EndFeature:Bus*/
+                    /* BeginFeature:Plane*/
+                    $label = 'Plane|Planes'; 
+                    /* EndFeature:Plane*/  
+                    /* BeginFeature:FeatureManager*/
+                    $label = 'Vehicle|Vehicles'; 
+                    /* EndFeature:FeatureManager*/
+            return Yii::t('app', $label, $n);
+    }    
+    
     protected function afterFind() {
         /* BeginFeature:Manufacturer */
         if (!$this->isNewRecord) {

@@ -72,6 +72,31 @@ class VehicleSeatController extends GxController {
 			'model' => $model,
 		));
 	}
+        
+	public function actionBatchRegistration($id) {                
+                $vehicle = $this->loadModel($id, 'Vehicle');                            
+		$model = new VehicleSeat('batch');
+                $model->id_vehicle = $id;
+
+		$this->performAjaxValidation($model, 'vehicle-seat-form');
+
+		if (isset($_POST['VehicleSeat'])) {
+			$model->setAttributes($_POST['VehicleSeat']);
+
+			if ($model->validate(array(
+                            /* BeginFeature:SeatType */
+                            'id_seat_type',
+                            /* EndFeature:SeatType */
+                            'quantity')) && $model->batchRegistration()) {
+				if (Yii::app()->getRequest()->getIsAjaxRequest())
+					Yii::app()->end();
+				else
+					$this->redirect(array('vehicle/view', 'id' => $vehicle->id));
+			}
+		}
+
+		$this->render('batch', array( 'model' => $model));
+	}        
 
 }
 /* EndFeature:VehicleSeat */

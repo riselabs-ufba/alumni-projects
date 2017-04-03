@@ -17,6 +17,7 @@ if (!function_exists("array_column")) {
  */
 class Feature extends CFormModel {
 
+    const BATCH_REGISTRATION = 14;
     const CONTACT_US = 4;
     const EXPORT_JSON = 11;
     const EXPORT_XML = 12;
@@ -72,6 +73,13 @@ class Feature extends CFormModel {
 
     public function getOptionalFeatures() {
         return array(
+            self::BATCH_REGISTRATION => array(
+                'label' => 'Batch Registration',
+                'annotation' => 'BatchRegistration',
+                'requires' => array(
+                    self::VEHICLE_SEAT,
+                ),
+            ),            
             self::CONTACT_US => array(
                 'label' => 'Contact Us',
                 'annotation' => 'ContactUs',

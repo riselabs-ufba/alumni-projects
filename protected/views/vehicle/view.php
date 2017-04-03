@@ -14,6 +14,9 @@ $this->menu=array(
         /* BeginFeature:VehicleSeat*/
         array('label'=>Yii::t('app', 'Create') . ' ' . VehicleSeat::label(), 'url'=>array('vehicleSeat/create', 'id' => $model->id)),
         /* EndFeature:VehicleSeat*/
+        /* BeginFeature:BatchRegistration*/
+        array('label'=>Yii::t('app', 'Create') . ' ' . VehicleSeat::label().' - Batch Registration', 'url'=>array('vehicleSeat/batchRegistration', 'id' => $model->id)),
+        /* EndFeature:BatchRegistration*/    
 );
 ?>
 

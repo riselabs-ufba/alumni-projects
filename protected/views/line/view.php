@@ -11,7 +11,9 @@ $this->menu=array(
 	array('label'=>Yii::t('app', 'Update') . ' ' . $model->label(), 'url'=>array('update', 'id' => $model->id)),
 	array('label'=>Yii::t('app', 'Delete') . ' ' . $model->label(), 'url'=>'#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>Yii::t('app', 'Manage') . ' ' . $model->label(2), 'url'=>array('admin')),
+        /* BeginFeature:Segment */
         array('label'=>Yii::t('app', 'Register') . ' ' . Segment::label(), 'url'=>array('segment/create', 'id' => $model->id)),
+        /* EndFeature:Segment */
 );
 ?>
 
@@ -38,9 +40,9 @@ array(
 'active:boolean',
 	),
 ));
-/* BeginFeature:MultiSegment */
+/* BeginFeature:Segment */
 $segment = new Segment();
 $segment->id_line = $model->id;
 $this->renderPartial('application.views.segment.admin', array('model' => $segment));
-/* EndFeature:MultiSegment */
+/* EndFeature:Segment */
 /* EndFeature:Line*/

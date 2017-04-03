@@ -32,6 +32,7 @@ class Feature extends CFormModel {
     const VEHICLE_TYPE_PLANE = 10;
     const PASSENGER = 5;
     const SEAT_TYPE = 3;
+    const SEGMENT = 15;
 
     public $toKeep = array();
     public $vehicleType;
@@ -84,7 +85,7 @@ class Feature extends CFormModel {
                 ),
             ),            
             self::CONTACT_US => array(
-                'label' => 'Contact Us',
+                'label' => 'Contact Developer',
                 'annotation' => 'ContactUs',
                 'requires' => array(),
             ),
@@ -99,7 +100,7 @@ class Feature extends CFormModel {
                 'requires' => array(),
             ),            
             self::LUGGAGE => array(
-                'label' => Luggage::label(),
+                'label' => 'Luggage Registration',
                 'annotation' => get_class(Luggage::model()),
                 'requires' => array(
                     self::PASSENGER,
@@ -113,12 +114,17 @@ class Feature extends CFormModel {
                 ),
             ),
             self::PASSENGER => array(
-                'label' => Passenger::label(),
+                'label' => 'Register Passenger',
                 'annotation' => get_class(Passenger::model()),
                 'requires' => array(
                     self::VEHICLE_TYPE_PLANE,
                 ),
             ),
+            self::SEGMENT => array(
+                'label' => 'Register Segment',
+                'annotation' => get_class(Segment::model()),
+                'requires' => array(),
+            ),                        
             self::VEHICLE_SEAT => array(
                 'label' => VehicleSeat::label(),
                 'annotation' => get_class(VehicleSeat::model()),

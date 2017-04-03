@@ -68,6 +68,19 @@ class TravelController extends GxController {
 			'model' => $model,
 		));
 	}
+        
+        /* BeginFeature:Line */
+        public function actionGetAllByLine() {
+            $post = array_values($_POST);
+            $models = Travel::model()->findAll('id_line=:id_line', array(':id_line' => (int) $post[0]['id_line']));
+
+            $data = CHtml::listData($models, 'id', 'start_date');
+            echo CHtml::tag('option', array('value' => ''), CHtml::encode('Select'), true);
+            foreach ($data as $value => $name) {
+                echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+            }
+        }
+        /* EndFeature:Line */        
 
 }
 /* EndFeature:Travel */

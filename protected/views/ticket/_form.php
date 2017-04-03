@@ -13,14 +13,54 @@
 	</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
+		<?php /* BeginFeature:Line */ ?>
+		<div class="row">
+		<?php echo $form->labelEx($model,'id_line'); ?>
+		<?php echo $form->dropDownList($model, 'id_line', GxHtml::listDataEx(Line::model()->findAllAttributes(null, true)),array(
+                        'empty' => Yii::t('app', 'Select'),
+                        'ajax' => array(
+                            'type'=>'POST',
+                            'url'=>$this->createUrl('travel/getAllByLine'),
+                            'update'=>'#Ticket_id_travel',
+                        ),
+                    )); ?>
+		<?php echo $form->error($model,'id_line'); ?>
+		</div><!-- row -->
+		<?php /* EndFeature:Line */ ?>        
 		<?php /* BeginFeature:Travel */ ?>
 		<div class="row">
 		<?php echo $form->labelEx($model,'id_travel'); ?>
-		<?php echo $form->dropDownList($model, 'id_travel', GxHtml::listDataEx(Travel::model()->findAllAttributes(null, true)),array('empty' => Yii::t('app', 'Select'))); ?>
+		<?php echo $form->dropDownList($model, 'id_travel',array(),array(
+                        'empty' => Yii::t('app', 'Select'),
+                        'ajax' => array(
+                            'type'=>'POST',
+                            'url'=>$this->createUrl('segment/getAllDepartureByLine'),
+                            'update'=>'#Ticket_id_station_departure',
+                        ),
+                    )); ?>
 		<?php echo $form->error($model,'id_travel'); ?>
 		</div><!-- row -->
-		<?php /* EndFeature:Travel */ ?>
+		<?php /* EndFeature:Travel */ ?>                
+		<?php /* BeginFeature:Station */ ?>
+		<div class="row">
+		<?php echo $form->labelEx($model,'id_station_departure'); ?>
+		<?php echo $form->dropDownList($model, 'id_station_departure', array(),array('empty' => Yii::t('app', 'Select'),
+                        'ajax' => array(
+                            'type'=>'POST',
+                            'url'=>$this->createUrl('segment/getAllArrivalByDeparture'),
+                            'update'=>'#Ticket_id_station_arrival',
+                        ),                    
+                    )); ?>
+		<?php echo $form->error($model,'id_station_departure'); ?>
+		</div><!-- row -->
+		<?php /* EndFeature:Station */ ?>
+		<?php /* BeginFeature:Station */ ?>
+		<div class="row">
+		<?php echo $form->labelEx($model,'id_station_arrival'); ?>
+		<?php echo $form->dropDownList($model, 'id_station_arrival', array(),array('empty' => Yii::t('app', 'Select'))); ?>
+		<?php echo $form->error($model,'id_station_arrival'); ?>
+		</div><!-- row -->
+		<?php /* EndFeature:Station */ ?>                
 		<?php /* BeginFeature:Passenger */ ?>
 		<div class="row">
 		<?php echo $form->labelEx($model,'id_passenger'); ?>
@@ -33,20 +73,6 @@
 		<?php echo $form->textField($model, 'total_price'); ?>
 		<?php echo $form->error($model,'total_price'); ?>
 		</div><!-- row -->
-		<?php /* BeginFeature:Station */ ?>
-		<div class="row">
-		<?php echo $form->labelEx($model,'id_station_departure'); ?>
-		<?php echo $form->dropDownList($model, 'id_station_departure', GxHtml::listDataEx(Station::model()->findAllAttributes(null, true)),array('empty' => Yii::t('app', 'Select'))); ?>
-		<?php echo $form->error($model,'id_station_departure'); ?>
-		</div><!-- row -->
-		<?php /* EndFeature:Station */ ?>
-		<?php /* BeginFeature:Station */ ?>
-		<div class="row">
-		<?php echo $form->labelEx($model,'id_station_arrival'); ?>
-		<?php echo $form->dropDownList($model, 'id_station_arrival', GxHtml::listDataEx(Station::model()->findAllAttributes(null, true)),array('empty' => Yii::t('app', 'Select'))); ?>
-		<?php echo $form->error($model,'id_station_arrival'); ?>
-		</div><!-- row -->
-		<?php /* EndFeature:Station */ ?>
 
 <?php
 echo GxHtml::submitButton(Yii::t('app', 'Save'));

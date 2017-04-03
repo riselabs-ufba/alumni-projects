@@ -289,7 +289,7 @@ CREATE TABLE `ticket_segment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_ticket` int(11) NOT NULL,
   `id_segment` int(11) NOT NULL,
-  `id_vehicle_seat` int(11) NOT NULL,
+  `id_vehicle_seat` int(11) NULL,
   PRIMARY KEY (`id`),
   KEY `fk_ticket_segment_ticket_idx` (`id_ticket`),
   KEY `fk_ticket_segment_segment_idx` (`id_segment`),

@@ -1,4 +1,4 @@
-<?php /* BeginFeature:Segment */
+<?php
 Yii::import('application.models._base.BaseSegment');
 
 class Segment extends BaseSegment
@@ -34,4 +34,3 @@ class Segment extends BaseSegment
         return CMap::mergeArray($a, $b);
     }
 }
-/* EndFeature:Segment */

@@ -6,6 +6,21 @@
 	'id' => 'station-form',
 	'enableAjaxValidation' => true,
 ));
+
+        $operator = '='; 
+        /* BeginFeature:Boat*/        
+        $param = VehicleType::BOAT;
+        /* EndFeature:Boat*/                    
+        /* BeginFeature:Bus*/
+        $param = VehicleType::BUS;
+        /* EndFeature:Bus*/
+        /* BeginFeature:Plane*/
+        $param = VehicleType::PLANE; 
+        /* EndFeature:Plane*/  
+        /* BeginFeature:FeatureManager*/
+        $param = 0; 
+        $operator = '>';
+        /* EndFeature:FeatureManager*/
 ?>
 
 	<p class="note">
@@ -59,7 +74,9 @@
 		<?php /* BeginFeature:VehicleType */ ?>
 		<div class="row">
 		<?php echo $form->labelEx($model,'id_vehicle_type'); ?>
-		<?php echo $form->dropDownList($model, 'id_vehicle_type', GxHtml::listDataEx(VehicleType::model()->findAllAttributes(null, true)),array('empty' => Yii::t('app', 'Select'))); ?>
+		<?php echo $form->dropDownList($model, 'id_vehicle_type', GxHtml::listDataEx(VehicleType::model()->findAllAttributes(null, true
+                        , "id {$operator} :id", array(':id' => $param)                        
+                        )),array('empty' => Yii::t('app', 'Select'))); ?>
 		<?php echo $form->error($model,'id_vehicle_type'); ?>
 		</div><!-- row -->
 		<?php /* EndFeature:VehicleType */ ?>

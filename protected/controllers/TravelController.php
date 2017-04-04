@@ -80,7 +80,15 @@ class TravelController extends GxController {
                 echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
             }
         }
-        /* EndFeature:Line */        
+        /* EndFeature:Line */ 
+        
+        /* BeginFeature:PrintPassenger */
+	public function actionPrintPassenger($id) {
+		$this->render('print', array(
+			'model' => $this->loadModel($id, 'Travel'),
+		));
+	}    
+        /* EndFeature:PrintPassenger */
 
 }
 /* EndFeature:Travel */

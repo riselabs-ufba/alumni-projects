@@ -32,6 +32,7 @@ class Feature extends CFormModel {
     const VEHICLE_TYPE_BUS = 9;
     const VEHICLE_TYPE_PLANE = 10;
     const PASSENGER = 5;
+    const PRINT_PASSENGER = 17;
     const SEAT_TYPE = 3;
     const SEGMENT = 15;
 
@@ -121,6 +122,13 @@ class Feature extends CFormModel {
                     self::VEHICLE_TYPE_PLANE,
                 ),
             ),
+            self::PRINT_PASSENGER => array(
+                'label' => 'Print Passenger Per Segment',
+                'annotation' => 'PrintPassenger',
+                'requires' => array(
+                    self::PASSENGER,
+                ),
+            ),             
             self::PASSENGER => array(
                 'label' => 'Register Passenger',
                 'annotation' => get_class(Passenger::model()),

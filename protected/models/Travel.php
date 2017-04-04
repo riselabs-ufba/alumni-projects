@@ -32,6 +32,24 @@ class Travel extends BaseTravel
             ),            
         );
         return CMap::mergeArray($parentRules, $childRules);
-    }    
+    }
+
+    /* BeginFeature:PrintPassenger */
+    public function getPassengerListPerSegment(){
+        $query = 'select sd.name departure, sa.name arrival, p.name passenger, vs.code vehicle_seat
+                from ticket t 
+                join ticket_segment ts on t.id = ts.id_ticket
+                left join vehicle_seat vs on vs.id = ts.id_vehicle_seat
+                join segment s on s.id = ts.id_segment
+                join station sd on sd.id = s.id_station_departure
+                join station sa on sa.id = s.id_station_arrival
+                join passenger p on p.id = t.id_passenger
+                where t.id_travel = :id_travel
+                order by s.sequence_number, p.name';
+        
+        return Yii::app()->db->createCommand($query)->queryAll(true, array(':id_travel' => $this->id));
+    }
+    /* EndFeature:PrintPassenger */
+    
 }
 /* EndFeature:Travel */

@@ -14,7 +14,9 @@ class Ticket extends BaseTicket
     protected function beforeDelete() {
         $attributes = array('id_ticket' => $this->id);
         TicketSegment::model()->deleteAllByAttributes($attributes);
+        /* BeginFeature:Luggage */
         Luggage::model()->deleteAllByAttributes($attributes);
+        /* BeginFeature:Luggage */
         
         return parent::beforeDelete();
     }

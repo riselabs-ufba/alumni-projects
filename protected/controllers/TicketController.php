@@ -29,24 +29,6 @@ class TicketController extends GxController {
 		$this->render('create', array( 'model' => $model));
 	}
 
-	public function actionUpdate($id) {
-		$model = $this->loadModel($id, 'Ticket');
-
-		$this->performAjaxValidation($model, 'ticket-form');
-
-		if (isset($_POST['Ticket'])) {
-			$model->setAttributes($_POST['Ticket']);
-
-			if ($model->save()) {
-				$this->redirect(array('view', 'id' => $model->id));
-			}
-		}
-
-		$this->render('update', array(
-				'model' => $model,
-				));
-	}
-
 	public function actionDelete($id) {
 		if (Yii::app()->getRequest()->getIsPostRequest()) {
 			$this->loadModel($id, 'Ticket')->delete();

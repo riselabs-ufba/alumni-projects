@@ -8,7 +8,6 @@ $this->breadcrumbs = array(
 
 $this->menu=array(
 	array('label'=>Yii::t('app', 'Create') . ' ' . $model->label(), 'url'=>array('create')),
-	array('label'=>Yii::t('app', 'Update') . ' ' . $model->label(), 'url'=>array('update', 'id' => $model->id)),
 	array('label'=>Yii::t('app', 'Delete') . ' ' . $model->label(), 'url'=>'#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->id), 'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>Yii::t('app', 'Manage') . ' ' . $model->label(2), 'url'=>array('admin')),
         /* BeginFeature:JSON */
@@ -25,6 +24,7 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data' => $model,
 	'attributes' => array(
+                'idTravel.idLine',
 		/* BeginFeature:Travel */
 array(
 			'name' => 'idTravel',
@@ -56,4 +56,7 @@ array(
 		/* EndFeature:Station */
 	),
 ));
+$modelTicketSegment = new TicketSegment();
+$modelTicketSegment->id_ticket = $model->id;
+$this->renderPartial('application.views.ticketSegment.admin',array('model' => $modelTicketSegment));
 /* EndFeature:Ticket*/

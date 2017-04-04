@@ -40,7 +40,7 @@ abstract class BaseTicketSegment extends GxActiveRecord {
 	}
 
 	public static function label($n = 1) {
-		return Yii::t('app', 'TicketSegment|TicketSegments', $n);
+		return Yii::t('app', 'Ticket Segment|Ticket Segments', $n);
 	}
 
 	public static function representingColumn() {

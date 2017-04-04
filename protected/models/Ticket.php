@@ -11,6 +11,14 @@ class Ticket extends BaseTicket
             return parent::model($className);
     }
     
+    protected function beforeDelete() {
+        $attributes = array('id_ticket' => $this->id);
+        TicketSegment::model()->deleteAllByAttributes($attributes);
+        Luggage::model()->deleteAllByAttributes($attributes);
+        
+        return parent::beforeDelete();
+    }
+    
     public function attributeLabels() {
         $a = parent::attributeLabels();
         $b = array(
@@ -41,7 +49,9 @@ class Ticket extends BaseTicket
     
     public function save($runValidation = true, $attributes = null) {
         $validated = parent::save($runValidation, $attributes);
-        $condition = 'id_line = :id_line and id >= :id_station_departure and id_station_arrival <= :id_station_arrival';
+        $sqlDeparture = '(select sequence_number from segment where id_line = :id_line and id_station_departure = :id_station_departure)';
+        $sqlArrival = '(select sequence_number from segment where id_line = :id_line and id_station_arrival = :id_station_arrival)';
+        $condition = "id_line = :id_line and sequence_number between {$sqlDeparture} and {$sqlArrival}";
         $params = array(
             ':id_line' => $this->id_line,
             ':id_station_departure' => $this->id_station_departure,

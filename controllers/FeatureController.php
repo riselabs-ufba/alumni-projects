@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: lucas
+ * User: Lucas Cardoso & Marco Paranhos
  * Date: 2/4/17
  * Time: 6:51 PM
  */
@@ -22,13 +22,13 @@ class FeatureController extends MainController
 
         $this->layout = 'feature-selection';
         if (!empty(Yii::$app->request->post())) {
-//            var_dump(Yii::$app->request->post());
-//            die();
-            $menuArray = '';
-            foreach ($_POST['features'] as $feature) {
-                $labelMenu = explode('-', $feature);
-                if ($labelMenu[0] != 'user' && $labelMenu[0] != 'report' && $labelMenu[0] != 'rr') {
-                    $menuArray .= "[
+            if (!empty($_POST['features']) && !empty($_POST['productName'])) {
+                $tipoProduto = $this->getListaFeatures($_POST['features']);
+                $menuArray = '';
+                foreach ($tipoProduto as $feature) {
+                    $labelMenu = explode('-', $feature);
+                    if ($labelMenu[0] != 'user' && $labelMenu[0] != 'report' && $labelMenu[0] != 'rr') {
+                        $menuArray .= "[
                         'label' => '<i class=" . '"fa fa-building"' . "></i> " . ucfirst($labelMenu[0]) . "',
                         'url' => '#',
                         'items' => [
@@ -36,8 +36,8 @@ class FeatureController extends MainController
                             ['label' => '<i class=" . '"fa fa-circle-o"' . "></i> New', 'url' => ['/$labelMenu[0]/create']],
                         ]
                     ],";
-                } elseif ($labelMenu[0] == 'report' && $labelMenu[1] == 'opportunity') {
-                    $menuArray .= "[
+                    } elseif ($labelMenu[0] == 'report' && $labelMenu[1] == 'opportunity') {
+                        $menuArray .= "[
                         'label' => '<i class=" . '"fa fa-building"' . "></i> " . ucfirst($labelMenu[0]) . " " . ucfirst($labelMenu[1]) . "',
                         'url' => '#',
                         'items' => [
@@ -46,8 +46,8 @@ class FeatureController extends MainController
                         ]
                     ],";
 
-                } elseif ($labelMenu[0] == 'report' && $labelMenu[1] == 'product') {
-                    $menuArray .= "[
+                    } elseif ($labelMenu[0] == 'report' && $labelMenu[1] == 'product') {
+                        $menuArray .= "[
                         'label' => '<i class=" . '"fa fa-building"' . "></i> " . ucfirst($labelMenu[0]) . " " . ucfirst($labelMenu[1]) . "',
                         'url' => '#',
                         'items' => [
@@ -56,19 +56,49 @@ class FeatureController extends MainController
                         ]
                     ],";
 
+                    }
+
                 }
 
+                $basePath = Yii::getAlias('@webroot') . '/../';
+                $destinationFolder = $this->webRoot . str_replace(" ", "", Yii::$app->request->post('productName'));
+                $this->mountMenu($menuArray);
+                $this->commonFeatures(Yii::$app->request->post('productName'), $destinationFolder, $basePath);
+                $this->variabilityFeatures($tipoProduto, $destinationFolder, $basePath);
+                Yii::$app->session->setFlash('success');
+                return $this->render('feature', ['link' => '/' . str_replace(" ", "", Yii::$app->request->post('productName'))]);
+            } else {
+                Yii::$app->session->setFlash('error', "Por favor selecione o nome do produto e tipo");
+                return $this->render('feature');
             }
-
-            $basePath = Yii::getAlias('@webroot') . '/../';
-            $destinationFolder = $this->webRoot . str_replace(" ", "", Yii::$app->request->post('productName'));
-            $this->mountMenu($menuArray);
-            $this->commonFeatures(Yii::$app->request->post('productName'), $destinationFolder, $basePath);
-            $this->variabilityFeatures($_POST['features'], $destinationFolder, $basePath);
-            Yii::$app->session->setFlash('success');
-            return $this->render('feature', ['link' => '/' . str_replace(" ", "", Yii::$app->request->post('productName'))]);
         }
         return $this->render('feature');
+    }
+
+    /**
+     * @param $feature
+     * @return array
+     *
+     * Lista de configurações dos produtos
+     */
+    private function getListaFeatures($feature)
+    {
+        $arrayFeatures = array();
+        switch ($feature) {
+            case "smallBusiness":
+                $arrayFeatures = ["user-executive", "product-static", "poc", "report-product"];
+                break;
+            case "standardBusiness":
+                $arrayFeatures = ["user-executive", "product-static", "partner", "report-product", "report-opportunity"];
+                break;
+            case "professionalBusiness":
+                $arrayFeatures = ["user-executive", "user-director", "product-dynamic", "partner", "finder", "report-product", "report-opportunity"];
+                break;
+            case "enterpriseBusiness";
+                $arrayFeatures = ["user-executive", "user-director", "product-dynamic", "poc", "partner", "finder", "report-product", "report-opportunity"];
+                break;
+        }
+        return $arrayFeatures;
     }
 
     /**

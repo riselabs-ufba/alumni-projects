@@ -20,7 +20,7 @@ public abstract class Sensor {
 	}
 		
 	public String getValue() {
-		System.out.println("Vou transformar!");
+//		System.out.println("Vou transformar!");
 		return transformation(value);
 	}
 	public void setValue(JSONObject value) {

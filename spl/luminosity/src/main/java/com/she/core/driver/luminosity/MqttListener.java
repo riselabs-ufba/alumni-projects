@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 public class MqttListener implements MqttCallback {
 	MqttClient client;
-	Sensor sensor = new LuminositySensor("LuminositySensor", "DHT");
+	Sensor sensor = new LuminositySensor("LuminositySensor", "LDR");
 
 	@Override
 	public void connectionLost(Throwable arg0) {
@@ -70,7 +70,7 @@ public class MqttListener implements MqttCallback {
 	}
 	
 	private MqttClient auxBuilder() {
-		long unixTime = System.currentTimeMillis() / 1000L;
+		long unixTime = System.currentTimeMillis() / 10L;
 		MqttClient auxClient;
 		MqttConnectOptions connOpt = new MqttConnectOptions();
 //		if (!this.username.isEmpty())
@@ -93,6 +93,5 @@ public class MqttListener implements MqttCallback {
 		}
 		return auxClient;
 	}
-
 
 }

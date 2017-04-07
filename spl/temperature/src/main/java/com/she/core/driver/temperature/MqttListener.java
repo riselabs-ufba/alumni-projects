@@ -38,7 +38,7 @@ public class MqttListener implements MqttCallback {
 //		int value =  json.getInt("value");
 //		sensor.setValue(String.valueOf(value));
 		sensor.setValue(json);
-		publish("Value : " + sensor.getValue());
+		publish(sensor.getValue(),json.getString("name"));
 	}
 
 	public void setClient(MqttClient client) {
@@ -46,13 +46,16 @@ public class MqttListener implements MqttCallback {
 		this.client = client;
 	}
 	
-//	The method for correctly publish
 	public boolean publish(String messageString) {
+		return publish(messageString,"serviceChat");
+	}
+//	The method for correctly publish
+	public boolean publish(String messageString,String topic) {
 //		This auxClient is a <workaround> to fix a <bug>!
 		MqttClient auxClient;
 //		System.out.println("Entrei");
 		MqttMessage msg = new MqttMessage();
-		String topic = sensor.getName();
+//		String topic = "serviceChat";
 		msg.setPayload(messageString.getBytes());
 		auxClient = auxBuilder();
 		try {

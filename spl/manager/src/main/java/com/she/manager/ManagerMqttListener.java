@@ -12,13 +12,13 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.she.manager.MqttListener;
 
 public class ManagerMqttListener extends MqttListener{
 	MqttClient client;
-	Manager manager = new Manager();
 	
 	private String command = "/home/ramon/Downloads/apache/apache-karaf-4.0.8/bin/client ";
 	private ArrayList<JSONObject> devices = new ArrayList<JSONObject>();
@@ -46,20 +46,22 @@ public class ManagerMqttListener extends MqttListener{
 			 */
 			boolean contains = false;
 			for (JSONObject device: devices) {
-				if (json.getString("name") == device.getString("name") ) {
+				if (json.getString("name").equals(device.getString("name"))) {
 					contains = true;
 				}
 			}
 			if (!contains) {
 				devices.add(json);
 			}
-			publish("Sensor", "screen");
+			publish("Sensor", "ServiceChat");
 		} else if (type.equals("generator")) {
 			iterativeStatusSet(json.getJSONObject("list"));
-			publish("generator", "screen");
+			publish("generator", "ServiceChat");
 		} else if (type.equals("list")) {
 //			publish("Lista!!", "screen");
-			publish(devices.toString(), "screen");
+			JSONObject aux = new JSONObject();
+			aux.put("devices", new JSONArray(devices));
+			publish(aux.toString(), "screen");
 		} else {
 			System.out.println("Retorno!");
 //			publish("nem foi: " + type + "Sensor", "connections");

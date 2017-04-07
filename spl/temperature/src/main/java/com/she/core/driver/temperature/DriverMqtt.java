@@ -72,7 +72,7 @@ public class DriverMqtt {
 		// After a successful connection: announce
 		MqttMessage msg = new MqttMessage();
 		String topic = "connections";
-		msg.setPayload("{\"typeDevice\":\"Sensor\",\"name\":\"TemperatureHumiditySensor\",\"model\":\"DTH11\"}".getBytes());
+		msg.setPayload("{\"typeDevice\":\"Sensor\",\"name\":\"TemperatureHumiditySensor\",\"model\":\"DTH11\",\"temperature\":\"25.00\",\"humidity\":\"60\",\"heatIndex\":\"25.00\"}".getBytes());
 		client.publish(topic, msg);
 		
 	}

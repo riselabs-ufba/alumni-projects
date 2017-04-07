@@ -52,7 +52,7 @@
           <instructions>
             <Export-Package>com.she.core.driver.luminosity</Export-Package>
             <Private-Package>com.she.core.driver.luminosity.impl</Private-Package>
-            <Bundle-Activator>com.she.core.driver.luminosity.impl.ProducerActivator</Bundle-Activator>
+            <Bundle-Activator>com.she.core.driver.luminosity.impl.LuminosityActivator</Bundle-Activator>
           </instructions>
         </configuration>
       </plugin>

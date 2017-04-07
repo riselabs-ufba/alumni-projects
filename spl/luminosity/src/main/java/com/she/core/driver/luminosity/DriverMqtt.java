@@ -1,7 +1,6 @@
 package com.she.core.driver.luminosity;
 
 import org.eclipse.paho.client.mqttv3.MqttClient;
-
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -43,7 +42,7 @@ public class DriverMqtt {
 		if (!this.password.isEmpty())
 			connOpt.setPassword(this.password.toCharArray());
 		try {
-			long unixTime = System.currentTimeMillis() / 1000L;
+			long unixTime = System.currentTimeMillis() / 10L;
 			client = new MqttClient("tcp://" + this.brokerUrl + ":"
 					+ this.brokerPort,  
 					this.serverId + "_pub" + unixTime);
@@ -72,15 +71,18 @@ public class DriverMqtt {
 		// After a successful connection: announce
 		MqttMessage msg = new MqttMessage();
 		String topic = "connections";
-		msg.setPayload("{\"typeDevice\":\"Sensor\",\"name\":\"LuminositySensor\",\"model\":\"LDR\"}".getBytes());
+		msg.setPayload("{\"typeDevice\":\"Sensor\",\"name\":\"LuminositySensor\",\"model\":\"LDR\",\"value\":\"300\"}".getBytes());
 		client.publish(topic, msg);
 		
 	}
 	
-//	The method for correctly publish
 	public boolean publish(String messageString) {
+		return publish(messageString,username);
+	}
+//	The method for correctly publish
+	public boolean publish(String messageString,String topic) {
 		MqttMessage msg = new MqttMessage();
-		String topic = topicPrefix + username;
+//		String topic = topicPrefix + username;
 		msg.setPayload(messageString.getBytes());
 		try {
 			client.publish(topic, msg);
@@ -202,6 +204,7 @@ public class DriverMqtt {
 	public void disconnect() {
 		try {
 			System.out.println("Disconnecting " + username);
+//			publish("{\"typeDevice\":\"kill\","+ "\"name\":\"" + username + "\"}","connections");
 			client.disconnect();
 		} catch (MqttException e) {
 			// TODO Auto-generated catch block

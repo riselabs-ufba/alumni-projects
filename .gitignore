@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 *.DS_Store
 /WebStore/webstore_p
@@ -5,3 +6,43 @@ buildsXml/deploy
 buildsXml/output
 /WebStore/products/.tmpBin
 
+=======
+# script file
+*.sh
+
+# qtcreator files
+*.pro*
+
+# test files
+*.test
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+>>>>>>> 6314a84ca189309943bf79412136fac215ee8c45

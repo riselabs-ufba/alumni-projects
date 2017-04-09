@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/usr/lib/jni"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/usr/share/java/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="/home/ramon/.m2/repository/org/eclipse/paho/mqtt-client/0.4.0/mqtt-client-0.4.0.jar"/>
+	<classpathentry kind="lib" path="/home/ramon/workspaceLuna/S.H.E-SPL/spl/manager/target/manager-1.0.jar" sourcepath="/manager/src/main/java/com/she"/>
+	<classpathentry kind="lib" path="/home/ramon/javas/java-json.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

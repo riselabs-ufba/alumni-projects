@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 *.DS_Store
 /WebStore/webstore_p
@@ -5,3 +6,9 @@ buildsXml/deploy
 buildsXml/output
 /WebStore/products/.tmpBin
 
+=======
+/assets/
+/protected/runtime/application.log
+/protected/runtime/gii-1.1.17/
+/nbproject/private/
+>>>>>>> f77a053ebd51c1a88382a90e3db79fb117e4d4b8

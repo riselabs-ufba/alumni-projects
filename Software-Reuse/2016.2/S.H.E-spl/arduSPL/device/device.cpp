@@ -90,17 +90,23 @@ void Device::loop(){
   // Calcula o índice de calor em graus Celsius (Fahrenheit = false).
   float indiceCalor = dht.computeHeatIndex(temperatura, umidade, false);
 
-#ifdef LCD	
-	ardulcd.loop(umidade,temperatura,indiceCalor);
-#endif
-   root["temperature"] = temperatura;  
-   root["humidity"] = umidade;  
-   root["heatIndex"] = indiceCalor; 
+  #ifdef LCD	
+	ardulcd.loop(umidade,temperatura,indiceCalor);	
+  #endif
+  
+  root["temperature"] = temperatura;  
+  root["humidity"] = umidade;  
+  root["heatIndex"] = indiceCalor; 
 #endif
 
 // luminosity sensor
 #ifdef luminosity
-   root["luminosity"] = analogRead(sensorPort); 
+   int readValue = analogRead(sensorPort); 
+   root["luminosity"] = readValue;
+  
+  #ifdef LCD
+	ardulcd.loop(readValue);
+  #endif
 #endif
 
 // presence sensor
@@ -108,23 +114,24 @@ void Device::loop(){
 	//Lendo o valor do sensor PIR. Este sensor pode assumir 2 valores
 	//1 quando detecta algum movimento e 0 quando não detecta.
    if (detected){
-			ligarAlarme();
-		}
-	valorSensorPIR = digitalRead(pinSensorPIR);
-   
-  	Serial.print("Valor do Sensor PIR: ");  
-  	Serial.println(valorSensorPIR);
+		ligarAlarme();
+	}
+	
+	valorSensorPIR = digitalRead(pinSensorPIR);  	
 	 
 	//Verificando se ocorreu detecção de movimentos
-	if (valorSensorPIR == 1) {
-	  // Serial.println(valorSensorPIR);
-		
-	  
+	if (valorSensorPIR == 1) {	  			  
 	  root["value'"] = "Tem alguem";
+	  #ifdef LCD
+		ardulcd.loop("Tem alguem");
+	  #endif
 	  detected = true;
 	} else {
 		desligarAlarme();
-		root["value'"] = "Nao Tem niguem";
+		root["value'"] = "Nao tem ninguem";
+		#ifdef LCD
+			ardulcd.loop("Nao tem ninguem");
+		#endif
 		detected = false;
 	} 
 	
@@ -138,21 +145,38 @@ void Device::loop(){
 	// Verifica o nível da concentração de gás.
   	if (valor_analogico > nivel_sem_gas){    
     	root["Info"] = "Gas detected.";   
+		#ifdef LCD
+			ardulcd.loop("Gas detected", valor_analogico);
+		#endif
   	}else{
-    	root["Info"] = "Gas not detected."; 
+    	root["Info"] = "Gas not detected"; 
+		#ifdef LCD
+			ardulcd.loop("Gas not detected", valor_analogico);
+		#endif
   	}
 #endif
 
 #ifdef agua
   	if( digitalRead(sensorPort) == HIGH) {      
       	sensorData = 1;
+		
+		root["value"] = "Water detected";  
+		#ifdef LCD
+			ardulcd.loop("Water detected");
+		#endif
    	}else{
       	sensorData = 0;
+		
+		root["value"] = "Water undetected"; 
+		#ifdef LCD
+			ardulcd.loop("Water undetected");
+		#endif
    	}
+	
     if (sensorData == 1){    
-    	root["value"] = "Water detected.";   
+    	
  	}else{
-    	root["value"] = "Water not detected."; 
+    	
  	}
 
 #endif

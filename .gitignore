@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-
-*.DS_Store
-/WebStore/webstore_p
-buildsXml/deploy
-buildsXml/output
-/WebStore/products/.tmpBin
-
-=======
 # script file
 *.sh
 
@@ -45,4 +36,7 @@ buildsXml/output
 *.exe
 *.out
 *.app
->>>>>>> 6314a84ca189309943bf79412136fac215ee8c45
+
+# Java
+*.class
+

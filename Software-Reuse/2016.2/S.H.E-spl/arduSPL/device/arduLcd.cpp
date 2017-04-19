@@ -3,20 +3,21 @@
 ArduLcd::ArduLcd(){
 
 }
+
 void ArduLcd::setup(){
-	  // Inicializa LCD.
+  // Inicializa LCD.
   lcd.begin(16,2);
 
   // Limpa o LCD.
   lcd.clear(); 
-  
+#ifdef temperature  
   // Cria o caractere customizado com o simbolo do grau no LCD.
   lcd.createChar(0, grau);
+#endif  
 }
 
-void ArduLcd::loop(float umidade, float temperatura, float indiceCalor){
-  if (isnan(umidade) || isnan(temperatura)) {
-    // Limpa o LCD.
+void ArduLcd::lcdFailMessage(){
+	// Limpa o LCD.
     lcd.clear();
     // Posiciona o cursor na coluna 0, linha 0.
     lcd.setCursor(0,0);
@@ -32,9 +33,78 @@ void ArduLcd::loop(float umidade, float temperatura, float indiceCalor){
     }
      
     return;
+}
+
+#ifdef luminosity
+void ArduLcd::loop(int lumi){
+  if (lumi == 0) {
+    lcdFailMessage();
   }
     
-  /* Início do bloco Temperatura - utilizado para escrever as informação da temperatura no LCD. */
+  // Limpa o LCD.
+  lcd.clear();
+  
+  // Posiciona o cursor na coluna 0, linha 0.
+  lcd.setCursor(0,0);
+
+  // Envia o texto entre aspas para o LCD.
+  lcd.print("Luminosity: ");
+  
+  // Posiciona o cursor na coluna 0, linha 1. 
+  lcd.setCursor(0,1);
+
+  // Envia para o LCD o valor da luminosidade lido do sensor.
+  lcd.print(lumi);
+}
+#endif
+
+#if defined(presence) || defined(agua)
+void ArduLcd::loop(char *message){
+	// Limpa o LCD.
+  lcd.clear();
+  
+  // Posiciona o cursor na coluna 0, linha 0.
+  lcd.setCursor(0,0);
+
+  // Envia a mensagem para o LCD.
+  lcd.print(message);
+}
+#endif 
+
+#ifdef gas
+void ArduLcd::loop(char *message, int gasLevel){
+	
+  if (gasLevel == 0) {
+    lcdFailMessage();
+  }
+  
+	// Limpa o LCD.
+  lcd.clear();
+  
+  // Posiciona o cursor na coluna 0, linha 0.
+  lcd.setCursor(0,0);
+
+  // Envia a mensagem para o LCD.
+  lcd.print(message);
+  
+  // Posiciona o cursor na coluna 0, linha 1.
+  lcd.setCursor(0,1);
+  // Envia a mensagem para o LCD.
+  lcd.print("Gas Level: ");
+  // Posiciona o cursor na coluna 11, linha 1.
+  lcd.setCursor(11,1);
+  // Envia o  para o LCD.
+  lcd.print(gasLevel);
+}
+#endif 
+
+#ifdef temperature
+void ArduLcd::loop(float umidade, float temperatura, float indiceCalor){
+  if (isnan(umidade) || isnan(temperatura)) {
+    lcdFailMessage();
+  }
+    
+  // Início do bloco Temperatura - utilizado para escrever as informação da temperatura no LCD.
   // Limpa o LCD.
   lcd.clear();
   
@@ -62,9 +132,9 @@ void ArduLcd::loop(float umidade, float temperatura, float indiceCalor){
 
   // Envia o texto entre aspas para o LCD.
   lcd.print("C");
-   /* Fim do Bloco Temperatura. */
+   // Fim do Bloco Temperatura. 
 
-  /* Início do bloco Umidade - utilizado para escrever as informação da umidade no LCD. */
+  // Início do bloco Umidade - utilizado para escrever as informação da umidade no LCD. 
   // Posiciona o cursor na coluna 0, linha 1. 
   lcd.setCursor(0,1);
 
@@ -92,3 +162,4 @@ void ArduLcd::loop(float umidade, float temperatura, float indiceCalor){
   // Envia para o LCD o valor do índice de calor calculado.
   lcd.print(indiceCalor,1);  	
 }
+#endif

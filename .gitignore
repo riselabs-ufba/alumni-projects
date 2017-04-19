@@ -1,9 +1,6 @@
 # script file
 *.sh
 
-# qtcreator files
-*.pro*
-
 # test files
 *.test
 

@@ -1,0 +1,45 @@
+*.DS_Store
+/WebStore/webstore_p
+buildsXml/deploy
+buildsXml/output
+/WebStore/products/.tmpBin
+
+# script file
+*.sh
+
+# test files
+*.test
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Java
+*.class
+
